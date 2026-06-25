@@ -50,8 +50,8 @@ flowchart TD
 Complete the tutorial modules before starting this lab:
 
 - [x] [Module 0 - Prerequisites](docs/00-prerequisites.md)
-- [x] [Module 1 - Install Foundry Toolkit](docs/01-install-foundry-toolkit.md)
-- [x] [Module 2 - Create Foundry Project](docs/02-create-foundry-project.md)
+- [x] [Module 1 - Setup: Extension, Project & Model](docs/01-setup.md)
+- [x] [Module 2 - Create Hosted Agent](docs/02-create-hosted-agent.md)
 
 ---
 
@@ -107,7 +107,7 @@ Rules:
 ### 2.2 Configure `.env`
 
 ```env
-AZURE_AI_PROJECT_ENDPOINT=https://<your-account>.services.ai.azure.com/api/projects/<your-project>
+FOUNDRY_PROJECT_ENDPOINT=https://<your-account>.services.ai.azure.com/api/projects/<your-project>
 AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1-mini (or gpt-5-mini)
 ```
 
@@ -230,10 +230,10 @@ Key solution files:
 
 | File | Description |
 |------|-------------|
-| [`agent/main.py`](agent/main.py) | Agent entry point with executive summary instructions and validation |
+| [`agent/main.py`](agent/main.py) | Agent entry point with executive summary instructions and `get_current_date` tool |
 | [`agent/agent.yaml`](agent/agent.yaml) | Agent definition (`kind: hosted`, protocols, env vars, resources) |
 | [`agent/Dockerfile`](agent/Dockerfile) | Container image for deployment (Python slim base image, port `8088`) |
-| [`agent/requirements.txt`](agent/requirements.txt) | Python dependencies (`agent-framework>=1.1.0`, `agent-framework-foundry-hosting`) |
+| [`agent/requirements.txt`](agent/requirements.txt) | Python dependencies (`agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp`, `debugpy`) |
 
 ---
 

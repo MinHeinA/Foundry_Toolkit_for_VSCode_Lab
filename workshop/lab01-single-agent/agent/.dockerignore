@@ -4,7 +4,4 @@ __pycache__
 *.pyo
 *.pyd
 .Python
-.foundry
-.vscode
 .env
-README.md

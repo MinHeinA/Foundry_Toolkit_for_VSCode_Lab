@@ -24,7 +24,6 @@ Prior to delivering the workshop, please:
 | Lab 02 - multi-agent workflow | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Hands-on lab: build the 4-agent *Resume to Job Fit Evaluator* workflow                     |
 | Demo 1: Executive Agent             | [Lab01 agent](../workshop/lab01-single-agent/agent/)                                              | Lab 01 demo: translate technical jargon into an executive summary                          |
 | Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../workshop/lab02-multi-agent/PersonalCareerCopilot/)                     | Lab 02 demo: 4-agent workflow that scores resume-job fit and generates recommendations     |
-| Known issues                  | [KNOWN_ISSUES.md](../KNOWN_ISSUES.md)                                            | Workarounds for known issues you may hit during delivery                                   |
 
 > **Note for trainers:** Slide deck and video links will be added once the recordings are published. Until then, ping the maintainer (see [Contacts](#contacts)) for the latest assets.
 
@@ -67,7 +66,6 @@ The workshop is divided into multiple sections including slides, **2 live demos*
 | Prerequisites checklist        | [00-prerequisites.md](../workshop/lab01-single-agent/docs/00-prerequisites.md)                | Tools, accounts, and Azure access required        |
 | Hosted agents quickstart (azd) | [Learn](https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-hosted-agent?pivots=azd) | Official quickstart for deploying a hosted agent with `azd` |
 | Hosted agents region availability | [Learn](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents#region-availability) | Supported regions for hosted agents (preview)     |
-| Known issues                   | [KNOWN_ISSUES.md](../KNOWN_ISSUES.md)                                                         | Workarounds for known issues                      |
 
 ### Trainer prerequisites
 

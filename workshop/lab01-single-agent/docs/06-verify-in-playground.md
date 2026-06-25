@@ -34,10 +34,15 @@ Edge cases that worked locally might behave differently with a managed identity 
 ## Option B: Test in the Foundry Portal
 
 1. Open [ai.azure.com](https://ai.azure.com) → sign in → select your project.
-2. Navigate to **Build** → **Agents** → click your agent.
-3. Click **Open in playground**.
+2. Navigate to **Build** → **Agents**.
+
+![Microsoft Foundry portal Build > Agents page listing hosted agents](images/06-foundry-portal-agent-list.png)
+
+3. Click your agent → click **Open in playground**.
 
 ![Foundry portal showing deployed agent with Playground tab](images/06-agent-in-foundry.png)
+
+![Microsoft Foundry portal Playground showing ExecutiveAgent with Running status and executive summary response in the chat](images/07-foundry-playground-chat.png)
 
 ---
 

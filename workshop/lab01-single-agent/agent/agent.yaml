@@ -1,24 +1,27 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/microsoft/AgentSchema/refs/heads/main/schemas/v1.0/ContainerAgent.yaml
+
+name: executive-summary-agent
 kind: hosted
-name: my-agent
+author:
+  - ShivamGoyal03
 metadata:
-  authors:
-    - ShivamGoyal03
   tags:
+    - Agent Framework
+    - AI Agent Hosting
     - Azure AI AgentServer
-    - Microsoft Agent Framework
-    - Executive Communication
-    - Plain Language
-    - Hosted Agent
+    - Responses Protocol
+    - Streaming
+    - Executive Summary
 protocols:
   - protocol: responses
     version: 1.0.0
-resources:
-  cpu: '0.25'
-  memory: 0.5Gi
+description: >
+  An "Explain Like I'm an Executive" agent that translates complex technical
+  updates into plain-language executive summaries.
 environment_variables:
-  - name: AZURE_AI_PROJECT_ENDPOINT
-    value: ${AZURE_AI_PROJECT_ENDPOINT}
   - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
     value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
+resources:
+  cpu: '0.5'
+  memory: 1.0Gi
 dockerfile_path: Dockerfile
