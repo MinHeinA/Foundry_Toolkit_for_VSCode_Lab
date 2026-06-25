@@ -58,7 +58,7 @@ flowchart LR
 
 ## Step 4: Select template
 
-> ⚠️ **No dedicated multi-agent template exists in v1.2.1.** Select **Basic - Agent Framework** — you add multi-agent code in Module 3. See [KI-002](../../../KNOWN_ISSUES.md#ki-002---no-dedicated-multi-agent-template-in-foundry-toolkit-v121).
+> ⚠️ **No dedicated multi-agent template exists in v1.2.1.** Select **Basic - Agent Framework** — you add multi-agent code in Module 3.
 
 1. Select **Basic - Agent Framework**.
 2. Click **Next**.

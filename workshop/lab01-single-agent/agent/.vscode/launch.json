@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Local Agent Server",
+            "name": "Debug Local Agent HTTP Server",
             "type": "debugpy",
             "request": "attach",
             "connect": {

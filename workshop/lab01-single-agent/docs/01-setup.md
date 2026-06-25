@@ -15,6 +15,8 @@ In this module, you install and verify the Foundry Toolkit extension, create (or
 
 > *Note: The Activity Bar may display "AI TOOLKIT" in older extension versions. The functionality is identical.*
 
+![Foundry Toolkit icon in VS Code Activity Bar with sidebar showing MY RESOURCES, DEVELOPER TOOLS, and Hosted Agents sections](images/01-foundry-sidebar-view.png)
+
 ## Step 2: Set up based on your access
 
 > **Choose your path:** Expand the section below that matches your setup. You only need to complete **one** path.
@@ -73,6 +75,8 @@ Docker is only needed if you want to build containers locally. The Foundry exten
 2. Navigate to **Subscriptions** and confirm at least one is **Active**.
 3. Note your **Subscription ID** — you'll need it in Module 01.
 
+![Azure Portal Subscriptions blade showing an active subscription with Subscription ID](images/00-azure-portal-subscriptions.png)
+
 #### RBAC Scenario Table
 
 [Hosted Agent](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents) deployment requires **data action** permissions that standard Azure `Owner` and `Contributor` roles do **not** include. Use the table below to determine which roles you need:
@@ -88,6 +92,8 @@ Docker is only needed if you want to build containers locally. The Foundry exten
 
 ## Connect or create a Foundry project
 
+![Foundry Toolkit commands in the VS Code Command Palette](images/01-command-palette-foundry-commands.png)
+
 1. Press `Ctrl+Shift+P` → type **Foundry Toolkit: Create Project** → select it.
 2. Select your **Azure subscription** from the dropdown.
 3. Select or create a **resource group** (e.g., `rg-hosted-agents-workshop`).
@@ -95,6 +101,8 @@ Docker is only needed if you want to build containers locally. The Foundry exten
 5. Enter a project name (e.g., `workshop-agents`).
 6. Wait 2–5 minutes for provisioning. A progress notification appears in VS Code.
 7. When complete, your project appears in the **Foundry Toolkit** sidebar under **MY RESOURCES**.
+
+![Foundry Toolkit sidebar showing newly created project under MY RESOURCES with Models and Agents sections](images/02-foundry-sidebar-new-project.png)
 
 ## Deploy a model & assign RBAC
 
@@ -112,6 +120,9 @@ Depending on your needs, you can choose from different model tiers:
 1. Press `Ctrl+Shift+P` → **Foundry Toolkit: Open Model Catalog** (or click **Model Catalog** in the sidebar under DEVELOPER TOOLS → Discover).
 2. Search for **gpt-4.1** in the catalog.
 3. Find **OpenAI GPT-4.1-mini** (or `gpt-5-mini` for better quality) and click **Deploy**.
+
+![Model Catalog showing gpt-4.1 models available for deployment to Microsoft Foundry](images/02-model-catalog-gpt41.png)
+
 4. In the deployment configuration:
    - **Deployment name:** Leave the default or enter a custom name. **Remember this name.**
    - **Target:** Select **Deploy to Foundry Toolkit** → choose your project.

@@ -34,7 +34,7 @@ sequenceDiagram
 ### 🅰️ Path A — Foundry subscription
 
 ```env
-AZURE_AI_PROJECT_ENDPOINT=https://<your-account>.services.ai.azure.com/api/projects/<your-project>
+FOUNDRY_PROJECT_ENDPOINT=https://<your-account>.services.ai.azure.com/api/projects/<your-project>
 AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-5-mini (or gpt-4.1-mini)
 ```
 
@@ -160,10 +160,10 @@ pip install -r requirements.txt
 ### 4.4 Verify
 
 ```bash
-pip list | grep agent-framework
+pip list | grep agent-framework-foundry
 ```
 
-Expected: `agent-framework` and `agent-framework-foundry-hosting` are listed.
+Expected: `agent-framework-foundry` and `agent-framework-foundry-hosting` are listed.
 
 ---
 

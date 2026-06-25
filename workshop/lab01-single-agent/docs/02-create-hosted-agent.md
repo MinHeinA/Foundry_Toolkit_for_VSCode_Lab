@@ -45,7 +45,7 @@ flowchart LR
 
 ## Step 2: Choose settings
 
-![Create Hosted Agents](/workshop/lab01-single-agent/docs/images/02-hosted-agents-sample.jpg)
+![Create Hosted Agent from Sample — Agent Details tab showing Language, Framework, Protocol, and Template filters](images/02-hosted-agents-sample.jpg)
 
 1. On the left navigation/options section select the following:
 
@@ -58,13 +58,13 @@ flowchart LR
 
 2. Once selected, click **Next**
 
-![Create Hosted Agents](/workshop/lab01-single-agent/docs/images/02-create-hosted-agents.jpg)
+![Create Hosted Agent — Create tab showing Workspace Folder, Folder Name, and Environment Setup options](images/02-create-hosted-agents.jpg)
 
 3. In the next window, select the following:
 
 | Menu | Selection | Notes |
 |--------|-----------|-------|
-| **Workspace folder** | Choose a target folder | e.g., `/workspaces/Foundry-Toolkit-MVPs-Workshop/` or a subfolder in this repo |
+| **Workspace folder** | Choose a target folder | e.g., `/workspace/Foundry_Toolkit_for_VSCode_Lab/` or a subfolder in this repo |
 | **Agent name** | Enter a name | e.g., `executive-summary-agent` |
 | **Environment Setup** | skip setup for now |  |
 
@@ -93,7 +93,7 @@ After scaffolding completes, verify you see these files in the Explorer (`Ctrl+S
 | `agent.yaml` | Declares the agent as `kind: hosted`, maps environment variables, defines the `/responses` protocol |
 | `main.py` | Creates a `FoundryChatClient` → wraps it in an `Agent` with instructions → serves via `ResponsesHostServer` on port 8088 |
 | `Dockerfile` | Uses `python:3.12-slim`, installs dependencies, exposes port 8088, runs `main.py` |
-| `requirements.txt` | `agent-framework>=1.1.0`, `agent-framework-foundry-hosting`, `debugpy` |
+| `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp`, `debugpy` |
 
 > **Important:** Open the scaffolded agent folder directly in VS Code (the `agent/` folder itself) so that `.vscode/launch.json` and `tasks.json` work correctly for F5 debugging.
 
