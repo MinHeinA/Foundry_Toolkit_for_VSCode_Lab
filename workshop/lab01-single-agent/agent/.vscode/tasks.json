@@ -14,7 +14,7 @@
             "label": "Run Agent/Workflow HTTP Server",
             "type": "shell",
             "command": {
-                "value": "${command:python.interpreterPath}",
+                "value": "${workspaceFolder}/.venv/bin/python",
                 "quoting": "strong"
             },
             "args": ["-m", "debugpy", "--listen", "127.0.0.1:5679", "main.py", "--port", "8088"],

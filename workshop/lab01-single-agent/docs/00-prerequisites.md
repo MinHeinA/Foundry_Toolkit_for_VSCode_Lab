@@ -1,212 +1,99 @@
-# Module 0 - Prerequisites
+# Module 0 - Introduction
 
-Before starting the workshop, confirm you have the following tools, access, and environment ready. Follow every step below - do not skip ahead.
+⏱️ ~10 min
 
----
+> [!WARNING]
+> **Preview & Limitations:** [Hosted Agents](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents) are currently in **public preview** — not recommended for production workloads. Be aware of the following:
+> - **Supported regions are limited** — check [region availability](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents#region-availability) before creating resources. If you pick an unsupported region, deployment will fail.
+> - The `azure-ai-agentserver-agentframework` package is pre-release — APIs may change between versions.
+> - Scale limits: hosted agents support 0–5 replicas (including scale-to-zero).
+> - Some features shown in this workshop may change as the service moves toward GA.
 
-## 1. Azure account & subscription
+## What you'll build
 
-### 1.1 Create or verify your Azure subscription
+In this workshop, you'll build an **"Explain Like I'm an Executive"** agent — a hosted AI agent that takes complex technical updates and rewrites them as plain-English executive summaries.
 
-1. Open a browser and navigate to [https://azure.microsoft.com/free/](https://azure.microsoft.com/free/).
-2. If you don't have an Azure account, click **Start free** and follow the sign-up flow. You'll need a Microsoft account (or create one) and a credit card for identity verification.
-3. If you already have an account, sign in at [https://portal.azure.com](https://portal.azure.com).
-4. In the Portal, click the **Subscriptions** blade in the left navigation (or search "Subscriptions" in the top search bar).
-5. Verify you see at least one **Active** subscription. Note down the **Subscription ID** - you'll need it later.
+```mermaid
+flowchart LR
+    A["🧑‍💻 You send a\ntechnical update"] --> B["🤖 Executive Summary\nAgent"]
+    B --> C["📝 Plain-English\nexecutive summary"]
+```
 
-![Azure Portal Subscriptions blade showing an active subscription with Subscription ID](images/00-azure-portal-subscriptions.png)
+**The agent uses:**
+- **Microsoft Agent Framework** — for agent logic and structure
+- **Foundry Toolkit for VS Code** — to scaffold, test locally, and deploy
+- **An AI model** (e.g., `gpt-4.1-mini/gpt-5-mini`) — to generate the summaries
 
-### 1.2 Understand the required RBAC roles
-
-[Hosted Agent](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents) deployment requires **data action** permissions that standard Azure `Owner` and `Contributor` roles do **not** include. You will need one of these [role combinations](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry#built-in-roles):
-
-| Scenario | Required roles | Where to assign them |
-|----------|---------------|----------------------|
-| Create new Foundry project | **Azure AI Owner** on Foundry resource | Foundry resource in Azure Portal |
-| Deploy to existing project (new resources) | **Azure AI Owner** + **Contributor** on subscription | Subscription + Foundry resource |
-| Deploy to fully configured project | **Reader** on account + **Azure AI User** on project | Account + Project in Azure Portal |
-
-> **Key point:** Azure `Owner` and `Contributor` roles only cover *management* permissions (ARM operations). You need [**Azure AI User**](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry#built-in-roles) (or higher) for *data actions* like `agents/write` which is required to create and deploy agents. You'll assign these roles in [Module 2](02-create-foundry-project.md).
+By the end of this lab, you'll have a working agent that you can test locally via the Agent Inspector, and optionally deploy to the cloud.
 
 ---
 
-## 2. Install local tools
+## What are hosted agents?
+
+A **hosted agent** is an AI agent that runs as a managed service in Microsoft Foundry. Instead of managing your own infrastructure, you package your agent code in a container and Foundry handles scaling, hosting, and exposing it via a standard HTTP endpoint.
+
+| Concept | What it means |
+|---------|--------------|
+| **Agent** | Your Python code that receives a user message, calls an AI model, and returns a structured response |
+| **Hosted** | Foundry runs your container for you — no VMs, no Kubernetes, no infrastructure to manage |
+| **Responses protocol** | A standard HTTP API (`POST /responses`) that any client can call to interact with your agent |
+| **Agent Inspector** | A local testing UI (built into Foundry Toolkit) that lets you chat with your agent before deploying |
+
+In this workshop, you'll go from zero to a fully hosted agent — or stop at local testing if you prefer.
+
+---
+
+## Choose your path
+
+> ⚠️ **Pick one path before continuing.** Your choice determines which tools to install and which modules apply. You can switch from Path B → Path A later if you get a subscription.
+
+<details open>
+<summary><strong>🅰️ Path A — Azure cloud (requires Azure subscription)</strong></summary>
+
+| | Details |
+|---|---|
+| **Who is this for?** | You have an active Azure subscription and can create Foundry resources |
+| **Model** | Azure OpenAI via Foundry (e.g., `gpt-4.1-mini/gpt-5-mini`) |
+| **Modules covered** | All modules (00–07) |
+| **Deploy to cloud?** | ✅ Yes — full end-to-end deployment |
+
+</details>
+
+<details open>
+<summary><strong>🅱️ Path B — Local / free-tier (no Azure subscription needed)</strong></summary>
+
+| | Details |
+|---|---|
+| **Who is this for?** | MVPs, students, or anyone without Azure access |
+| **Model** | **Foundry Local** (free, runs on your machine) |
+| **Modules covered** | Modules 00–04 (skip deploy & cloud verify) |
+| **Deploy to cloud?** | ❌ No — local testing only via Agent Inspector |
+
+</details>
+
+---
+
+## All paths: Required tools
 
 Install each tool below. After installing, verify it works by running the check command.
 
-### 2.1 Visual Studio Code
+| # | Tool | Version | Install | Verify (Expected Output) |
+|---|------|---------|---------|---------------------------|
+| 1 | **Visual Studio Code** | Latest | [code.visualstudio.com](https://code.visualstudio.com/) | Opens without errors |
+| 2 | **Python** | 3.12 or higher| [python.org/downloads](https://www.python.org/downloads/) | `python --version` $\rightarrow$ `Python 3.12.x` |
+| 3 | **Foundry Toolkit for VS Code** | Latest | Extension ID: `ms-windows-ai-studio.windows-ai-studio` | Foundry icon in Activity Bar |
+| 4 | **Python extension for VS Code** | Latest | Extension ID: `ms-python.python` | Installed in Extensions panel |
 
-1. Go to [https://code.visualstudio.com/](https://code.visualstudio.com/).
-2. Download the installer for your OS (Windows/macOS/Linux).
-3. Run the installer with default settings.
-4. Open VS Code to confirm it launches.
+> [!TIP]
+> **Pro-tips for installation:**
+> - **Python PATH (Windows):** Always check **"Add Python to PATH"** on the first screen of the Python installer. Without this, `python` won't be recognized in your terminal.
+> - **Multiple Python versions:** If you have both Python 3.10 and 3.12 installed, use `python3.12 -m venv .venv` to ensure the correct version is used for your virtual environment.
+> - **Docker WSL 2 (Windows):** During Docker Desktop installation, ensure the **WSL 2 backend** is selected. Docker with Hyper-V is slower and may cause issues with Foundry container builds.
+> - **Docker not starting?** Wait 30–60 seconds after launching Docker Desktop. Run `docker info` — if you see "Cannot connect to the Docker daemon," Docker is still initializing.
+> - **VS Code extensions not loading?** After installing extensions, reload the window: `Ctrl+Shift+P` → `Developer: Reload Window`.
 
-### 2.2 Python 3.10+
+> **Windows users:** Check **"Add Python to PATH"** during Python installation.
 
-1. Go to [https://www.python.org/downloads/](https://www.python.org/downloads/).
-2. Download Python 3.10 or later (3.12+ recommended).
-3. **Windows:** During installation, check **"Add Python to PATH"** on the first screen.
-4. Open a terminal and verify:
 
-   ```powershell
-   python --version
-   ```
 
-   Expected output: `Python 3.10.x` or higher.
-
-### 2.3 Azure CLI
-
-1. Go to [https://learn.microsoft.com/cli/azure/install-azure-cli](https://learn.microsoft.com/cli/azure/install-azure-cli).
-2. Follow the install instructions for your OS.
-3. Verify:
-
-   ```powershell
-   az --version
-   ```
-
-   Expected: `azure-cli 2.80.0` or higher.
-
-4. Sign in:
-
-   ```powershell
-   az login
-   ```
-
-### 2.4 Azure Developer CLI (azd)
-
-1. Go to [https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd).
-2. Follow the install instructions for your OS. On Windows:
-
-   ```powershell
-   winget install microsoft.azd
-   ```
-
-3. Verify:
-
-   ```powershell
-   azd version
-   ```
-
-   Expected: `azd version 1.x.x` or higher.
-
-4. Sign in:
-
-   ```powershell
-   azd auth login
-   ```
-
-### 2.5 Docker Desktop (optional)
-
-Docker is only needed if you want to build and test the container image locally before deployment. The Foundry extension handles container builds during deployment automatically.
-
-1. Go to [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/).
-2. Download and install Docker Desktop for your OS.
-3. **Windows:** Ensure the WSL 2 backend is selected during installation.
-4. Start Docker Desktop and wait for the icon in the system tray to show **"Docker Desktop is running"**.
-5. Open a terminal and verify:
-
-   ```powershell
-   docker info
-   ```
-
-   This should print Docker system info without errors. If you see `Cannot connect to the Docker daemon`, wait a few more seconds for Docker to fully start.
-
----
-
-## 3. Install VS Code extensions
-
-You need two core extensions. Install them **before** the workshop begins.
-
-### 3.1 Foundry Toolkit for VS Code (recommended entry point)
-
-1. Open VS Code.
-2. Press `Ctrl+Shift+X` to open the Extensions panel.
-3. In the search box, type **"Foundry Toolkit"**.
-4. Find **Foundry Toolkit for VS Code** (publisher: Microsoft, ID: `ms-windows-ai-studio.windows-ai-studio`).
-5. Click **Install**.
-6. After installation, you should see the **Foundry Toolkit** icon appear in the Activity Bar (left sidebar).
-
-### 3.2 Python
-
-1. In the Extensions panel, search for **"Python"**.
-2. Find **Python** (publisher: Microsoft, ID: `ms-python.python`).
-3. Click **Install**.
-
----
-
-## 4. Sign into Azure from VS Code
-
-The [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/overview/agent-framework-overview) uses [`DefaultAzureCredential`](https://learn.microsoft.com/azure/developer/python/sdk/authentication/credential-chains#defaultazurecredential-overview) for authentication. You need to be signed into Azure in VS Code.
-
-### 4.1 Sign in via VS Code
-
-1. Look at the bottom-left corner of VS Code and click the **Accounts** icon (person silhouette).
-2. Click **Sign in to use Microsoft Foundry** (or **Sign in with Azure**).
-3. A browser window opens - sign in with the Azure account that has access to your subscription.
-4. Return to VS Code. You should see your account name in the bottom-left.
-
-### 4.2 (Optional) Sign in via Azure CLI
-
-If you installed the Azure CLI and prefer CLI-based auth:
-
-```powershell
-az login
-```
-
-This opens a browser for sign-in. After signing in, set the correct subscription:
-
-```powershell
-az account set --subscription "<your-subscription-id>"
-```
-
-Verify:
-
-```powershell
-az account show --query "{name:name, id:id, state:state}" --output table
-```
-
-You should see your subscription name, ID, and state = `Enabled`.
-
-### 4.3 (Alternative) Service principal auth
-
-For CI/CD or shared environments, set these environment variables instead:
-
-```powershell
-$env:AZURE_TENANT_ID = "<your-tenant-id>"
-$env:AZURE_CLIENT_ID = "<your-client-id>"
-$env:AZURE_CLIENT_SECRET = "<your-client-secret>"
-```
-
----
-
-## 5. Preview limitations
-
-Before proceeding, be aware of current limitations:
-
-- [**Hosted Agents**](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents) are currently in **public preview** - not recommended for production workloads.
-- **Supported regions are limited** - check [region availability](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents#region-availability) before creating resources. If you pick an unsupported region, deployment will fail.
-- Scale limits: hosted agents support 0-5 replicas (including scale-to-zero).
-
----
-
-## 6. Preflight checklist
-
-Run through every item below. If any step fails, go back and fix it before continuing.
-
-- [ ] VS Code opens with no errors
-- [ ] Python 3.10+ is on your PATH (`python --version` prints `3.10.x` or higher)
-- [ ] Azure CLI is installed (`az --version` prints `2.80.0` or higher)
-- [ ] Azure Developer CLI is installed (`azd version` prints version info)
-- [ ] Foundry Toolkit extension is installed (icon visible in Activity Bar)
-- [ ] Python extension is installed
-- [ ] You are signed into Azure in VS Code (check Accounts icon, bottom-left)
-- [ ] `az account show` returns your subscription
-- [ ] (Optional) Docker Desktop is running (`docker info` returns system info without errors)
-
-### Checkpoint
-
-Open VS Code's Activity Bar and confirm Foundry views/commands load without errors.
-
----
-
-**Next:** [01 - Install Foundry Toolkit →](01-install-foundry-toolkit.md)
+**Next:** [01 - Setup →](01-setup.md)

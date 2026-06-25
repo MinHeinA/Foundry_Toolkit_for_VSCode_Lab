@@ -108,7 +108,7 @@ Rules:
 
 ```env
 AZURE_AI_PROJECT_ENDPOINT=https://<your-account>.services.ai.azure.com/api/projects/<your-project>
-MODEL_DEPLOYMENT_NAME=gpt-4.1-mini
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1-mini (or gpt-5-mini)
 ```
 
 ### 2.3 Install dependencies

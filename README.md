@@ -143,13 +143,13 @@ It is a dead-simple, single-purpose agent - perfect for learning the hosted agen
     │   ├── README.md                 ← Hands-on lab instructions
     │   ├── 📂 docs/                  ← Step-by-step tutorial modules
     │   │   ├── 00-prerequisites.md
-    │   │   ├── 01-install-foundry-toolkit.md
-    │   │   ├── 02-create-foundry-project.md
-    │   │   ├── 03-create-hosted-agent.md
-    │   │   ├── 04-configure-and-code.md
-    │   │   ├── 05-test-locally.md
-    │   │   ├── 06-deploy-to-foundry.md
-    │   │   ├── 07-verify-in-playground.md
+    │   │   ├── 01-setup.md
+    │   │   ├── 02-create-hosted-agent.md
+    │   │   ├── 03-configure-and-code.md
+    │   │   ├── 04-test-locally.md
+    │   │   ├── 05-deploy-to-foundry.md
+    │   │   ├── 06-verify-in-playground.md
+    │   │   ├── 07-summary.md
     │   │   └── 08-troubleshooting.md
     │   └── 📂 agent/                 ← Reference solution (auto-scaffolded by Foundry extension)
     │       ├── agent.yaml
@@ -223,7 +223,7 @@ Edit `workshop/lab01-single-agent/agent/.env`:
 
 ```env
 AZURE_AI_PROJECT_ENDPOINT=https://<your-account>.services.ai.azure.com/api/projects/<your-project>
-MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
 ```
 
 ### 5. Follow the workshop labs
@@ -235,13 +235,13 @@ Each lab is self-contained with its own modules. Start with **Lab 01** to learn 
 | # | Module | Link |
 |---|--------|------|
 | 1 | Read the prerequisites | [00-prerequisites.md](workshop/lab01-single-agent/docs/00-prerequisites.md) |
-| 2 | Install Foundry Toolkit & Foundry extension | [01-install-foundry-toolkit.md](workshop/lab01-single-agent/docs/01-install-foundry-toolkit.md) |
-| 3 | Create a Foundry project | [02-create-foundry-project.md](workshop/lab01-single-agent/docs/02-create-foundry-project.md) |
-| 4 | Create a hosted agent | [03-create-hosted-agent.md](workshop/lab01-single-agent/docs/03-create-hosted-agent.md) |
-| 5 | Configure instructions & environment | [04-configure-and-code.md](workshop/lab01-single-agent/docs/04-configure-and-code.md) |
-| 6 | Test locally | [05-test-locally.md](workshop/lab01-single-agent/docs/05-test-locally.md) |
-| 7 | Deploy to Foundry | [06-deploy-to-foundry.md](workshop/lab01-single-agent/docs/06-deploy-to-foundry.md) |
-| 8 | Verify in playground | [07-verify-in-playground.md](workshop/lab01-single-agent/docs/07-verify-in-playground.md) |
+| 2 | Install Foundry Toolkit & Foundry extension | [01-setup.md](workshop/lab01-single-agent/docs/01-setup.md) |
+| 3 | Create a Foundry project | [01-setup.md](workshop/lab01-single-agent/docs/01-setup.md) |
+| 4 | Create a hosted agent | [02-create-hosted-agent.md](workshop/lab01-single-agent/docs/02-create-hosted-agent.md) |
+| 5 | Configure instructions & environment | [03-configure-and-code.md](workshop/lab01-single-agent/docs/03-configure-and-code.md) |
+| 6 | Test locally | [04-test-locally.md](workshop/lab01-single-agent/docs/04-test-locally.md) |
+| 7 | Deploy to Foundry | [05-deploy-to-foundry.md](workshop/lab01-single-agent/docs/05-deploy-to-foundry.md) |
+| 8 | Verify in playground | [06-verify-in-playground.md](workshop/lab01-single-agent/docs/06-verify-in-playground.md) |
 | 9 | Troubleshooting | [08-troubleshooting.md](workshop/lab01-single-agent/docs/08-troubleshooting.md) |
 
 #### Lab 02 - Multi-Agent Workflow ([full instructions](workshop/lab02-multi-agent/README.md))
