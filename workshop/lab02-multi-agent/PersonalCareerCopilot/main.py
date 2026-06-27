@@ -11,19 +11,23 @@ from dotenv import load_dotenv
 from mcp.client.session import ClientSession
 from mcp.client.streamable_http import streamable_http_client
 
-load_dotenv(override=True)
+# Load environment variables from .env file
+load_dotenv()
 
-PROJECT_ENDPOINT = os.environ["AZURE_AI_PROJECT_ENDPOINT"]
-MODEL_DEPLOYMENT_NAME = os.getenv("MODEL_DEPLOYMENT_NAME", "gpt-4.1-mini")
 MICROSOFT_LEARN_MCP_ENDPOINT = os.getenv(
     "MICROSOFT_LEARN_MCP_ENDPOINT", "https://learn.microsoft.com/api/mcp"
 )
 
 RESUME_PARSER_INSTRUCTIONS = """\
-You are the Resume Parser.
-Extract resume text into a compact, structured profile for downstream matching.
+You are the Resume Parser and Content Router.
+Your input contains a resume and usually a job description - BOTH must be preserved.
 
-Output exactly these sections:
+TASK 1 - Parse the resume into a structured candidate profile.
+TASK 2 - Copy the job description verbatim into the pass-through section below.
+
+Output EXACTLY these two labeled sections:
+
+[PARSED RESUME]
 1) Candidate Profile
 2) Technical Skills (grouped categories)
 3) Soft Skills
@@ -31,18 +35,27 @@ Output exactly these sections:
 5) Domain Experience
 6) Notable Achievements
 
+[JOB DESCRIPTION PASS-THROUGH]
+<Copy the complete job description here exactly as given. Do NOT summarize or paraphrase.
+If no job description is present, write only: No job description provided.>
+
 Rules:
-- Use only explicit or strongly implied evidence.
+- Use only explicit or strongly implied evidence for the resume sections.
 - Do not invent skills, titles, or experience.
-- Keep concise bullets; no long paragraphs.
-- If input is not a resume, return a short warning and request resume text.
+- Keep resume bullets concise; no long paragraphs.
+- The [JOB DESCRIPTION PASS-THROUGH] section MUST contain the FULL, UNMODIFIED JD text.
+  Omitting or truncating it breaks the downstream Job Description Agent.
 """
 
 JOB_DESCRIPTION_INSTRUCTIONS = """\
-You are the Job Description Analyst.
-Extract a structured requirement profile from a JD.
+You are the Job Description Analyst and Resume Relay.
+Your input is the Resume Parser output. It contains two clearly labeled sections:
+  - [PARSED RESUME] - copy this verbatim to [PARSED RESUME PASS-THROUGH] in your output.
+  - [JOB DESCRIPTION PASS-THROUGH] - extract the structured JD requirements from here only.
 
-Output exactly these sections:
+Output EXACTLY these two labeled sections:
+
+[JD REQUIREMENTS]
 1) Role Overview
 2) Required Skills
 3) Preferred Skills
@@ -52,16 +65,26 @@ Output exactly these sections:
 7) Domain / Industry
 8) Key Responsibilities
 
+[PARSED RESUME PASS-THROUGH]
+<Copy the complete [PARSED RESUME] section here exactly as given. Do NOT summarize or paraphrase.>
+
 Rules:
+- Extract requirements ONLY from [JOB DESCRIPTION PASS-THROUGH] - do not use [PARSED RESUME] content.
+- Copy [PARSED RESUME] verbatim - the Matching Agent depends on it downstream.
 - Keep required vs preferred clearly separated.
 - Only use what the JD states; do not invent hidden requirements.
 - Flag vague requirements briefly.
-- If input is not a JD, return a short warning and request JD text.
+- If the JD pass-through says \"No job description provided\", write in [JD REQUIREMENTS]:
+  \"No JD available - cannot extract requirements. Ask the user to re-submit with a job description.\"
 """
 
 MATCHING_AGENT_INSTRUCTIONS = """\
 You are the Matching Agent.
-Compare parsed resume output vs JD output and produce an evidence-based fit report.
+Your input is the Job Description Analyst output. It contains two clearly labeled sections:
+  - [JD REQUIREMENTS] - the structured job requirements; use this as the target profile.
+  - [PARSED RESUME PASS-THROUGH] - the candidate's parsed profile; use this as the candidate profile.
+
+Compare [PARSED RESUME PASS-THROUGH] vs [JD REQUIREMENTS] and produce an evidence-based fit report.
 
 Scoring (100 total):
 - Required Skills 40
@@ -95,8 +118,8 @@ Microsoft Learn MCP usage (required):
 - Prefer Microsoft Learn for free resources.
 
 CRITICAL: You MUST produce a SEPARATE detailed gap card for EVERY skill listed in
-the Missing Skills and Certification Gaps sections of the matching report.  Do NOT
-skip or combine gaps.  Do NOT summarize multiple gaps into one card.
+the Missing Skills and Certification Gaps sections of the matching report. Do NOT
+skip or combine gaps. Do NOT summarize multiple gaps into one card.
 
 Output format:
 1) Personalized Learning Roadmap for [Role Title]
@@ -166,8 +189,8 @@ async def search_microsoft_learn_for_plan(
 
 def main():
     client = FoundryChatClient(
-        project_endpoint=PROJECT_ENDPOINT,
-        model=MODEL_DEPLOYMENT_NAME,
+        project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
+        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
         credential=DefaultAzureCredential(),
     )
 
@@ -192,7 +215,6 @@ def main():
             output_executors=[gap_executor],
         )
         .add_edge(resume_executor, jd_executor)
-        .add_edge(resume_executor, matching_executor)
         .add_edge(jd_executor, matching_executor)
         .add_edge(matching_executor, gap_executor)
         .build()
