@@ -10,10 +10,11 @@ In this module, you deploy your locally-tested multi-agent workflow to [Microsof
 
 ```mermaid
 flowchart LR
-    A[Dockerfile and main.py] -->|docker build| B[Container Image]
-    B -->|docker push| C[Azure Container Registry]
-    C -->|register agent| D[Foundry Agent Service]
-    D -->|start container| E[/responses endpoint]
+    A[VS Code: Deploy Hosted Agent] --> B[Docker build & push to ACR]
+    B --> C[Foundry Agent Service: Create hosted agent version]
+    C --> D[Hosted agent container starts in Foundry]
+    D --> E[WorkflowBuilder runs 4 agents sequentially inside container]
+    E --> F[Agent responds to /responses requests]
 ```
 
 ---

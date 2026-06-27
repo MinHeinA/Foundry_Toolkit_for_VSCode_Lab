@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Step 2: Write agent instructions
 
-Instructions define each agent's role, output format, and rules. Open `main.py` and define (or replace) the four instruction constants — the complete strings are in [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py).
+Instructions define each agent's role, output format, and rules. Open `main.py` and define (or replace) the four instruction constants - the complete strings are in [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Parses the resume into a structured candidate profile **and** copies the job description verbatim into `[JOB DESCRIPTION PASS-THROUGH]`. Both labeled sections must appear in the output.
@@ -119,7 +119,7 @@ python -m venv .venv
 
 | OS | Command |
 |----|---------|
-| **Windows (PowerShell)** | `\.venv\Scripts\Activate.ps1` |
+| **Windows (PowerShell)** | `.\.venv\Scripts\Activate.ps1` |
 | **Windows (CMD)** | `.venv\Scripts\activate.bat` |
 | **macOS / Linux** | `source .venv/bin/activate` |
 
