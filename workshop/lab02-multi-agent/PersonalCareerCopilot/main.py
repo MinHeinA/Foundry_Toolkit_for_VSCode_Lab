@@ -11,8 +11,8 @@ from dotenv import load_dotenv
 from mcp.client.session import ClientSession
 from mcp.client.streamable_http import streamable_http_client
 
-# Load environment variables from .env file
-load_dotenv()
+# Load environment variables from .env file (override=True ensures .env wins over shell vars)
+load_dotenv(override=True)
 
 MICROSOFT_LEARN_MCP_ENDPOINT = os.getenv(
     "MICROSOFT_LEARN_MCP_ENDPOINT", "https://learn.microsoft.com/api/mcp"

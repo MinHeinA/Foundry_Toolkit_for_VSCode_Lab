@@ -10,7 +10,7 @@
                     5679,
                     8088
                 ],
-                "pyPackageInstalled": ["debugpy"]
+                "pyPackageInstalled": ["debugpy", "agent-framework-foundry", "agent-framework-foundry-hosting"]
             }
         },
         {
