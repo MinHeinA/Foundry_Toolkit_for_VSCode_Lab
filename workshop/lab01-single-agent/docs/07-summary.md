@@ -57,20 +57,20 @@ An **"Explain Like I'm an Executive"** agent that:
 
 | Resource | Description |
 |----------|-------------|
-| **[Lab 02 — Multi-Agent Orchestration](../../lab02-multi-agent/docs/README.md)** | Build a 4-agent workflow (Resume → Job Fit Evaluator) with orchestration patterns |
+| **[Lab 02 - Multi-Agent Orchestration](../../lab02-multi-agent/docs/README.md)** | Build a 4-agent workflow (Resume → Job Fit Evaluator) with orchestration patterns |
 | **[Add tools to your agent](https://learn.microsoft.com/azure/foundry/agents/concepts/tool-catalog)** | Connect APIs, databases, or custom functions via the Tool Catalog |
 | **[Add knowledge (RAG)](https://learn.microsoft.com/azure/foundry/agents/concepts/knowledge)** | Ground your agent with documents, vector stores, or Bing search |
 | **[Microsoft Foundry documentation](https://learn.microsoft.com/azure/foundry/)** | Full platform reference |
 | **[Agent Framework SDK reference](https://learn.microsoft.com/agent-framework/)** | API docs for `agent-framework` package |
-| **[Foundry Toolkit — What's New](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio&ssr=false#version-history)** | Extension release notes and changelog |
+| **[Foundry Toolkit - What's New](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio&ssr=false#version-history)** | Extension release notes and changelog |
 
 ### Ideas to extend your agent
 
-- **Add a date tool** — Let the agent include "as of today" context in summaries
-- **Connect to an incident database** — Pull real incident details via a tool function
-- **Add a Bing grounding tool** — Let the agent look up recent news for additional context
-- **Try different models** — Compare `gpt-4.1` vs. `gpt-4.1-mini` output quality
-- **Evaluate with Foundry** — Use the Evaluations feature to measure agent quality at scale
+- **Add a date tool** - Let the agent include "as of today" context in summaries
+- **Connect to an incident database** - Pull real incident details via a tool function
+- **Add a Bing grounding tool** - Let the agent look up recent news for additional context
+- **Try different models** - Compare `gpt-4.1` vs. `gpt-4.1-mini` output quality
+- **Evaluate with Foundry** - Use the Evaluations feature to measure agent quality at scale
 
 ### For Path B users: Upgrade to cloud deployment
 
@@ -78,7 +78,7 @@ When you're ready to deploy to the cloud:
 1. Get an Azure subscription ([azure.microsoft.com/free](https://azure.microsoft.com/free/))
 2. Complete [Module 01, Setup](01-setup.md#step-2-set-up-based-on-your-access) (create project, deploy model, assign RBAC)
 3. Update your `.env` with the Foundry project endpoint and model deployment name
-4. Continue from [Module 05 — Deploy to Foundry](05-deploy-to-foundry.md)
+4. Continue from [Module 05 - Deploy to Foundry](05-deploy-to-foundry.md)
 
 ---
 
@@ -102,7 +102,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 1. In the Foundry sidebar, expand your project → **Models**.
 2. Right-click the model deployment → **Delete**.
 
-> **Cost note:** Hosted agents only incur cost when running. If you stop or delete the agent, there's no ongoing charge. The model deployment may incur a small charge for reserved capacity — delete it if you're done.
+> **Cost note:** Hosted agents only incur cost when running. If you stop or delete the agent, there's no ongoing charge. The model deployment may incur a small charge for reserved capacity - delete it if you're done.
 
 ---
 

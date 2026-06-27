@@ -8,29 +8,22 @@ In this module, you run your agent locally and validate it works correctly using
 
 ```mermaid
 flowchart TD
-    A["Open agent/ in VS Code"] --> B["F5 → Debug Local Agent Server"]
-    B --> C["Server running on :8088
-    Agent Inspector opens"]
-    C --> D["Send scenario inputs"]
-    D --> E{"Response correct?"}
-    E -->|Yes| F["All 3 scenarios pass ✅
-    Ready for next module"]
-    E -->|No| G["Debug: check instructions,
-    .env, breakpoints"]
-    G --> D
-
+    A["Start agent server"] --> B["Open Agent Inspector"]
+    B --> C["Send test input"]
+    C --> D["Agent produces 
+    structured output"]
+    D --> E["Validate output 
+    against expected behavior"]
     style A fill:#4A90D9,color:#fff
     style B fill:#7B68EE,color:#fff
     style C fill:#7B68EE,color:#fff
     style D fill:#E67E22,color:#fff
-    style E fill:#F39C12,color:#fff
-    style F fill:#27AE60,color:#fff
-    style G fill:#E74C3C,color:#fff
+    style E fill:#27AE60,color:#fff
 ```
 
 ---
 
-## Option 1: Press F5 — Debug with Agent Inspector (recommended)
+## Option 1: Press F5 - Debug with Agent Inspector (recommended)
 
 ### Start the debugger
 
@@ -52,7 +45,7 @@ flowchart TD
 ### What happens
 
 1. The HTTP server starts on `http://localhost:8088/responses`.
-2. The **Agent Inspector** panel opens automatically — a visual chat interface for testing.
+2. The **Agent Inspector** panel opens automatically - a visual chat interface for testing.
 3. Breakpoints are enabled in `main.py`.
 
 Watch the Terminal for:
@@ -95,7 +88,7 @@ Run **all three** scenarios below. These validate that your agent produces corre
 
 ![VS Code Run and Debug panel showing Agent Inspector running with executive summary response](images/04-local-testing.png)
 
-### Scenario 1: IT Incident — API latency spike
+### Scenario 1: IT Incident - API latency spike
 
 **Input:**
 ```
@@ -112,7 +105,7 @@ Rolled back at 10:14.
 
 ---
 
-### Scenario 2: Data Pipeline — ETL failure
+### Scenario 2: Data Pipeline - ETL failure
 
 **Input:**
 ```
@@ -127,7 +120,7 @@ The nightly ETL job failed because the upstream schema changed. APAC dashboards 
 
 ---
 
-### Scenario 3: Security — Exposed credential
+### Scenario 3: Security - Exposed credential
 
 **Input:**
 ```
@@ -151,7 +144,7 @@ For each scenario, check:
 |---|----------|---------------|
 | 1 | **Structure** | Response uses "Executive Summary" format with all three bullets |
 | 2 | **Plain language** | No technical jargon that an executive wouldn't understand |
-| 3 | **Accuracy** | Summary reflects the input — no fabricated details |
+| 3 | **Accuracy** | Summary reflects the input - no fabricated details |
 | 4 | **Brevity** | Response is under 100 words |
 | 5 | **Next step** | A clear action or mitigation is stated |
 
@@ -162,7 +155,7 @@ For each scenario, check:
 | Issue | Fix |
 |-------|-----|
 | Agent doesn't start | Check `.env` values, verify venv is activated, run `pip install -r requirements.txt` |
-| Empty or generic response | Review instructions in `main.py` — ensure output format is specified |
+| Empty or generic response | Review instructions in `main.py` - ensure output format is specified |
 | Response includes jargon | Strengthen "remove technical terms" rules in instructions |
 | Agent Inspector doesn't open | `Ctrl+Shift+P` → **Foundry Toolkit: Open Agent Inspector** |
 | Model errors in Terminal | Verify `AZURE_AI_MODEL_DEPLOYMENT_NAME` matches exactly (case-sensitive) |
@@ -173,12 +166,12 @@ For each scenario, check:
 
 - [ ] Agent starts locally without errors
 - [ ] Agent Inspector opens and shows a chat interface (if using F5)
-- [ ] **Scenario 1** (IT incident) — structured Executive Summary, no jargon
-- [ ] **Scenario 2** (data pipeline) — relevant summary with business impact
-- [ ] **Scenario 3** (security alert) — appropriate risk communication
+- [ ] **Scenario 1** (IT incident) - structured Executive Summary, no jargon
+- [ ] **Scenario 2** (data pipeline) - relevant summary with business impact
+- [ ] **Scenario 3** (security alert) - appropriate risk communication
 - [ ] All responses follow the defined output structure
 
-> **Save your responses** (copy or screenshot) — you'll compare them with cloud results in Module 06.
+> **Save your responses** (copy or screenshot) - you'll compare them with cloud results in Module 06.
 
 ---
 

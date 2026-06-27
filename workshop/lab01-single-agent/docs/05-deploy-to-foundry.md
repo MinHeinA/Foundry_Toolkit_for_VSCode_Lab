@@ -2,7 +2,7 @@
 
 ⏱️ ~10 min
 
-> ⚠️ **Path B users:** This module requires a Foundry subscription. If you're using Foundry Local, skip to [Module 07 — Summary](07-summary.md). You've successfully completed the local development workflow!
+> ⚠️ **Path B users:** This module requires a Foundry subscription. If you're using Foundry Local, skip to [Module 07 - Summary](07-summary.md). You've successfully completed the local development workflow!
 
 In this module, you deploy your locally-tested agent to Microsoft Foundry as a **Hosted Agent**. The deployment builds a container image, pushes it to Azure Container Registry, and starts the agent in Foundry's managed infrastructure.
 
@@ -10,7 +10,7 @@ In this module, you deploy your locally-tested agent to Microsoft Foundry as a *
 
 ```mermaid
 flowchart LR
-    A["Dockerfile +
+    A["Dockerfile
     main.py"] -->|docker build| B["Container
     Image"]
     B -->|docker push| C["Azure Container
@@ -88,10 +88,10 @@ Click **next** to review and deploy your agent.
 1. Click **Deploy**.
 2. Watch the **Output** panel (select **Microsoft Foundry** from the dropdown).
 3. The deployment runs through these stages:
-   - **Docker build** — builds container from your Dockerfile
-   - **Docker push** — pushes image to ACR (1–3 min on first deploy)
-   - **Agent registration** — creates hosted agent in Foundry
-   - **Container start** — starts with system-managed identity
+   - **Docker build** - builds container from your Dockerfile
+   - **Docker push** - pushes image to ACR (1–3 min on first deploy)
+   - **Agent registration** - creates hosted agent in Foundry
+   - **Container start** - starts with system-managed identity
 
 4. When complete, a notification appears:
    > **my-agent is deployed successfully.** `View logs` `Run agent`
@@ -105,7 +105,7 @@ Click **next** to review and deploy your agent.
 | Status | Meaning |
 |--------|---------|
 | **Running** | Container ready, agent responding |
-| **Pending** | Container starting — wait 30–60 seconds |
+| **Pending** | Container starting - wait 30–60 seconds |
 | **Failed** | Check logs (see troubleshooting below) |
 
 ---
@@ -116,7 +116,7 @@ Click **next** to review and deploy your agent.
 |-------|-----------|-----|
 | `agents/write` permission denied | Missing **Azure AI User** role at project level | [Module 01, Assign RBAC](01-setup.md#deploy-a-model--assign-rbac) |
 | Docker not running | Docker Desktop not started | Start Docker Desktop → verify `docker info` |
-| ACR authorization | Managed identity can't pull image | See [Module 08 — Troubleshooting](08-troubleshooting.md) |
+| ACR authorization | Managed identity can't pull image | See [Module 08 - Troubleshooting](08-troubleshooting.md) |
 
 ---
 
