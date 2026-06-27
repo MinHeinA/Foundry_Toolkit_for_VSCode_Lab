@@ -1,5 +1,7 @@
 # Module 7 - Verify in Playground
 
+⏱️ ~10 min
+
 In this module, you test your deployed multi-agent workflow in VS Code and the Foundry Portal, confirming the agent behaves the same as local testing.
 
 ---
@@ -10,9 +12,9 @@ The hosted environment differs from local in a few important ways:
 
 | | Local | Hosted |
 |--|-------|--------|
-| **Identity** | Your personal sign-in (`DefaultAzureCredential`) | Auto-provisioned `ManagedIdentityCredential` |
+| **Identity** | Your personal sign-in (`DefaultAzureCredential`) | Dedicated per-agent Entra identity (auto-provisioned at deploy time) |
 | **Endpoint** | `http://localhost:8088/responses` | Foundry Agent Service managed URL |
-| **Network** | Your internet → Azure OpenAI + MCP | Azure backbone (lower latency) |
+| **Network** | Your machine → Azure OpenAI + MCP | Azure backbone (lower latency) |
 
 A misconfigured env var, RBAC issue, or blocked MCP outbound call would show up here first.
 
@@ -22,13 +24,15 @@ A misconfigured env var, RBAC issue, or blocked MCP outbound call would show up 
 
 ### Step 1: Navigate to your hosted agent
 
-1. Click the **Microsoft Foundry** icon in the Activity Bar.
+1. Click the **Foundry Toolkit** icon in the Activity Bar.
 2. Expand your project → **Hosted Agents (Preview)** → find your agent.
+
+![Foundry Toolkit sidebar showing Hosted Agents (Preview) with resume-job-fit-evaluator and its deployed versions](images/06-foundry-sidebar-agent-status.png)
 
 ### Step 2: Select a version
 
 1. Click on the agent to expand its versions.
-2. Click `v1` → verify status is **Started** or **Running**.
+2. Click `v1` → verify status is **active** (the sidebar may display "Running" or "Started" - both indicate the same ready state).
 
 ### Step 3: Open the Playground
 
@@ -144,7 +148,7 @@ Beyond basic correctness, verify these multi-agent-specific behaviors:
 | Check | How to verify | Pass condition |
 |-------|---------------|----------------|
 | All 4 agents ran | Output contains fit score AND gap cards | Score comes from MatchingAgent, cards from GapAnalyzer |
-| Parallel fan-out | Response time is reasonable (< 2 min) | If > 3 min, parallel execution may not be working |
+| Sequential execution | Response time is reasonable (< 2 min) | If > 3 min, check for errors in the terminal log |
 | Data flow integrity | Gap cards reference skills from the matching report | No hallucinated skills that aren't in the JD |
 
 ---
@@ -171,9 +175,9 @@ Use this rubric to evaluate your multi-agent workflow's hosted behavior:
 
 | Symptom | Likely cause | Fix |
 |---------|-------------|-----|
-| Playground doesn't load | Container status not "Started" | Go back to [Module 6](06-deploy-to-foundry.md), verify deployment status. Wait if "Pending" |
-| Agent returns empty response | Model deployment name mismatch | Check `agent.yaml` → `environment_variables` → `MODEL_DEPLOYMENT_NAME` matches your deployed model |
-| Agent returns error message | [RBAC](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry) permission missing | Assign **[Azure AI User](https://aka.ms/foundry-ext-project-role)** at project scope |
+| Playground doesn't load | Container not in `active` state | Go back to [Module 6](06-deploy-to-foundry.md), verify deployment status. Wait if `creating` |
+| Agent returns empty response | Model deployment name mismatch | Check `agent.yaml` → `environment_variables` → `AZURE_AI_MODEL_DEPLOYMENT_NAME` matches your deployed model |
+| Agent returns error message | [RBAC](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry) permission missing | Assign **[Foundry User](https://aka.ms/foundry-ext-project-role)** (previously Azure AI User) at project scope |
 | No Microsoft Learn URLs in gap cards | MCP outbound blocked or MCP server unavailable | Check if container can reach `learn.microsoft.com`. See [Module 8](08-troubleshooting.md) |
 | Only 1 gap card (truncated) | GapAnalyzer instructions missing "CRITICAL" block | Review [Module 3, Step 2.4](03-configure-agents.md) |
 | Fit score wildly different from local | Different model or instructions deployed | Compare `agent.yaml` env vars with local `.env`. Redeploy if needed |

@@ -1,29 +1,60 @@
-# Module 8 - Troubleshooting (Multi-Agent)
+# Module 8 - Troubleshooting
 
-This module covers common errors, fixes, and debugging strategies specific to the multi-agent workflow. For general Foundry deployment issues, also refer to the [Lab 01 troubleshooting guide](../../lab01-single-agent/docs/08-troubleshooting.md).
+This module covers common errors, fixes, and debugging strategies specific to the multi-agent workflow.
 
----
+## Agent output issues
 
-## Quick reference: Error → Fix
+### GapAnalyzer says “I still don’t have the matching report”
 
-| Error / Symptom | Likely Cause | Fix |
-|----------------|-------------|-----|
-| `KeyError: 'AZURE_AI_PROJECT_ENDPOINT'` | `.env` file missing or values not set | Create `.env` with `AZURE_AI_PROJECT_ENDPOINT=<your-endpoint>` and `MODEL_DEPLOYMENT_NAME=<your-model>` |
-| `ModuleNotFoundError: No module named 'agent_framework'` | Virtual environment not activated or dependencies not installed | Run `.\.venv\Scripts\Activate.ps1` then `pip install -r requirements.txt` |
-| `ModuleNotFoundError: No module named 'mcp'` | MCP package not installed | Add `mcp` to `requirements.txt` then run `pip install -r requirements.txt` |
-| Agent starts but returns empty response | `output_executors` mismatch or missing edges | Verify `output_executors=[gap_executor]` and all edges exist in `WorkflowBuilder` |
-| Only 1 gap card (rest missing) | GapAnalyzer instructions incomplete | Add the `CRITICAL:` paragraph to `GAP_ANALYZER_INSTRUCTIONS` - see [Module 3](03-configure-agents.md) |
-| Fit score is 0 or absent | MatchingAgent didn't receive upstream data | Verify both `add_edge(resume_executor, matching_executor)` and `add_edge(jd_executor, matching_executor)` exist |
-| `POST https://learn.microsoft.com/api/mcp → 4xx/5xx` | MCP server rejected the tool call | Check internet connectivity. Try opening `https://learn.microsoft.com/api/mcp` in browser. Retry |
-| No Microsoft Learn URLs in output | MCP tool not registered or endpoint wrong | Verify `tools=[search_microsoft_learn_for_plan]` on GapAnalyzer and `MICROSOFT_LEARN_MCP_ENDPOINT` is correct |
-| `Address already in use: port 8088` | Another process is using port 8088 | Run `netstat -ano \| findstr :8088` (Windows) or `lsof -i :8088` (macOS/Linux) and stop the conflicting process |
-| `Address already in use: port 5679` | Debugpy port conflict | Stop other debug sessions. Run `netstat -ano \| findstr :5679` to find and kill the process |
-| Agent Inspector won't open | Server not fully started or port conflict | Wait for "Server running" log. Check port 5679 is free |
-| `azure.identity.CredentialUnavailableError` | Not signed into Azure CLI | Run `az login` then restart the server |
-| `azure.core.exceptions.ResourceNotFoundError` | Model deployment doesn't exist | Check `MODEL_DEPLOYMENT_NAME` matches a deployed model in your Foundry project |
-| Container status "Failed" after deployment | Container crash on startup | Check container logs in Foundry sidebar. Common: missing env var or import error |
-| Deployment shows "Pending" for > 5 minutes | Container taking too long to start or resource limits | Wait up to 5 minutes for multi-agent (creates 4 agent instances). If still pending, check logs |
-| `ValueError` from `WorkflowBuilder` | Invalid graph configuration | Ensure `start_executor` is set, `output_executors` is a list, and no circular edges |
+**Symptom:** GapAnalyzer’s response asks you to paste a matching report with “Missing Skills” and “Certification Gaps.” This happens even when you sent both a resume and a job description.
+
+**Cause:** The JD text was not passed downstream to JD Agent. With `context_mode="last_agent"`, `resume_executor` is the only executor that ever sees the user’s original message. If `RESUME_PARSER_INSTRUCTIONS` does not include the JD text in its output, JD Agent has no JD to parse, MatchingAgent cannot compute a fit score, and GapAnalyzer receives a meaningless input.
+
+**Diagnosis:**
+
+In the server logs, look for the MatchingAgent span. If it contains:
+```
+Cannot compute a numeric fit score because no job description (JD) was provided
+```
+the pass-through is missing or broken.
+
+**Fix:** Confirm that `RESUME_PARSER_INSTRUCTIONS` in `main.py` contains a `[JOB DESCRIPTION PASS-THROUGH]` section and the rule:
+```
+The [JOB DESCRIPTION PASS-THROUGH] section MUST contain the FULL, UNMODIFIED JD text.
+```
+Also confirm that `JOB_DESCRIPTION_INSTRUCTIONS` contains a `[PARSED RESUME PASS-THROUGH]` relay rule:
+```
+Copy [PARSED RESUME] verbatim - the Matching Agent depends on it downstream.
+```
+If either instruction block is a stub from the scaffold wizard, replace it with the complete version from [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py).
+
+### MatchingAgent outputs “Cannot compute fit score - no JD provided”
+
+This is the same root cause as above. MatchingAgent received JD Agent’s output but the `[PARSED RESUME PASS-THROUGH]` section was missing or empty, so it couldn’t compare the two profiles. Confirm:
+1. `JOB_DESCRIPTION_INSTRUCTIONS` includes the relay rule: `Copy [PARSED RESUME] verbatim - the Matching Agent depends on it downstream.`
+2. `MATCHING_AGENT_INSTRUCTIONS` tells the agent to look for `[JD REQUIREMENTS]` and `[PARSED RESUME PASS-THROUGH]` sections.
+
+Replace both instruction blocks with the complete versions from [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py).
+
+### The response appears twice
+
+**Symptom:** GapAnalyzer output (or the entire pipeline output) appears twice in the Agent Inspector response.
+
+**Cause:** `WorkflowBuilder` uses OR-semantics for incoming edges - a downstream executor fires as soon as **any** predecessor completes. If `matching_executor` has two incoming edges (one from `resume_executor` and one from `jd_executor`), it fires twice: once when ResumeParser finishes and again when JD Agent finishes. GapAnalyzer then also runs twice.
+
+**Fix:** Ensure the `WorkflowBuilder` graph is a strictly sequential pipeline with no fan-in:
+
+```python
+workflow_agent = (
+    WorkflowBuilder(start_executor=resume_executor, output_executors=[gap_executor])
+    .add_edge(resume_executor, jd_executor)
+    .add_edge(jd_executor, matching_executor)    # NOT from resume_executor
+    .add_edge(matching_executor, gap_executor)
+    .build().as_agent()
+)
+```
+
+If you have a stray `.add_edge(resume_executor, matching_executor)` line, remove it. The `[PARSED RESUME PASS-THROUGH]` relay in JD Agent’s output already gives MatchingAgent access to the resume.
 
 ---
 
@@ -44,27 +75,38 @@ PersonalCareerCopilot/
 
 Expected `.env` content:
 
+**Path A - Foundry cloud:**
+
 ```env
-AZURE_AI_PROJECT_ENDPOINT=https://<your-project-name>.services.ai.azure.com/api/projects/<your-project-id>
-MODEL_DEPLOYMENT_NAME=gpt-4.1-mini
+FOUNDRY_PROJECT_ENDPOINT=https://<your-project-name>.services.ai.azure.com/api/projects/<your-project-id>
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1-mini
 ```
 
-> **Finding your `AZURE_AI_PROJECT_ENDPOINT`:** 
-- Open the **Microsoft Foundry** sidebar in VS Code → right-click your project → **Copy Project Endpoint**. 
+**Path B - Foundry Local:**
+
+```env
+FOUNDRY_PROJECT_ENDPOINT=http://localhost:5273/v1
+AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
+```
+
+> Both paths use `FOUNDRY_PROJECT_ENDPOINT`. The value differs: cloud uses an `https://` Foundry endpoint; local uses `http://localhost:5273/v1`. Run `foundry model list` to confirm the exact model alias for Path B.
+
+> **Finding your `FOUNDRY_PROJECT_ENDPOINT`:** 
+- Open the **Foundry Toolkit** sidebar in VS Code → right-click your project → **Copy Project Endpoint**. 
 - Or go to [Azure Portal](https://portal.azure.com) → your Foundry project → **Overview** → **Project endpoint**.
 
-> **Finding your MODEL_DEPLOYMENT_NAME:** In the Foundry sidebar, expand your project → **Models** → find your deployed model name (e.g., `gpt-4.1-mini`).
+> **Finding your `AZURE_AI_MODEL_DEPLOYMENT_NAME`:** In the Foundry Toolkit sidebar, expand your project → **Models** → find your deployed model name (e.g., `gpt-4.1-mini`).
 
 ### Env var precedence
 
-`main.py` uses `load_dotenv(override=True)`, which means:
+`main.py` uses `load_dotenv()` (no override), which means:
 
 | Priority | Source | Wins when both are set? |
 |----------|--------|------------------------|
-| 1 (highest) | `.env` file | Yes (`override=True`) |
-| 2 | Shell environment variable | Only if not in `.env` |
+| 1 (highest) | Shell / container environment variable | Yes |
+| 2 | `.env` file | Only if not already set in the environment |
 
-In hosted deployment, Foundry sets env vars at the container level (via `agent.yaml`). Set `override=False` if you want container env vars to take precedence.
+In hosted deployment, Foundry injects `FOUNDRY_PROJECT_ENDPOINT` at the container level. Because `.env` does **not** override shell env vars, the container value wins automatically - no code change needed between local and hosted runs.
 
 ---
 
@@ -76,19 +118,19 @@ The multi-agent workflow requires specific package versions. Mismatched versions
 
 | Package | Required Version | Check Command |
 |---------|-----------------|---------------|
-| `agent-framework` | `>=1.1.0` | `pip show agent-framework` |
+| `agent-framework-foundry` | latest | `pip show agent-framework-foundry` |
 | `agent-framework-foundry-hosting` | latest | `pip show agent-framework-foundry-hosting` |
-| `mcp` | latest | `pip show mcp` |
+| `mcp` | `<2,>=1.24.0` | `pip show mcp` |
 | `debugpy` | latest | `pip show debugpy` |
-| Python | 3.10+ | `python --version` |
+| Python | 3.12+ | `python --version` |
 
 ### Common version errors
 
 **`ImportError: cannot import name 'WorkflowBuilder' from 'agent_framework'`**
 
 ```powershell
-# Fix: upgrade agent-framework
-pip install "agent-framework>=1.1.0" agent-framework-foundry-hosting
+# Fix: reinstall agent-framework-foundry
+pip install agent-framework-foundry agent-framework-foundry-hosting
 ```
 
 **`AttributeError: module 'mcp.client' has no attribute 'streamable_http'`**
@@ -107,52 +149,11 @@ pip list | Select-String "agent-framework|mcp|debugpy"
 Expected output:
 
 ```
-agent-framework                  1.1.x
+agent-framework-foundry          x.x.x
 agent-framework-foundry-hosting  x.x.x
 debugpy                          x.x.x
 mcp                              x.x.x
 ```
-
----
-
-## MCP tool issues
-
-### MCP tool returns no results
-
-**Symptom:** Gap cards say "No results returned from Microsoft Learn MCP" or "No direct Microsoft Learn results found".
-
-**Possible causes:**
-
-1. **Network issue** - The MCP endpoint (`https://learn.microsoft.com/api/mcp`) is unreachable.
-   ```powershell
-   # Test connectivity
-   Invoke-WebRequest -Uri "https://learn.microsoft.com/api/mcp" -Method POST -UseBasicParsing
-   ```
-   If this returns `200`, the endpoint is reachable.
-
-2. **Query too specific** - The skill name is too niche for Microsoft Learn search.
-   - This is expected for very specialized skills. The tool has a fallback URL in the response.
-
-3. **MCP session timeout** - The Streamable HTTP connection timed out.
-   - Retry the request. MCP sessions are ephemeral and may need reconnection.
-
-### MCP logs explained
-
-```
-GET https://learn.microsoft.com/api/mcp → 405 (Method Not Allowed)
-POST https://learn.microsoft.com/api/mcp → 200
-DELETE https://learn.microsoft.com/api/mcp → 405 (Method Not Allowed)
-```
-
-| Log | Meaning | Action |
-|-----|---------|--------|
-| `GET → 405` | MCP client probes during initialization | Normal - ignore |
-| `POST → 200` | Tool call succeeded | Expected |
-| `DELETE → 405` | MCP client probes during cleanup | Normal - ignore |
-| `POST → 400` | Bad request (malformed query) | Check the `query` parameter in `search_microsoft_learn_for_plan()` |
-| `POST → 429` | Rate limited | Wait and retry. Reduce `max_results` parameter |
-| `POST → 500` | MCP server error | Transient - retry. If persistent, the Microsoft Learn MCP API may be down |
-| Connection timeout | Network issue or MCP server unavailable | Check internet. Try `curl https://learn.microsoft.com/api/mcp` |
 
 ---
 
@@ -161,7 +162,7 @@ DELETE https://learn.microsoft.com/api/mcp → 405 (Method Not Allowed)
 ### Container fails to start after deployment
 
 1. **Check container logs:**
-   - Open the **Microsoft Foundry** sidebar → expand **Hosted Agents (Preview)** → click your agent → expand the version → **Container Details** → **Logs**.
+   - Open the **Foundry Toolkit** sidebar → expand **Hosted Agents (Preview)** → click your agent → expand the version → **Container Details** → **Logs**.
    - Look for Python stack traces or missing module errors.
 
 2. **Common container startup failures:**
@@ -169,13 +170,13 @@ DELETE https://learn.microsoft.com/api/mcp → 405 (Method Not Allowed)
    | Error in logs | Cause | Fix |
    |--------------|-------|-----|
    | `ModuleNotFoundError` | `requirements.txt` missing a package | Add the package, redeploy |
-   | `KeyError: 'AZURE_AI_PROJECT_ENDPOINT'` | `agent.yaml` or `.env` env vars not set | Update `agent.yaml` → `environment_variables` section (hosted) or `.env` (local) |
+   | `KeyError: 'FOUNDRY_PROJECT_ENDPOINT'` | `agent.yaml` or `.env` env vars not set | Update `agent.yaml` → `environment_variables` section (hosted) or `.env` (local) |
    | `azure.identity.CredentialUnavailableError` | Managed Identity not configured | Foundry sets this automatically - ensure you're deploying via the extension |
    | `OSError: port 8088 already in use` | Dockerfile exposes wrong port or port conflict | Verify `EXPOSE 8088` in Dockerfile and `CMD ["python", "main.py"]` |
    | Container exits with code 1 | Unhandled exception in `main()` | Test locally first ([Module 5](05-test-locally.md)) to catch errors before deploying |
 
 3. **Redeploy after fixing:**
-   - `Ctrl+Shift+P` → **Microsoft Foundry: Deploy Hosted Agent** → select the same agent → deploy a new version.
+   - `Ctrl+Shift+P` → **Foundry Toolkit: Deploy Hosted Agent** → select the same agent → deploy a new version.
 
 ### Deployment takes too long
 
@@ -197,12 +198,12 @@ Multi-agent containers take longer to start because they create 4 agent instance
 
 ### `403 Forbidden` or `AuthorizationFailed`
 
-You need the **[Azure AI User](https://aka.ms/foundry-ext-project-role)** role on your Foundry project:
+You need the **[Foundry User](https://aka.ms/foundry-ext-project-role)** role on your Foundry project (previously named **Azure AI User** - role ID unchanged):
 
 1. Go to [Azure Portal](https://portal.azure.com) → your Foundry **project** resource.
 2. Click **Access control (IAM)** → **Role assignments**.
-3. Search for your name → confirm **Azure AI User** is listed.
-4. If missing: **Add** → **Add role assignment** → search for **Azure AI User** → assign to your account.
+3. Search for your name → confirm **Foundry User** (or the legacy label **Azure AI User**) is listed.
+4. If missing: **Add** → **Add role assignment** → search for **Foundry User** → assign to your account.
 
 See the [RBAC for Microsoft Foundry](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry) documentation for details.
 
@@ -211,52 +212,52 @@ See the [RBAC for Microsoft Foundry](https://learn.microsoft.com/azure/foundry/c
 If the agent returns model-related errors:
 
 1. Verify the model is deployed: Foundry sidebar → expand project → **Models** → check for `gpt-4.1-mini` (or your model) with status **Succeeded**.
-2. Verify the deployment name matches: compare `MODEL_DEPLOYMENT_NAME` in `.env` (or `agent.yaml`) with the actual deployment name in the sidebar.
-3. If the deployment expired (free tier): redeploy from [Model Catalog](https://learn.microsoft.com/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure) (`Ctrl+Shift+P` → **Microsoft Foundry: Open Model Catalog**).
+2. Verify the deployment name matches: compare `AZURE_AI_MODEL_DEPLOYMENT_NAME` in `.env` (or `agent.yaml`) with the actual deployment name in the sidebar.
+3. If the deployment expired (free tier): redeploy from [Model Catalog](https://learn.microsoft.com/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure) (`Ctrl+Shift+P` → **Foundry Toolkit: Open Model Catalog**).
 
 ---
 
-## Agent Inspector issues
+## Foundry Local issues (Path B)
 
-### Inspector opens but shows "Disconnected"
+### Foundry Local service not running
 
-1. Verify the server is running: check for "Server running on http://localhost:8088" in the terminal.
-2. Check port `5679`: Inspector connects via debugpy on port 5679.
-   ```powershell
-   netstat -ano | findstr :5679
-   ```
-3. Restart the server and reopen Inspector.
+```powershell
+# Check status
+foundry local status
 
-### Inspector shows partial response
+# Start the service if it is stopped
+foundry local start
+```
 
-Multi-agent responses are long and stream incrementally. Wait for the full response to complete (may take 30-60 seconds depending on the number of gap cards and MCP tool calls).
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| Health check returns `503` | Service not started | `foundry local start` or click **Start** in the Foundry Toolkit sidebar |
+| Health check times out | Model still loading | Wait 30–60 s after starting; larger models take longer |
+| `StatusCode: 404` on `/v1/health` | Wrong port | Default is `5273`. Check `foundry local status` for the actual port |
+| Insufficient resources | Foundry Local needs ~4 GB RAM free | Close other applications |
+| Model download fails | Low disk space | Models are 2–8 GB. Free up space, then `foundry model pull <name>` |
 
-If the response is consistently truncated:
-- Check the GapAnalyzer instructions have the `CRITICAL:` block that prevents combining gap cards.
-- Check your model's token limit - `gpt-4.1-mini` supports up to 32K output tokens, which should be sufficient.
+### Model name mismatch
 
----
+```powershell
+# List downloaded models and their exact aliases
+foundry model list
+```
 
-## Performance tips
+Set `AZURE_AI_MODEL_DEPLOYMENT_NAME` in `.env` to the exact alias shown (e.g., `phi-4-mini`, not `Phi-4-mini`).
 
-### Slow responses
+### `KeyError: 'FOUNDRY_PROJECT_ENDPOINT'` on local run (Path B)
 
-Multi-agent workflows are inherently slower than single-agent because of sequential dependencies and MCP tool calls.
+The lab’s `main.py` uses `os.environ["FOUNDRY_PROJECT_ENDPOINT"]`. Foundry Local requires this variable to point to the local service - **not** `AZURE_AI_PROJECT_ENDPOINT`. Ensure your `.env` contains:
 
-| Optimization | How | Impact |
-|-------------|-----|--------|
-| Reduce MCP calls | Lower `max_results` parameter in the tool | Fewer HTTP round-trips |
-| Simplify instructions | Shorter, more focused agent prompts | Faster LLM inference |
-| Use `gpt-4.1-mini` | Faster than `gpt-4.1` for development | ~2x speed improvement |
-| Reduce gap card detail | Simplify the gap card format in GapAnalyzer instructions | Less output to generate |
+```env
+FOUNDRY_PROJECT_ENDPOINT=http://localhost:5273/v1
+AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
+```
 
-### Typical response times (local)
+### MCP tool still makes an outbound call (Path B)
 
-| Configuration | Expected time |
-|--------------|---------------|
-| `gpt-4.1-mini`, 3-5 gap cards | 30-60 seconds |
-| `gpt-4.1-mini`, 8+ gap cards | 60-120 seconds |
-| `gpt-4.1`, 3-5 gap cards | 60-120 seconds |
+This is expected. The `search_microsoft_learn_for_plan` tool fetches learning resources from `https://learn.microsoft.com/api/mcp`. **Only the skill-name query** travels over the network - resume and JD text are processed entirely on your device and never transmitted. If fully offline operation is required, add a `try/except` fallback in the tool that returns a static `learn.microsoft.com` URL when the endpoint is unreachable.
 
 ---
 
@@ -276,13 +277,11 @@ If you're stuck after trying the fixes above:
 
 ### Checkpoint
 
-- [ ] You can identify and fix the most common multi-agent errors using the quick reference table
 - [ ] You know how to check and fix `.env` configuration issues
 - [ ] You can verify package versions match the required matrix
-- [ ] You understand MCP log entries and can diagnose tool failures
 - [ ] You know how to check container logs for deployment failures
 - [ ] You can verify RBAC roles in the Azure Portal
 
 ---
 
-**Previous:** [07 - Verify in Playground](07-verify-in-playground.md) · **Home:** [Lab 02 README](../README.md) · [Workshop Home](../../../README.md)
+**Previous:** [07 - Verify in Playground](07-verify-in-playground.md) · **Next:** [09 - Summary →](09-summary.md) · **Home:** [Lab 02 README](../README.md) · [Workshop Home](../../../README.md)

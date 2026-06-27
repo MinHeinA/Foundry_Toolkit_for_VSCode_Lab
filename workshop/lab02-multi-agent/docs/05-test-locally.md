@@ -1,4 +1,6 @@
-# Module 5 - Test Locally (Multi-Agent)
+# Module 5 - Test Locally
+
+⏱️ ~15 min
 
 In this module, you run the multi-agent workflow locally, test it with Agent Inspector, and verify all four agents and the MCP tool work correctly before deploying.
 
@@ -18,37 +20,10 @@ INFO:resume-job-fit:Starting Resume -> Job Fit Evaluator HTTP server...
 INFO:resume-job-fit:Server running on http://localhost:8088
 ```
 
-### Option B: Using the terminal manually
+### Option B: Using F5 (debug mode)
 
-```powershell
-cd workshop\lab02-multi-agent\PersonalCareerCopilot
-```
-
-Activate the virtual environment:
-
-**PowerShell (Windows):**
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-**macOS/Linux:**
-```bash
-source .venv/bin/activate
-```
-
-Start the server:
-
-```powershell
-python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
-```
-
-### Option C: Using F5 (debug mode)
-
-1. Press `F5` or go to **Run and Debug** (`Ctrl+Shift+D`).
-2. Select **Debug Local Agent Server** from the dropdown.
-3. The server starts with full breakpoint support.
-
-> **Tip:** Debug mode lets you set breakpoints inside `search_microsoft_learn_for_plan()` to inspect MCP responses, or inside agent instruction strings to see what each agent receives.
+1. Press `F5` → select **Debug Local Agent Server**.
+2. The server starts with full breakpoint support - useful for inspecting MCP responses or agent outputs.
 
 ---
 
@@ -58,7 +33,21 @@ python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
 2. Agent Inspector opens as a VS Code panel connected to `http://localhost:8088`.
 3. You should see the agent interface ready to accept messages.
 
+![Agent Inspector open and ready - Playground shows the welcome prompt](images/04-debug-console-matching-input.png)
+
 > **If Agent Inspector doesn't open:** Ensure the server is fully started (you see the "Server running" log). If port 5679 is busy, see [Module 8 - Troubleshooting](08-troubleshooting.md).
+
+---
+
+## Step 2b: (Optional) Open the Workflow Visualizer
+
+The Foundry Toolkit includes a real-time **Workflow Visualizer** that shows how agents interact as the graph executes. This is especially useful for multi-agent debugging.
+
+1. Press `Ctrl+Shift+P` → type **Foundry Toolkit: Open Visualizer for Hosted Agents**.
+2. A new VS Code tab opens showing the live execution graph.
+3. As you send messages in the Agent Inspector, the visualizer updates automatically - green nodes indicate completed agents, and animated edges show data flowing between them.
+
+> **Port conflict:** If the visualizer port is already in use, change it in VS Code Settings → **Extensions** → **Microsoft Foundry Configuration** → **Hosted Agents: Visualizer Port**.
 
 ---
 
@@ -90,12 +79,14 @@ Certifications: Azure Solutions Architect Expert preferred.
 
 The response should contain output from all four agents in sequence:
 
-1. **Resume Parser output** - Structured candidate profile with skills grouped by category
+1. **Resume Parser output** - Two labeled sections: `[PARSED RESUME]` (candidate profile with grouped skills) and `[JOB DESCRIPTION PASS-THROUGH]` (verbatim JD text that feeds the JD Agent)
 2. **JD Agent output** - Structured requirements with required vs. preferred skills separated
 3. **Matching Agent output** - Fit score (0-100) with breakdown, matched skills, missing skills, gaps
 4. **Gap Analyzer output** - Individual gap cards for each missing skill, each with Microsoft Learn URLs
 
 ![Agent Inspector showing complete response with fit score, gap cards, and Microsoft Learn URLs](images/05-inspector-test1-complete-response.png)
+
+![Agent Inspector response panel showing learning resources with Microsoft Learn links](images/04-inspector-streaming-output.png)
 
 ### What to verify in Test 1
 
@@ -108,26 +99,7 @@ The response should contain output from all four agents in sequence:
 | Microsoft Learn URLs are present | Real `learn.microsoft.com` links | |
 | No error messages in response | Clean structured output | |
 
-### Test 2: Verify MCP tool execution
-
-While Test 1 runs, check the **server terminal** for MCP log entries:
-
-```
-GET https://learn.microsoft.com/api/mcp → 405 (Method Not Allowed)
-POST https://learn.microsoft.com/api/mcp → 200
-DELETE https://learn.microsoft.com/api/mcp → 405 (Method Not Allowed)
-```
-
-| Log entry | Meaning | Expected? |
-|-----------|---------|-----------|
-| `GET ... → 405` | MCP client probes with GET during initialization | Yes - normal |
-| `POST ... → 200` | Actual tool call to Microsoft Learn MCP server | Yes - this is the real call |
-| `DELETE ... → 405` | MCP client probes with DELETE during cleanup | Yes - normal |
-| `POST ... → 4xx/5xx` | Tool call failed | No - see [Troubleshooting](08-troubleshooting.md) |
-
-> **Key point:** The `GET 405` and `DELETE 405` lines are **expected behavior**. Only worry if `POST` calls return non-200 status codes.
-
-### Test 3: Edge case - high-fit candidate
+### Test 2: Edge case - high-fit candidate
 
 Paste a resume that closely matches the JD to verify the GapAnalyzer handles high-fit scenarios:
 
@@ -155,39 +127,7 @@ Certifications: Azure Solutions Architect Expert preferred.
 
 ---
 
-## Step 4: Verify output completeness
-
-After running the tests, verify the output meets these criteria:
-
-### Output structure checklist
-
-| Section | Agent | Present? |
-|---------|-------|----------|
-| Candidate Profile | Resume Parser | |
-| Technical Skills (grouped) | Resume Parser | |
-| Role Overview | JD Agent | |
-| Required vs. Preferred Skills | JD Agent | |
-| Fit Score with breakdown | Matching Agent | |
-| Matched / Missing / Partial skills | Matching Agent | |
-| Gap card per missing skill | Gap Analyzer | |
-| Microsoft Learn URLs in gap cards | Gap Analyzer (MCP) | |
-| Learning order (numbered) | Gap Analyzer | |
-| Timeline summary | Gap Analyzer | |
-
-### Common issues at this stage
-
-| Issue | Cause | Fix |
-|-------|-------|-----|
-| Only 1 gap card (rest truncated) | GapAnalyzer instructions missing CRITICAL block | Add the `CRITICAL:` paragraph to `GAP_ANALYZER_INSTRUCTIONS` - see [Module 3](03-configure-agents.md) |
-| No Microsoft Learn URLs | MCP endpoint unreachable | Check internet connectivity. Verify `MICROSOFT_LEARN_MCP_ENDPOINT` in `.env` is `https://learn.microsoft.com/api/mcp` |
-| Empty response | `PROJECT_ENDPOINT` or `MODEL_DEPLOYMENT_NAME` not set | Check `.env` file values. Run `echo $env:PROJECT_ENDPOINT` in terminal |
-| Fit score is 0 or missing | MatchingAgent received no upstream data | Check that `add_edge(resume_parser, matching_agent)` and `add_edge(jd_agent, matching_agent)` exist in `create_workflow()` |
-| Agent starts but immediately exits | Import error or missing dependency | Run `pip install -r requirements.txt` again. Check terminal for stack traces |
-| `validate_configuration` error | Missing env vars | Create `.env` with `PROJECT_ENDPOINT=<your-endpoint>` and `MODEL_DEPLOYMENT_NAME=<your-model>` |
-
----
-
-## Step 5: Test with your own data (optional)
+## Step 4: Test with your own data (optional)
 
 Try pasting your own resume and a real job description. This helps verify:
 
@@ -196,7 +136,9 @@ Try pasting your own resume and a real job description. This helps verify:
 - The MCP tool returns relevant resources for real skills
 - The gap cards are personalized to your specific background
 
-> **Privacy note:** When testing locally, your data stays on your machine and is sent only to your Azure OpenAI deployment. It is not logged or stored by the workshop infrastructure. Use placeholder names if you prefer (e.g., "Jane Doe" instead of your real name).
+> **Privacy - Path A (Foundry cloud):** Resume and JD text is sent to your Azure OpenAI deployment for inference. It is not logged or stored by the workshop infrastructure. Use placeholder names (e.g., "Jane Doe") if you prefer.
+>
+> **Privacy - Path B (Foundry Local):** All four agent inferences run entirely on your device. Your resume and job description text **never leaves your machine**. The only outbound call is the MCP tool fetching resources from `https://learn.microsoft.com/api/mcp`; that query contains only the skill name, not your personal data.
 
 ---
 
@@ -205,8 +147,7 @@ Try pasting your own resume and a real job description. This helps verify:
 - [ ] Server started successfully on port `8088` (log shows "Server running")
 - [ ] Agent Inspector opened and connected to the agent
 - [ ] Test 1: Complete response with fit score, matched/missing skills, gap cards, and Microsoft Learn URLs
-- [ ] Test 2: MCP logs show `POST ... → 200` (tool calls succeeded)
-- [ ] Test 3: High-fit candidate gets score 80+ with polish-focused recommendations
+- [ ] Test 2: High-fit candidate gets score 80+ with polish-focused recommendations
 - [ ] All gap cards present (one per missing skill, no truncation)
 - [ ] No errors or stack traces in the server terminal
 

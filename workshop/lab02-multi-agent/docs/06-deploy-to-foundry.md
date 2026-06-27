@@ -1,8 +1,31 @@
 # Module 6 - Deploy to Foundry Agent Service
 
+⏱️ ~10 min
+
 In this module, you deploy your locally-tested multi-agent workflow to [Microsoft Foundry](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents) as a **Hosted Agent**. The deployment process builds a Docker container image, pushes it to [Azure Container Registry (ACR)](https://learn.microsoft.com/azure/container-registry/container-registry-intro), and creates a hosted agent version in [Foundry Agent Service](https://learn.microsoft.com/azure/foundry/agents/how-to/publish-agent).
 
 > **Key difference from Lab 01:** The deployment process is identical. Foundry treats your multi-agent workflow as a single hosted agent - the complexity is inside the container, but the deployment surface is the same `/responses` endpoint.
+
+### Deployment pipeline
+
+```mermaid
+flowchart LR
+    A["Dockerfile
+and main.py"] -->|docker build| B["Container
+Image"]
+    B -->|docker push| C["Azure Container
+Registry"]
+    C -->|register agent| D["Foundry Agent
+Service"]
+    D -->|start container| E["/responses
+endpoint"]
+
+    style A fill:#9B59B6,color:#fff
+    style B fill:#9B59B6,color:#fff
+    style C fill:#E67E22,color:#fff
+    style D fill:#3498DB,color:#fff
+    style E fill:#27AE60,color:#fff
+```
 
 ---
 
@@ -13,9 +36,11 @@ Before deploying, verify every item below:
 1. **Agent passes local smoke tests:**
    - You completed all 3 tests in [Module 5](05-test-locally.md) and the workflow produced complete output with gap cards and Microsoft Learn URLs.
 
-2. **You have [Azure AI User](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry) role:**
-   - Assigned in [Lab 01, Module 2](../../lab01-single-agent/docs/02-create-foundry-project.md). Verify:
-   - [Azure Portal](https://portal.azure.com) → your Foundry **project** resource → **Access control (IAM)** → **Role assignments** → confirm **[Azure AI User](https://aka.ms/foundry-ext-project-role)** is listed for your account.
+2. **You have the [Foundry User](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry) role** (to deploy, you need at minimum **Foundry Project Manager** at project scope):
+
+   > **Note:** The Foundry RBAC roles were recently renamed - **Foundry User**, **Foundry Owner**, and **Foundry Project Manager** were previously named Azure AI User, Azure AI Owner, and Azure AI Project Manager. Role IDs and permissions are unchanged.
+
+   - Verify in [Azure Portal](https://portal.azure.com) → your Foundry **project** resource → **Access control (IAM)** → **Role assignments** → confirm **Foundry User** (or higher) is listed for your account.
 
 3. **You're signed into Azure in VS Code:**
    - Check the Accounts icon in the bottom-left of VS Code. Your account name should be visible.
@@ -24,19 +49,17 @@ Before deploying, verify every item below:
    - Open `PersonalCareerCopilot/agent.yaml` and verify:
      ```yaml
      environment_variables:
-       - name: AZURE_AI_PROJECT_ENDPOINT
-         value: ${AZURE_AI_PROJECT_ENDPOINT}
-       - name: MODEL_DEPLOYMENT_NAME
-         value: ${MODEL_DEPLOYMENT_NAME}
+       - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
+         value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
      ```
-   - These must match the env vars your `main.py` reads.
+   - `FOUNDRY_PROJECT_ENDPOINT` is **not** listed here - Foundry injects it at runtime. Only `AZURE_AI_MODEL_DEPLOYMENT_NAME` needs to be declared.
 
 5. **`requirements.txt` has correct versions:**
    ```
-   agent-framework>=1.1.0
+   agent-framework-foundry
    agent-framework-foundry-hosting
+   mcp<2,>=1.24.0
    debugpy
-   mcp
    ```
 
 ---
@@ -56,7 +79,7 @@ If the agent is running via F5 with the Agent Inspector open:
 ### Option B: Deploy from the Command Palette
 
 1. Press `Ctrl+Shift+P` to open the **Command Palette**.
-2. Type: **Microsoft Foundry: Deploy Hosted Agent** and select it.
+2. Type: **Foundry Toolkit: Deploy Hosted Agent** and select it.
 3. The deployment wizard opens.
 
 ---
@@ -77,6 +100,8 @@ If the agent is running via F5 with the Agent Inspector open:
 
 | Setting | Recommended value | Notes |
 |---------|------------------|-------|
+| **Deployment Method** | **Container** (recommended) or **Code** | Container builds a Docker image; Code uploads source as a ZIP (preview) |
+| **Container Registry** | **Default ACR** | Foundry creates and manages one for you |
 | **CPU** | `0.25` | Default. Multi-agent workflows don't need more CPU because model calls are I/O-bound |
 | **Memory** | `0.5Gi` | Default. Increase to `1Gi` if you add large data processing tools |
 
@@ -112,7 +137,7 @@ Watch the VS Code **Output** panel (select "Microsoft Foundry" dropdown):
 
 - **All four agents are inside one container.** Foundry sees a single hosted agent. The WorkflowBuilder graph runs internally.
 - **MCP calls go outbound.** The container needs internet access to reach `https://learn.microsoft.com/api/mcp`. Foundry's managed infrastructure provides this by default.
-- **[Managed Identity](https://learn.microsoft.com/python/api/overview/azure/identity-readme#managed-identity-support).** In the hosted environment, `DefaultAzureCredential` automatically resolves to `ManagedIdentityCredential` (because `MSI_ENDPOINT` is set in the container). This is automatic.
+- **[Managed Identity](https://learn.microsoft.com/azure/foundry/agents/concepts/agent-identity).** Foundry automatically creates a **dedicated per-agent Entra identity** for each Hosted agent at deploy time. In the hosted environment, `DefaultAzureCredential` resolves to this agent identity automatically - no manual managed identity configuration is needed.
 
 ---
 
@@ -128,11 +153,13 @@ Watch the VS Code **Output** panel (select "Microsoft Foundry" dropdown):
 
 | Status | Meaning |
 |--------|---------|
-| **Started** / **Running** | Container is running, agent is ready |
-| **Pending** | Container is starting (wait 30-60 seconds) |
-| **Failed** | Container failed to start (check logs - see below) |
+| **active** | Agent is running and ready to accept requests |
+| **creating** | Container is starting (wait 30–60 seconds) |
+| **failed** | Container failed to start (check logs - see below) |
 
-> **Multi-agent startup takes longer** than single-agent because the container creates 4 agent instances on startup. "Pending" for up to 2 minutes is normal.
+> **Note:** The VS Code sidebar may display labels like "Running" or "Started" while the underlying API status uses `active`/`creating`. Either display indicates the same state.
+
+> **Multi-agent startup takes longer** than single-agent because the container creates 4 agent instances on startup. `creating` for up to 2 minutes is normal.
 
 ---
 
@@ -145,7 +172,7 @@ Error: lacks the required data action
 Microsoft.CognitiveServices/accounts/AIServices/agents/write
 ```
 
-**Fix:** Assign **[Azure AI User](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry)** role at the **project** level. See [Module 8 - Troubleshooting](08-troubleshooting.md) for step-by-step instructions.
+**Fix:** Assign the **[Foundry User](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry)** role (previously **Azure AI User**) at the **project** level. See [Module 8 - Troubleshooting](08-troubleshooting.md) for step-by-step instructions.
 
 ### Error 2: Docker not running
 
@@ -163,15 +190,15 @@ Error: Docker build failed / Cannot connect to Docker daemon
 ### Error 3: pip install fails during Docker build
 
 ```
-Error: Could not find a version that satisfies the requirement agent-framework
+Error: Could not find a version that satisfies the requirement agent-framework-foundry
 ```
 
 **Fix:** Verify `requirements.txt` matches:
 ```
-agent-framework>=1.1.0
+agent-framework-foundry
 agent-framework-foundry-hosting
+mcp<2,>=1.24.0
 debugpy
-mcp
 ```
 
 If the build still fails, your Docker network may be blocking PyPI. Check `docker info` for proxy settings.
