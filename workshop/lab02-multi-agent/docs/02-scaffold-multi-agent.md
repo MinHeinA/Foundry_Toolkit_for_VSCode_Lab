@@ -12,25 +12,12 @@ In this module, you use [Foundry Toolkit for VS Code](https://aka.ms/foundrytk) 
 
 ```mermaid
 flowchart LR
-    A["Command Palette:
-Create new Hosted Agent"] --> B["Language:
-Python"]
-    B --> C["API type:
-Response API"]
-    C --> D["Template:
-Workflows"]
-    D --> E["Select model"]
-    E --> F["Workspace folder
-& agent name"]
-    F --> G["Generated project"]
-
-    style A fill:#4A90D9,color:#fff
-    style B fill:#7B68EE,color:#fff
-    style C fill:#7B68EE,color:#fff
-    style D fill:#7B68EE,color:#fff
-    style E fill:#7B68EE,color:#fff
-    style F fill:#7B68EE,color:#fff
-    style G fill:#27AE60,color:#fff
+    A[Command Palette: Create New Hosted Agent] --> B[Language: Python]
+    B --> C[API Type: Response API]
+    C --> D[Template: Workflows]
+    D --> E[Select Model]
+    E --> F[Workspace Folder and Agent Name]
+    F --> G[Generated Project]
 ```
 
 ---

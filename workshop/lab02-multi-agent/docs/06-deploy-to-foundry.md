@@ -10,21 +10,10 @@ In this module, you deploy your locally-tested multi-agent workflow to [Microsof
 
 ```mermaid
 flowchart LR
-    A["Dockerfile
-and main.py"] -->|docker build| B["Container
-Image"]
-    B -->|docker push| C["Azure Container
-Registry"]
-    C -->|register agent| D["Foundry Agent
-Service"]
-    D -->|start container| E["/responses
-endpoint"]
-
-    style A fill:#9B59B6,color:#fff
-    style B fill:#9B59B6,color:#fff
-    style C fill:#E67E22,color:#fff
-    style D fill:#3498DB,color:#fff
-    style E fill:#27AE60,color:#fff
+    A[Dockerfile and main.py] -->|docker build| B[Container Image]
+    B -->|docker push| C[Azure Container Registry]
+    C -->|register agent| D[Foundry Agent Service]
+    D -->|start container| E[/responses endpoint]
 ```
 
 ---

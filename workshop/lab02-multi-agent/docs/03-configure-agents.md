@@ -13,17 +13,17 @@ In this module, you transform the scaffolded stub into **your** multi-agent work
 ```mermaid
 sequenceDiagram
     participant User
-    participant Server as ResponsesHostServer<br/>(:8088)
+    participant Server as ResponsesHostServer
     participant RP as ResumeParser
     participant JD as JobDescriptionAgent
     participant MA as MatchingAgent
-    participant GA as GapAnalyzer + MCP
+    participant GA as GapAnalyzer
 
-    User->>Server: POST /responses (resume + JD)
+    User->>Server: POST /responses
     Server->>RP: Forward input
-    RP-->>JD: parsed resume + JD pass-through
-    JD-->>MA: JD requirements + parsed resume relay
-    MA-->>GA: Fit report + gaps
+    RP-->>JD: Parsed resume and JD relay
+    JD-->>MA: JD requirements and resume relay
+    MA-->>GA: Fit report and gaps
     GA->>GA: search_microsoft_learn_for_plan()
     GA-->>Server: Learning roadmap
     Server-->>User: Fit score + roadmap
@@ -119,7 +119,7 @@ python -m venv .venv
 
 | OS | Command |
 |----|---------|
-| **Windows (PowerShell)** | `.\.venv\Scripts\Activate.ps1` |
+| **Windows (PowerShell)** | `\.venv\Scripts\Activate.ps1` |
 | **Windows (CMD)** | `.venv\Scripts\activate.bat` |
 | **macOS / Linux** | `source .venv/bin/activate` |
 

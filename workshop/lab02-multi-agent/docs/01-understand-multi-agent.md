@@ -35,18 +35,11 @@ The workflow is a **sequential pipeline** - each agent passes its output to the 
 
 ```mermaid
 flowchart LR
-    A["User Input"] --> B["Resume Parser"]
-    B -- "parsed resume + JD relay" --> C["JD Agent"]
-    C -- "JD requirements + resume relay" --> D["Matching Agent"]
-    D -- "fit report + gaps" --> E["Gap Analyzer + MCP"]
-    E --> F["Final Output"]
-
-    style A fill:#4A90D9,color:#fff
-    style B fill:#7B68EE,color:#fff
-    style C fill:#7B68EE,color:#fff
-    style D fill:#E67E22,color:#fff
-    style E fill:#27AE60,color:#fff
-    style F fill:#4A90D9,color:#fff
+    U[User Input] --> RP[Resume Parser]
+    RP --> JD[JD Agent]
+    JD --> MA[Matching Agent]
+    MA --> GA[Gap Analyzer + MCP]
+    GA --> O[Final Output]
 ```
 
 1. **ResumeParser** receives the user input, parses the resume, and copies the JD into `[JOB DESCRIPTION PASS-THROUGH]`.

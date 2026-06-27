@@ -12,14 +12,9 @@ The fundamental pattern in the workflow is a **sequential chain** - each agentâ€
 
 ```mermaid
 flowchart LR
-    A["Resume Parser"] --> B["JD Agent"]
-    B --> C["Matching Agent"]
-    C --> D["Gap Analyzer"]
-
-    style A fill:#7B68EE,color:#fff
-    style B fill:#7B68EE,color:#fff
-    style C fill:#E67E22,color:#fff
-    style D fill:#27AE60,color:#fff
+    RP[Resume Parser] --> JD[JD Agent]
+    JD --> MA[Matching Agent]
+    MA --> GA[Gap Analyzer]
 ```
 
 In code, each `add_edge()` call creates one step in the chain:
@@ -60,18 +55,11 @@ Combining the sequential chain and content relay patterns produces the full work
 
 ```mermaid
 flowchart LR
-    A["User Input"] --> B["Resume Parser"]
-    B -- "parsed resume + JD relay" --> C["JD Agent"]
-    C -- "JD requirements + resume relay" --> D["Matching Agent"]
-    D -- "fit report + gaps" --> E["Gap Analyzer + MCP"]
-    E --> F["Final Output"]
-
-    style A fill:#4A90D9,color:#fff
-    style B fill:#7B68EE,color:#fff
-    style C fill:#7B68EE,color:#fff
-    style D fill:#E67E22,color:#fff
-    style E fill:#27AE60,color:#fff
-    style F fill:#4A90D9,color:#fff
+    U[User Input] --> RP[Resume Parser]
+    RP --> JD[JD Agent]
+    JD --> MA[Matching Agent]
+    MA --> GA[Gap Analyzer + MCP]
+    GA --> O[Final Output]
 ```
 
 The Agent Inspector shows this same graph structure when the agent is running locally. Refer to [Module 5 - Test Locally](05-test-locally.md) for screenshots.
