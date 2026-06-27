@@ -144,7 +144,7 @@ Contains:
 
 | Issue | Fix |
 |-------|-----|
-| `KeyError: 'FOUNDRY_PROJECT_ENDPOINT'` | Create `.env` with `FOUNDRY_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` |
+| `KeyError: 'FOUNDRY_PROJECT_ENDPOINT'` or `KeyError: 'AZURE_AI_MODEL_DEPLOYMENT_NAME'` | Create `.env` with both `FOUNDRY_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` set |
 | `ModuleNotFoundError: No module named 'agent_framework'` | Activate venv and run `pip install -r requirements.txt` |
 | No Microsoft Learn URLs in output | Check internet connectivity to `https://learn.microsoft.com/api/mcp` |
 | Only 1 gap card (truncated) | Verify `GAP_ANALYZER_INSTRUCTIONS` includes the `CRITICAL:` block |
