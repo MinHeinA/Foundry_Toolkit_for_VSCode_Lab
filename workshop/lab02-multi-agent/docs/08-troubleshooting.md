@@ -99,14 +99,14 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ### Env var precedence
 
-`main.py` uses `load_dotenv()` (no override), which means:
+`main.py` uses `load_dotenv(override=True)`, which means:
 
 | Priority | Source | Wins when both are set? |
 |----------|--------|------------------------|
-| 1 (highest) | Shell / container environment variable | Yes |
-| 2 | `.env` file | Only if not already set in the environment |
+| 1 (highest) | `.env` file | Yes |
+| 2 | Shell / container environment variable | Used when the same key is not present in `.env` |
 
-In hosted deployment, Foundry injects `FOUNDRY_PROJECT_ENDPOINT` at the container level. Because `.env` does **not** override shell env vars, the container value wins automatically - no code change needed between local and hosted runs.
+In local development, this makes `.env` the source of truth (editing `.env` immediately affects runs). In hosted deployment, Foundry injects environment variables at the container level; since `.env` is not part of the deployed image for this lab setup, the injected container values are used.
 
 ---
 

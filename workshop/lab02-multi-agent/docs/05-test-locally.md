@@ -11,7 +11,7 @@ In this module, you run the multi-agent workflow locally, test it with Agent Ins
 ### Option A: Using the VS Code task (recommended)
 
 1. Open `workshop/lab02-multi-agent/PersonalCareerCopilot/` as your VS Code folder.
-2. Press `Ctrl+Shift+P` → type **Tasks: Run Task** → select **Run Agent/Workflow HTTP Server**.
+2. Press `Ctrl+Shift+P` → type **Tasks: Run Task** → select **Run Agent HTTP Server**.
 3. The task starts the server with debugpy attached on port `5679` and the agent on port `8088`.
 4. Wait for the output to show:
 
@@ -22,7 +22,7 @@ INFO:resume-job-fit:Server running on http://localhost:8088
 
 ### Option B: Using F5 (debug mode)
 
-1. Press `F5` → select **Debug Local Agent Server**.
+1. Press `F5` → select **Debug Local Agent HTTP Server**.
 2. The server starts with full breakpoint support - useful for inspecting MCP responses or agent outputs.
 
 ---

@@ -173,7 +173,7 @@ No authentication required for local testing.
 - [ ] All 4 agent instruction constants defined in `main.py` (ResumeParser, JD Agent, MatchingAgent, GapAnalyzer)
 - [ ] `search_microsoft_learn_for_plan` MCP tool defined and registered on GapAnalyzer
 - [ ] `FoundryChatClient` + 4 `Agent` + 4 `AgentExecutor` objects created in `main()`
-- [ ] `WorkflowBuilder` builds the correct graph with all 4 edges
+- [ ] `WorkflowBuilder` builds the correct sequential graph with all 3 `add_edge()` calls
 - [ ] Virtual environment created and activated (`(.venv)` visible in prompt)
 - [ ] `pip install -r requirements.txt` completed without errors
 - [ ] **Path A:** `az account show` succeeds OR VS Code Accounts icon shows signed-in account

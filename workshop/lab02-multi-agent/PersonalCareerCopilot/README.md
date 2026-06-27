@@ -66,9 +66,9 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1-mini
 python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
 ```
 
-Or use the VS Code task: `Ctrl+Shift+P` → **Tasks: Run Task** → **Run Agent/Workflow HTTP Server**.
+Or use the VS Code task: `Ctrl+Shift+P` → **Tasks: Run Task** → **Run Agent HTTP Server**.
 
-For F5 debugging, use **Debug Local Agent Server**.
+For F5 debugging, use **Debug Local Agent HTTP Server**.
 
 ### 4. Test with Agent Inspector
 
