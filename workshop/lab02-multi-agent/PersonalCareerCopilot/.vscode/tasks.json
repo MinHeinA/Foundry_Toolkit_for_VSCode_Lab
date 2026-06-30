@@ -6,12 +6,15 @@
             "type": "aitk",
             "command": "debug-check-prerequisites",
             "args": {
-                "portOccupancy": [5679, 8088],
-                "pyPackageInstalled": ["agent-framework", "debugpy"]
+                "portOccupancy": [
+                    5679,
+                    8088
+                ],
+                "pyPackageInstalled": ["debugpy", "agent-framework-foundry", "agent-framework-foundry-hosting"]
             }
         },
         {
-            "label": "Run Agent/Workflow HTTP Server",
+            "label": "Run Agent HTTP Server",
             "type": "shell",
             "command": {
                 "value": "${command:python.interpreterPath}",
@@ -22,7 +25,9 @@
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "dependsOn": ["Validate prerequisites"],
+            "dependsOn": [
+                "Validate prerequisites"
+            ],
             "problemMatcher": {
                 "pattern": [
                     {
@@ -35,7 +40,7 @@
                 "background": {
                     "activeOnStart": true,
                     "beginsPattern": ".*",
-                    "endsPattern": "AgentServerHost started|Running on|Started server process"
+                    "endsPattern": "Application startup complete|running on|Running on|Started server process|AgentServerHost started"
                 }
             }
         },
@@ -46,7 +51,9 @@
             "presentation": {
                 "reveal": "never"
             },
-            "dependsOn": ["Run Agent/Workflow HTTP Server"]
+            "dependsOn": [
+                "Run Agent HTTP Server"
+            ]
         },
         {
             "label": "Terminate All Tasks",

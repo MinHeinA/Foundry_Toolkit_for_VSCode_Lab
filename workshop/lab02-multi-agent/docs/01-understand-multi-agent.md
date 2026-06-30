@@ -1,5 +1,7 @@
 # Module 1 - Understand the Architecture
 
+⏱️ ~5 min
+
 Before writing any code, here's a quick overview of what you're building and how it works.
 
 ---
@@ -20,24 +22,23 @@ A single agent trying to parse, score, and plan all at once tends to rush and pr
 
 | Agent | What it does |
 |-------|-------------|
-| **ResumeParser** | Reads the resume and extracts skills, certifications, experience |
-| **JobDescriptionAgent** | Reads the job description and extracts required and preferred skills |
-| **MatchingAgent** | Compares the two profiles, produces a 100-point fit score and gap list |
-| **GapAnalyzer** | Builds a learning roadmap, searches Microsoft Learn for each gap |
+| **ResumeParser** | Parses the resume; copies the JD verbatim into `[JOB DESCRIPTION PASS-THROUGH]` for downstream agents |
+| **JobDescriptionAgent** | Extracts JD requirements from the pass-through; relays `[PARSED RESUME]` forward as `[PARSED RESUME PASS-THROUGH]` |
+| **MatchingAgent** | Compares both labeled sections; produces a 0–100 fit score and gap list |
+| **GapAnalyzer** | Builds a learning roadmap; searches Microsoft Learn for each gap |
 
 ---
 
 ## The orchestration graph
 
-The workflow uses **parallel fan-out** followed by **sequential aggregation**:
+The workflow is a **sequential pipeline** - each agent passes its output to the next:
 
-```mermaid 
-flowchart TD
+```mermaid
+flowchart LR
     A["User Input"] --> B["Resume Parser"]
-    A --> C["JD Agent"]
-    B -->|parsed profile| D["Matching Agent"]
-    C -->|parsed requirements| D
-    D -->|fit report + gaps| E["Gap Analyzer + MCP"]
+    B -- "parsed resume + JD relay" --> C["Job Description Agent"]
+    C -- "JD requirements + resume relay" --> D["Matching Agent"]
+    D -- "fit report + gaps" --> E["Gap Analyzer + MCP"]
     E --> F["Final Output"]
 
     style A fill:#4A90D9,color:#fff
@@ -48,12 +49,10 @@ flowchart TD
     style F fill:#4A90D9,color:#fff
 ```
 
-> **Legend:** Purple = parallel agents, Orange = aggregation point, Green = final agent with tools
-
-1. **ResumeParser** runs first and receives the user input.
-2. Its output fans out to **JobDescriptionAgent** and **MatchingAgent** in parallel.
-3. **MatchingAgent** waits for both upstream agents before running.
-4. **GapAnalyzer** runs last and calls Microsoft Learn for each skill gap.
+1. **ResumeParser** receives the user input, parses the resume, and copies the JD into `[JOB DESCRIPTION PASS-THROUGH]`.
+2. **JD Agent** extracts structured requirements and relays `[PARSED RESUME PASS-THROUGH]` forward.
+3. **MatchingAgent** compares both sections and produces a fit score and gap list.
+4. **GapAnalyzer** builds the roadmap and calls the Microsoft Learn MCP tool for each gap.
 
 ---
 
@@ -68,15 +67,16 @@ workflow_agent = (
         output_executors=[gap_executor],      # last agent - its output is the response
     )
     .add_edge(resume_executor, jd_executor)       # ResumeParser → JD Agent
-    .add_edge(resume_executor, matching_executor) # ResumeParser → MatchingAgent (fan-out)
-    .add_edge(jd_executor, matching_executor)     # JD Agent → MatchingAgent (fan-in)
+    .add_edge(jd_executor, matching_executor)     # JD Agent → MatchingAgent
     .add_edge(matching_executor, gap_executor)    # MatchingAgent → GapAnalyzer
     .build()
     .as_agent()
 )
 ```
 
-Each `Agent` is wrapped in an `AgentExecutor`. The `add_edge()` calls define what data flows where. Because MatchingAgent has two incoming edges, the framework automatically waits for both ResumeParser and JD Agent to finish before running it.
+Each `Agent` is wrapped in an `AgentExecutor`. The `add_edge()` calls define a strictly sequential pipeline - each agent receives only its direct predecessor's output.
+
+> `context_mode="last_agent"` means each executor sees only its direct predecessor’s output. ResumeParser and JD Agent relay data forward in labeled sections so each downstream agent has exactly what it needs.
 
 ---
 
@@ -84,7 +84,7 @@ Each `Agent` is wrapped in an `AgentExecutor`. The `add_edge()` calls define wha
 
 GapAnalyzer has one tool: `search_microsoft_learn_for_plan`. It connects to `https://learn.microsoft.com/api/mcp` and returns real Microsoft Learn links for each skill gap.
 
-When the tool runs you'll see these logs - all expected:
+When the tool runs you’ll see these logs - all expected:
 
 ```
 GET  https://learn.microsoft.com/api/mcp → 405   ← connection probe, normal

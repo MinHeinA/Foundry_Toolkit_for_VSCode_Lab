@@ -1,37 +1,22 @@
 # Lab 02 - Multi-Agent Workflow: Resume → Job Fit Evaluator
 
+## Overview
+
+In this hands-on lab, you'll build a **workflow-first multi-agent app** using Foundry Toolkit in VS Code and deploy it to Microsoft Foundry Agent Service.
+
+**What you'll build:** a Resume → Job Fit Evaluator that parses a resume and job description, scores the match, and produces a personalized learning roadmap using Microsoft Learn resources.
+
 ---
 
-## What you'll build
-
-A **Resume → Job Fit Evaluator** - a multi-agent workflow where four specialized agents collaborate to evaluate how well a candidate's resume matches a job description, then generate a personalized learning roadmap to close the gaps.
-
-### The agents
-
-| Agent | Role |
-|-------|------|
-| **Resume Parser** | Extracts structured skills, experience, certifications from resume text |
-| **Job Description Agent** | Extracts required/preferred skills, experience, certifications from a JD |
-| **Matching Agent** | Compares profile vs requirements → fit score (0-100) + matched/missing skills |
-| **Gap Analyzer** | Builds a personalized learning roadmap with resources, timelines, and quick-win projects |
-
-### Demo flow
-
-Upload a **resume + job description** → get a **fit score + missing skills** → receive a **personalized learning roadmap**.
-
-### Workflow architecture
+## Architecture
 
 ```mermaid
 flowchart TD
-    A["User Input
-    (Resume + Job Description)"] --> B["Resume Parser"]
-    A --> C["JD Agent"]
-    B -->|parsed profile| D["Matching Agent"]
-    C -->|parsed requirements| D
-    D -->|fit report + gaps| E["Gap Analyzer
-    (Microsoft Learn MCP Tool)"]
-    E --> F["Final Output
-    (Fit Score + Learning Roadmap)"]
+    A["User Input"] --> B["Resume Parser"]
+    B -->|"[PARSED RESUME] + [JOB DESCRIPTION PASS-THROUGH]"| C["Job Description Agent"]
+    C -->|"[JD REQUIREMENTS] + [PARSED RESUME PASS-THROUGH]"| D["Matching Agent"]
+    D -->|fit report + gaps| E["Gap Analyzer + Microsoft Learn MCP"]
+    E -->|fit score + roadmap| F["Output"]
 
     style A fill:#4A90D9,color:#fff
     style B fill:#7B68EE,color:#fff
@@ -41,15 +26,12 @@ flowchart TD
     style F fill:#4A90D9,color:#fff
 ```
 
-> Purple = parallel agents | Orange = aggregation point | Green = final agent with tools. See [Module 1 - Understand the Architecture](docs/01-understand-multi-agent.md) and [Module 4 - Orchestration Patterns](docs/04-orchestration-patterns.md) for detailed diagrams and data flow.
-
-### Topics covered
-
-- Creating a multi-agent workflow using **WorkflowBuilder**
-- Defining agent roles and orchestration flow (parallel + sequential)
-- Inter-agent communication patterns
-- Local testing with the Agent Inspector
-- Deploying multi-agent workflows to Foundry Agent Service
+**How it works:**
+1. The user pastes a resume and job description.
+2. **ResumeParser** parses the resume and copies the JD verbatim into a `[JOB DESCRIPTION PASS-THROUGH]` section.
+3. **JD Agent** extracts structured requirements from the pass-through, then relays the `[PARSED RESUME]` forward as `[PARSED RESUME PASS-THROUGH]`.
+4. **MatchingAgent** compares `[PARSED RESUME PASS-THROUGH]` vs `[JD REQUIREMENTS]` and produces a fit score.
+5. **GapAnalyzer** turns the gaps into a practical roadmap and fetches real Microsoft Learn links via MCP.
 
 ---
 
@@ -61,22 +43,32 @@ Complete Lab 01 first:
 
 ---
 
-## Get started
+## Part 1: Read the modules in order
 
-See the full setup instructions, code walkthrough, and test commands in:
+See the full learning path in:
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
 - [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
 
-## Orchestration patterns (agentic alternatives)
+---
 
-Lab 2 includes the default **parallel → aggregator → planner** flow, and the docs
-also describe alternative patterns to demonstrate stronger agentic behavior:
+## Part 2: Build and test the workflow
+
+1. Use the Foundry Toolkit wizard to scaffold the workflow-based project.
+2. Copy the prompt blocks and workflow graph from `PersonalCareerCopilot/main.py` into your workspace.
+3. Run locally with the Agent Inspector and verify all four agents plus the MCP tool.
+4. Deploy the hosted agent to Foundry when local testing passes.
+
+---
+
+## Orchestration patterns
+
+Lab 02 includes the default **fan-out → fan-in → sequential** flow, and the docs also describe alternative orchestration patterns for experimentation.
 
 - **Fan-out/Fan-in with weighted consensus**
 - **Reviewer/critic pass before final roadmap**
-- **Conditional router** (path selection based on fit score and missing skills)
+- **Conditional router** based on fit score and missing skills
 
 See [docs/04-orchestration-patterns.md](docs/04-orchestration-patterns.md).
 

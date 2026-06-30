@@ -6,7 +6,7 @@ In this module, you install and verify the Foundry Toolkit extension, create (or
 
 ## Step 1: Install Foundry Toolkit
 
-**Foundry Toolkit for VS Code** is the primary extension for this workshop. It provides project creation, model deployment, agent scaffolding, local testing (Agent Inspector), and cloud deployment — all from VS Code.
+**Foundry Toolkit for VS Code** is the primary extension for this workshop. It provides project creation, model deployment, agent scaffolding, local testing (Agent Inspector), and cloud deployment - all from VS Code.
 
 1. Open VS Code then press `Ctrl+Shift+X` to open the **Extensions** panel.
 2. Search for **Foundry Toolkit**.
@@ -22,7 +22,7 @@ In this module, you install and verify the Foundry Toolkit extension, create (or
 > **Choose your path:** Expand the section below that matches your setup. You only need to complete **one** path.
 
 <details>
-<summary><strong>🅰️ Path A — Azure cloud (requires Azure subscription)</strong></summary>
+<summary><strong>🅰️ Path A - Azure cloud (requires Azure subscription)</strong></summary>
 
 ### Azure CLI
 
@@ -37,7 +37,7 @@ The [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/over
 #### Option 1: VS Code Accounts (recommended for workshops)
 1. Click the **Accounts** icon (person silhouette) in the bottom-left corner of VS Code.
 2. Select **Sign in to use Microsoft Foundry** (or **Sign in with Azure**).
-3. A browser opens — sign in with the Azure account that has access to your subscription.
+3. A browser opens - sign in with the Azure account that has access to your subscription.
 4. Return to VS Code. You should see your account name in the bottom-left.
 
 #### Option 2: Azure CLI
@@ -54,7 +54,7 @@ AZURE_CLIENT_ID=<your-client-id>
 AZURE_CLIENT_SECRET=<your-client-secret>
 ```
 
-> **How `DefaultAzureCredential` works:** It tries environment variables first, then managed identity, then VS Code sign-in, then Azure CLI — and uses whichever succeeds first. See [credential chain docs](https://learn.microsoft.com/azure/developer/python/sdk/authentication/credential-chains#defaultazurecredential-overview).
+> **How `DefaultAzureCredential` works:** It tries environment variables first, then managed identity, then VS Code sign-in, then Azure CLI - and uses whichever succeeds first. See [credential chain docs](https://learn.microsoft.com/azure/developer/python/sdk/authentication/credential-chains#defaultazurecredential-overview).
 
 ### Azure Developer CLI (azd)
 
@@ -73,7 +73,7 @@ Docker is only needed if you want to build containers locally. The Foundry exten
 
 1. Sign in at [portal.azure.com](https://portal.azure.com).
 2. Navigate to **Subscriptions** and confirm at least one is **Active**.
-3. Note your **Subscription ID** — you'll need it in Module 01.
+3. Note your **Subscription ID** - you'll need it in Module 01.
 
 ![Azure Portal Subscriptions blade showing an active subscription with Subscription ID](images/00-azure-portal-subscriptions.png)
 
@@ -128,7 +128,7 @@ Depending on your needs, you can choose from different model tiers:
    - **Target:** Select **Deploy to Foundry Toolkit** → choose your project.
 5. Click **Deploy** and wait 1–3 minutes.
 
-> **Recommendation:** Use `gpt-4.1-mini/gpt-5-mini` for the workshop — fast, affordable, and produces good results.
+> **Recommendation:** Use `gpt-4.1-mini/gpt-5-mini` for the workshop - fast, affordable, and produces good results.
 
 ### Note your values
 
@@ -170,11 +170,11 @@ Depending on your scenario, you need the following role combinations:
 </details>
 
 <details>
-<summary><strong>🅱️ Path B — Local / free-tier (no Azure subscription needed)</strong></summary>
+<summary><strong>🅱️ Path B - Local / free-tier (no Azure subscription needed)</strong></summary>
 
 ### Foundry Local
 
-Foundry Local lets you run AI models on your own machine — no cloud account needed. You can access Foundry Local models using Foundry Toolkit through the model catalog as follows:
+Foundry Local lets you run AI models on your own machine - no cloud account needed. You can access Foundry Local models using Foundry Toolkit through the model catalog as follows:
 
 1. Go to the Foundry Toolkit extension.
 2. In the Foundry Toolkit navigation go to **Developer Tools** > and select **Model Catalog**

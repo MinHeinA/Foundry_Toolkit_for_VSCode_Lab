@@ -1,171 +1,80 @@
 # Module 4 - Orchestration Patterns
 
+⏱️ ~10 min
+
 In this module, you explore the orchestration patterns used in the Resume Job Fit Evaluator and learn how to read, modify, and extend the workflow graph. Understanding these patterns is essential for debugging data flow issues and building your own [multi-agent workflows](https://learn.microsoft.com/agent-framework/workflows/).
 
 ---
 
-## Pattern 1: Fan-out (parallel split)
+## Pattern 1: Sequential chain
 
-The first pattern in the workflow is **fan-out** - a single input is sent to multiple agents simultaneously.
-
-```mermaid
-flowchart LR
-    A["User Input"] --> B["Resume Parser"]
-    A --> C["JD Agent"]
-
-    style A fill:#4A90D9,color:#fff
-    style B fill:#7B68EE,color:#fff
-    style C fill:#7B68EE,color:#fff
-```
-
-In code, this happens because `resume_executor` is the `start_executor` - it receives the user message first. Then, because both `jd_executor` and `matching_executor` have edges from `resume_executor`, the framework routes `resume_executor`'s output to both agents:
-
-```python
-.add_edge(resume_executor, jd_executor)         # ResumeParser output → JD Agent
-.add_edge(resume_executor, matching_executor)   # ResumeParser output → MatchingAgent
-```
-
-**Why this works:** ResumeParser and JD Agent process different aspects of the same input. Running them in parallel reduces total latency compared to running them sequentially.
-
-### When to use fan-out
-
-| Use case | Example |
-|----------|---------|
-| Independent subtasks | Parsing resume vs. parsing JD |
-| Redundancy / voting | Two agents analyze the same data, a third picks the best answer |
-| Multi-format output | One agent generates text, another generates structured JSON |
-
----
-
-## Pattern 2: Fan-in (aggregation)
-
-The second pattern is **fan-in** - multiple agent outputs are collected and sent to a single downstream agent.
+The fundamental pattern in the workflow is a **sequential chain** - each agent’s output feeds directly into the next.
 
 ```mermaid
 flowchart LR
-    B["Resume Parser"] --> D["Matching Agent"]
-    C["JD Agent"] --> D
-
-    style B fill:#7B68EE,color:#fff
-    style C fill:#7B68EE,color:#fff
-    style D fill:#E67E22,color:#fff
+    RP[Resume Parser] --> JD[JD Agent]
+    JD --> MA[Matching Agent]
+    MA --> GA[Gap Analyzer]
 ```
 
-In code:
+In code, each `add_edge()` call creates one step in the chain:
 
 ```python
-.add_edge(resume_executor, matching_executor)   # ResumeParser output → MatchingAgent
-.add_edge(jd_executor, matching_executor)       # JD Agent output → MatchingAgent
-```
-
-**Key behavior:** When an agent has **two or more incoming edges**, the framework automatically waits for **all** upstream agents to complete before running the downstream agent. MatchingAgent does not start until both ResumeParser and JD Agent have finished.
-
-### What MatchingAgent receives
-
-The framework concatenates the outputs from all upstream agents. MatchingAgent's input looks like:
-
-```
-[ResumeParser output]
----
-Candidate Profile:
-  Name: Jane Doe
-  Technical Skills: Python, Azure, Kubernetes, ...
-  ...
-
-[JobDescriptionAgent output]
----
-Role Overview: Senior Cloud Engineer
-Required Skills: Python, Azure, Terraform, ...
-...
-```
-
-> **Note:** The exact concatenation format depends on the framework version. The agent's instructions should be written to handle both structured and unstructured upstream output.
-
-![VS Code debug console showing MatchingAgent receiving concatenated outputs from both upstream agents](images/04-debug-console-matching-input.png)
-
----
-
-## Pattern 3: Sequential chain
-
-The third pattern is **sequential chaining** - one agent's output feeds directly into the next.
-
-```mermaid
-flowchart LR
-    D["Matching Agent"] --> E["Gap Analyzer"]
-
-    style D fill:#E67E22,color:#fff
-    style E fill:#27AE60,color:#fff
-```
-
-In code:
-
-```python
+.add_edge(resume_executor, jd_executor)       # ResumeParser output → JD Agent
+.add_edge(jd_executor, matching_executor)     # JD Agent output → MatchingAgent
 .add_edge(matching_executor, gap_executor)    # MatchingAgent output → GapAnalyzer
 ```
 
-This is the simplest pattern. GapAnalyzer receives MatchingAgent's fit score, matched/missing skills, and gaps. It then calls the [MCP tool](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) for each gap to fetch Microsoft Learn resources.
+> **Why sequential, not fan-out/fan-in?** `WorkflowBuilder` uses **OR-semantics** for incoming edges: a downstream executor fires as soon as **any** predecessor completes. If `matching_executor` had two incoming edges (from both `resume_executor` and `jd_executor`), it would trigger twice - once when ResumeParser finishes and again when JD Agent finishes - causing GapAnalyzer to also run twice and the output to appear twice. The sequential pipeline avoids this entirely.
+
+## Pattern 2: Content Relay
+
+Because `context_mode="last_agent"` means each executor sees only its **direct predecessor’s output**, agents in a sequential chain must explicitly pass forward any data that downstream agents need.
+
+In this workflow:
+- **ResumeParser** copies the JD verbatim into `[JOB DESCRIPTION PASS-THROUGH]` (so JD Agent can find it).
+- **JD Agent** copies the `[PARSED RESUME]` verbatim into `[PARSED RESUME PASS-THROUGH]` (so MatchingAgent can compare both profiles).
+
+```
+ResumeParser output
+└─ [PARSED RESUME]               ← extracted by JD Agent
+└─ [JOB DESCRIPTION PASS-THROUGH] ← extracted by JD Agent
+
+JD Agent output
+└─ [JD REQUIREMENTS]             ← extracted by MatchingAgent
+└─ [PARSED RESUME PASS-THROUGH]  ← extracted by MatchingAgent
+```
+
+Each relay section must be copied **verbatim** - summarizing or paraphrasing it breaks the downstream agent that depends on it.
 
 ---
 
 ## The complete graph
 
-Combining all three patterns produces the full workflow:
+Combining the sequential chain and content relay patterns produces the full workflow:
 
 ```mermaid
-flowchart TD
-    A["User Input"] --> B["Resume Parser"]
-    A --> C["JD Agent"]
-    B -->|"parsed profile"| D["Matching Agent"]
-    C -->|"parsed requirements"| D
-    D -->|"fit report + gaps"| E["Gap Analyzer + MCP"]
-    E --> F["Final Output"]
-
-    style A fill:#4A90D9,color:#fff
-    style B fill:#7B68EE,color:#fff
-    style C fill:#7B68EE,color:#fff
-    style D fill:#E67E22,color:#fff
-    style E fill:#27AE60,color:#fff
-    style F fill:#4A90D9,color:#fff
+flowchart LR
+    U[User Input] --> RP[Resume Parser]
+    RP --> JD[JD Agent]
+    JD --> MA[Matching Agent]
+    MA --> GA[Gap Analyzer + MCP]
+    GA --> O[Final Output]
 ```
+
+The Agent Inspector shows this same graph structure when the agent is running locally. Refer to [Module 5 - Test Locally](05-test-locally.md) for screenshots.
 
 ---
 
 ## Reading the WorkflowBuilder code
 
-Here is the complete `create_workflow()` function from `main.py`, annotated:
+The full `create_workflow()` function is in [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py). The three `add_edge()` calls build the sequential pipeline:
 
-```python
-workflow_agent = (
-    WorkflowBuilder(
-        # The first AgentExecutor to receive user input
-        start_executor=resume_executor,
-
-        # The AgentExecutor(s) whose output becomes the final response
-        output_executors=[gap_executor],
-    )
-    # Fan-out: ResumeParser output goes to both JD Agent and MatchingAgent
-    .add_edge(resume_executor, jd_executor)
-    .add_edge(resume_executor, matching_executor)
-
-    # Fan-in: MatchingAgent waits for both ResumeParser and JD Agent
-    .add_edge(jd_executor, matching_executor)
-
-    # Sequential: MatchingAgent output feeds GapAnalyzer
-    .add_edge(matching_executor, gap_executor)
-
-    .build()
-    .as_agent()
-)
-```
-
-### Edge summary table
-
-| # | Edge | Pattern | Effect |
-|---|------|---------|--------|
-| 1 | `resume_executor → jd_executor` | Fan-out | JD Agent receives ResumeParser's output |
-| 2 | `resume_executor → matching_executor` | Fan-out | MatchingAgent receives ResumeParser's output |
-| 3 | `jd_executor → matching_executor` | Fan-in | MatchingAgent also receives JD Agent's output (waits for both) |
-| 4 | `matching_executor → gap_executor` | Sequential | GapAnalyzer receives fit report + gap list |
+| # | Edge | Effect |
+|---|------|--------|
+| 1 | `resume_executor → jd_executor` | JD Agent receives `[PARSED RESUME]` + `[JOB DESCRIPTION PASS-THROUGH]` |
+| 2 | `jd_executor → matching_executor` | MatchingAgent receives `[JD REQUIREMENTS]` + `[PARSED RESUME PASS-THROUGH]` |
+| 3 | `matching_executor → gap_executor` | GapAnalyzer receives fit report + gap list |
 
 ---
 
@@ -173,44 +82,14 @@ workflow_agent = (
 
 ### Adding a new agent
 
-To add a fifth agent (e.g., an **InterviewPrepAgent** that generates interview questions based on the gap analysis):
+To add a fifth agent (e.g., an **InterviewPrepAgent** after GapAnalyzer):
 
-```python
-# 1. Define instructions
-INTERVIEW_PREP_INSTRUCTIONS = """\
-You are the Interview Prep Agent.
-Given a gap analysis and fit report, generate 10 targeted interview questions
-the candidate should prepare for.
-"""
+1. Define an `INTERVIEW_PREP_INSTRUCTIONS` constant.
+2. Create `Agent` + `AgentExecutor` objects (same pattern as the existing four).
+3. Add `.add_edge(gap_executor, interview_exec)` in `WorkflowBuilder`.
+4. Update `output_executors=[interview_exec]`.
 
-# 2. Create the agent and executor
-interview_prep = Agent(
-    client=client,
-    instructions=INTERVIEW_PREP_INSTRUCTIONS,
-    name="InterviewPrepAgent",
-)
-interview_exec = AgentExecutor(interview_prep, context_mode="last_agent")
-
-# 3. Add edges in WorkflowBuilder
-.add_edge(matching_executor, interview_exec)   # receives fit report
-.add_edge(gap_executor, interview_exec)        # also receives gap cards
-
-# 4. Update output_executors
-output_executors=[interview_exec],  # now the final agent
-```
-
-### Changing execution order
-
-To make JD Agent run **after** ResumeParser (sequential instead of parallel):
-
-```python
-# Remove: .add_edge(resume_executor, jd_executor)  ← already exists, keep it
-# Remove the implicit parallel by NOT having jd_executor receive user input directly
-# The start_executor sends to resume_executor first, and jd_executor only gets
-# resume_executor's output via the edge. This makes them sequential.
-```
-
-> **Important:** The `start_executor` is the only agent that receives the raw user input. All other agents receive output from their upstream edges. If you want an agent to also receive the raw user input, it must have an edge from the `start_executor`.
+> **Important:** `start_executor` is the only agent that receives raw user input. All other agents receive output from their upstream edge.
 
 ---
 
@@ -230,12 +109,11 @@ To make JD Agent run **after** ResumeParser (sequential instead of parallel):
 
 ### Using Agent Inspector
 
-1. Start the agent locally (F5 or terminal - see [Module 5](05-test-locally.md)).
+1. Start the agent locally with F5.
 2. Open Agent Inspector (`Ctrl+Shift+P` → **Foundry Toolkit: Open Agent Inspector**).
 3. Send a test message.
-4. In the Inspector's response panel, look for the **streaming output** - it shows each agent's contribution in sequence.
+4. In the Inspector’s response panel, look for the **streaming output** - it shows each agent’s contribution in sequence.
 
-![Agent Inspector showing streaming output with each agent's contribution labeled](images/04-inspector-streaming-output.png)
 
 ### Using logging
 
@@ -246,17 +124,14 @@ import logging
 logger = logging.getLogger("resume-job-fit")
 
 # In main(), after building the workflow:
-logger.info("Workflow graph built with edges: RP→JD, RP→MA, JD→MA, MA→GA")
+logger.info("Workflow graph built with edges: RP→JD, JD→MA, MA→GA")
 ```
 
 The server logs show agent execution order and MCP tool calls:
 
 ```
-INFO:resume-job-fit:Starting Resume -> Job Fit Evaluator HTTP server...
-INFO:resume-job-fit:Server running on http://localhost:8088
 INFO:agent_framework:Executing agent: ResumeParser
 INFO:agent_framework:Executing agent: JobDescriptionAgent
-INFO:agent_framework:Waiting for upstream agents: ResumeParser, JobDescriptionAgent
 INFO:agent_framework:Executing agent: MatchingAgent
 INFO:agent_framework:Executing agent: GapAnalyzer
 INFO:agent_framework:Tool call: search_microsoft_learn_for_plan(skill="Kubernetes")
@@ -269,11 +144,10 @@ POST https://learn.microsoft.com/api/mcp → 200
 
 ### Checkpoint
 
-- [ ] You can identify the three orchestration patterns in the workflow: fan-out, fan-in, and sequential chain
-- [ ] You understand that agents with multiple incoming edges wait for all upstream agents to complete
+- [ ] You can identify the two orchestration patterns in the workflow: sequential chain and content relay
+- [ ] You understand why `context_mode="last_agent"` requires explicit data relay between agents
 - [ ] You can read the `WorkflowBuilder` code and map each `add_edge()` call to the visual graph
-- [ ] You understand the execution timeline: parallel agents run first, then aggregation, then sequential
-- [ ] You know how to add a new agent to the graph (define instructions, create agent, add edges, update output)
+- [ ] You know how to add a new agent to the end of the pipeline
 - [ ] You can identify common graph mistakes and their symptoms
 
 ---

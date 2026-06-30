@@ -2,7 +2,7 @@
 
 ⏱️ ~5 min
 
-In this module, you use Foundry Toolkit to **scaffold a hosted agent project**. The scaffold generates the full project structure — `agent.yaml`, `main.py`, `Dockerfile`, `requirements.txt`, and VS Code debug configuration — so you can focus on customizing the agent's behavior.
+In this module, you use Foundry Toolkit to **scaffold a hosted agent project**. The scaffold generates the full project structure - `agent.yaml`, `main.py`, `Dockerfile`, `requirements.txt`, and VS Code debug configuration - so you can focus on customizing the agent's behavior.
 
 > **Key concept:** The `agent/` folder in this lab is an example of what Foundry Toolkit generates. You don't write these files from scratch.
 
@@ -45,7 +45,7 @@ flowchart LR
 
 ## Step 2: Choose settings
 
-![Create Hosted Agent from Sample — Agent Details tab showing Language, Framework, Protocol, and Template filters](images/02-hosted-agents-sample.jpg)
+![Create Hosted Agent from Sample - Agent Details tab showing Language, Framework, Protocol, and Template filters](images/02-hosted-agents-sample.jpg)
 
 1. On the left navigation/options section select the following:
 
@@ -53,12 +53,12 @@ flowchart LR
 |--------|-----------|-------|
 | **Language** | Python | C# also supported |
 | **Framework** | Agent Framework | Simple starting point using Agent Framework SDK |
-| **API type** | Response API | `POST /responses` — conversational, with platform-managed history |
+| **API type** | Response API | `POST /responses` - conversational, with platform-managed history |
 | **Template** | Basic | Simple starting point using Agent Framework SDK |
 
 2. Once selected, click **Next**
 
-![Create Hosted Agent — Create tab showing Workspace Folder, Folder Name, and Environment Setup options](images/02-create-hosted-agents.jpg)
+![Create Hosted Agent - Create tab showing Workspace Folder, Folder Name, and Environment Setup options](images/02-create-hosted-agents.jpg)
 
 3. In the next window, select the following:
 

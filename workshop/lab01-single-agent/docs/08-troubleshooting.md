@@ -111,7 +111,7 @@ Check container logs in the sidebar. Common causes:
 
 ---
 
-## 6. Path B — Foundry Local
+## 6. Path B - Foundry Local
 
 ### 6.1 Foundry Local won't start
 
@@ -125,7 +125,7 @@ Check container logs in the sidebar. Common causes:
 
 | Issue | Fix |
 |-------|-----|
-| Slow responses | Expected — local models run on CPU unless you have a GPU. Be patient. |
+| Slow responses | Expected - local models run on CPU unless you have a GPU. Be patient. |
 | Poor quality output | Try a larger model if your hardware allows. `phi-4-mini` is a good balance. |
 | Connection refused | Verify Foundry Local is running: `foundry local status`. Restart if needed. |
 
@@ -151,7 +151,7 @@ Check container logs in the sidebar. Common causes:
 | 2 | Foundry Toolkit extension installed, project connected (or Path B configured) | [01](01-setup.md) |
 | 3 | Hosted agent scaffolded | [02](02-create-hosted-agent.md) |
 | 4 | `.env` configured, instructions written, dependencies installed | [03](03-configure-and-code.md) |
-| 5 | Agent tested locally — 3 functional scenarios pass | [04](04-test-locally.md) |
+| 5 | Agent tested locally - 3 functional scenarios pass | [04](04-test-locally.md) |
 | 6 | Deployed to Foundry (Path A only) | [05](05-deploy-to-foundry.md) |
 | 7 | Edge-case/safety tests pass in cloud (Path A only) | [06](06-verify-in-playground.md) |
 | 8 | Summary reviewed, next steps identified | [07](07-summary.md) |
