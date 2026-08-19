@@ -18,6 +18,33 @@ MICROSOFT_LEARN_MCP_ENDPOINT = os.getenv(
     "MICROSOFT_LEARN_MCP_ENDPOINT", "https://learn.microsoft.com/api/mcp"
 )
 
+
+def get_required_environment_variable(name: str) -> str:
+    """Return a configured environment variable or raise an actionable error."""
+    value = os.getenv(name, "").strip()
+    placeholder_markers = ("<", ">", "your-account", "your-project", "your-model")
+
+    if not value or any(marker in value for marker in placeholder_markers):
+        raise RuntimeError(
+            f"{name} is missing or still a placeholder. "
+            "Update PersonalCareerCopilot/.env before starting the agent."
+        )
+
+    return value
+
+
+def configure_tracing() -> None:
+    """Configure the host-owned OpenTelemetry providers through environment variables."""
+    capture_content_variable = "OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT"
+    if not os.getenv(capture_content_variable):
+        os.environ[capture_content_variable] = "false"
+
+    if os.getenv("AGENTDEV_ENABLED") == "1" and not os.getenv(
+        "OTEL_EXPORTER_OTLP_ENDPOINT"
+    ):
+        os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"] = "http://localhost:4317"
+        os.environ.setdefault("OTEL_EXPORTER_OTLP_PROTOCOL", "grpc")
+
 RESUME_PARSER_INSTRUCTIONS = """\
 You are the Resume Parser and Content Router.
 Your input contains a resume and usually a job description - BOTH must be preserved.
@@ -188,15 +215,34 @@ async def search_microsoft_learn_for_plan(
 
 
 def main():
+    configure_tracing()
+
+    project_endpoint = get_required_environment_variable("FOUNDRY_PROJECT_ENDPOINT")
+    model_deployment = get_required_environment_variable(
+        "AZURE_AI_MODEL_DEPLOYMENT_NAME"
+    )
+
     client = FoundryChatClient(
-        project_endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-        model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+        project_endpoint=project_endpoint,
+        model=model_deployment,
         credential=DefaultAzureCredential(),
     )
 
-    resume_parser = Agent(client=client, instructions=RESUME_PARSER_INSTRUCTIONS, name="ResumeParser")
-    jd_agent = Agent(client=client, instructions=JOB_DESCRIPTION_INSTRUCTIONS, name="JobDescriptionAgent")
-    matching_agent = Agent(client=client, instructions=MATCHING_AGENT_INSTRUCTIONS, name="MatchingAgent")
+    resume_parser = Agent(
+        client=client,
+        instructions=RESUME_PARSER_INSTRUCTIONS,
+        name="ResumeParser",
+    )
+    jd_agent = Agent(
+        client=client,
+        instructions=JOB_DESCRIPTION_INSTRUCTIONS,
+        name="JobDescriptionAgent",
+    )
+    matching_agent = Agent(
+        client=client,
+        instructions=MATCHING_AGENT_INSTRUCTIONS,
+        name="MatchingAgent",
+    )
     gap_analyzer = Agent(
         client=client,
         instructions=GAP_ANALYZER_INSTRUCTIONS,

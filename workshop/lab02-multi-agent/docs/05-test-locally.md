@@ -12,18 +12,15 @@ In this module, you run the multi-agent workflow locally, test it with Agent Ins
 
 1. Open `workshop/lab02-multi-agent/PersonalCareerCopilot/` as your VS Code folder.
 2. Press `Ctrl+Shift+P` → type **Tasks: Run Task** → select **Run Agent HTTP Server**.
-3. The task starts the server with debugpy attached on port `5679` and the agent on port `8088`.
-4. Wait for the output to show:
+3. The task runs `agentdev` under `debugpy`, with the debugger on port `5679` and Agent Inspector on port `8088`.
+4. Wait for the Agent Dev output to report that the server is running.
 
-```
-INFO:resume-job-fit:Starting Resume -> Job Fit Evaluator HTTP server...
-INFO:resume-job-fit:Server running on http://localhost:8088
-```
+To start without attaching a debugger, run `python -m agentdev run main.py --verbose --port 8088` from an activated virtual environment.
 
 ### Option B: Using F5 (debug mode)
 
-1. Press `F5` → select **Debug Local Agent HTTP Server**.
-2. The server starts with full breakpoint support - useful for inspecting MCP responses or agent outputs.
+1. Press `F5` → select **Debug Agent with Inspector (agentdev)**.
+2. VS Code validates the dependencies, starts Agent Dev, opens Agent Inspector, and attaches `debugpy` with full breakpoint support.
 
 ---
 
@@ -35,7 +32,7 @@ INFO:resume-job-fit:Server running on http://localhost:8088
 
 ![Agent Inspector open and ready - Playground shows the welcome prompt](images/04-debug-console-matching-input.png)
 
-> **If Agent Inspector doesn't open:** Ensure the server is fully started (you see the "Server running" log). If port 5679 is busy, see [Module 8 - Troubleshooting](08-troubleshooting.md).
+> **If Agent Inspector doesn't open:** Ensure the Agent Dev server is fully started. If port 5679 or 8088 is busy, see [Module 8 - Troubleshooting](08-troubleshooting.md).
 
 ---
 

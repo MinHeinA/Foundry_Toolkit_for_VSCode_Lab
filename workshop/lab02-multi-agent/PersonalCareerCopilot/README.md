@@ -33,22 +33,23 @@ flowchart LR
 This folder is the reference implementation for the workflow-based Lab 02 scaffold. Its `main.py` uses the existing prompt blocks plus `WorkflowBuilder` to wire the four agents together.
 
 ```powershell
-cd workshop\lab02-multi-agent\PersonalCareerCopilot
+cd workshop/lab02-multi-agent/PersonalCareerCopilot
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1          # Windows PowerShell
-# source .venv/bin/activate            # macOS / Linux
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
+
+On macOS or Linux, activate the environment with `source .venv/bin/activate`.
 
 ### 2. Configure credentials
 
 Create a `.env` file in this folder:
 
 ```powershell
-copy .env .env.bak 2>$null; echo $null > .env
+New-Item -Path .env -ItemType File -Force
 ```
 
-Edit `.env`:
+On macOS or Linux, use `touch .env`. Then edit `.env`:
 
 ```env
 FOUNDRY_PROJECT_ENDPOINT=https://<your-account>.services.ai.azure.com/api/projects/<your-project>
@@ -63,12 +64,12 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1-mini
 ### 3. Run locally
 
 ```powershell
-python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
+python -m agentdev run main.py --verbose --port 8088
 ```
 
-Or use the VS Code task: `Ctrl+Shift+P` → **Tasks: Run Task** → **Run Agent HTTP Server**.
+Or use the VS Code task: `Ctrl+Shift+P` → **Tasks: Run Task** → **Run Agent HTTP Server**. The task runs the same `agentdev` host under `debugpy`, listening on port `5679` for the debugger and port `8088` for Agent Inspector.
 
-For F5 debugging, use **Debug Local Agent HTTP Server**.
+For F5 debugging, use **Debug Agent with Inspector (agentdev)**. This starts the task, opens Agent Inspector, and attaches the debugger automatically.
 
 ### 4. Test with Agent Inspector
 
@@ -104,11 +105,13 @@ Certifications: Azure Solutions Architect Expert preferred.
 
 ```
 PersonalCareerCopilot/
-├── .env                ← Your credentials (git-ignored)
-├── agent.yaml          ← Hosted agent definition (name, resources, env vars)
-├── Dockerfile          ← Container image for Foundry deployment
-├── main.py             ← 4-agent workflow (instructions, MCP tool, WorkflowBuilder)
-└── requirements.txt    ← Python dependencies
+├── .env                  ← Your local configuration (git-ignored)
+├── .gitignore            ← Local Python and environment exclusions
+├── .vscode/              ← Cross-platform interpreter, task, and debug settings
+├── agent.yaml            ← Hosted agent definition (name, resources, env vars)
+├── Dockerfile            ← Container image for Foundry deployment
+├── main.py               ← 4-agent workflow (instructions, MCP tool, WorkflowBuilder)
+└── requirements.txt      ← Runtime, tracing, and debugging dependencies
 ```
 
 ## Key files
@@ -127,6 +130,8 @@ Contains:
 - **MCP tool** - `search_microsoft_learn_for_plan()` calls `https://learn.microsoft.com/api/mcp` via Streamable HTTP
 - **Agent creation** - four `Agent()` + `AgentExecutor()` instances sharing one `FoundryChatClient`
 - **Workflow graph** - `WorkflowBuilder` wires agents as a sequential pipeline: ResumeParser → JD Agent → MatchingAgent → GapAnalyzer
+- **Configuration validation** - startup rejects missing or placeholder endpoint/model values with an actionable error
+- **Tracing defaults** - message content capture is disabled unless explicitly configured; Agent Dev exports OTLP traces to `localhost:4317` when enabled
 - **Server startup** - `ResponsesHostServer` runs on port 8088
 
 ### `requirements.txt`
@@ -136,7 +141,9 @@ Contains:
 | `agent-framework-foundry` | Core runtime: `Agent`, `AgentExecutor`, `WorkflowBuilder`, `@tool`, `FoundryChatClient` |
 | `agent-framework-foundry-hosting` | `ResponsesHostServer` + Foundry hosting integration |
 | `mcp<2,>=1.24.0` | MCP client for GapAnalyzer (`streamable_http_client`) |
+| `opentelemetry-exporter-otlp-proto-grpc` | Exports local Agent Dev traces over OTLP/gRPC |
 | `debugpy` | Python debugging (F5 in VS Code) |
+| `agent-dev-cli` | Runs the local agent host and connects Inspector/visualization tooling |
 
 ---
 
@@ -144,11 +151,11 @@ Contains:
 
 | Issue | Fix |
 |-------|-----|
-| `KeyError: 'FOUNDRY_PROJECT_ENDPOINT'` or `KeyError: 'AZURE_AI_MODEL_DEPLOYMENT_NAME'` | Create `.env` with both `FOUNDRY_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` set |
+| `RuntimeError` says an environment value is missing or still a placeholder | Create `.env` with real `FOUNDRY_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` values |
 | `ModuleNotFoundError: No module named 'agent_framework'` | Activate venv and run `pip install -r requirements.txt` |
 | No Microsoft Learn URLs in output | Check internet connectivity to `https://learn.microsoft.com/api/mcp` |
 | Only 1 gap card (truncated) | Verify `GAP_ANALYZER_INSTRUCTIONS` includes the `CRITICAL:` block |
-| Port 8088 in use | Stop other servers: `netstat -ano \| findstr :8088` |
+| Port 8088 in use | Stop the existing task/process or run Agent Dev with a different `--port` |
 
 For detailed troubleshooting, see [Module 8 - Troubleshooting](../docs/08-troubleshooting.md).
 

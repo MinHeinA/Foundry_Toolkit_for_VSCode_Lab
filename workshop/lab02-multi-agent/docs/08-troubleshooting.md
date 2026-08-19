@@ -121,7 +121,9 @@ The multi-agent workflow requires specific package versions. Mismatched versions
 | `agent-framework-foundry` | latest | `pip show agent-framework-foundry` |
 | `agent-framework-foundry-hosting` | latest | `pip show agent-framework-foundry-hosting` |
 | `mcp` | `<2,>=1.24.0` | `pip show mcp` |
+| `opentelemetry-exporter-otlp-proto-grpc` | latest | `pip show opentelemetry-exporter-otlp-proto-grpc` |
 | `debugpy` | latest | `pip show debugpy` |
+| `agent-dev-cli` | `>=0.0.1b260427` | `pip show agent-dev-cli` |
 | Python | 3.12+ | `python --version` |
 
 ### Common version errors
@@ -143,7 +145,7 @@ pip install mcp --upgrade
 ### Verify all versions at once
 
 ```powershell
-pip list | Select-String "agent-framework|mcp|debugpy"
+pip list | Select-String "agent-framework|agent-dev|mcp|opentelemetry-exporter|debugpy"
 ```
 
 Expected output:
@@ -151,8 +153,10 @@ Expected output:
 ```
 agent-framework-foundry          x.x.x
 agent-framework-foundry-hosting  x.x.x
+agent-dev-cli                    x.x.x
 debugpy                          x.x.x
 mcp                              x.x.x
+opentelemetry-exporter-otlp-proto-grpc x.x.x
 ```
 
 ---
@@ -170,7 +174,7 @@ mcp                              x.x.x
    | Error in logs | Cause | Fix |
    |--------------|-------|-----|
    | `ModuleNotFoundError` | `requirements.txt` missing a package | Add the package, redeploy |
-   | `KeyError: 'FOUNDRY_PROJECT_ENDPOINT'` | `agent.yaml` or `.env` env vars not set | Update `agent.yaml` → `environment_variables` section (hosted) or `.env` (local) |
+   | `RuntimeError` reports a missing or placeholder environment value | `.env` still contains scaffold placeholders or is missing a required value | Set real `FOUNDRY_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` values for local runs |
    | `azure.identity.CredentialUnavailableError` | Managed Identity not configured | Foundry sets this automatically - ensure you're deploying via the extension |
    | `OSError: port 8088 already in use` | Dockerfile exposes wrong port or port conflict | Verify `EXPOSE 8088` in Dockerfile and `CMD ["python", "main.py"]` |
    | Container exits with code 1 | Unhandled exception in `main()` | Test locally first ([Module 5](05-test-locally.md)) to catch errors before deploying |
@@ -246,9 +250,9 @@ foundry model list
 
 Set `AZURE_AI_MODEL_DEPLOYMENT_NAME` in `.env` to the exact alias shown (e.g., `phi-4-mini`, not `Phi-4-mini`).
 
-### `KeyError: 'FOUNDRY_PROJECT_ENDPOINT'` on local run (Path B)
+### Missing or placeholder environment value on local run (Path B)
 
-The lab’s `main.py` uses `os.environ["FOUNDRY_PROJECT_ENDPOINT"]`. Foundry Local requires this variable to point to the local service - **not** `AZURE_AI_PROJECT_ENDPOINT`. Ensure your `.env` contains:
+The lab validates required settings before creating the client and raises an actionable `RuntimeError` if a value is absent or still contains a scaffold placeholder. Foundry Local requires `FOUNDRY_PROJECT_ENDPOINT` to point to the local service - **not** `AZURE_AI_PROJECT_ENDPOINT`. Ensure your `.env` contains real values:
 
 ```env
 FOUNDRY_PROJECT_ENDPOINT=http://localhost:5273/v1

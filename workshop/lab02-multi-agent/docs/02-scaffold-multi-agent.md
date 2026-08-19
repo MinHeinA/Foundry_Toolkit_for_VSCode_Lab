@@ -90,7 +90,7 @@ After scaffolding completes, verify you see these files in the Explorer (`Ctrl+S
 | `agent.yaml` | Declares `kind: hosted`, maps env vars, defines the `/responses` protocol |
 | `main.py` | Stub: one `FoundryChatClient` → `Agent` → `ResponsesHostServer`. You replace this with 4 agents + `WorkflowBuilder` in Module 3 |
 | `Dockerfile` | `python:3.12-slim`, installs `requirements.txt`, exposes port 8088, runs `python main.py` |
-| `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
+| `requirements.txt` | Runtime, MCP, OTLP tracing, Agent Dev, and debug dependencies used by the reference implementation |
 
 > **Reference:** See [`PersonalCareerCopilot/agent.yaml`](../PersonalCareerCopilot/agent.yaml) and [`PersonalCareerCopilot/requirements.txt`](../PersonalCareerCopilot/requirements.txt) for the complete generated content.
 

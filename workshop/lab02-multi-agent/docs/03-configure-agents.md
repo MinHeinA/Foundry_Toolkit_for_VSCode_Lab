@@ -134,10 +134,10 @@ pip install -r requirements.txt
 ### 4.4 Verify
 
 ```powershell
-pip list | Select-String "agent-framework|mcp|debugpy"
+pip list | Select-String "agent-framework|agent-dev|mcp|opentelemetry-exporter|debugpy"
 ```
 
-Expected: `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp`, and `debugpy` are listed.
+Expected: `agent-framework-foundry`, `agent-framework-foundry-hosting`, `agent-dev-cli`, `mcp`, `opentelemetry-exporter-otlp-proto-grpc`, and `debugpy` are listed.
 
 ---
 

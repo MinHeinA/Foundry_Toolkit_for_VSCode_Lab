@@ -49,7 +49,9 @@ Before deploying, verify every item below:
    agent-framework-foundry
    agent-framework-foundry-hosting
    mcp<2,>=1.24.0
+   opentelemetry-exporter-otlp-proto-grpc
    debugpy
+   agent-dev-cli>=0.0.1b260427
    ```
 
 ---
@@ -188,7 +190,9 @@ Error: Could not find a version that satisfies the requirement agent-framework-f
 agent-framework-foundry
 agent-framework-foundry-hosting
 mcp<2,>=1.24.0
+opentelemetry-exporter-otlp-proto-grpc
 debugpy
+agent-dev-cli>=0.0.1b260427
 ```
 
 If the build still fails, your Docker network may be blocking PyPI. Check `docker info` for proxy settings.
