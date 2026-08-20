@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # User-specific files
+.DS_Store
 *.rsuser
 *.suo
 *.user
@@ -13,6 +14,9 @@
 .azure/*
 !.azure/deployment-plan.md
 !.azure/validate-status.json
+
+# Local workshop datasets
+/workshop/lab02-multi-agent/careersgovsg-jobs-data/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

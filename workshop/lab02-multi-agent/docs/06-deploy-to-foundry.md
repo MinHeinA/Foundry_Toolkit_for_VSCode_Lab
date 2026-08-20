@@ -10,55 +10,70 @@ cd workshop/lab02-multi-agent
 
 The checked-in [`azure.yaml`](../azure.yaml) contains one agent-only service and
 no infrastructure. It uploads `PersonalCareerCopilot` to runtime `python_3_13`.
+The shared Careers MCP service is trainer-owned and is never deployed by
+attendees.
 
 ```mermaid
 flowchart LR
     A["Lab 02 source + azure.yaml"] -->|"azd deploy personal-career-copilot"| B["Your Foundry project"]
     B --> C["Direct-code Hosted Agent runtime python_3_13"]
-    C --> D["One container: four sequential agents"]
+    C --> D["Four strict sequential agents"]
     D --> E["Careers MCP get_job + Microsoft Learn MCP"]
 ```
 
-> [!IMPORTANT]
-> Do not deploy from the old Lab 02 Foundry Toolkit/Agent Inspector wizard and do
-> not use `agent.yaml`. Do not run `azd provision` or `azd up`: attendee
-> `azure.yaml` has no infrastructure, and the shared MCP service is trainer-owned.
-> The older Agent Inspector **Deploy** screenshot is obsolete for Lab 02.
-
 ## Prerequisites
 
-- Your local selected-key and pasted-JD tests passed.
-- You have an existing attendee-owned Foundry project and model deployment.
-- You know both:
-  - the Foundry project endpoint
-  - the project's full ARM resource ID
+- Your selected-key and pasted-JD tests passed through the local agent host and
+  Agent Inspector.
+- You have an attendee-owned Foundry project and model deployment.
+- You know the Foundry project endpoint and full ARM project resource ID.
 - You have **Foundry Project Manager** on that project.
-- Your model has available quota.
+- Your model has quota for the four sequential model calls.
 - The trainer-provided Careers endpoint/key are still valid.
+- `azd` and the `azure.ai.agents` extension meet the version in `azure.yaml`.
+
+### Package checklist
+
+Do not loosen or replace the exact pins in
+`PersonalCareerCopilot/requirements.txt`. Confirm it contains:
+
+```text
+agent-framework-foundry==1.10.4
+agent-framework-foundry-hosting==1.0.0b260730
+azure-identity==1.25.3
+debugpy==1.8.21
+httpx==0.28.1
+mcp==1.29.0
+opentelemetry-exporter-otlp-proto-grpc==1.43.0
+python-dotenv==1.2.2
+```
+
+The hosting package serves the local `/responses` endpoint, `debugpy` enables
+direct breakpoint attach, and the OTLP exporter supports privacy-safe optional
+tracing. Their exact pins keep local diagnostics reproducible.
 
 ## Step 1: Create or select an `azd` environment
 
-Create a new environment:
+Create one:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd env new <your-lab02-environment-name> --no-prompt
 ```
 
-Or select an environment you already created:
+Or select an existing environment:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd env select <your-lab02-environment-name>
 ```
 
-Use one environment per attendee/project combination. Every Lab 02 `azd`
-command sets the required user-agent value inline; the variable name is exactly
-`AZURE_DEV_USER_AGENT`.
+Use one environment per attendee/project combination. Every command in this
+module sets `AZURE_DEV_USER_AGENT=microsoft_foundry_skill` inline.
 
-## Step 2: Set non-secret deployment values
+## Step 2: Set all non-secret deployment values
 
-Replace every placeholder with values for **your** Foundry project:
+Replace every placeholder with values from **your** Foundry project:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
@@ -74,13 +89,25 @@ AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
 ```
 
-`AZURE_AI_PROJECT_ENDPOINT` is used by the `azd` Foundry extension.
-`FOUNDRY_PROJECT_ENDPOINT` is the matching local/runtime value. Set both to the
-same URL. `AZURE_AI_PROJECT_ID` is the ARM project resource ID, not the HTTPS
-endpoint and not a project display name. Do not use the trainer project or its
-values.
+The settings have distinct purposes:
 
-## Step 3: Set the event key without placing it in the command text
+| Setting | Purpose |
+|---|---|
+| `AZURE_SUBSCRIPTION_ID` | Attendee subscription containing the Foundry project |
+| `AZURE_LOCATION` | Region of that project |
+| `AZURE_AI_PROJECT_ENDPOINT` | Project endpoint consumed by the `azd` Foundry extension |
+| `FOUNDRY_PROJECT_ENDPOINT` | Same endpoint consumed and validated by `main.py` at runtime |
+| `AZURE_AI_PROJECT_ID` | Full ARM project resource ID, not a URL or display name |
+| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Model deployment in the attendee project |
+| `CAREERS_MCP_ENDPOINT` | Trainer-provided event service `/mcp` URL |
+| `CAREERS_MCP_TIMEOUT_SECONDS` | Bounded Careers request timeout |
+| `MICROSOFT_LEARN_MCP_ENDPOINT` | Official Learn MCP endpoint |
+
+Never use the trainer's Foundry project, subscription, or model settings.
+
+## Step 3: Set the event key without putting it in command history
+
+On macOS/Linux:
 
 ```bash
 read -rsp "Careers workshop API key: " CAREERS_KEY && echo
@@ -89,20 +116,43 @@ AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
 unset CAREERS_KEY
 ```
 
-The value comes from the trainer out of band. Never commit it or include it in a
+On PowerShell:
+
+```powershell
+$careersKey = Read-Host "Careers workshop API key" -MaskInput
+$env:AZURE_DEV_USER_AGENT = "microsoft_foundry_skill"
+azd env set CAREERS_MCP_API_KEY $careersKey
+Remove-Variable careersKey
+Remove-Item Env:AZURE_DEV_USER_AGENT
+```
+
+The key comes from the trainer out of band. Never commit it or include it in a
 screenshot.
 
-## Step 4: Deploy only the Hosted Agent
+## Step 4: Review the agent-only manifest
+
+Confirm [`azure.yaml`](../azure.yaml) declares:
+
+- service `personal-career-copilot`
+- `host: azure.ai.agent`
+- source project `PersonalCareerCopilot`
+- direct-code runtime `python_3_13`
+- entry point `main.py`
+- `kind: hosted` and Responses protocol `2.0.0`
+- model, Careers endpoint/key/timeout, and Learn endpoint runtime values
+- no infrastructure provider
+
+## Step 5: Deploy only the Hosted Agent
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd deploy personal-career-copilot --no-prompt
 ```
 
-This is the only Lab 02 deployment command. The service name must match
-[`azure.yaml`](../azure.yaml): `personal-career-copilot`.
+This is the only Lab 02 deployment command. Do not run `azd provision`, `azd
+up`, trainer Bicep, or any UI deployment action.
 
-## Step 5: Verify status
+## Step 6: Verify status
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
@@ -113,7 +163,7 @@ Confirm the deployed agent appears in your intended project and reaches a ready
 state. If it is missing, failed, or targets the wrong project, do not invoke it;
 see [Module 8](08-troubleshooting.md).
 
-## Step 6: Invoke with the selected key
+## Step 7: Invoke with the selected key
 
 Reuse the exact key from Module 5:
 
@@ -131,9 +181,10 @@ resume—to the shared Careers service.
 - [ ] My `azd` environment targets my project endpoint and full ARM project ID.
 - [ ] Subscription, location, both endpoint variables, ARM project ID, model,
       MCP endpoint/key, timeout, and Learn endpoint are present.
+- [ ] Runtime, debugging, and OTLP package versions remain exactly pinned.
 - [ ] Every `azd` command used `AZURE_DEV_USER_AGENT=microsoft_foundry_skill` inline.
 - [ ] I ran only `azd deploy personal-career-copilot --no-prompt`.
-- [ ] I did not run `azd provision`, `azd up`, trainer Bicep, or an Inspector deploy action.
+- [ ] I did not deploy infrastructure or the trainer-owned Careers service.
 - [ ] `azd ai agent show --output json` reports my Hosted Agent.
 - [ ] Hosted invocation used a synthetic resume and an exact selected key.
 

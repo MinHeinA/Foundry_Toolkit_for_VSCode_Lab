@@ -4,24 +4,24 @@ A four-agent Microsoft Agent Framework workflow:
 
 `ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer`
 
-Learners search the trainer-hosted Careers MCP service locally, select a stable
-job key, and submit that key with a synthetic resume. Only
-`JobDescriptionAgent` can retrieve the selected job. `GapAnalyzer` continues to
-use the Microsoft Learn MCP service for roadmap resources.
+Learners search the trainer-hosted Careers MCP service out of band, select one
+stable job key, and submit that exact key with a synthetic resume. Only
+`JobDescriptionAgent` can retrieve the selected listing. `GapAnalyzer` uses the
+Microsoft Learn MCP service for official roadmap resources.
 
 ## Set up
 
-Python 3.10 or later is required.
+Use Python 3.13, which matches the direct-code Hosted Agent runtime:
 
 ```bash
 cd workshop/lab02-multi-agent/PersonalCareerCopilot
-python -m venv .venv
+python3.13 -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 cp .env.example .env              # Windows: copy .env.example .env
 ```
 
-Set placeholder values in `.env`; never commit the file:
+Replace every placeholder copied from [`.env.example`](.env.example):
 
 ```env
 FOUNDRY_PROJECT_ENDPOINT=https://<foundry-resource>.services.ai.azure.com/api/projects/<project-name>
@@ -32,12 +32,12 @@ CAREERS_MCP_TIMEOUT_SECONDS=10
 MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
 ```
 
-## Local two-step flow
+Use your own attendee Foundry project/model and the trainer-provided Careers
+endpoint/key. Never commit `.env` or use real resume data.
 
-### 1. Search and choose a stable key
+## Search, host, and test locally
 
-The CLI sends `x-careers-workshop-key` through the MCP Streamable HTTP client
-and prints no more than five compact cards:
+### 1. Search and select one exact key
 
 ```bash
 python -m careers_mcp search \
@@ -45,74 +45,95 @@ python -m careers_mcp search \
   --max-experience-years 5
 ```
 
-Choose one exact `Key:` value. The service is job-discovery only: do not send a
-resume or other personal data to it.
+Copy one complete `Key:` value without changing its case or punctuation. The
+Careers service receives search filters or that key only, never the resume.
 
-### 2. Run the agent and submit the selection
+### 2. Start the local agent host
+
+```bash
+python main.py
+```
+
+For breakpoint attach from the command line, start the direct debug server:
 
 ```bash
 python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
 ```
 
-Open Agent Inspector and send synthetic data in this shape:
+Alternatively, run the VS Code task **Run Agent HTTP Server**. For full F5
+debugging, select **Debug Local Agent HTTP Server**; it starts the direct local
+host under `debugpy`, opens Agent Inspector, and attaches the debugger.
+
+### 3. Exercise both input paths
+
+For the selected-key path, send synthetic data in Agent Inspector:
 
 ```text
 Resume:
 Jane Doe
-Cloud engineer with 4 years of experience building Python services and
-Terraform-based platforms. Certified AWS Solutions Architect Associate.
+Cloud engineer with 4 years of Python, Terraform, and platform experience.
 
 Selected Job Key:
 <paste-one-exact-key-from-the-search-output>
 ```
 
-The workflow emits source title, agency, URL, job key, and dataset version in
-the final roadmap. A pasted `Job Description:` remains supported only when no
-selected key is supplied. If neither is present, the workflow asks for a search
-and selection. MCP retrieval failures are surfaced and never replaced with
-fabricated or fallback job data.
+The final `[SOURCE JOB]` must preserve the title, agency, canonical URL, exact
+job key, and dataset version. A pasted `Job Description:` remains supported only
+when no selected key is supplied. If selected-key retrieval fails, the workflow
+reports the failure and does not silently switch to pasted content.
 
 ## Files
 
-- `careers_mcp.py` — validated, bounded MCP client and learner CLI.
-- `main.py` — sequential workflow and the single Careers agent tool.
-- `.env.example` — credential-free configuration template.
-- `.agentignore` — exclusions for direct-code Hosted Agent deployment.
-- `requirements.txt` — exact tested runtime dependency versions.
+- `main.py` — strict four-agent workflow, Careers retrieval tool, and Learn tool.
+- `careers_mcp.py` — validated Careers MCP client and learner search CLI.
+- `.env.example` — credential-free local/runtime configuration template.
+- `.vscode/` — local host task, Inspector launch, and interpreter settings.
+- `.agentignore` — direct-code upload exclusions.
+- `requirements.txt` / `requirements-dev.txt` — pinned runtime and test dependencies.
 - `tests/` — MCP client and instruction-contract tests.
+- `eval.yaml` / `eval.coverage.yaml` — core and negative-path evaluation configs.
+- `.foundry/datasets/careers-job-fit-smoke.jsonl` — core smoke dataset.
+- `.foundry/datasets/careers-job-fit-coverage.jsonl` — negative coverage dataset.
+- `.foundry/datasets/careers-job-fit-extended.jsonl` — optional extended cases.
 
-Infrastructure and `azure.yaml` are intentionally outside this task. The old
-container manifest path was removed so this folder has one deployment approach.
+The direct-code deployment manifest is the parent [`../azure.yaml`](../azure.yaml).
+This project intentionally has no `agent.yaml` or Dockerfile.
 
-## Test
+## Run tests
 
 ```bash
-pip install -r requirements-dev.txt
-pytest --basetemp=.pytest-tmp
+python -m pip install -r requirements-dev.txt
+python -m pytest --basetemp=.pytest-tmp
 ```
 
-## Evaluation assets
+## Deploy and evaluate
 
-Southeast Asia does not currently support server-side synthetic dataset
-generation. This folder includes a manual core smoke suite in `eval.yaml`, a
-negative-path suite in `eval.coverage.yaml`, and a separate extended dataset.
-Trainers can run the deployed-agent smoke suite with:
+Deploy only the direct-code agent from the parent directory:
+
+```bash
+cd ..
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd deploy personal-career-copilot --no-prompt
+```
+
+After configuring the deployed-agent metadata in the evaluation files, run the
+core suite:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd ai agent eval run --config eval.yaml --no-wait --no-prompt
 ```
 
-Run prompt-injection, invalid-key, and missing-selection coverage separately:
+Clear `LAST_EVAL_ID` before running the independent coverage suite:
 
 ```bash
-AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd env set LAST_EVAL_ID "" >/dev/null
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd env set LAST_EVAL_ID ""
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd ai agent eval run --config eval.coverage.yaml --no-wait --no-prompt
 ```
 
-Treat any errored case or failed required criterion as a failed coverage gate.
+## References
 
-References: [Foundry hosted Agent Framework agents](https://learn.microsoft.com/azure/foundry/how-to/develop/framework-hosted-agents?pivots=programming-language-python)
-and the [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk).
+- [Develop Agent Framework hosted agents in Microsoft Foundry](https://learn.microsoft.com/azure/foundry/how-to/develop/framework-hosted-agents?pivots=programming-language-python)
+- [Model Context Protocol Python SDK](https://github.com/modelcontextprotocol/python-sdk)
+- [Lab 02 walkthrough](../docs/README.md)

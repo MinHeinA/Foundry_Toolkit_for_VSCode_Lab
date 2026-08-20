@@ -21,7 +21,7 @@ CAREERS_MCP_TIMEOUT_SECONDS=10
 MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
 ```
 
-- Use the endpoint and model from **your** Foundry project.
+- Use the endpoint and model from **your** attendee Foundry project.
 - Use the Careers endpoint/key distributed by the trainer out of band. Do not
   substitute trainer project details.
 - The Careers endpoint must be an absolute HTTP(S) URL with no embedded
@@ -29,18 +29,24 @@ MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
 - Timeout must be greater than 0 and no more than 30 seconds.
 - Never commit `.env`, display the key in a screenshot, or paste it into prompts.
 
-`FOUNDRY_PROJECT_ENDPOINT` is the local/runtime variable. Module 6 sets the
-matching `AZURE_AI_PROJECT_ENDPOINT`, `FOUNDRY_PROJECT_ENDPOINT`,
-`AZURE_SUBSCRIPTION_ID`, `AZURE_LOCATION`, and ARM `AZURE_AI_PROJECT_ID` in the
-`azd` environment.
+`FOUNDRY_PROJECT_ENDPOINT` is the local and Hosted Agent runtime value consumed
+by `main.py`. Deployment also requires these distinct `azd` settings:
+
+- `AZURE_AI_PROJECT_ENDPOINT` — project endpoint used by the `azd` Foundry extension.
+- `AZURE_AI_PROJECT_ID` — full ARM resource ID of the project.
+- `AZURE_SUBSCRIPTION_ID` — attendee subscription.
+- `AZURE_LOCATION` — attendee project region.
+
+Module 6 sets those four values plus `FOUNDRY_PROJECT_ENDPOINT` in the `azd`
+environment. The two endpoint variables use the same URL but have different
+consumers; neither is interchangeable with the ARM project ID.
 
 ## Step 2: Install pinned dependencies
 
-Python 3.13 is recommended locally and matches the Hosted Agent
-`python_3_13` runtime.
+Use Python 3.13 locally to match Hosted Agent runtime `python_3_13`:
 
 ```bash
-python -m venv .venv
+python3.13 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
@@ -48,13 +54,34 @@ python -m pip install -r requirements.txt
 Windows PowerShell activation:
 
 ```powershell
+py -3.13 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 ```
 
-Do not replace the exact pins in `requirements.txt` with “latest”. The current
-runtime pins Agent Framework Foundry, Foundry hosting, Azure Identity, `debugpy`,
-`httpx`, MCP, and `python-dotenv` to tested versions.
+Do not replace exact pins with “latest”. The checked-in versions are:
+
+| Package | Exact version |
+|---|---|
+| `agent-framework-foundry` | `1.10.4` |
+| `agent-framework-foundry-hosting` | `1.0.0b260730` |
+| `azure-identity` | `1.25.3` |
+| `debugpy` | `1.8.21` |
+| `httpx` | `0.28.1` |
+| `mcp` | `1.29.0` |
+| `opentelemetry-exporter-otlp-proto-grpc` | `1.43.0` |
+| `python-dotenv` | `1.2.2` |
+
+Verify the local host, tracing exporter, and runtime packages:
+
+```bash
+python -m pip show \
+  agent-framework-foundry \
+  agent-framework-foundry-hosting \
+  mcp \
+  opentelemetry-exporter-otlp-proto-grpc \
+  debugpy
+```
 
 ## Step 3: Understand the agent contracts
 
@@ -116,7 +143,9 @@ credential and your configured Foundry project.
 - [ ] `.env` is beside `main.py` and contains all six non-placeholder values.
 - [ ] The endpoint/key came from the trainer out of band and are not committed.
 - [ ] The project endpoint/model belong to me, not the trainer.
-- [ ] Python 3.13 environment is active and pinned requirements installed.
+- [ ] I can distinguish the runtime endpoint, `azd` endpoint, ARM project ID,
+      subscription, and location settings.
+- [ ] Python 3.13 is active and every runtime, debugging, and OTLP pin is installed.
 - [ ] I can explain which component performs search, `get_job`, and Learn search.
 - [ ] I understand that Careers job text is untrusted data.
 

@@ -4,4 +4,5 @@ azure-identity==1.25.3
 debugpy==1.8.21
 httpx==0.28.1
 mcp==1.29.0
+opentelemetry-exporter-otlp-proto-grpc==1.43.0
 python-dotenv==1.2.2
