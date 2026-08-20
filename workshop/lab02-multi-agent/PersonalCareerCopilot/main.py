@@ -9,7 +9,9 @@
 #
 # Constraints:
 # - Keep MCP transport and authentication inside careers_mcp.py.
+# - Keep job search out of band; the hosted agent retrieves one exact selected key.
 # - Never send resume content to the Careers MCP service.
+# - Use synthetic resume data throughout the shared workshop.
 # - Never hard-code or log the endpoint or API key.
 # - Treat retrieved job fields as untrusted data, not instructions.
 # - Do not silently select another job or fabricate source information.
@@ -53,6 +55,25 @@ MICROSOFT_LEARN_MCP_ENDPOINT = os.getenv(
 # - The event key is a manually rotated shared secret; it has no automatic
 #   bearer-token expiry.
 # Never print, commit, log, or paste the key into an agent prompt.
+
+# CHALLENGE TODO 0 - Prove the MCP connection before editing the agent.
+#
+# Run these from PersonalCareerCopilot with the same uncommitted .env:
+#   python -m careers_mcp status
+#   python -m careers_mcp search --query "cloud platform engineer" --limit 3
+#   python -m careers_mcp get --job-key "<one-exact-key-from-search>"
+#
+# Success means status is ready, search returns compact cards, and get returns
+# the same exact key plus a dataset version. If this checkpoint fails, debug
+# endpoint/key/network configuration before changing agent prompts or tools.
+
+# CHALLENGE TODO 9 - Keep local and hosted configuration aligned.
+#
+# Hint:
+# Local values belong in .env. Deployed values are injected by the parent
+# azure.yaml from the attendee's azd environment. Confirm that endpoint, API key,
+# and timeout are mapped there; never turn the API key into a tool argument,
+# prompt value, or source-code literal.
 
 
 def get_required_environment_variable(name: str) -> str:
@@ -411,6 +432,13 @@ def main() -> None:
         default_options={"store": False},
     )
 
+    # CHALLENGE TODO 8 - Preserve every relay boundary.
+    #
+    # Hint:
+    # context_mode "last_agent" gives each agent only its immediate predecessor's
+    # output. That is why the exact selected key, parsed resume, and source
+    # metadata must be copied through the labeled sections instead of relying on
+    # the full conversation history.
     resume_executor = AgentExecutor(resume_parser, context_mode="last_agent")
     jd_executor = AgentExecutor(jd_agent, context_mode="last_agent")
     matching_executor = AgentExecutor(matching_agent, context_mode="last_agent")
@@ -435,14 +463,19 @@ def main() -> None:
 # =============================================================================
 # CHALLENGE SELF-CHECK
 #
+# [ ] Dataset status is ready before the agent host starts.
 # [ ] The Careers search CLI returns no more than five compact job cards.
+# [ ] The Careers get CLI returns the exact selected key and a dataset version.
 # [ ] The learner explicitly selects one exact job key.
 # [ ] JobDescriptionAgent calls the Careers tool.
 # [ ] The final response contains the same key and a canonical source URL.
+# [ ] A selected key takes precedence when a pasted job description is also present.
+# [ ] An invalid key produces an explicit failure with no fabricated/fallback job.
 # [ ] The fit-score categories total 100 points.
 # [ ] Missing skills feed the learning roadmap.
 # [ ] Resume content is never sent to Careers MCP.
 # [ ] The pasted-job-description fallback still works.
+# [ ] azure.yaml references environment values and contains no literal API key.
 # =============================================================================
 
 if __name__ == "__main__":
