@@ -1,201 +1,242 @@
 # How to deliver this session
 
-Thanks for delivering this session!
-
-Prior to delivering the workshop, please:
-
-1. Read this document and all included resources in their entirety.
-2. Watch the session delivery recording and the workshop end-to-end walkthrough.
-3. Walk through both hands-on labs end-to-end on your own machine **at least once** before the event.
-4. Validate your Microsoft Foundry project, model deployments, and quotas.
-5. Reach out to the maintainer if anything is unclear.
-
----
+Thanks for delivering this workshop. Run both labs end to end before the event
+and treat the shared Careers service as trainer-operated infrastructure.
 
 ## File summary
 
-| Resource                      | Link                                                                             | Description                                                                                |
-|-------------------------------|----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| Workshop slide deck           | [Workshop Deck](./foundry-toolkit-deck.pptx)                                               | Presentation slides for this workshop with presenter notes and embedded demo videos        |
-| Session delivery recording    | _To be provided by the maintainer_                                               | Workshop intro and slide walkthrough recording                                              |
-| Workshop end-to-end recording | _To be provided by the maintainer_                                               | End-to-end recording of both labs from a learner's perspective                              |
-| Workshop documentation        | [Repository](https://github.com/microsoft-foundry/Foundry_Toolkit_for_VSCode_Lab) | Source repository, lab READMEs, step-by-step modules                                       |
-| Lab 01 - single agent         | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Hands-on lab: build, test, and deploy the *Explain Like I'm an Executive* hosted agent     |
-| Lab 02 - multi-agent workflow | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Hands-on lab: build the 4-agent *Resume to Job Fit Evaluator* workflow                     |
-| Demo 1: Executive Agent             | [Lab01 agent](../workshop/lab01-single-agent/agent/)                                              | Lab 01 demo: translate technical jargon into an executive summary                          |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../workshop/lab02-multi-agent/PersonalCareerCopilot/)                     | Lab 02 demo: 4-agent workflow that scores resume-job fit and generates recommendations     |
+| Resource | Link | Description |
+|---|---|---|
+| Workshop slide deck | [Workshop Deck](./foundry-toolkit-deck.pptx) | Slides, presenter notes, and embedded demos |
+| Workshop documentation | [Repository](https://github.com/microsoft-foundry/Foundry_Toolkit_for_VSCode_Lab) | Source and step-by-step labs |
+| Lab 01 | [Single agent](../workshop/lab01-single-agent/README.md) | Existing Foundry Toolkit flow |
+| Lab 02 | [Multi-agent](../workshop/lab02-multi-agent/README.md) | Four sequential agents plus optional shared Careers MCP |
+| Lab 02 implementation | [PersonalCareerCopilot](../workshop/lab02-multi-agent/PersonalCareerCopilot/) | Direct-code Hosted Agent and learner CLI |
+| Trainer deployment runbook | [trainer-deployment README](../workshop/lab02-multi-agent/trainer-deployment/README.md) | Trainer-only provisioning/deployment commands and operational details |
 
-> **Note for trainers:** Slide deck and video links will be added once the recordings are published. Until then, ping the maintainer (see [Contacts](#contacts)) for the latest assets.
+Do not copy secret values from a delivery environment into this guide, slides,
+screenshots, or chat. The runbook is the source of truth for trainer deployment;
+this guide provides event operations and learner handoff.
 
----
+## Delivery model
 
-## Get started
+### Lab 01
 
-This workshop teaches developers how to build, test, and deploy AI agents to **Microsoft Foundry Agent Service** as **Hosted Agents** entirely from VS Code, using the **Microsoft Foundry Toolkit** extension.
+Lab 01 remains unchanged: scaffold and test with the Foundry extension/Toolkit,
+then follow its documented deployment path.
 
-The workshop is divided into multiple sections including slides, **2 live demos**, and **2 hands-on labs**.
+### Lab 02
 
-### Timing
+- Attendees use their own Azure subscription, Foundry project, model, role, and
+  quota.
+- Attendees do not receive access to trainer project `proj-bravo-1`.
+- Attendees do not deploy the shared Careers MCP or run trainer Bicep.
+- The trainer pre-deploys one shared, read-only MCP endpoint and distributes
+  `CAREERS_MCP_ENDPOINT` plus an event-scoped `CAREERS_MCP_API_KEY` out of band.
+- Attendees deploy only the direct-code Hosted Agent with the Lab 02
+  `azure.yaml`. They never run `azd provision` or `azd up`.
+- Only synthetic resumes are allowed. The shared service never receives resume
+  data.
 
-#### Full delivery (about 2 hours)
+The Lab 02 runtime is one Hosted Agent container with four strict sequential
+Agent Framework agents:
 
-| Time            | Description                                                          |
-|-----------------|----------------------------------------------------------------------|
-| 0:00 - 10:00    | Intro: hosted agents, Foundry Agent Service, and the toolkit         |
-| 10:00 - 20:00   | Demo: Executive Agent end-to-end                                     |
-| 20:00 - 60:00   | Lab 01 - single agent (build, test locally, deploy, playground)     |
-| 60:00 - 110:00  | Lab 02 - multi-agent workflow (Resume to Job Fit Evaluator)         |
-| 110:00 - 120:00 | Wrap-up, Q&A, and continued-learning resources                       |
+```text
+ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer
+```
 
-#### Short delivery (about 75 minutes)
+Careers search happens before the agent through `python -m careers_mcp search`.
+`JobDescriptionAgent` alone calls Careers MCP `get_job`; `GapAnalyzer` calls
+Microsoft Learn MCP.
 
-| Time          | Description                                                  |
-|---------------|--------------------------------------------------------------|
-| 0:00 - 10:00  | Intro and overview                                           |
-| 10:00 - 20:00 | Demo: Executive Agent                                        |
-| 20:00 - 70:00 | Lab 01 only (point attendees at Lab 02 as self-paced)        |
-| 70:00 - 75:00 | Wrap-up and Q&A                                              |
+## Timing
 
-### Preparation
+### Full delivery (about 2 hours)
 
-| Resource                       | Link                                                                                          | Description                                       |
-|--------------------------------|-----------------------------------------------------------------------------------------------|---------------------------------------------------|
-| Workshop documentation         | [Repository](https://github.com/microsoft-foundry/Foundry_Toolkit_for_VSCode_Lab)             | Workshop documentation and source                 |
-| Lab 01 instructions            | [lab01-single-agent](../workshop/lab01-single-agent/README.md)                                | Hands-on lab: single hosted agent                 |
-| Lab 02 instructions            | [lab02-multi-agent](../workshop/lab02-multi-agent/README.md)                                  | Hands-on lab: multi-agent workflow                |
-| Prerequisites checklist        | [00-prerequisites.md](../workshop/lab01-single-agent/docs/00-prerequisites.md)                | Tools, accounts, and Azure access required        |
-| Hosted agents quickstart (azd) | [Learn](https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-hosted-agent?pivots=azd) | Official quickstart for deploying a hosted agent with `azd` |
-| Hosted agents region availability | [Learn](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents#region-availability) | Supported regions for hosted agents (preview)     |
+| Time | Description |
+|---|---|
+| 0:00–10:00 | Hosted agents, ownership boundaries, privacy, and preview limits |
+| 10:00–20:00 | Demo 1: Executive Agent |
+| 20:00–60:00 | Lab 01 |
+| 60:00–110:00 | Lab 02: search, explicit selection, local test, direct-code deployment, validation |
+| 110:00–120:00 | Wrap-up, cleanup responsibilities, and Q&A |
 
-### Trainer prerequisites
+For a short delivery, run Lab 01 and demonstrate Lab 02 rather than rushing
+attendees through cloud deployment.
 
-Before you deliver, make sure you have:
+## Trainer prerequisites
 
-- An **Azure subscription** with permission to create resources (Owner or Contributor on a resource group).
-- Access to a **Microsoft Foundry project** in a [region that supports hosted agents](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents#region-availability).
-- Quota for **gpt-4.1** (or **gpt-4.1-mini**) in your Foundry project.
-- The following tools installed:
-  - [Visual Studio Code](https://code.visualstudio.com/)
-  - [Microsoft Foundry Toolkit extension](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio)
-  - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
-  - [Azure Developer CLI (`azd`)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
-  - [Docker Desktop](https://www.docker.com/) (Optional)
-  - Python 3.10 or later
+- Azure/Foundry permissions described in the
+  [trainer deployment runbook](../workshop/lab02-multi-agent/trainer-deployment/README.md).
+- An attendee-independent reference Hosted Agent and model quota for trainer
+  canaries.
+- Azure CLI, `azd`, VS Code, Foundry Toolkit, and Python 3.13.
+- A 32-character-or-longer event key held outside source control.
+- A clean attendee machine/repository checkout for rehearsal.
+- Synthetic demo resumes and known expected selected-key/source results.
 
-Run the [Hosted agents quickstart with `azd`](https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-hosted-agent?pivots=azd) at least once before delivery so you have a known-good Foundry project, model deployment, and Azure Container Registry to reference if a learner gets stuck.
+## Governance gate: must pass before deployment
 
----
+Do not provision the trainer service until all gates are recorded as approved:
 
-## Slide walkthrough
+- Narrow policy exemption/approved path for the one Container App and, if
+  required, one `AcrPull` role assignment.
+- Trainer deployment identity has the required resource-group, ACR push, and
+  Foundry project permissions.
+- Publishing and attributing the derived OpenGovSG snapshot is approved.
+- Container Apps environment usage confirms enough headroom for the configured
+  maximum replicas.
+- No additional services outside the approved trainer plan will be created.
 
-The deck follows the same flow as the labs. Suggested talking points for each section:
+Follow the
+[trainer-deployment README](../workshop/lab02-multi-agent/trainer-deployment/README.md)
+for exact commands and resource configuration. Do not reproduce keys or trainer
+resource identifiers in attendee instructions.
 
-| Section                     | Key message                                                                                                  |
-|-----------------------------|--------------------------------------------------------------------------------------------------------------|
-| Title and agenda            | Frame the workshop as *VS Code to Foundry* with no portal switching required.                                |
-| Why hosted agents?          | Managed runtime, ACR-based deployment, OpenAI-compatible `/responses` API, scoped to Foundry projects.        |
-| Architecture diagram        | Walk through the [README architecture](../README.md#architecture): scaffold, Inspector, ACR, Agent Service.   |
-| Anatomy of a hosted agent   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - what each file does.                              |
-| Live demo: Executive Agent  | Switch to VS Code and run the [`workshop/lab01-single-agent/agent/`](../workshop/lab01-single-agent/agent/) demo end-to-end (see [Demo 1](#demo-1-executive-agent)). |
-| Live demo: Resume to Job Fit Evaluator | Switch to VS Code and run the [`PersonalCareerCopilot/`](../workshop/lab02-multi-agent/PersonalCareerCopilot/) 4-agent demo (see [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
-| Lab 01 brief                | Hand off to learners. Point at [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
-| Multi-agent patterns        | Sequential vs concurrent vs handoff - preview before Lab 02 starts.                                           |
-| Lab 02 brief                | Hand off to learners. Point at [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
-| Wrap-up and resources       | Continued-learning links from the [Additional resources](#additional-resources) section.                      |
+## Predeployment and event runbook
 
----
+The event is **2026-08-27**.
 
-## Demos
+### Before 2026-08-26
 
-Two live demos are included in the delivery. Allocate 10 minutes to each.
+1. Complete the governance gate.
+2. Follow the trainer deployment runbook to deploy one shared read-only Careers
+   MCP endpoint and the reference Hosted Agent.
+3. Verify health/readiness, authenticated MCP `tools/list`, `search_jobs`,
+   `get_job`, and dataset status.
+4. Verify anonymous/incorrect-key access fails.
+5. Run selected-key, prompt-injection, unavailable-MCP, and pasted-JD regression
+   evaluations.
+6. Load-test the expected event burst and confirm logs contain no query text,
+   resume text, job bodies, result payloads, or API keys.
 
-| Demo | Lab | Files | What to show |
-|------|-----|-------|--------------|
-| Executive Agent | Lab 01 | [`workshop/lab01-single-agent/agent/`](../workshop/lab01-single-agent/agent/) | Single hosted agent; translate technical jargon into an executive summary |
-| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../workshop/lab02-multi-agent/PersonalCareerCopilot/) | 4-agent orchestration; score resume-job fit and generate a recommendation |
+### Freeze on 2026-08-26
 
-### Demo 1: Executive Agent
+- Freeze the approved snapshot, immutable image, and reference agent version no
+  later than **2026-08-26**.
+- Record the dataset version and known-good selected keys for canaries.
+- Keep the previous known-good Container App revision available for rollback.
+- Rotate from rehearsal credentials to the event-scoped API key.
+- Rehearse from a clean learner machine using only published attendee steps.
 
-A standalone agent in [`workshop/lab01-single-agent/agent/`](../workshop/lab01-single-agent/agent/). Use this as a 10-minute demo before Lab 01.
+### Event window on 2026-08-27
 
-1. Open [`workshop/lab01-single-agent/agent/main.py`](../workshop/lab01-single-agent/agent/main.py) and walk through the agent definition (system prompt, model, framework).
-2. Press `F5` to launch the **Agent Inspector** locally.
-3. Paste the sample prompt from the [README](../README.md#see-it-in-action) and show the executive-summary response.
-4. Show [`workshop/lab01-single-agent/agent/agent.yaml`](../workshop/lab01-single-agent/agent/agent.yaml) and [`workshop/lab01-single-agent/agent/Dockerfile`](../workshop/lab01-single-agent/agent/Dockerfile) to explain the deployment artefacts.
-5. Demonstrate the deployment flow (Docker build, ACR push, hosted agent create) without waiting for completion.
+1. At least 60 minutes before start, raise the shared service minimum to **two
+   warm replicas**.
+2. Run health, authenticated search/get, dataset provenance, reference-agent
+   selected-key, Microsoft Learn, and pasted-JD canaries.
+3. Distribute the endpoint/key out of band only after canaries pass.
+4. Make **no service, data, image, agent, or key deployments/changes during the
+   event**.
+5. If Careers MCP degrades, direct learners to a new request using the pasted
+   `Job Description:` fallback. Do not silently switch a failed selected-key
+   request.
 
-### Demo 2: Resume to Job Fit Evaluator
+### After the event
 
-A 4-agent workflow in [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../workshop/lab02-multi-agent/PersonalCareerCopilot/). Use this as a 10-minute demo before Lab 02.
+1. Rotate or disable the event key immediately.
+2. Return the minimum replica count to the approved post-event setting.
+3. Preserve redacted validation evidence and review operational metrics.
+4. Do not delete resources without separate destructive-action approval.
 
-1. Open [`PersonalCareerCopilot/main.py`](../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) and show how the four agents are wired together in a sequential orchestration.
-2. Press `F5` to launch the **Agent Inspector** for the multi-agent workflow.
-3. Paste a short job description and a sample resume in the Inspector chat.
-4. Walk through the four-agent pipeline: resume parser, job requirement extractor, fit scorer, and recommendation writer.
-5. Point out how each sub-agent's output becomes the next agent's context, highlighting the handoff pattern.
-6. Show [`PersonalCareerCopilot/agent.yaml`](../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) to compare with the single-agent equivalent from Demo 1.
+## Endpoint/key distribution
 
----
+Use an approved private event channel. Send only:
 
-## Delivery tips
+```text
+CAREERS_MCP_ENDPOINT=<event endpoint ending in /mcp>
+CAREERS_MCP_API_KEY=<event-scoped key>
+```
 
-- **Set expectations early.** Hosted agents are in preview - call out region limits and quota up front so attendees do not get surprised mid-lab.
-- **Run the prerequisites task first.** Both labs ship a `Validate prerequisites` VS Code task - have attendees run it before any code is written.
-- **Keep the Agent Inspector visible.** Most "aha" moments happen when learners see the local `/responses` round-trip light up.
-- **Have a backup project.** If a learner's Foundry project hits a quota wall, share a pre-provisioned project for the deployment step rather than blocking the room.
-- **Pair attendees.** Lab 02 (multi-agent) is meaningfully easier when learners can talk through the orchestration with a partner.
-- **Use the docs modules as checkpoints.** Each lab's `docs/` folder is split into 8 numbered modules - use those as natural pause points.
-- **Pre-pull the base Docker image** on shared lab machines to avoid registry rate limits.
+Remind attendees to place them in local `.env` and their own `azd` environment,
+never source control. Do not include a real endpoint/key in decks, recordings,
+QR codes, public chat, tickets, or repository issues. If leakage is suspected,
+rotate immediately and redistribute out of band.
 
----
+## Demo 1: Executive Agent
+
+Use the existing [Lab 01 agent](../workshop/lab01-single-agent/agent/):
+
+1. Show the prompt and single-agent definition.
+2. Launch its local Agent Inspector flow.
+3. Run the sample executive-summary prompt.
+4. Explain Lab 01 deployment artifacts and lifecycle.
+
+## Demo 2: Careers-selected Resume → Job Fit
+
+Use
+[`PersonalCareerCopilot`](../workshop/lab02-multi-agent/PersonalCareerCopilot/):
+
+1. Show `.env` placeholders without revealing issued values.
+2. Run:
+
+   ```bash
+   python -m careers_mcp search \
+     --query "cloud platform engineer" \
+     --max-experience-years 5
+   ```
+
+3. Explicitly choose one displayed `Key:`.
+4. In Agent Inspector, submit a synthetic resume plus `Selected Job Key:`.
+5. Trace `[SELECTED JOB KEY]`, `[SOURCE JOB]`, and
+   `[SOURCE JOB PASS-THROUGH]`.
+6. Verify the final exact key, canonical source URL, and dataset version.
+7. Explain that retrieved jobs are untrusted data and cannot issue instructions.
+8. Run a short pasted `Job Description:` fallback with no selected key.
+9. Show the Lab 02 parent `azure.yaml` and explain `azd` direct-code deployment;
+   do not show the old `agent.yaml`/Inspector deployment path.
+
+## Learner handoff checklist
+
+- [ ] Learner is using their own subscription and Foundry project.
+- [ ] Python 3.13 and pinned requirements are installed.
+- [ ] Endpoint/key were received out of band and are not visible on screen.
+- [ ] Search is run from `PersonalCareerCopilot`.
+- [ ] One exact key is selected; the model does not choose.
+- [ ] Agent Inspector input contains only synthetic resume data.
+- [ ] Final source URL, key, and dataset version match the selection.
+- [ ] Pasted-JD regression passes.
+- [ ] Deployment uses only `azd deploy personal-career-copilot --no-prompt`.
+- [ ] Learner did not run trainer Bicep, `azd provision`, or `azd up`.
 
 ## Troubleshooting during delivery
 
-| Symptom                                      | First thing to try                                                                                       |
-|----------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| Agent Inspector cannot connect               | Confirm port `8088` is free and the `Run Lab01 HTTP Server` / `Run Lab02 HTTP Server` task is running.   |
-| Debugger fails to attach                     | Check that port `5679` is free; restart VS Code if `debugpy` is already bound.                           |
-| `azd up` fails with auth error               | Run `az login` and `azd auth login`, ensure the correct tenant is selected.                              |
-| Deployment hangs at ACR push                 | Check Docker Desktop is running and the user has `AcrPush` on the registry.                              |
-| Model returns 404 / deployment-not-found     | The model deployment name in `agent.yaml` must match the deployment in the Foundry project.              |
-| Hosted agent stuck in `Provisioning`         | Verify the project region [supports hosted agents](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents#region-availability) and that quota is available. |
-| Playground returns 401                       | Re-authenticate the Foundry extension from the VS Code activity bar.                                     |
+| Symptom | First action |
+|---|---|
+| Missing/invalid Careers key | Reissue/check the event key through the private channel; update local and attendee `azd` environments |
+| Careers 401/403 | Confirm endpoint/key pairing and whether the event key rotated or expired |
+| MCP unavailable/timeout | Check trainer canaries; use pasted-JD fallback while trainer restores service |
+| Empty search | Broaden the query/remove filters; never invent a key |
+| Invalid/expired selected job key | Search the current frozen snapshot and select a returned key |
+| Missing source URL/provenance | Trace `[SOURCE JOB]` and `[SOURCE JOB PASS-THROUGH]`; do not infer values |
+| Wrong Foundry project/role | Confirm attendee endpoint and ARM project ID match; fix access in the attendee project |
+| Model quota/throttling | Use quota in the attendee's own project; trainer quota is not shared |
+| Microsoft Learn MCP failure | Keep gap cards, clearly mark official resources unavailable, and retry later |
+| Duplicate/missing workflow output | Restore the three-edge strict sequential graph and labeled relays |
 
-For deeper guidance, every lab ships its own `08-troubleshooting.md` doc - link learners there:
+See [Lab 02 troubleshooting](../workshop/lab02-multi-agent/docs/08-troubleshooting.md)
+for detailed learner fixes.
 
-- Lab 01: [`workshop/lab01-single-agent/docs/08-troubleshooting.md`](../workshop/lab01-single-agent/docs/08-troubleshooting.md)
-- Lab 02: [`workshop/lab02-multi-agent/docs/08-troubleshooting.md`](../workshop/lab02-multi-agent/docs/08-troubleshooting.md)
+## Delivery tips
 
----
-
-## Customizing this session
-
-You are welcome to adapt the workshop for your audience. Common variations:
-
-- **Backend audiences:** spend more time on `agent.yaml`, Docker, and ACR; trim the playground demo.
-- **Citizen-developer audiences:** stay in the Foundry extension UI for scaffolding; reduce CLI steps.
-- **Single-track 60-minute slot:** deliver intro, demo, and Lab 01 only.
-- **Workshop-only (no slides) format:** open both lab READMEs and use them as the primary script.
-
-If you extend the labs, please contribute the changes back via PR so other trainers benefit.
-
----
+- Keep Agent Inspector visible for local flow, but state clearly that Lab 02
+  deployment uses `azd`, not its Deploy button.
+- Use only synthetic identities and resumes in live demos and recordings.
+- Never “help” a learner by granting access to trainer `proj-bravo-1`.
+- Treat source URL, exact selected key, dataset version, and pasted-JD regression
+  as required validation—not optional polish.
+- Pair learners for the explicit-selection and provenance checks.
 
 ## Additional resources
 
-- [Microsoft Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/)
+- [Microsoft Foundry documentation](https://learn.microsoft.com/azure/foundry/)
 - [Hosted agents overview](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents)
-- [Quickstart: deploy your first hosted agent (`azd`)](https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-hosted-agent?pivots=azd)
-- [Deploy a hosted agent (how-to)](https://learn.microsoft.com/azure/foundry/agents/how-to/deploy-hosted-agent)
-- [Microsoft Agent Framework](https://github.com/microsoft/agents)
-- [Microsoft Foundry Toolkit for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio)
-
----
+- [Hosted Agent direct-code development](https://learn.microsoft.com/azure/foundry/how-to/develop/framework-hosted-agents?pivots=programming-language-python)
+- [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/)
+- [Lab 02 learner documentation](../workshop/lab02-multi-agent/docs/README.md)
 
 ## Contacts
 
-If you have questions about delivering this session, please open an issue on the [workshop repository](https://github.com/microsoft-foundry/Foundry_Toolkit_for_VSCode_Lab/issues) and tag the maintainer.
-
-| Role                | Name           | GitHub                                                  |
-|---------------------|----------------|---------------------------------------------------------|
-| Maintainer / contact| Shivam Goyal   | [@ShivamGoyal03](https://github.com/ShivamGoyal03)      |
+Open an issue on the
+[workshop repository](https://github.com/microsoft-foundry/Foundry_Toolkit_for_VSCode_Lab/issues)
+without secrets or personal data and tag the maintainer.

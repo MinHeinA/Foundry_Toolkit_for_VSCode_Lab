@@ -1,157 +1,118 @@
-# PersonalCareerCopilot - Resume → Job Fit Evaluator
+# PersonalCareerCopilot
 
-A workflow-first multi-agent app that evaluates how well a resume matches a job description, then generates a personalized learning roadmap to close the gaps.
+A four-agent Microsoft Agent Framework workflow:
 
----
+`ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer`
 
-## Agents
+Learners search the trainer-hosted Careers MCP service locally, select a stable
+job key, and submit that key with a synthetic resume. Only
+`JobDescriptionAgent` can retrieve the selected job. `GapAnalyzer` continues to
+use the Microsoft Learn MCP service for roadmap resources.
 
-| Agent | Role | Tools |
-|-------|------|-------|
-| **ResumeParser** | Extracts structured skills, experience, certifications from resume text | - |
-| **JobDescriptionAgent** | Extracts required/preferred skills, experience, certifications from a JD | - |
-| **MatchingAgent** | Compares profile vs requirements → fit score (0-100) + matched/missing skills | - |
-| **GapAnalyzer** | Builds a personalized learning roadmap with Microsoft Learn resources | `search_microsoft_learn_for_plan` (MCP) |
+## Set up
 
-## Workflow
+Python 3.10 or later is required.
 
-```mermaid
-flowchart LR
-    UserInput["User Input: Resume + Job Description"] --> ResumeParser
-    ResumeParser -- "parsed resume + JD relay" --> JobDescriptionAgent
-    JobDescriptionAgent -- "JD requirements + resume relay" --> MatchingAgent
-    MatchingAgent -- "fit report + gaps" --> GapAnalyzerMCP["Gap Analyzer +\nMicrosoft Learn MCP"]
-    GapAnalyzerMCP --> FinalOutput["Final Output:\nFit Score + Roadmap"]
-```
-
----
-
-## Quick start
-
-### 1. Set up environment
-
-This folder is the reference implementation for the workflow-based Lab 02 scaffold. Its `main.py` uses the existing prompt blocks plus `WorkflowBuilder` to wire the four agents together.
-
-```powershell
-cd workshop\lab02-multi-agent\PersonalCareerCopilot
+```bash
+cd workshop/lab02-multi-agent/PersonalCareerCopilot
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1          # Windows PowerShell
-# source .venv/bin/activate            # macOS / Linux
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+cp .env.example .env              # Windows: copy .env.example .env
 ```
 
-### 2. Configure credentials
-
-Create a `.env` file in this folder:
-
-```powershell
-copy .env .env.bak 2>$null; echo $null > .env
-```
-
-Edit `.env`:
+Set placeholder values in `.env`; never commit the file:
 
 ```env
-FOUNDRY_PROJECT_ENDPOINT=https://<your-account>.services.ai.azure.com/api/projects/<your-project>
-AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1-mini
+FOUNDRY_PROJECT_ENDPOINT=https://<foundry-resource>.services.ai.azure.com/api/projects/<project-name>
+AZURE_AI_MODEL_DEPLOYMENT_NAME=<model-deployment-name>
+CAREERS_MCP_ENDPOINT=https://<careers-mcp-host>/mcp
+CAREERS_MCP_API_KEY=<careers-workshop-api-key>
+CAREERS_MCP_TIMEOUT_SECONDS=10
+MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
 ```
 
-| Value | Where to find it |
-|-------|------------------|
-| `FOUNDRY_PROJECT_ENDPOINT` | Foundry Toolkit sidebar → right-click your project → **Copy Project Endpoint** |
-| `AZURE_AI_MODEL_DEPLOYMENT_NAME` | Foundry sidebar → expand project → **Models + endpoints** → deployment name |
+## Local two-step flow
 
-### 3. Run locally
+### 1. Search and choose a stable key
 
-```powershell
+The CLI sends `x-careers-workshop-key` through the MCP Streamable HTTP client
+and prints no more than five compact cards:
+
+```bash
+python -m careers_mcp search \
+  --query "cloud platform engineer" \
+  --max-experience-years 5
+```
+
+Choose one exact `Key:` value. The service is job-discovery only: do not send a
+resume or other personal data to it.
+
+### 2. Run the agent and submit the selection
+
+```bash
 python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
 ```
 
-Or use the VS Code task: `Ctrl+Shift+P` → **Tasks: Run Task** → **Run Agent HTTP Server**.
+Open Agent Inspector and send synthetic data in this shape:
 
-For F5 debugging, use **Debug Local Agent HTTP Server**.
-
-### 4. Test with Agent Inspector
-
-Open Agent Inspector: `Ctrl+Shift+P` → **Foundry Toolkit: Open Agent Inspector**.
-
-Paste this test prompt:
-
-```
+```text
 Resume:
 Jane Doe
-Senior Software Engineer with 5 years of experience in Python, Django, and AWS.
-Built microservices handling 10K+ requests/second. Led a team of 4 developers.
-Certifications: AWS Solutions Architect Associate.
-Education: B.S. Computer Science, State University.
+Cloud engineer with 4 years of experience building Python services and
+Terraform-based platforms. Certified AWS Solutions Architect Associate.
 
-Job Description:
-Senior Cloud Engineer at Contoso Ltd.
-Required: Python, Azure, Kubernetes, Terraform, CI/CD pipelines.
-Preferred: Go, monitoring (Prometheus/Grafana), cost optimization.
-Experience: 5+ years in cloud infrastructure.
-Certifications: Azure Solutions Architect Expert preferred.
+Selected Job Key:
+<paste-one-exact-key-from-the-search-output>
 ```
 
-**Expected:** A fit score (0-100), matched/missing skills, and a personalized learning roadmap with Microsoft Learn URLs.
+The workflow emits source title, agency, URL, job key, and dataset version in
+the final roadmap. A pasted `Job Description:` remains supported only when no
+selected key is supplied. If neither is present, the workflow asks for a search
+and selection. MCP retrieval failures are surfaced and never replaced with
+fabricated or fallback job data.
 
-### 5. Deploy to Foundry
+## Files
 
-`Ctrl+Shift+P` → **Foundry Toolkit: Deploy Hosted Agent** → select your project → confirm.
+- `careers_mcp.py` — validated, bounded MCP client and learner CLI.
+- `main.py` — sequential workflow and the single Careers agent tool.
+- `.env.example` — credential-free configuration template.
+- `.agentignore` — exclusions for direct-code Hosted Agent deployment.
+- `requirements.txt` — exact tested runtime dependency versions.
+- `tests/` — MCP client and instruction-contract tests.
 
----
+Infrastructure and `azure.yaml` are intentionally outside this task. The old
+container manifest path was removed so this folder has one deployment approach.
 
-## Project structure
+## Test
 
+```bash
+pip install -r requirements-dev.txt
+pytest --basetemp=.pytest-tmp
 ```
-PersonalCareerCopilot/
-├── .env                ← Your credentials (git-ignored)
-├── agent.yaml          ← Hosted agent definition (name, resources, env vars)
-├── Dockerfile          ← Container image for Foundry deployment
-├── main.py             ← 4-agent workflow (instructions, MCP tool, WorkflowBuilder)
-└── requirements.txt    ← Python dependencies
+
+## Evaluation assets
+
+Southeast Asia does not currently support server-side synthetic dataset
+generation. This folder includes a manual core smoke suite in `eval.yaml`, a
+negative-path suite in `eval.coverage.yaml`, and a separate extended dataset.
+Trainers can run the deployed-agent smoke suite with:
+
+```bash
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd ai agent eval run --config eval.yaml --no-wait --no-prompt
 ```
 
-## Key files
+Run prompt-injection, invalid-key, and missing-selection coverage separately:
 
-### `agent.yaml`
+```bash
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd env set LAST_EVAL_ID "" >/dev/null
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd ai agent eval run --config eval.coverage.yaml --no-wait --no-prompt
+```
 
-Defines the hosted agent for Foundry Agent Service:
-- `kind: hosted` - runs as a managed container
-- `protocols` - `responses` protocol with `version: 1.0.0`, exposing the `/responses` HTTP endpoint
-- `environment_variables` - `AZURE_AI_MODEL_DEPLOYMENT_NAME` is declared here; `FOUNDRY_PROJECT_ENDPOINT` is injected automatically at deploy time
+Treat any errored case or failed required criterion as a failed coverage gate.
 
-### `main.py`
-
-Contains:
-- **Agent instructions** - four `*_INSTRUCTIONS` constants, one per agent
-- **MCP tool** - `search_microsoft_learn_for_plan()` calls `https://learn.microsoft.com/api/mcp` via Streamable HTTP
-- **Agent creation** - four `Agent()` + `AgentExecutor()` instances sharing one `FoundryChatClient`
-- **Workflow graph** - `WorkflowBuilder` wires agents as a sequential pipeline: ResumeParser → JD Agent → MatchingAgent → GapAnalyzer
-- **Server startup** - `ResponsesHostServer` runs on port 8088
-
-### `requirements.txt`
-
-| Package | Purpose |
-|---------|----------|
-| `agent-framework-foundry` | Core runtime: `Agent`, `AgentExecutor`, `WorkflowBuilder`, `@tool`, `FoundryChatClient` |
-| `agent-framework-foundry-hosting` | `ResponsesHostServer` + Foundry hosting integration |
-| `mcp<2,>=1.24.0` | MCP client for GapAnalyzer (`streamable_http_client`) |
-| `debugpy` | Python debugging (F5 in VS Code) |
-
----
-
-## Troubleshooting
-
-| Issue | Fix |
-|-------|-----|
-| `KeyError: 'FOUNDRY_PROJECT_ENDPOINT'` or `KeyError: 'AZURE_AI_MODEL_DEPLOYMENT_NAME'` | Create `.env` with both `FOUNDRY_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` set |
-| `ModuleNotFoundError: No module named 'agent_framework'` | Activate venv and run `pip install -r requirements.txt` |
-| No Microsoft Learn URLs in output | Check internet connectivity to `https://learn.microsoft.com/api/mcp` |
-| Only 1 gap card (truncated) | Verify `GAP_ANALYZER_INSTRUCTIONS` includes the `CRITICAL:` block |
-| Port 8088 in use | Stop other servers: `netstat -ano \| findstr :8088` |
-
-For detailed troubleshooting, see [Module 8 - Troubleshooting](../docs/08-troubleshooting.md).
-
----
-
-**Full walkthrough:** [Lab 02 Docs](../docs/README.md) · **Back to:** [Lab 02 README](../README.md) · [Workshop Home](../../../README.md)
+References: [Foundry hosted Agent Framework agents](https://learn.microsoft.com/azure/foundry/how-to/develop/framework-hosted-agents?pivots=programming-language-python)
+and the [MCP Python SDK](https://github.com/modelcontextprotocol/python-sdk).

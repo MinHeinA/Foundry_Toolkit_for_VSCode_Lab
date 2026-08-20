@@ -1,6 +1,6 @@
 # Foundry Toolkit + Foundry Hosted Agents Workshop
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.13%20recommended-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Microsoft Agent Framework](https://img.shields.io/badge/Microsoft%20Agent%20Framework-v1.1.0%2B-5E5ADB?logo=microsoft&logoColor=white)](https://github.com/microsoft/agents)
 [![Hosted Agents](https://img.shields.io/badge/Hosted%20Agents-Enabled-5E5ADB?logo=microsoft&logoColor=white)](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents)
 [![Microsoft Foundry](https://img.shields.io/badge/Microsoft%20Foundry-Agent%20Service-0078D4?logo=microsoft&logoColor=white)](https://ai.azure.com/)
@@ -11,11 +11,15 @@
 [![Foundry Toolkit](https://img.shields.io/badge/Foundry%20Toolkit-VS%20Code-007ACC?logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Build, test, and deploy AI agents to **Microsoft Foundry Agent Service** as **Hosted Agents** - entirely from VS Code using the **Microsoft Foundry extension** and **Foundry Toolkit**.
+Build, test, and deploy AI agents to **Microsoft Foundry Agent Service** as
+**Hosted Agents**. Lab 01 keeps the VS Code Foundry Toolkit flow; Lab 02 uses the
+current direct-code `azd` deployment path defined in `azure.yaml`.
 
 > **Hosted Agents are currently in preview.** Supported regions are limited - see [region availability](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents#region-availability).
 
-> The `agent/` folder inside each lab is **automatically scaffolded** by the Foundry extension - you then customize the code, test locally, and deploy.
+> Lab 01's `agent/` folder is scaffolded by the Foundry extension. Lab 02 uses
+> the checked-in `PersonalCareerCopilot/` direct-code project and does not deploy
+> from `agent.yaml`.
 
 ### 🌐 Multi-Language Support
 
@@ -47,7 +51,7 @@ Build, test, and deploy AI agents to **Microsoft Foundry Agent Service** as **Ho
 
 ---
 
-## Architecture
+## Lab 01 architecture (unchanged)
 
 ```mermaid
 flowchart TB
@@ -92,7 +96,9 @@ flowchart TB
     style Cloud fill:#fff4e6,stroke:#f59e0b,stroke-width:2px
 ```
 
-**Flow:** Foundry extension scaffolds the agent → you customize code & instructions → test locally with Agent Inspector → deploy to Foundry (Docker image pushed to ACR) → verify in Playground.
+**Lab 01 flow:** Foundry extension scaffolds the agent → you customize code and
+instructions → test locally with Agent Inspector → deploy to Foundry → verify in
+Playground.
 
 ---
 
@@ -101,7 +107,20 @@ flowchart TB
 | Lab | Description | Status |
 |-----|-------------|--------|
 | **Lab 01 - Single Agent** | Build the **"Explain Like I'm an Executive" Agent**, test it locally, and deploy to Foundry | ✅ Available |
-| **Lab 02 - Multi-Agent Workflow** | Build the **"Resume → Job Fit Evaluator"** - 4 agents collaborate to score resume fit and generate a learning roadmap | ✅ Available |
+| **Lab 02 - Multi-Agent Workflow** | Build the **"Resume → Job Fit Evaluator"** - 4 sequential agents score resume fit and generate a learning roadmap; optionally retrieve one explicitly selected listing from the shared Careers@Gov MCP | ✅ Available |
+
+### Optional Careers@Gov enhancement in Lab 02
+
+The trainer pre-deploys one shared, read-only Careers MCP endpoint and
+distributes an event-scoped endpoint/key out of band. Attendees search from the
+supplied local CLI, explicitly choose one stable job key, and test the agent with
+a **synthetic resume**. `JobDescriptionAgent` retrieves exactly that listing and
+the final answer preserves its canonical source URL and dataset provenance.
+
+Attendees use their own subscription, Foundry project, and model; they never
+access the trainer project, deploy the shared service, or run trainer Bicep. The
+original pasted `Job Description:` flow remains available as a fallback. See
+[Lab 02](workshop/lab02-multi-agent/README.md).
 
 ---
 
@@ -167,15 +186,20 @@ It is a dead-simple, single-purpose agent - perfect for learning the hosted agen
         │   ├── 05-test-locally.md
         │   ├── 06-deploy-to-foundry.md
         │   ├── 07-verify-in-playground.md
-        │   └── 08-troubleshooting.md
-        └── 📂 PersonalCareerCopilot/ ← Reference solution (multi-agent workflow)
-            ├── agent.yaml
-            ├── Dockerfile
-            ├── main.py
-            └── requirements.txt
+        │   ├── 08-troubleshooting.md
+        │   └── 09-summary.md
+        ├── azure.yaml                ← Attendee direct-code Hosted Agent deployment
+        ├── 📂 PersonalCareerCopilot/ ← Reference solution (multi-agent workflow)
+        │   ├── careers_mcp.py        ← Out-of-band Careers search CLI + MCP client
+        │   ├── main.py               ← Four strict sequential agents
+        │   └── requirements.txt      ← Pinned Python dependencies
+        ├── 📂 careers-job-mcp/       ← Trainer-owned read-only service source
+        └── 📂 trainer-deployment/    ← Trainer-only azd/Bicep project
 ```
 
-> **Note:** The `agent/` folder inside each lab is what the **Microsoft Foundry extension** generates when you run `Microsoft Foundry: Create a New Hosted Agent` from the Command Palette. The files are then customized with your agent's instructions, tools, and configuration. Lab 01 walks you through recreating this from scratch.
+> **Note:** Lab 01 still uses the **Microsoft Foundry extension** scaffold. Lab
+> 02 uses its checked-in direct-code project, tests locally with Agent Inspector,
+> and deploys only with `azd deploy personal-career-copilot --no-prompt`.
 
 ---
 
@@ -250,7 +274,7 @@ Each lab is self-contained with its own modules. Start with **Lab 01** to learn 
 |---|--------|------|
 | 1 | Prerequisites (Lab 02) | [00-prerequisites.md](workshop/lab02-multi-agent/docs/00-prerequisites.md) |
 | 2 | Understand multi-agent architecture | [01-understand-multi-agent.md](workshop/lab02-multi-agent/docs/01-understand-multi-agent.md) |
-| 3 | Scaffold the multi-agent project | [02-scaffold-multi-agent.md](workshop/lab02-multi-agent/docs/02-scaffold-multi-agent.md) |
+| 3 | Inspect the direct-code multi-agent project | [02-scaffold-multi-agent.md](workshop/lab02-multi-agent/docs/02-scaffold-multi-agent.md) |
 | 4 | Configure agents & environment | [03-configure-agents.md](workshop/lab02-multi-agent/docs/03-configure-agents.md) |
 | 5 | Orchestration patterns | [04-orchestration-patterns.md](workshop/lab02-multi-agent/docs/04-orchestration-patterns.md) |
 | 6 | Test locally (multi-agent) | [05-test-locally.md](workshop/lab02-multi-agent/docs/05-test-locally.md) |

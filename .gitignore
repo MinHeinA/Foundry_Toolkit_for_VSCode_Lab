@@ -10,6 +10,9 @@
 *.userosscache
 *.sln.docstates
 *.env
+.azure/*
+!.azure/deployment-plan.md
+!.azure/validate-status.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

@@ -1,7 +1,7 @@
-# Use the narrow Foundry subpackages to keep dependencies light.
-agent-framework-foundry
-agent-framework-foundry-hosting
-mcp<2,>=1.24.0
-
-# debugpy enables local debugging of this agent with the Foundry Toolkit VS Code extension.
-debugpy
+agent-framework-foundry==1.10.4
+agent-framework-foundry-hosting==1.0.0b260730
+azure-identity==1.25.3
+debugpy==1.8.21
+httpx==0.28.1
+mcp==1.29.0
+python-dotenv==1.2.2

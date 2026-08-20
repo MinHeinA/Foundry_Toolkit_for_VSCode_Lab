@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "${AZURE_LOCATION=southeastasia}"
+    },
+    "environmentName": {
+      "value": "${AZURE_ENV_NAME}"
+    },
+    "managedEnvironmentName": {
+      "value": "${AZURE_CONTAINER_ENVIRONMENT_NAME=cae-oceans-mcp-demo-clckvj}"
+    },
+    "containerRegistryName": {
+      "value": "${AZURE_CONTAINER_REGISTRY_NAME=acrmcpodjhd42rocw6g}"
+    },
+    "containerAppName": {
+      "value": "${CAREERS_MCP_CONTAINER_APP_NAME=ca-careers-job-mcp-workshop}"
+    },
+    "careersMcpApiKey": {
+      "value": "${CAREERS_MCP_API_KEY}"
+    },
+    "minReplicas": {
+      "value": 1
+    },
+    "maxReplicas": {
+      "value": 5
+    }
+  }
+}

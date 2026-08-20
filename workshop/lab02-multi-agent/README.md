@@ -2,76 +2,98 @@
 
 ## Overview
 
-In this hands-on lab, you'll build a **workflow-first multi-agent app** using Foundry Toolkit in VS Code and deploy it to Microsoft Foundry Agent Service.
+Build and deploy one direct-code Microsoft Foundry Hosted Agent containing four
+sequential Agent Framework agents. An optional workshop enhancement lets you
+search a trainer-hosted, read-only Careers@Gov snapshot, explicitly select one
+stable job key, and evaluate a **synthetic** resume against exactly that listing.
 
-**What you'll build:** a Resume → Job Fit Evaluator that parses a resume and job description, scores the match, and produces a personalized learning roadmap using Microsoft Learn resources.
-
----
+> [!IMPORTANT]
+> Use your own Azure subscription, Foundry project, and model deployment. You do
+> not receive access to the trainer project, deploy the shared Careers MCP
+> service, or run trainer Bicep. The trainer distributes the event-scoped
+> `CAREERS_MCP_ENDPOINT` and `CAREERS_MCP_API_KEY` out of band.
 
 ## Architecture
 
 ```mermaid
 flowchart TD
-    A["User Input"] --> B["Resume Parser"]
-    B -->|"[PARSED RESUME] + [JOB DESCRIPTION PASS-THROUGH]"| C["Job Description Agent"]
-    C -->|"[JD REQUIREMENTS] + [PARSED RESUME PASS-THROUGH]"| D["Matching Agent"]
-    D -->|fit report + gaps| E["Gap Analyzer + Microsoft Learn MCP"]
-    E -->|fit score + roadmap| F["Output"]
+    S["Learner CLI: Careers search"] --> K["Explicitly selected stable job key"]
+    K --> U["Agent input: synthetic resume + selected key"]
+    U --> RP["ResumeParser"]
+    RP -->|"[SELECTED JOB KEY]"| JD["JobDescriptionAgent"]
+    JD -->|"MCP get_job: exactly one listing"| CMCP["Trainer Careers MCP"]
+    JD -->|"[SOURCE JOB] + requirements + resume relay"| MA["MatchingAgent"]
+    MA -->|"match report + [SOURCE JOB PASS-THROUGH]"| GA["GapAnalyzer"]
+    GA -->|"Microsoft Learn MCP"| LMCP["Microsoft Learn"]
+    GA --> O["Fit score, provenance, gaps, roadmap"]
 
-    style A fill:#4A90D9,color:#fff
-    style B fill:#7B68EE,color:#fff
-    style C fill:#7B68EE,color:#fff
-    style D fill:#E67E22,color:#fff
-    style E fill:#27AE60,color:#fff
-    style F fill:#4A90D9,color:#fff
+    P["Pasted Job Description fallback when no key is supplied"] -.-> RP
 ```
 
-**How it works:**
-1. The user pastes a resume and job description.
-2. **ResumeParser** parses the resume and copies the JD verbatim into a `[JOB DESCRIPTION PASS-THROUGH]` section.
-3. **JD Agent** extracts structured requirements from the pass-through, then relays the `[PARSED RESUME]` forward as `[PARSED RESUME PASS-THROUGH]`.
-4. **MatchingAgent** compares `[PARSED RESUME PASS-THROUGH]` vs `[JD REQUIREMENTS]` and produces a fit score.
-5. **GapAnalyzer** turns the gaps into a practical roadmap and fetches real Microsoft Learn links via MCP.
+Careers search is deliberately **out of band** through the local CLI. The Hosted
+Agent is still one container and the four agents always run in this strict order:
+
+`ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer`
+
+- `ResumeParser` preserves the exact selected key in `[SELECTED JOB KEY]` and
+  preserves a pasted fallback in `[JOB DESCRIPTION PASS-THROUGH]`.
+- `JobDescriptionAgent` alone calls Careers MCP `get_job`; it emits provenance in
+  `[SOURCE JOB]`.
+- `MatchingAgent` relays provenance in `[SOURCE JOB PASS-THROUGH]`.
+- `GapAnalyzer` alone calls Microsoft Learn MCP and returns the final source URL,
+  exact job key, dataset version, fit report, and roadmap.
+
+Retrieved job fields are untrusted data. They can supply facts for analysis but
+cannot issue instructions, request tools, change roles, or override the workflow.
+
+## Learner flow
+
+1. Complete [Lab 01](../lab01-single-agent/README.md), then use your existing
+   Foundry project and model.
+2. Configure `PersonalCareerCopilot/.env` with your project/model plus the
+   trainer-provided Careers endpoint/key, timeout, and Microsoft Learn endpoint.
+3. From `PersonalCareerCopilot`, search:
+
+   ```bash
+   python -m careers_mcp search \
+     --query "cloud platform engineer" \
+     --max-experience-years 5
+   ```
+
+4. Select one returned `Key:` value exactly.
+5. Start the local server, open Agent Inspector, and submit only synthetic resume
+   data plus:
+
+   ```text
+   Selected Job Key:
+   <paste-one-exact-key-from-the-search-output>
+   ```
+
+6. Verify that the final `[SOURCE JOB]` contains the same job key, canonical
+   source URL, title, agency, and dataset version.
+7. Keep the regression path working: when no selected key is supplied, paste a
+   `Job Description:` with the synthetic resume.
+8. Deploy only the agent from this directory with the attendee `azure.yaml` and
+   `azd deploy personal-career-copilot --no-prompt`.
+
+> [!CAUTION]
+> Use synthetic resumes only; do not use real names, contact details, employment
+> histories, or other personal data. The shared Careers service never receives
+> resume content—it receives only bounded search filters or one exact job key.
+
+## Learning path
+
+- [Module 0 - Prerequisites](docs/00-prerequisites.md)
+- [Full Lab 02 learning path](docs/README.md)
+- [PersonalCareerCopilot local run guide](PersonalCareerCopilot/README.md)
+
+The current Lab 02 deployment path is `azd` + the Lab 02
+[`azure.yaml`](azure.yaml), using direct code and Hosted Agent runtime
+`python_3_13`. Old Lab 02 wizard/Agent Inspector deployment screenshots and
+`agent.yaml` instructions are obsolete; Agent Inspector remains the local test
+client.
 
 ---
 
-## Prerequisites
-
-Complete Lab 01 first:
-
-- [Lab 01 - Single Agent](../lab01-single-agent/README.md)
-
----
-
-## Part 1: Read the modules in order
-
-See the full learning path in:
-
-- [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
-- [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
-
----
-
-## Part 2: Build and test the workflow
-
-1. Use the Foundry Toolkit wizard to scaffold the workflow-based project.
-2. Copy the prompt blocks and workflow graph from `PersonalCareerCopilot/main.py` into your workspace.
-3. Run locally with the Agent Inspector and verify all four agents plus the MCP tool.
-4. Deploy the hosted agent to Foundry when local testing passes.
-
----
-
-## Orchestration patterns
-
-Lab 02 includes the default **fan-out → fan-in → sequential** flow, and the docs also describe alternative orchestration patterns for experimentation.
-
-- **Fan-out/Fan-in with weighted consensus**
-- **Reviewer/critic pass before final roadmap**
-- **Conditional router** based on fit score and missing skills
-
-See [docs/04-orchestration-patterns.md](docs/04-orchestration-patterns.md).
-
----
-
-**Previous:** [Lab 01 - Single Agent](../lab01-single-agent/README.md) · **Back to:** [Workshop Home](../../README.md)
+**Previous:** [Lab 01 - Single Agent](../lab01-single-agent/README.md) ·
+**Back to:** [Workshop Home](../../README.md)

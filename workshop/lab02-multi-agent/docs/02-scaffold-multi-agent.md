@@ -1,110 +1,81 @@
-# Module 2 - Scaffold the Multi-Agent Project
+# Module 2 - Inspect the Direct-Code Project
 
 ⏱️ ~5 min
 
-In this module, you use [Foundry Toolkit for VS Code](https://aka.ms/foundrytk) to **scaffold a multi-agent project**. The wizard generates `agent.yaml`, `main.py`, `Dockerfile`, `requirements.txt`, `.env`, and VS Code debug configuration - so you can focus on wiring the 4-agent workflow in Module 3.
+Lab 02 no longer uses the old Foundry Toolkit scaffold/deploy wizard or a
+standalone `agent.yaml`. Work from the checked-in implementation:
 
-> **Key concept:** The scaffold is a working stub with one agent. You replace the placeholder logic with the `WorkflowBuilder` graph in Module 3. You don't write the boilerplate from scratch.
-
-> **Reference implementation:** [`PersonalCareerCopilot/`](../PersonalCareerCopilot/) is a complete working example. Use it to compare your work as you go.
-
-### Scaffold wizard flow
-
-```mermaid
-flowchart LR
-    A[Command Palette: Create New Hosted Agent] --> B[Language: Python]
-    B --> C[API Type: Response API]
-    C --> D[Template: Workflows]
-    D --> E[Select Model]
-    E --> F[Workspace Folder and Agent Name]
-    F --> G[Generated Project]
+```text
+lab02-multi-agent/
+├── azure.yaml
+├── PersonalCareerCopilot/
+│   ├── .agentignore
+│   ├── .env.example
+│   ├── careers_mcp.py
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── requirements-dev.txt
+│   └── tests/
+├── careers-job-mcp/       # trainer-owned service source; attendees do not deploy it
+└── trainer-deployment/    # trainer-only azd/Bicep; attendees never run it
 ```
 
----
+> [!NOTE]
+> Screenshots in earlier workshop versions showing **Create New Hosted Agent**,
+> selection of `agent.yaml`, or **Deploy** in Agent Inspector are obsolete for
+> Lab 02 and cannot be reused. Agent Inspector is still used for local testing.
+> Lab 01's wizard-based flow is unchanged.
 
-## Step 1: Open the Create Hosted Agent wizard
-
-1. Press `Ctrl+Shift+P` to open the **Command Palette**.
-2. Type: **Foundry Toolkit: Create a New Hosted Agent** and select it.
-3. The wizard opens on the **Agent Details** tab.
-
-> **Alternative:** Click the **Foundry Toolkit** icon in the Activity Bar → click the **+** icon next to **Hosted Agents** → **Create New Hosted Agent**.
-
----
-
-## Step 2: Choose settings
-
-![Create Hosted Agent from Sample - Agent Details tab with Workflows template selected](images/02-scaffold-wizard-details.png)
-
-1. On the left navigation/options section select the following:
-
-| Menu | Selection | Notes |
-|--------|-----------|-------|
-| **Language** | Python | C# (.NET) also supported |
-| **Framework** | Agent Framework | Provides `Agent`, `AgentExecutor`, `WorkflowBuilder` |
-| **API type** | Response API | `POST /responses` - platform-managed history, streaming support |
-| **Template** | **Workflows** | Processes requests through multiple agents in sequence |
-
-2. Once selected, click **Next**
-
-![Create Hosted Agent from Sample - Create tab showing PersonalCareerCopilot as the folder name](images/02-scaffold-wizard-create.png)
-
-3. In the next window, select the following:
-
-| Menu | Selection | Notes |
-|--------|-----------|-------|
-| **Workspace folder** | Browse to target folder | e.g., `workshop/lab02-multi-agent/` in this repo |
-| **Agent name** | `PersonalCareerCopilot` | This becomes the project directory name |
-| **Model Deployment** | Select your deployed model | e.g., `gpt-4.1-mini` from Lab 01 |
-
-4. Click **Create** to scaffold the project. VS Code generates the files and opens the folder.
-
-> **Tip:** [`gpt-4.1-mini`](https://learn.microsoft.com/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure#gpt-41-series) balances speed and quality well for multi-agent development.
-
----
-
-## Step 3: Inspect the generated project
-
-After scaffolding completes, verify you see these files in the Explorer (`Ctrl+Shift+E`):
-
-```
-📂 <your-agent-name>/
-├── .azdignore          ← Files excluded from Azure Developer CLI deployments
-├── .dockerignore       ← Files excluded from Docker builds
-├── .env                ← Environment variables (placeholders - fill in Module 3)
-├── .vscode/
-│   ├── launch.json     ← Debug config (F5 → run + Agent Inspector)
-│   └── tasks.json      ← VS Code task definitions
-├── agent.yaml          ← Agent definition (kind: hosted, protocol: responses)
-├── Dockerfile          ← Container config for deployment
-├── main.py             ← Stub agent entry point (replace with WorkflowBuilder in Module 3)
-└── requirements.txt    ← Python dependencies
-```
-
-> **Important:** Open this scaffolded folder directly in VS Code so that `.vscode/launch.json` and `tasks.json` apply correctly for F5 debugging.
-
-### Key files explained
+## Key files
 
 | File | Purpose |
-|------|---------|
-| `agent.yaml` | Declares `kind: hosted`, maps env vars, defines the `/responses` protocol |
-| `main.py` | Stub: one `FoundryChatClient` → `Agent` → `ResponsesHostServer`. You replace this with 4 agents + `WorkflowBuilder` in Module 3 |
-| `Dockerfile` | `python:3.12-slim`, installs `requirements.txt`, exposes port 8088, runs `python main.py` |
-| `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
+|---|---|
+| [`../azure.yaml`](../azure.yaml) | Attendee agent-only `azd` manifest; direct-code Hosted Agent, runtime `python_3_13`, no infrastructure |
+| [`../PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py) | Responses host, four agents, strict `WorkflowBuilder` chain, Careers `get_job`, and Microsoft Learn MCP tool |
+| [`../PersonalCareerCopilot/careers_mcp.py`](../PersonalCareerCopilot/careers_mcp.py) | Bounded authenticated MCP client and learner search/get/status CLI |
+| [`../PersonalCareerCopilot/.env.example`](../PersonalCareerCopilot/.env.example) | Credential-free local configuration template |
+| [`../PersonalCareerCopilot/.agentignore`](../PersonalCareerCopilot/.agentignore) | Excludes local-only files from direct-code upload |
+| [`../PersonalCareerCopilot/requirements.txt`](../PersonalCareerCopilot/requirements.txt) | Exact tested runtime package pins |
 
-> **Reference:** See [`PersonalCareerCopilot/agent.yaml`](../PersonalCareerCopilot/agent.yaml) and [`PersonalCareerCopilot/requirements.txt`](../PersonalCareerCopilot/requirements.txt) for the complete generated content.
+The attendee [`azure.yaml`](../azure.yaml) declares only
+`personal-career-copilot`. It contains no `infra` block and cannot provision the
+shared MCP service. Its Hosted Agent environment passes the model deployment,
+Careers endpoint/key/timeout, and Microsoft Learn endpoint into the direct-code
+runtime.
+
+## Inspect the deployment manifest
+
+Confirm the checked-in manifest has:
+
+- `host: azure.ai.agent`
+- `project: PersonalCareerCopilot`
+- `codeConfiguration.runtime: python_3_13`
+- `codeConfiguration.entryPoint: main.py`
+- `kind: hosted`
+- Responses protocol `2.0.0`
+- service name `personal-career-copilot`
+- no infrastructure provider or Bicep path
+
+## Inspect the agent boundary
+
+In `main.py`, verify:
+
+1. `get_selected_careers_job` calls the validated client by exact key.
+2. Careers output is labeled untrusted data.
+3. `JobDescriptionAgent` alone registers the Careers tool.
+4. `GapAnalyzer` registers the Microsoft Learn tool.
+5. `WorkflowBuilder` has exactly three edges in sequence.
+
+### Checkpoint
+
+- [ ] I am using the checked-in direct-code project, not recreating it with a wizard.
+- [ ] I found attendee `azure.yaml` at the Lab 02 root.
+- [ ] I confirmed the Hosted Agent runtime is `python_3_13`.
+- [ ] I confirmed requirements are pinned.
+- [ ] I understand `careers-job-mcp/` and `trainer-deployment/` are trainer-owned.
+- [ ] I will not run `azd provision` or `azd up` for Lab 02.
 
 ---
 
-### ✅ Checkpoint
-
-- [ ] Scaffold wizard completed - new project folder is visible in Explorer
-- [ ] All expected files present: `agent.yaml`, `main.py`, `Dockerfile`, `requirements.txt`, `.env`
-- [ ] `agent.yaml` shows `kind: hosted` and `protocol: responses`
-- [ ] `main.py` imports `Agent`, `FoundryChatClient`, `ResponsesHostServer`
-- [ ] Scaffolded folder is open as the VS Code workspace root
-- [ ] You understand `main.py` is a stub - `WorkflowBuilder` is added in Module 3
-
----
-
-**Previous:** [01 - Understand Multi-Agent Architecture](01-understand-multi-agent.md) · **Next:** [03 - Configure Agents & Environment →](03-configure-agents.md)
+**Previous:** [01 - Understand the Architecture](01-understand-multi-agent.md) ·
+**Next:** [03 - Configure Agents & Environment →](03-configure-agents.md)
