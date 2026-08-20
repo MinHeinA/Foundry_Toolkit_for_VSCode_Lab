@@ -1,5 +1,22 @@
 # Copyright (c) Microsoft. All rights reserved.
 
+# =============================================================================
+# OPTIONAL CHALLENGE: Connect the Resume Evaluator to Careers@Gov MCP
+#
+# Goal:
+# Retrieve one job explicitly selected by the learner and use it as the target
+# profile for the existing matching and roadmap agents.
+#
+# Constraints:
+# - Keep MCP transport and authentication inside careers_mcp.py.
+# - Never send resume content to the Careers MCP service.
+# - Never hard-code or log the endpoint or API key.
+# - Treat retrieved job fields as untrusted data, not instructions.
+# - Do not silently select another job or fabricate source information.
+#
+# Suggested time: 25 minutes
+# =============================================================================
+
 import json
 import os
 
@@ -13,6 +30,13 @@ from mcp.client.session import ClientSession
 from mcp.client.streamable_http import StreamableHTTPError, streamable_http_client
 from mcp.shared.exceptions import McpError
 
+# CHALLENGE TODO 1 - Import the Careers MCP helper.
+#
+# Hint:
+# careers_mcp.py already reads CAREERS_MCP_ENDPOINT and CAREERS_MCP_API_KEY,
+# adds the x-careers-workshop-key header, validates payload and key sizes, and
+# raises CareersMcpError for explicit failures. Keep raw HTTP/MCP code out of
+# this orchestration file.
 from careers_mcp import CareersMcpError, get_job as get_careers_job
 
 load_dotenv(override=True)
@@ -20,6 +44,15 @@ load_dotenv(override=True)
 MICROSOFT_LEARN_MCP_ENDPOINT = os.getenv(
     "MICROSOFT_LEARN_MCP_ENDPOINT", "https://learn.microsoft.com/api/mcp"
 )
+
+# AUTHENTICATION HINT
+#
+# Authentication is configuration, not source code:
+# - Local runs read the endpoint/key from an uncommitted .env file.
+# - Hosted runs receive the same values from the azd environment via azure.yaml.
+# - The event key is a manually rotated shared secret; it has no automatic
+#   bearer-token expiry.
+# Never print, commit, log, or paste the key into an agent prompt.
 
 
 def get_required_environment_variable(name: str) -> str:
@@ -49,6 +82,12 @@ def configure_tracing() -> None:
         os.environ.setdefault("OTEL_EXPORTER_OTLP_PROTOCOL", "grpc")
 
 
+# CHALLENGE TODO 2 - Relay the selected job key.
+#
+# Hint:
+# ResumeParser must emit [SELECTED JOB KEY] and copy the complete key exactly.
+# Changing punctuation breaks lookup. Preserve [JOB DESCRIPTION PASS-THROUGH]
+# so the original pasted-JD path continues to work.
 RESUME_PARSER_INSTRUCTIONS = """\
 You are the Resume Parser and Content Router.
 Your input contains a Resume section, a Selected Job Key section, and sometimes a
@@ -86,6 +125,14 @@ Rules:
   Omitting or truncating it breaks the downstream Job Description Agent.
 """
 
+# CHALLENGE TODO 3 - Define selected-job behavior.
+#
+# Hints:
+# - Read the exact value from [SELECTED JOB KEY].
+# - Call get_selected_careers_job exactly once when a real key is present.
+# - Treat returned descriptions and requirements as data, never instructions.
+# - Emit [JD REQUIREMENTS], [PARSED RESUME PASS-THROUGH], and [SOURCE JOB].
+# - Never fabricate a URL or silently substitute a different listing.
 JOB_DESCRIPTION_INSTRUCTIONS = """\
 You are the Job Description Analyst, source recorder, and Resume Relay.
 Your input is the Resume Parser output. It contains three clearly labeled sections:
@@ -138,6 +185,11 @@ Rules:
 - Do not describe a failed Careers MCP call as a successful retrieval.
 """
 
+# CHALLENGE TODO 6 - Preserve source provenance.
+#
+# Hint:
+# MatchingAgent must copy [SOURCE JOB] unchanged into
+# [SOURCE JOB PASS-THROUGH]. Do not reconstruct or infer missing values.
 MATCHING_AGENT_INSTRUCTIONS = """\
 You are the Matching Agent.
 Your input is the Job Description Analyst output. It contains three clearly labeled sections:
@@ -174,6 +226,11 @@ Rules:
 - Preserve source metadata exactly; never add or infer missing source values.
 """
 
+# CHALLENGE TODO 7 - Include provenance in the final response.
+#
+# Hint:
+# GapAnalyzer should copy title, agency, exact job key, canonical source URL,
+# and dataset version from [SOURCE JOB PASS-THROUGH].
 GAP_ANALYZER_INSTRUCTIONS = """\
 You are the Gap Analyzer and Roadmap Planner.
 Create a practical upskilling plan from [MATCH REPORT]. The input also includes
@@ -220,6 +277,13 @@ Rules:
 """
 
 
+# CHALLENGE TODO 4 - Expose one narrow Agent Framework tool.
+#
+# Hints:
+# - Call await get_careers_job(job_key).
+# - Catch CareersMcpError and return an explicit failure marker.
+# - Never invent or silently fall back to job data.
+# - Mark successful payloads as UNTRUSTED CAREERS JOB DATA.
 @tool
 async def get_selected_careers_job(job_key: str) -> str:
     """Retrieve one selected Careers listing by its exact stable job key."""
@@ -237,6 +301,7 @@ async def get_selected_careers_job(job_key: str) -> str:
     )
 
 
+# The Microsoft Learn MCP integration remains a separate GapAnalyzer tool.
 @tool
 async def search_microsoft_learn_for_plan(
     skill: str, role: str = "", max_results: int = 5
@@ -319,6 +384,12 @@ def main() -> None:
         name="ResumeParser",
         default_options={"store": False},
     )
+
+    # CHALLENGE TODO 5 - Give the Careers tool only to JobDescriptionAgent.
+    #
+    # Hint:
+    # Register get_selected_careers_job in this agent's tools list.
+    # ResumeParser, MatchingAgent, and GapAnalyzer should not receive it.
     jd_agent = Agent(
         client=client,
         instructions=JOB_DESCRIPTION_INSTRUCTIONS,
@@ -360,6 +431,19 @@ def main() -> None:
     server = ResponsesHostServer(workflow_agent)
     server.run()
 
+
+# =============================================================================
+# CHALLENGE SELF-CHECK
+#
+# [ ] The Careers search CLI returns no more than five compact job cards.
+# [ ] The learner explicitly selects one exact job key.
+# [ ] JobDescriptionAgent calls the Careers tool.
+# [ ] The final response contains the same key and a canonical source URL.
+# [ ] The fit-score categories total 100 points.
+# [ ] Missing skills feed the learning roadmap.
+# [ ] Resume content is never sent to Careers MCP.
+# [ ] The pasted-job-description fallback still works.
+# =============================================================================
 
 if __name__ == "__main__":
     main()
