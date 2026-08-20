@@ -62,6 +62,17 @@ Protected endpoints require `x-careers-workshop-key`.
 MCP Streamable HTTP is at `/mcp`. REST OpenAPI is at `/docs` and
 `/openapi.json`. `/healthz` and `/readyz` intentionally require no key.
 
+### Use Swagger UI
+
+1. Open `/docs`.
+2. Select **Authorize**.
+3. Under `WorkshopApiKey`, paste the raw trainer-issued key only.
+4. Select **Authorize**, then **Close**.
+5. Open an operation, select **Try it out**, fill its parameters, and execute.
+
+Swagger sends the value in the `x-careers-workshop-key` header. Never put the
+key in a URL or query parameter, and do not prefix it with `Bearer`.
+
 ```bash
 curl -H "x-careers-workshop-key: $CAREERS_MCP_API_KEY" \
   'http://localhost:8080/api/v1/jobs/search?query=data%20engineer&limit=3'

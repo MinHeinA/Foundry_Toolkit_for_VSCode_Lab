@@ -63,7 +63,24 @@ def test_rest_search_get_status_and_not_found(database_path: Path) -> None:
         assert missing.status_code == 404
         assert missing.json()["error"]["code"] == "job_not_found"
 
-        assert client.get("/openapi.json").status_code == 200
+        openapi = client.get("/openapi.json")
+        assert openapi.status_code == 200
+        schema = openapi.json()
+        assert schema["components"]["securitySchemes"]["WorkshopApiKey"] == {
+            "type": "apiKey",
+            "description": (
+                "Trainer-issued event key. Enter the raw key value only; do not "
+                "prefix it with 'Bearer' and do not place it in the URL."
+            ),
+            "in": "header",
+            "name": API_KEY_HEADER,
+        }
+        for path, operation in (
+            ("/api/v1/jobs/search", "get"),
+            ("/api/v1/jobs/{job_key}", "get"),
+            ("/api/v1/dataset/status", "get"),
+        ):
+            assert {"WorkshopApiKey": []} in schema["paths"][path][operation]["security"]
 
 
 def test_logs_do_not_contain_query_or_secret(
@@ -94,4 +111,3 @@ def test_logs_do_not_contain_query_or_secret(
     assert API_KEY not in log_output
     assert "secret-marker-wrong" not in log_output
     assert '"operation":"search_jobs"' in log_output
-

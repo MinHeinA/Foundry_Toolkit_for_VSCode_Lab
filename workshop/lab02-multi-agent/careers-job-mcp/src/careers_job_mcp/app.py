@@ -16,9 +16,10 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Annotated, Any
 
-from fastapi import FastAPI, Query, Request
+from fastapi import FastAPI, Query, Request, Security
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.security import APIKeyHeader
 
 from .mcp_server import create_mcp_server
 from .repository import JobRepository, RepositoryError
@@ -26,6 +27,15 @@ from .service import CareersService, ServiceError, correlation_id_var
 
 API_KEY_HEADER = "x-careers-workshop-key"
 CORRELATION_HEADER = "x-correlation-id"
+WORKSHOP_API_KEY = APIKeyHeader(
+    name=API_KEY_HEADER,
+    scheme_name="WorkshopApiKey",
+    description=(
+        "Trainer-issued event key. Enter the raw key value only; do not prefix it "
+        "with 'Bearer' and do not place it in the URL."
+    ),
+    auto_error=False,
+)
 MAX_REQUEST_BODY_BYTES = 65_536
 DEFAULT_REQUEST_TIMEOUT_SECONDS = 10.0
 _CORRELATION_RE = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
@@ -259,7 +269,10 @@ def create_app(
             )
         return JSONResponse({"status": "ready"})
 
-    @app.get("/api/v1/jobs/search")
+    @app.get(
+        "/api/v1/jobs/search",
+        dependencies=[Security(WORKSHOP_API_KEY)],
+    )
     def search_jobs(
         query: Annotated[str, Query(min_length=1, max_length=200)],
         agency: Annotated[str | None, Query(max_length=200)] = None,
@@ -277,11 +290,17 @@ def create_app(
             limit,
         )
 
-    @app.get("/api/v1/jobs/{job_key:path}")
+    @app.get(
+        "/api/v1/jobs/{job_key:path}",
+        dependencies=[Security(WORKSHOP_API_KEY)],
+    )
     def get_job(job_key: str) -> dict[str, Any]:
         return service.get_job(job_key)
 
-    @app.get("/api/v1/dataset/status")
+    @app.get(
+        "/api/v1/dataset/status",
+        dependencies=[Security(WORKSHOP_API_KEY)],
+    )
     def dataset_status() -> dict[str, Any]:
         return service.get_dataset_status()
 
