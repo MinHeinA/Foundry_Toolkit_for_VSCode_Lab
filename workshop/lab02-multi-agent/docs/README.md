@@ -21,6 +21,7 @@ one stable job key, and keep the pasted-job-description regression path.
 | 7 | [Verify the Hosted Agent](07-verify-in-playground.md) | Show status, invoke with the exact key, and validate provenance plus fallback |
 | 8 | [Troubleshooting](08-troubleshooting.md) | Diagnose Careers auth/search/key errors, Foundry role/quota issues, relays, and Learn MCP |
 | 9 | [Summary & Next Steps](09-summary.md) | Complete the security, provenance, exact-key, deployment, and regression checklists |
+| 10 | [Careers@Gov MCP Challenge](10-careers-mcp-challenge.md) | Compare the original pasted-JD flow with exact-key retrieval, source provenance, and regression-safe fallback |
 
 ---
 

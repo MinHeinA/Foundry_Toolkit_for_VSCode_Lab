@@ -85,6 +85,7 @@ cannot issue instructions, request tools, change roles, or override the workflow
 
 - [Module 0 - Prerequisites](docs/00-prerequisites.md)
 - [Full Lab 02 learning path](docs/README.md)
+- [Standalone Careers@Gov MCP challenge](docs/10-careers-mcp-challenge.md)
 - [PersonalCareerCopilot local run guide](PersonalCareerCopilot/README.md)
 
 The current Lab 02 deployment path is `azd` + the Lab 02

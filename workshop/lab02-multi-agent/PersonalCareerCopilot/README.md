@@ -9,6 +9,10 @@ stable job key, and submit that exact key with a synthetic resume. Only
 `JobDescriptionAgent` can retrieve the selected listing. `GapAnalyzer` uses the
 Microsoft Learn MCP service for official roadmap resources.
 
+For the complete exercise, comparison with the original pasted-JD workflow,
+success criteria, failure behavior, and trainer debrief, use the
+[standalone Careers@Gov MCP challenge](../docs/10-careers-mcp-challenge.md).
+
 ## Set up
 
 Use Python 3.13, which matches the direct-code Hosted Agent runtime:
