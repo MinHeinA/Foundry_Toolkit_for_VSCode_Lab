@@ -49,14 +49,14 @@ flowchart TD
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## အပိုင်း ၂: လုပ်ငန်းစဉ်ကို တည်ဆောက်ပြီး စမ်းသပ်ပါ
 
 1. Foundry Toolkit wizard ကို အသုံးပြုပြီး workflow-based project ကို စတင်ဖန်တီးပါ။
-2. `PersonalCareerCopilot/main.py` မှ prompt blocks နှင့် workflow graph များကို မိမိလုပ်ငန်းဗဟိုသို့ ကူးယူထည့်သွင်းပါ။
+2. `PersonalCareerCopilotCompleted/main.py` မှ prompt blocks နှင့် workflow graph များကို မိမိလုပ်ငန်းဗဟိုသို့ ကူးယူထည့်သွင်းပါ။
 3. Agent Inspector နှင့် နှစ်ခြိုက်၍ သတ်မှတ်ထားသော agent လေးဆယ်နှင့် MCP ကိရိယာတို့ကို ဒေသခံမှာ စမ်းသပ်ပါ။
 4. ဒေသခံ စမ်းသပ်မှု အောင်မြင်လျှင် hosted agent ကို Foundry သို့ ဖြန့်ချိပါ။
 

@@ -4,7 +4,7 @@
 
 Sa module na ito, babaguhin mo ang scaffolded stub upang maging **inyong** multi-agent workflow - sa pamamagitan ng pagtatakda ng mga environment variables, pagsulat ng mga instructions para sa agent, pagdagdag ng MCP tool, pagkonekta ng workflow graph, at pag-install ng mga dependencies.
 
-> **Sanggunian:** Ang kumpletong gumaganang code ay nasa [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Gamitin ito bilang sanggunian habang binubuo ang sarili mong workflow graph at prompt blocks.
+> **Sanggunian:** Ang kumpletong gumaganang code ay nasa [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Gamitin ito bilang sanggunian habang binubuo ang sarili mong workflow graph at prompt blocks.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Hakbang 2: Isulat ang mga instructions ng agent
 
-Ang mga instructions ang nagtutukoy ng papel ng bawat agent, format ng output, at mga patakaran. Buksan ang `main.py` at idefine (o palitan) ang apat na instruction constants - ang buong mga string ay nasa [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Ang mga instructions ang nagtutukoy ng papel ng bawat agent, format ng output, at mga patakaran. Buksan ang `main.py` at idefine (o palitan) ang apat na instruction constants - ang buong mga string ay nasa [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Ini-parse ang resume sa isang naka-istrukturang profile ng kandidato **at** kinokopya ang job description nang eksakto sa `[JOB DESCRIPTION PASS-THROUGH]`. Ang parehong nakalabel na bahagi ay dapat lumabas sa output.
@@ -88,7 +88,7 @@ Binabasa ang fit report. Para sa **bawat** kulang na skill, tinatawagan ang `sea
 
 ## Hakbang 3: Idagdag ang MCP tool
 
-Tinutawagan ng GapAnalyzer ang [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) para kumuha ng totoong learning resources para sa bawat skill gap. Ang buong `search_microsoft_learn_for_plan` function ay nasa [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Tinutawagan ng GapAnalyzer ang [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) para kumuha ng totoong learning resources para sa bawat skill gap. Ang buong `search_microsoft_learn_for_plan` function ay nasa [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Irehistro ang tool sa GapAnalyzer kapag nililikha ang agent:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Tingnan ang [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) para sa kumpletong `WorkflowBuilder` graph na may `FoundryChatClient`, `AgentExecutor`, at lahat ng `add_edge()` calls.
+> Tingnan ang [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) para sa kumpletong `WorkflowBuilder` graph na may `FoundryChatClient`, `AgentExecutor`, at lahat ng `add_edge()` calls.
 
 ---
 

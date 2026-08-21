@@ -23,7 +23,7 @@ Kabla ya kuwasilisha warsha, tafadhali:
 | Maabara 01 - wakala mmoja          | [Lab 01](../workshop/lab01-single-agent/README.md)                                   | Maabara ya vitendo: tengeneza, jaribu, na sambaza wakala *Explain Like I'm an Executive* aliyeandaliwa |
 | Maabara 02 - mtiririko wa wakala wengi | [Lab 02](../workshop/lab02-multi-agent/README.md)                                    | Maabara ya vitendo: tengeneza mtiririko wa wakala 4 wa *Resume to Job Fit Evaluator*     |
 | Demo 1: Wakala Mtendaji               | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                  | Demo ya Maabara 01: tafsiri jargon ya kiufundi kuwa muhtasari wa mtendaji                 |
-| Demo 2: Mtaalamu wa Kupima Kutosheleza Kazi kwa CV | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)         | Demo ya Maabara 02: mtiririko wa wakala 4 unaopima kufanana kwa CV na kazi na kutoa mapendekezo |
+| Demo 2: Mtaalamu wa Kupima Kutosheleza Kazi kwa CV | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)         | Demo ya Maabara 02: mtiririko wa wakala 4 unaopima kufanana kwa CV na kazi na kutoa mapendekezo |
 
 > **Kumbuka kwa wasifuzi:** Mfululizo wa slaidi na viungo vya video vitaongezwa mara kurekodi zitakapochapishwa. Hadi wakati huo, wasiliana na msimamizi (angalia [Mawasiliano](#mawasiliano)) kupata mali za hivi karibuni.
 
@@ -97,7 +97,7 @@ Mfululizo unafuata mtiririko ule ule wa maabara. Vidokezo vya kusema kwa kila se
 | Mchoro wa usanifu          | Pitia [usanifu wa README](../README.md#architecture): anga, Mchunguzi, ACR, Huduma ya Wakala.          |
 | Muundo wa wakala aliyeandaliwa | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - kila faili inafanya nini.                    |
 | Demo ya moja kwa moja: Wakala Mtendaji | Badilisha hadi VS Code na endesha demo ya [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) kuanzia mwanzo hadi mwisho (angalia [Demo 1](#demo-1-wakala-mtendaji)). |
-| Demo ya moja kwa moja: Mtaalamu wa Kupima Kutosheleza Kazi kwa CV | Badilisha hadi VS Code na endesha demo ya wakala 4 [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (angalia [Demo 2](#demo-2-mtaalamu-wa-kupima-kutosheleza-kazi-kwa-cv)). |
+| Demo ya moja kwa moja: Mtaalamu wa Kupima Kutosheleza Kazi kwa CV | Badilisha hadi VS Code na endesha demo ya wakala 4 [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (angalia [Demo 2](#demo-2-mtaalamu-wa-kupima-kutosheleza-kazi-kwa-cv)). |
 | Muhtasari wa Maabara 01     | Mpelekee kwa washiriki. Waelekeze kwenye [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Mifumo ya wakala wengi     | Msimamizi mmoja mmoja dhidi ya sambamba dhidi ya kuhamishiana - onyesha kabla ya kuanza Maabara 02.       |
 | Muhtasari wa Maabara 02     | Mpelekee kwa washiriki. Waelekeze kwenye [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Maonyesho mawili ya moja kwa moja yamejumuishwa katika uwasilishaji. Toa dakika 
 | Demo | Maabara | Faili | Kile cha kuonyesha |
 |------|---------|--------|-------------------|
 | Wakala Mtendaji | Maabara 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Wakala mmoja aliyeandaliwa; tafsiri jargon ya kiufundi kuwa muhtasari wa mtendaji |
-| Mtaalamu wa Kupima Kutosheleza Kazi kwa CV | Maabara 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Mtiririko wa wakala 4; pita alama za kufanana kwa CV na kazi na tengeneza mapendekezo |
+| Mtaalamu wa Kupima Kutosheleza Kazi kwa CV | Maabara 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Mtiririko wa wakala 4; pita alama za kufanana kwa CV na kazi na tengeneza mapendekezo |
 
 ### Demo 1: Wakala Mtendaji
 
@@ -126,14 +126,14 @@ Wakala wa pekee katika [`workshop/lab01-single-agent/agent/`](../../../workshop/
 
 ### Demo 2: Mtaalamu wa Kupima Kutosheleza Kazi kwa CV
 
-Mtiririko wa wakala 4 katika [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Tumia huu kama demo ya dakika 10 kabla ya Maabara 02.
+Mtiririko wa wakala 4 katika [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Tumia huu kama demo ya dakika 10 kabla ya Maabara 02.
 
-1. Fungua [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) na onyesha jinsi wakala wanne wanavyounganishwa kwa mtiririko mfululizo.
+1. Fungua [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) na onyesha jinsi wakala wanne wanavyounganishwa kwa mtiririko mfululizo.
 2. Bonyeza `F5` kuzindua **Mchunguzi wa Wakala** kwa mtiririko wa wakala wengi.
 3. Bandika maelezo mafupi ya kazi na CV ya mfano katika mazungumzo ya Mchunguzi.
 4. Pitia mfereji wa wakala wanne: mchapishaji wa CV, mtoa mahitaji ya kazi, mchanua alama za kufanana, na mwandishi wa mapendekezo.
 5. Eleza jinsi matokeo ya kila wakala mdogo yanavyokuwa muktadha wa wakala unaofuata, ukionyesha mfumo wa kuhamishiana.
-6. Onyesha [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) kulinganisha na sawa na wakala mmoja kutoka Demo 1.
+6. Onyesha [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) kulinganisha na sawa na wakala mmoja kutoka Demo 1.
 
 ---
 

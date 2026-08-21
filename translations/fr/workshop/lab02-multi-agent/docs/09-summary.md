@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Option 2 : Supprimer uniquement l’agent hébergé
 
 1. Ouvrez [ai.azure.com](https://ai.azure.com) → votre projet → **Créer** → **Agents**.
-2. Trouvez **PersonalCareerCopilot** → cliquez sur **Supprimer**.
+2. Trouvez **PersonalCareerCopilotCompleted** → cliquez sur **Supprimer**.
 
 ### Option 3 : Supprimer le déploiement du modèle
 

@@ -68,7 +68,7 @@ De Agent Inspector toont dezezelfde grafiekstructuur wanneer de agent lokaal dra
 
 ## De WorkflowBuilder code lezen
 
-De volledige `create_workflow()` functie staat in [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). De drie `add_edge()` aanroepen bouwen de sequentiële pijplijn:
+De volledige `create_workflow()` functie staat in [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). De drie `add_edge()` aanroepen bouwen de sequentiële pijplijn:
 
 | # | Edge | Effect |
 |---|------|--------|

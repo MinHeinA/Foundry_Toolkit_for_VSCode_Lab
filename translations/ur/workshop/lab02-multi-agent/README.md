@@ -49,14 +49,14 @@ flowchart TD
 
 - [لیب 2 دستاویزات - مطلوبہ اقدامات](docs/00-prerequisites.md)
 - [لیب 2 دستاویزات - مکمل لرننگ پاتھ](docs/README.md)
-- [PersonalCareerCopilot رن گائیڈ](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted رن گائیڈ](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## حصہ 2: ورک فلو بنائیں اور آزمائیں
 
 1. Foundry Toolkit وزرڈ استعمال کریں تاکہ ورک فلو پر مبنی پروجیکٹ کی تشکیل کریں۔
-2. `PersonalCareerCopilot/main.py` سے پرامپٹ بلاکس اور ورک فلو گراف کو اپنے ورک اسپیس میں کاپی کریں۔
+2. `PersonalCareerCopilotCompleted/main.py` سے پرامپٹ بلاکس اور ورک فلو گراف کو اپنے ورک اسپیس میں کاپی کریں۔
 3. ایجنٹ انسپکٹر کے ساتھ مقامی طور پر چلائیں اور تمام چار ایجنٹس کے ساتھ MCP ٹول کی تصدیق کریں۔
 4. جب مقامی ٹیسٹنگ کامیاب ہو جائے تو ہوسٹڈ ایجنٹ کو Foundry پر تعینات کریں۔
 

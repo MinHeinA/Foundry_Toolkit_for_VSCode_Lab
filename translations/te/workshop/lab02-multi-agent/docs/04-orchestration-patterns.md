@@ -68,7 +68,7 @@ flowchart LR
 
 ## WorkflowBuilder కోడ్ చదవడం
 
-పూర్తి `create_workflow()` ఫంక్షన్ [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)లో ఉంది. మూడు `add_edge()` కాల్స్ వరుస పైప్‌లైన్‌ని నిర్మిస్తాయి:
+పూర్తి `create_workflow()` ఫంక్షన్ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)లో ఉంది. మూడు `add_edge()` కాల్స్ వరుస పైప్‌లైన్‌ని నిర్మిస్తాయి:
 
 | # | ఎడ్జ్ | ప్రభావం |
 |---|------|--------|

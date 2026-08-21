@@ -68,7 +68,7 @@ flowchart LR
 
 ## 阅读 WorkflowBuilder 代码
 
-完整的 `create_workflow()` 函数在 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) 中。三个 `add_edge()` 调用构建了顺序管道：
+完整的 `create_workflow()` 函数在 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) 中。三个 `add_edge()` 调用构建了顺序管道：
 
 | # | 边 | 作用 |
 |---|----|------|

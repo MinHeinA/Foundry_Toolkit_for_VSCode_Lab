@@ -49,14 +49,14 @@ flowchart TD
 
 - [اسناد آزمایشگاه ۲ - پیش‌نیازها](docs/00-prerequisites.md)
 - [اسناد آزمایشگاه ۲ - مسیر کامل یادگیری](docs/README.md)
-- [راهنمای اجرای PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [راهنمای اجرای PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## بخش ۲: ساخت و آزمایش جریان کاری
 
 ۱. از جادوگر Foundry Toolkit برای ساخت چارچوب مبتنی بر جریان کاری پروژه استفاده کنید.
-۲. بلوک‌های پرامپت و نمودار جریان کاری را از `PersonalCareerCopilot/main.py` در فضای کاری خود کپی کنید.
+۲. بلوک‌های پرامپت و نمودار جریان کاری را از `PersonalCareerCopilotCompleted/main.py` در فضای کاری خود کپی کنید.
 ۳. به‌صورت محلی با Agent Inspector اجرا کنید و تأیید کنید که هر چهار عامل به‌اضافه ابزار MCP کار می‌کنند.
 ۴. پس از موفقیت آزمایش محلی، عامل میزبانی شده را به Foundry مستقر کنید.
 

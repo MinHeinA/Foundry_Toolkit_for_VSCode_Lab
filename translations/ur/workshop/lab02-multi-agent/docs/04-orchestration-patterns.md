@@ -68,7 +68,7 @@ flowchart LR
 
 ## WorkflowBuilder کوڈ پڑھنا
 
-مکمل `create_workflow()` فنکشن [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) میں ہے۔ تین `add_edge()` کالز تسلسل وار پائپ لائن بناتی ہیں:
+مکمل `create_workflow()` فنکشن [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) میں ہے۔ تین `add_edge()` کالز تسلسل وار پائپ لائن بناتی ہیں:
 
 | # | ایج | اثر |
 |---|------|--------|

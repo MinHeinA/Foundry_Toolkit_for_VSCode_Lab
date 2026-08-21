@@ -168,7 +168,7 @@ Isa itong napakasimpleng agent na may iisang layunin - perpekto para matutunan a
         │   ├── 06-deploy-to-foundry.md
         │   ├── 07-verify-in-playground.md
         │   └── 08-troubleshooting.md
-        └── 📂 PersonalCareerCopilot/ ← Reference solution (multi-agent workflow)
+        └── 📂 PersonalCareerCopilotCompleted/ ← Reference solution (multi-agent workflow)
             ├── agent.yaml
             ├── Dockerfile
             ├── main.py

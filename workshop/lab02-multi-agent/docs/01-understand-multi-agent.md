@@ -79,4 +79,4 @@ JD.
 ---
 
 **Previous:** [00 - Prerequisites](00-prerequisites.md) ·
-**Next:** [02 - Start from the Original Baseline →](02-scaffold-multi-agent.md)
+**Next:** [02 - Scaffold the Attendee Project →](02-scaffold-multi-agent.md)

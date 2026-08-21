@@ -49,14 +49,14 @@ Tam öğrenme yolunu şu adreste görüntüleyin:
 
 - [Laboratuvar 2 Belgeleri - Gereksinimler](docs/00-prerequisites.md)
 - [Laboratuvar 2 Belgeleri - Tam Öğrenme Yolu](docs/README.md)
-- [PersonalCareerCopilot çalışma kılavuzu](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted çalışma kılavuzu](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Bölüm 2: İş akışını oluşturun ve test edin
 
 1. Foundry Toolkit sihirbazını kullanarak iş akışı tabanlı projeyi oluşturun.
-2. `PersonalCareerCopilot/main.py` içindeki prompt bloklarını ve iş akışı grafiğini çalışma alanınıza kopyalayın.
+2. `PersonalCareerCopilotCompleted/main.py` içindeki prompt bloklarını ve iş akışı grafiğini çalışma alanınıza kopyalayın.
 3. Agent Inspector ile yerel olarak çalıştırın ve tüm dört ajan ile MCP aracını doğrulayın.
 4. Yerel testler başarılı olursa barındırılan ajanı Foundry'e dağıtın.
 

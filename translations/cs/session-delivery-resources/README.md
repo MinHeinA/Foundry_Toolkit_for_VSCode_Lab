@@ -23,7 +23,7 @@ Před prezentací workshopu prosím:
 | Lab 01 - jeden agent           | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Hands-on lab: vytvoření, testování a nasazení *Explain Like I'm an Executive* hostovaného agenta |
 | Lab 02 - workflow více agentů  | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Hands-on lab: vytvoření workflow *Resume to Job Fit Evaluator* se 4 agenty                 |
 | Demo 1: Výkonný Agent          | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                              | Demo Lab 01: převod technického žargonu do výkonného souhrnu                               |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)     | Demo Lab 02: workflow se 4 agenty, který hodnotí shodu životopisu s pozicí a generuje doporučení |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)     | Demo Lab 02: workflow se 4 agenty, který hodnotí shodu životopisu s pozicí a generuje doporučení |
 
 > **Poznámka pro školitele:** Prezentace a video odkazy budou přidány jakmile budou záznamy zveřejněny. Do té doby kontaktujte správce (viz [Kontakty](#kontakty)) pro nejnovější materiály.
 
@@ -97,7 +97,7 @@ Prezentace kopíruje tok labů. Doporučené body k projednání pro každou sek
 | Architektonický diagram    | Projděte [architekturu v README](../README.md#architecture): scaffold, Inspector, ACR, Agent Service.          |
 | Anatomie hostovaného agenta | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - co dělá každý soubor.                               |
 | Živé demo: Výkonný Agent    | Přepněte do VS Code a spusťte demo [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) od začátku do konce (viz [Demo 1](#demo-1-výkonný-agent)). |
-| Živé demo: Resume to Job Fit Evaluator | Přepněte do VS Code a spusťte 4-agent demo [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (viz [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
+| Živé demo: Resume to Job Fit Evaluator | Přepněte do VS Code a spusťte 4-agent demo [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (viz [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
 | Shrnutí Lab 01             | Předejte účastníkům. Odkaz na [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Vzory více agentů          | Sekvenční vs paralelní vs předání - náhled před začátkem Lab 02.                                            |
 | Shrnutí Lab 02             | Předejte účastníkům. Odkaz na [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ V rámci prezentace jsou zahrnuta dvě živá dema. Vyhraďte si na každé 10 m
 | Demo | Lab | Soubory | Co ukázat |
 |------|-----|--------|------------|
 | Výkonný Agent | Lab 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Jeden hostovaný agent; převod technického žargonu do výkonného souhrnu |
-| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Orchestrace se 4 agenty; hodnocení shody životopisu s pozicí a generování doporučení |
+| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Orchestrace se 4 agenty; hodnocení shody životopisu s pozicí a generování doporučení |
 
 ### Demo 1: Výkonný Agent
 
@@ -126,14 +126,14 @@ Samostatný agent v [`workshop/lab01-single-agent/agent/`](../../../workshop/lab
 
 ### Demo 2: Resume to Job Fit Evaluator
 
-Workflow se 4 agenty v [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Použijte toto demo na 10 minut před Lab 02.
+Workflow se 4 agenty v [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Použijte toto demo na 10 minut před Lab 02.
 
-1. Otevřete [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) a ukažte, jak jsou čtyři agenti propojeni v sekvenční orchestraci.
+1. Otevřete [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) a ukažte, jak jsou čtyři agenti propojeni v sekvenční orchestraci.
 2. Stiskněte `F5` pro spuštění **Agent Inspector** pro workflow více agentů.
 3. Vložte krátký popis práce a ukázkový životopis do chatu Inspectoru.
 4. Projděte výstupní pipeline čtyř agentů: parser životopisu, extraktor požadavků na pozici, skórovač shody a autor doporučení.
 5. Poukažte, jak výstup každého sub-agenta slouží jako kontext pro následující agenta, zvýrazněte vzor předání.
-6. Ukažte [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) pro srovnání s ekvivalentem jednoho agenta z Demo 1.
+6. Ukažte [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) pro srovnání s ekvivalentem jednoho agenta z Demo 1.
 
 ---
 

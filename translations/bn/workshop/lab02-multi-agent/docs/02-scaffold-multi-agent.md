@@ -6,7 +6,7 @@
 
 > **মূল ধারণা:** স্ক্যাফোল্ডটি একটি কাজ করা স্টাব যা একটি এজেন্ট সহ। আপনি মডিউল ৩-এ `WorkflowBuilder` গ্রাফ দিয়ে প্লেসহোল্ডার লজিক প্রতিস্থাপন করবেন। আপনি বয়লারপ্লেট শূন্য থেকে লিখবেন না।
 
-> **রেফারেন্স বাস্তবায়ন:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) একটি সম্পূর্ণ কাজ করা উদাহরণ। আপনি কাজের সাথে তুলনা করার জন্য এটি ব্যবহার করতে পারেন।
+> **রেফারেন্স বাস্তবায়ন:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) একটি সম্পূর্ণ কাজ করা উদাহরণ। আপনি কাজের সাথে তুলনা করার জন্য এটি ব্যবহার করতে পারেন।
 
 ### স্ক্যাফোল্ড উইজার্ড ফ্লো
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` ইনস্টল করে, পোর্ট ৮০৮৮ এক্সপোজ করে, `python main.py` চালায় |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **রেফারেন্স:** সম্পূর্ণ তৈরি করা কনটেন্টের জন্য দেখুন [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) এবং [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt)।
+> **রেফারেন্স:** সম্পূর্ণ তৈরি করা কনটেন্টের জন্য দেখুন [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) এবং [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt)।
 
 ---
 

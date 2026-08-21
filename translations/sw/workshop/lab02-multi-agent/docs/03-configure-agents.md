@@ -4,7 +4,7 @@
 
 Katika moduli hii, unabadilisha stub iliyotengenezwa kuwa **kazi yako** ya mawakala wengi - kwa kuweka vigezo vya mazingira, kuandika maelekezo ya wakala, kuongeza chombo cha MCP, kuunganisha grafu ya mtiririko wa kazi, na kusakinisha mategemeo.
 
-> **Rejea:** Msimbo kamili unaofanya kazi upo katika [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Utumie kama rejea unapoandika grafu yako mwenyewe ya mtiririko wa kazi na sehemu za maelekezo.
+> **Rejea:** Msimbo kamili unaofanya kazi upo katika [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Utumie kama rejea unapoandika grafu yako mwenyewe ya mtiririko wa kazi na sehemu za maelekezo.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Hatua 2: Andika maelekezo ya wakala
 
-Maelekezo huainisha jukumu la kila wakala, muundo wa matokeo, na sheria. Fungua `main.py` na fafanua (au badilisha) constants nne za maelekezo - mistari kamili iko katika [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Maelekezo huainisha jukumu la kila wakala, muundo wa matokeo, na sheria. Fungua `main.py` na fafanua (au badilisha) constants nne za maelekezo - mistari kamili iko katika [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Huchambua wasifu kuwa profaili muundo ya mgombea **na** kunakili maelezo ya kazi bila kubadilika katika `[JOB DESCRIPTION PASS-THROUGH]`. Sehemu zote mbili zilizoainishwa lazima zionekane katika matokeo.
@@ -88,7 +88,7 @@ Husoma ripoti ya muafaka. Kwa kila ujuzi uliokosekana, huuita `search_microsoft_
 
 ## Hatua 3: Ongeza chombo cha MCP
 
-GapAnalyzer huwaita [msingi wa MCP wa Microsoft Learn](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) kupata rasilimali halisi za kujifunza kwa kila pengo la ujuzi. Kazi kamili ya `search_microsoft_learn_for_plan` iko katika [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer huwaita [msingi wa MCP wa Microsoft Learn](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) kupata rasilimali halisi za kujifunza kwa kila pengo la ujuzi. Kazi kamili ya `search_microsoft_learn_for_plan` iko katika [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Sajili chombo kwenye GapAnalyzer unapotengeneza wakala:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Angalia [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) kwa grafu kamili ya `WorkflowBuilder` yenye `FoundryChatClient`, `AgentExecutor`, na simu zote za `add_edge()`.
+> Angalia [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) kwa grafu kamili ya `WorkflowBuilder` yenye `FoundryChatClient`, `AgentExecutor`, na simu zote za `add_edge()`.
 
 ---
 

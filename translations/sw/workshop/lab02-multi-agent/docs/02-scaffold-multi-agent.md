@@ -6,7 +6,7 @@ Katika moduli hii, unatumia [Foundry Toolkit for VS Code](https://aka.ms/foundry
 
 > **Dhana kuu:** Scaffold ni mfano wa kazi wenye wakala mmoja. Unabadilisha mantiki ya sehemu ya nafasi na mchoro wa `WorkflowBuilder` katika Moduli 3. Haufanyi maandishi ya awali kutoka mwanzo.
 
-> **Mfano wa rejea:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ni mfano kamili unaofanya kazi. Utumie kulinganisha kazi yako unavyosonga mbele.
+> **Mfano wa rejea:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ni mfano kamili unaofanya kazi. Utumie kulinganisha kazi yako unavyosonga mbele.
 
 ### Mtiririko wa msaidizi wa Scaffold
 
@@ -92,7 +92,7 @@ Baada ya scaffold kumalizika, hakikisha unaona faili hizi katika Mchunguzi (`Ctr
 | `Dockerfile` | `python:3.12-slim`, unasakinisha `requirements.txt`, unaonyesha bandari 8088, unaendesha `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Rejea:** Tazama [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) na [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) kwa maudhui kamili yaliyotengenezwa.
+> **Rejea:** Tazama [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) na [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) kwa maudhui kamili yaliyotengenezwa.
 
 ---
 

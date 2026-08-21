@@ -4,7 +4,7 @@
 
 U ovom modulu pretvarate izloženi predložak u **vaš** višestruki radni tijek - postavljanjem varijabli okoline, pisanjem uputa za agente, dodavanjem MCP alata, povezivanjem grafa tijeka rada i instaliranjem ovisnosti.
 
-> **Referenca:** Cjelokupni funkcionalni kod nalazi se u [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Koristite ga kao referencu pri izgradnji vlastitog grafa tijeka rada i blokova prompta.
+> **Referenca:** Cjelokupni funkcionalni kod nalazi se u [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Koristite ga kao referencu pri izgradnji vlastitog grafa tijeka rada i blokova prompta.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Korak 2: Napišite upute za agente
 
-Upute definiraju ulogu svakog agenta, format izlaza i pravila. Otvorite `main.py` i definirajte (ili zamijenite) četiri konstante uputa - cijeli tekst se nalazi u [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Upute definiraju ulogu svakog agenta, format izlaza i pravila. Otvorite `main.py` i definirajte (ili zamijenite) četiri konstante uputa - cijeli tekst se nalazi u [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Parsira životopis u strukturirani profil kandidata **i** kopira opis posla doslovno u `[JOB DESCRIPTION PASS-THROUGH]`. Oba označena dijela moraju se pojaviti u izlazu.
@@ -88,7 +88,7 @@ Parsira životopis u strukturirani profil kandidata **i** kopira opis posla dosl
 
 ## Korak 3: Dodajte MCP alat
 
-GapAnalyzer poziva [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) za dohvaćanje stvarnih resursa učenja za svaki jaz u vještinama. Cijela funkcija `search_microsoft_learn_for_plan` nalazi se u [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer poziva [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) za dohvaćanje stvarnih resursa učenja za svaki jaz u vještinama. Cijela funkcija `search_microsoft_learn_for_plan` nalazi se u [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Registrirajte alat na GapAnalyzeru prilikom kreiranja agenta:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Pogledajte [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) za cjelokupni `WorkflowBuilder` graf s `FoundryChatClient`, `AgentExecutor` i svim pozivima `add_edge()`.
+> Pogledajte [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) za cjelokupni `WorkflowBuilder` graf s `FoundryChatClient`, `AgentExecutor` i svim pozivima `add_edge()`.
 
 ---
 

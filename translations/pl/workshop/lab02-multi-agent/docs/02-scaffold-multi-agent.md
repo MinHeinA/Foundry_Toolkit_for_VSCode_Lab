@@ -6,7 +6,7 @@ W tym module korzystasz z [Foundry Toolkit for VS Code](https://aka.ms/foundrytk
 
 > **Kluczowa koncepcja:** Szkielet to działający szkic z jednym agentem. W Module 3 zastępujesz logikę zastępczą grafem `WorkflowBuilder`. Nie piszesz boilerplate od zera.
 
-> **Implementacja referencyjna:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) to pełny działający przykład. Używaj go do porównywania swojej pracy po drodze.
+> **Implementacja referencyjna:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) to pełny działający przykład. Używaj go do porównywania swojej pracy po drodze.
 
 ### Przebieg kreatora szkieletu
 
@@ -92,7 +92,7 @@ Po zakończeniu tworzenia szkieletu sprawdź, czy w Eksploratorze (`Ctrl+Shift+E
 | `Dockerfile` | `python:3.12-slim`, instaluje `requirements.txt`, odsłania port 8088, uruchamia `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Referencja:** Zobacz [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) oraz [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) dla kompletnej wygenerowanej zawartości.
+> **Referencja:** Zobacz [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) oraz [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) dla kompletnej wygenerowanej zawartości.
 
 ---
 

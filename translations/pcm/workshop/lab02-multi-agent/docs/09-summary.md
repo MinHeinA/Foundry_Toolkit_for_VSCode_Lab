@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Option 2: Delete only di hosted agent
 
 1. Open [ai.azure.com](https://ai.azure.com) → your project → **Build** → **Agents**.
-2. Find **PersonalCareerCopilot** → click **Delete**.
+2. Find **PersonalCareerCopilotCompleted** → click **Delete**.
 
 ### Option 3: Delete di model deployment
 

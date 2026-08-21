@@ -11,7 +11,7 @@ and treat the shared Careers service as trainer-operated infrastructure.
 | Workshop documentation | [Repository](https://github.com/microsoft-foundry/Foundry_Toolkit_for_VSCode_Lab) | Source and step-by-step labs |
 | Lab 01 | [Single agent](../workshop/lab01-single-agent/README.md) | Existing Foundry Toolkit flow |
 | Lab 02 | [Multi-agent](../workshop/lab02-multi-agent/README.md) | Four sequential agents plus optional shared Careers MCP |
-| Lab 02 implementation | [PersonalCareerCopilot](../workshop/lab02-multi-agent/PersonalCareerCopilot/) | Direct-code Hosted Agent and learner CLI |
+| Lab 02 completed reference | [PersonalCareerCopilotCompleted](../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/) | Trainer demo, completed direct-code workflow, and learner CLI reference |
 | Trainer deployment runbook | [trainer-deployment README](../workshop/lab02-multi-agent/trainer-deployment/README.md) | Trainer-only provisioning/deployment commands and operational details |
 
 Do not copy secret values from a delivery environment into this guide, slides,
@@ -33,8 +33,9 @@ then follow its documented deployment path.
 - Attendees do not deploy the shared Careers MCP or run trainer Bicep.
 - The trainer pre-deploys one shared, read-only MCP endpoint and distributes
   `CAREERS_MCP_ENDPOINT` plus an event-scoped `CAREERS_MCP_API_KEY` out of band.
-- Attendees deploy only the direct-code Hosted Agent with the Lab 02
-  `azure.yaml`. They never run `azd provision` or `azd up`.
+- Attendees generate their own `PersonalCareerCopilot/` project and deploy only
+  that direct-code Hosted Agent. They never use the trainer manifest, run
+  trainer Bicep, `azd provision`, or `azd up`.
 - Only synthetic resumes are allowed. The shared service never receives resume
   data.
 
@@ -170,7 +171,7 @@ Use the existing [Lab 01 agent](../workshop/lab01-single-agent/agent/):
 ## Demo 2: Careers-selected Resume → Job Fit
 
 Use
-[`PersonalCareerCopilot`](../workshop/lab02-multi-agent/PersonalCareerCopilot/):
+[`PersonalCareerCopilotCompleted`](../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/):
 
 1. Show `.env` placeholders without revealing issued values.
 2. Run:
@@ -188,15 +189,17 @@ Use
 6. Verify the final exact key, canonical source URL, and dataset version.
 7. Explain that retrieved jobs are untrusted data and cannot issue instructions.
 8. Run a short pasted `Job Description:` fallback with no selected key.
-9. Show the Lab 02 parent `azure.yaml` and explain `azd` direct-code deployment;
-   do not show the old `agent.yaml`/Inspector deployment path.
+9. Show an attendee-generated `PersonalCareerCopilot/azure.yaml` and explain
+   direct-code deployment; do not use the trainer manifest or Inspector
+   deployment.
 
 ## Learner handoff checklist
 
 - [ ] Learner is using their own subscription and Foundry project.
 - [ ] Python 3.13 and pinned requirements are installed.
 - [ ] Endpoint/key were received out of band and are not visible on screen.
-- [ ] Search is run from `PersonalCareerCopilot`.
+- [ ] Search is run from the generated
+      `PersonalCareerCopilot/src/PersonalCareerCopilot`.
 - [ ] One exact key is selected; the model does not choose.
 - [ ] Agent Inspector input contains only synthetic resume data.
 - [ ] Final source URL, key, and dataset version match the selection.

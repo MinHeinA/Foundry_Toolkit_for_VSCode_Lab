@@ -36,7 +36,7 @@ flowchart LR
    - VS Code ၏ နိမ့်ဆုံး ဘယ်ဘက်ရှိ Accounts အိုင်ਕွန်ကို စစ်ဆေးပါ။ သင့်အကောင့်အမည်ကို မြင်ရမည်။
 
 4. **`agent.yaml` တွင် တိကျသည့် တန်ဖိုးများ ရှိသည်:**
-   - `PersonalCareerCopilot/agent.yaml` ဖိုင်ကိုဖွင့်၍ အတည်ပြုပါ:
+   - `PersonalCareerCopilot/main.py` ဖိုင်ကိုဖွင့်၍ အတည်ပြုပါ:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

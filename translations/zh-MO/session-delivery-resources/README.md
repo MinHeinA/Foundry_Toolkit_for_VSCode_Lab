@@ -23,7 +23,7 @@
 | 實作課程 01 - 單代理       | [Lab 01](../workshop/lab01-single-agent/README.md)                               | 實作課程：構建、測試與部署 *Explain Like I'm an Executive* 主機代理                         |
 | 實作課程 02 - 多代理流程   | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | 實作課程：構建 4 代理 *Resume to Job Fit Evaluator* 工作流程                               |
 | 示範 1: Executive Agent              | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | 實作課程 01 示範：將專業術語翻譯成高階摘要                                                |
-| 示範 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | 實作課程 02 示範：4 代理工作流程，評分履歷與職務匹配並產生建議                            |
+| 示範 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | 實作課程 02 示範：4 代理工作流程，評分履歷與職務匹配並產生建議                            |
 
 > **訓練師注意：** 簡報及影片連結將於錄影發布後加入，在此之前請聯絡維護者（參見 [聯絡方式](#聯絡資料)）索取最新資料。
 
@@ -97,7 +97,7 @@
 | 架構圖                     | 講解 [README 架構](../README.md#architecture)：腳手架、Inspector、ACR、Agent Service。     |
 | Hosted Agent 結構          | `agent.yaml`、`Dockerfile`、`main.py`、`requirements.txt` - 各檔案作用。                      |
 | 即時示範：Executive Agent  | 切換至 VS Code 並執行 [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) 端到端示範（詳見 [示範 1](#示範-1：executive-agent)）。 |
-| 即時示範：Resume to Job Fit Evaluator | 切換至 VS Code 並執行 [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 四代理示範（詳見 [示範 2](#示範-2：resume-to-job-fit-evaluator)）。 |
+| 即時示範：Resume to Job Fit Evaluator | 切換至 VS Code 並執行 [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 四代理示範（詳見 [示範 2](#示範-2：resume-to-job-fit-evaluator)）。 |
 | 實作課程 01 簡介           | 交給學員。指向 [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md)。 |
 | 多代理模式                 | 順序執行 vs 並行 vs 交接—於實作課程 02 開始前預覽。                                          |
 | 實作課程 02 簡介           | 交給學員。指向 [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md)。 |
@@ -112,7 +112,7 @@
 | 示範 | 實作課程 | 檔案                                                    | 展示內容                                           |
 |------|---------|---------------------------------------------------------|---------------------------------------------------|
 | Executive Agent           | 實作 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent)      | 單一 Hosted Agent；將專業術語翻譯成高層摘要         |
-| Resume to Job Fit Evaluator | 實作 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4 代理編排；履歷與職務匹配評分並生成建議             |
+| Resume to Job Fit Evaluator | 實作 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4 代理編排；履歷與職務匹配評分並生成建議             |
 
 ### 示範 1：Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### 示範 2：Resume to Job Fit Evaluator
 
-在 [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 中的 4 代理工作流程。作為實作課程 02 前的 10 分鐘示範使用。
+在 [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 中的 4 代理工作流程。作為實作課程 02 前的 10 分鐘示範使用。
 
-1. 開啟 [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)，展示四個代理如何串接成順序編排。
+1. 開啟 [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)，展示四個代理如何串接成順序編排。
 2. 按 `F5` 啟動多代理工作流程的 **Agent Inspector**。
 3. 在 Inspector 聊天視窗貼上一段短職務說明及範例履歷。
 4. 解說四代理流程：履歷解析器、職務需求擷取器、匹配評分器與建議撰寫者。
 5. 說明每個子代理的輸出如何成為下一代理的上下文，強調交接範式。
-6. 展示 [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml)，並與示範 1 的單代理版本比較。
+6. 展示 [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)，並與示範 1 的單代理版本比較。
 
 ---
 

@@ -68,7 +68,7 @@ Ipinapakita ng Agent Inspector ang ganitong estruktura ng grap kapag tumatakbo a
 
 ## Pagbabasa ng WorkflowBuilder code
 
-Ang buong `create_workflow()` function ay nasa [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Ang tatlong tawag na `add_edge()` ay bumubuo sa sunud-sunod na pipeline:
+Ang buong `create_workflow()` function ay nasa [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Ang tatlong tawag na `add_edge()` ay bumubuo sa sunud-sunod na pipeline:
 
 | # | Gilid | Epekto |
 |---|------|--------|

@@ -68,7 +68,7 @@ Agent Inspector menunjukkan struktur grafik yang sama ini saat agen berjalan sec
 
 ## Membaca kode WorkflowBuilder
 
-Fungsi lengkap `create_workflow()` ada di [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Tiga panggilan `add_edge()` membangun pipeline berurutan:
+Fungsi lengkap `create_workflow()` ada di [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Tiga panggilan `add_edge()` membangun pipeline berurutan:
 
 | # | Edge | Efek |
 |---|------|--------|

@@ -36,7 +36,7 @@ Prije implementacije provjerite svaki od sljedećih stavki:
    - Pogledajte ikonu računa u donjem lijevom kutu VS Code-a. Trebalo bi se vidjeti vaše korisničko ime.
 
 4. **`agent.yaml` ima ispravne vrijednosti:**
-   - Otvorite `PersonalCareerCopilot/agent.yaml` i provjerite:
+   - Otvorite `PersonalCareerCopilot/main.py` i provjerite:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

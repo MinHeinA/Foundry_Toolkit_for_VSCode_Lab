@@ -6,7 +6,7 @@
 
 > **အဓိကအယူအဆ:** မေးစပ်သည် အေးဂျင့် တစ်ဦး ဖြင့် လုပ်ဆောင်လျက်ရှိသော စတတ်ဘ် ဖြစ်သည်။ မော်ဂျူး ၃ တွင် `WorkflowBuilder` ကိုယ်ရေးအုပ်စု နှင့် အစားထိုးမည်ဖြစ်ပြီး မူလကပုံစံကို သင့်တော်စွာ မရေးကြပါက မဟုတ်ပါ။
 
-> **နမူနာအကောင်အထည်:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) သည် ပြီးပြည့်စုံသော လုပ်ငန်းနမူနာ ဖြစ်သည်။ သင်၏ လုပ်ငန်းနှင့် နှိုင်းယှဉ်ရန် အသုံးပြုပါ။
+> **နမူနာအကောင်အထည်:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) သည် ပြီးပြည့်စုံသော လုပ်ငန်းနမူနာ ဖြစ်သည်။ သင်၏ လုပ်ငန်းနှင့် နှိုင်းယှဉ်ရန် အသုံးပြုပါ။
 
 ### မေးစပ် ကိန်းတော့လမ်းကြောင်း
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` တပ်ဆင်ပြီး port 8088 ဖော်ပြ၊ `python main.py` ကို chạy စေသည် |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` များပါ၀င်သည် |
 
-> **ရင်းမြစ်:** ပြီးပြည့်စုံသော ဖန်တီးမှုအကြောင်းအရာကို [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) နှင့် [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) တွင် ကြည့်ရှုနိုင်သည်။
+> **ရင်းမြစ်:** ပြီးပြည့်စုံသော ဖန်တီးမှုအကြောင်းအရာကို [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) နှင့် [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) တွင် ကြည့်ရှုနိုင်သည်။
 
 ---
 

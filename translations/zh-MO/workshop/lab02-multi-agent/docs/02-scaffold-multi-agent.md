@@ -6,7 +6,7 @@
 
 > **關鍵概念：** 搭建架構為一個可運行的樣板，包含一個智能體。您將在模組 3 中用 `WorkflowBuilder` 圖形替換此佔位邏輯。無需從頭撰寫樣板代碼。
 
-> **參考實作：** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 是完整的可運行範例。可用作比對您的進度。
+> **參考實作：** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 是完整的可運行範例。可用作比對您的進度。
 
 ### 搭建向導流程
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | 使用 `python:3.12-slim`，安裝 `requirements.txt`，開放 8088 端口，執行 `python main.py` |
 | `requirements.txt` | 包含 `agent-framework-foundry`、`agent-framework-foundry-hosting`、`mcp<2,>=1.24.0`、`debugpy` |
 
-> **參考：** 請查看 [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) 和 [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) 得知完整生成內容。
+> **參考：** 請查看 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) 和 [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) 得知完整生成內容。
 
 ---
 

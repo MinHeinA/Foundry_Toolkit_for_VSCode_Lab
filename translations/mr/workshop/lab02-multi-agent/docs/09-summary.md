@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### पर्याय २: फक्त होस्टेड एजंट हटवा
 
 1. [ai.azure.com](https://ai.azure.com) → तुमचा प्रोजेक्ट → **Build** → **Agents** उघडा.
-2. **PersonalCareerCopilot** शोधा → **Delete** क्लिक करा.
+2. **PersonalCareerCopilotCompleted** शोधा → **Delete** क्लिक करा.
 
 ### पर्याय ३: मॉडेल परिनियोजन हटवा
 

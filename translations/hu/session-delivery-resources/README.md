@@ -23,7 +23,7 @@ Az esemény megtartása előtt, kérjük:
 | Labor 01 - egyetlen ügynök     | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Gyakorlati labor: építsd meg, teszteld és telepítsd az *Explain Like I'm an Executive* hosztolt ügynököt     |
 | Labor 02 - több ügynök munkafolyamat | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Gyakorlati labor: építsd meg a 4-ügynökös *Resume to Job Fit Evaluator* munkafolyamatot                     |
 | Demó 1: Executive Agent             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | Labor 01 demó: szakkifejezések lefordítása vezetői összefoglalóra                          |
-| Demó 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | Labor 02 demó: 4-ügynökös munkafolyamat, amely értékeli az önéletrajz és az állás megfelelését és javaslatokat készít     |
+| Demó 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | Labor 02 demó: 4-ügynökös munkafolyamat, amely értékeli az önéletrajz és az állás megfelelését és javaslatokat készít     |
 
 > **Megjegyzés oktatóknak:** A dia és videó linkek a felvételek megjelenése után kerülnek hozzáadásra. Addig is keressétek a karbantartót (lásd [Elérhetőségek](#kapcsolatok)) a legfrissebb anyagokért.
 
@@ -97,7 +97,7 @@ A diákkészlet követi a laborok menetét. Minden szakaszhoz javasolt beszédpo
 | Architektúra ábra        | Vezesd végig a [README architektúrán](../README.md#architecture): sablon, Inspector, ACR, Agent Service.   |
 | Hosztolt ügynök anatómiája   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - mit csinál mindegyik fájl.                              |
 | Élő demó: Executive Agent  | Válts VS Code-ra és futtasd végig a [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) demót (lásd [Demo 1](#demó-1-executive-agent)). |
-| Élő demó: Resume to Job Fit Evaluator | Válts VS Code-ra és futtasd a [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-ügynökös demót (lásd [Demo 2](#demó-2-resume-to-job-fit-evaluator)). |
+| Élő demó: Resume to Job Fit Evaluator | Válts VS Code-ra és futtasd a [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-ügynökös demót (lásd [Demo 2](#demó-2-resume-to-job-fit-evaluator)). |
 | Labor 01 röviden                | Átadod a tanulóknak. Mutass rá a [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) dokumentációra. |
 | Több ügynökös minták        | Sorrendben, párhuzamos, átadásos minták - előnézet a Labor 02 előtt.                                           |
 | Labor 02 röviden                | Átadod a tanulóknak. Mutass rá a [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) dokumentációra. |
@@ -112,7 +112,7 @@ Két élő demó tartozik az előadás anyagához. Mindkettőre szánj 10 percet
 | Demó | Labor | Fájlok | Mit mutassunk |
 |------|-----|-------|--------------|
 | Executive Agent | Labor 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Egyetlen hosztolt ügynök; műszaki zsargont lefordít vezetői összefoglalóvá |
-| Resume to Job Fit Evaluator | Labor 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-ügynökös koordináció; értékeli az önéletrajz-állás illeszkedést és ajánlást készít |
+| Resume to Job Fit Evaluator | Labor 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-ügynökös koordináció; értékeli az önéletrajz-állás illeszkedést és ajánlást készít |
 
 ### Demó 1: Executive Agent
 
@@ -126,14 +126,14 @@ Egy különálló ügynök a [`workshop/lab01-single-agent/agent/`](../../../wor
 
 ### Demó 2: Resume to Job Fit Evaluator
 
-Egy 4-ügynökös munkafolyamat a [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) könyvtárban. Használd ezt a 10 perces demót a Labor 02 előtt.
+Egy 4-ügynökös munkafolyamat a [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) könyvtárban. Használd ezt a 10 perces demót a Labor 02 előtt.
 
-1. Nyisd meg a [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)-t és mutasd meg, hogyan vannak összeépítve a négy ügynök egy szekvenciális koordinációban.
+1. Nyisd meg a [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)-t és mutasd meg, hogyan vannak összeépítve a négy ügynök egy szekvenciális koordinációban.
 2. Nyomd meg az `F5` gombot a **Agent Inspector** elindításához a több ügynökös munkafolyamathoz.
 3. Illeszd be egy rövid állásleírást és egy minta önéletrajzot az Inspector chat-be.
 4. Vezesd végig a négy ügynökös csővezetéket: önéletrajz elemző, álláskövetelmény kinyerő, illeszkedés pontozó és ajánlás író.
 5. Mutasd meg, hogyan válik minden alügynök kimenete a következő ügynök kontextusává, kiemelve az átadási mintát.
-6. Mutasd meg a [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) fájlt, hogy összehasonlítsd az egy ügynökös verzióval az 1-es demóból.
+6. Mutasd meg a [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) fájlt, hogy összehasonlítsd az egy ügynökös verzióval az 1-es demóból.
 
 ---
 

@@ -49,14 +49,14 @@ Katso koko oppimispolku:
 
 - [Lab 2 Dokumentaatio - Edellytykset](docs/00-prerequisites.md)
 - [Lab 2 Dokumentaatio - Koko oppimispolku](docs/README.md)
-- [PersonalCareerCopilot käyttöohje](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted käyttöohje](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Osa 2: Rakenna ja testaa työnkulku
 
 1. Käytä Foundry Toolkit -velhoa työnkulkuun perustuvan projektin alustamiseen.
-2. Kopioi kehotelohkot ja työnkulun kaavio tiedostosta `PersonalCareerCopilot/main.py` työtilaan.
+2. Kopioi kehotelohkot ja työnkulun kaavio tiedostosta `PersonalCareerCopilotCompleted/main.py` työtilaan.
 3. Suorita paikallisesti Agent Inspectorilla ja varmista, että kaikki neljä agenttia sekä MCP-työkalu toimivat.
 4. Ota isännöity agentti käyttöön Foundryssa, kun paikalliset testit onnistuvat.
 

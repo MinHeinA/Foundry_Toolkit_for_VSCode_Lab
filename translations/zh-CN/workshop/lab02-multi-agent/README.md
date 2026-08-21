@@ -49,14 +49,14 @@ flowchart TD
 
 - [实验 2 文档 - 先决条件](docs/00-prerequisites.md)
 - [实验 2 文档 - 完整学习路径](docs/README.md)
-- [PersonalCareerCopilot 运行指南](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted 运行指南](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## 第 2 部分：构建并测试工作流
 
 1. 使用 Foundry Toolkit 向导搭建基于工作流的项目框架。
-2. 将 `PersonalCareerCopilot/main.py` 中的提示块和工作流图复制到您的工作区。
+2. 将 `PersonalCareerCopilotCompleted/main.py` 中的提示块和工作流图复制到您的工作区。
 3. 使用 Agent Inspector 本地运行并验证所有四个代理及 MCP 工具。
 4. 本地测试通过后，将托管代理部署到 Foundry。
 

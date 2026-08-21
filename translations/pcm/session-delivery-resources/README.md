@@ -23,7 +23,7 @@ Before you deliver di workshop, abeg:
 | Lab 01 - single agent         | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Hands-on lab: build, test, and deploy di *Explain Like I'm an Executive* hosted agent     |
 | Lab 02 - multi-agent workflow | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Hands-on lab: build di 4-agent *Resume to Job Fit Evaluator* workflow                     |
 | Demo 1: Executive Agent             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | Lab 01 demo: translate technical jargon into executive summary                          |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | Lab 02 demo: 4-agent workflow wey dey score resume-job fit and generate recommendations     |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | Lab 02 demo: 4-agent workflow wey dey score resume-job fit and generate recommendations     |
 
 > **Note for trainers:** Slide deck and video links go dey added once di recordings don publish. Until den, make you ping di maintainer (see [Contacts](#contacts)) for di latest assets.
 
@@ -97,7 +97,7 @@ Di deck follow di same flow like di labs. Suggested talking points for each sect
 | Architecture diagram        | Walk through di [README architecture](../README.md#architecture): scaffold, Inspector, ACR, Agent Service.   |
 | Anatomy of a hosted agent   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - wetin each file dey do.                              |
 | Live demo: Executive Agent  | Switch go VS Code and run di [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) demo end-to-end (see [Demo 1](#demo-1-executive-agent)). |
-| Live demo: Resume to Job Fit Evaluator | Switch go VS Code and run di [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-agent demo (see [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
+| Live demo: Resume to Job Fit Evaluator | Switch go VS Code and run di [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-agent demo (see [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
 | Lab 01 brief                | Hand over to learners. Point dem to [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Multi-agent patterns        | Sequential vs concurrent vs handoff - preview before Lab 02 start.                                           |
 | Lab 02 brief                | Hand over to learners. Point dem to [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Two live demos dey inside di delivery. Make you allocate 10 minutes to each.
 | Demo | Lab | Files | Wetin to show |
 |------|-----|-------|--------------|
 | Executive Agent | Lab 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Single hosted agent; translate technical jargon into executive summary |
-| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-agent orchestration; score resume-job fit and generate recommendation |
+| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-agent orchestration; score resume-job fit and generate recommendation |
 
 ### Demo 1: Executive Agent
 
@@ -126,14 +126,14 @@ A standalone agent in [`workshop/lab01-single-agent/agent/`](../../../workshop/l
 
 ### Demo 2: Resume to Job Fit Evaluator
 
-A 4-agent workflow in [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Use dis as 10-minute demo before Lab 02.
+A 4-agent workflow in [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Use dis as 10-minute demo before Lab 02.
 
-1. Open [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) and show how di four agents dem dey wire together in sequential orchestration.
+1. Open [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) and show how di four agents dem dey wire together in sequential orchestration.
 2. Press `F5` to launch di **Agent Inspector** for di multi-agent workflow.
 3. Paste short job description and sample resume for di Inspector chat.
 4. Waka through di four-agent pipeline: resume parser, job requirement extractor, fit scorer, and recommendation writer.
 5. Show how each sub-agent output become di next agent context, highlight di handoff pattern.
-6. Show [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) to compare am with single-agent wey dey Demo 1.
+6. Show [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) to compare am with single-agent wey dey Demo 1.
 
 ---
 

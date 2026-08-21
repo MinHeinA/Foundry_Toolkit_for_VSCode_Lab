@@ -6,7 +6,7 @@
 
 > **முக்கியக் கருத்து:** அடித்தளம் ஒரு முகவருடன் செயல்படும் ஸ்டப் ஆகும். நீங்கள் தொகுதி 3 இல் உள்ள `WorkflowBuilder` கிராப் மூலம் டெம்பிளேட் தர்க்கத்தை மாற்றுவீர்கள். நீங்கள் தொடக்ககட்டத்தில் இருந்து கையெழுத்து எழுத தேவையில்லை.
 
-> **குறிப்புரை செயலாக்கம்:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) முழுமையான செயல்படும் எடுத்துக்காட்டு ஆகும். உங்கள் பணியை ஒப்பிட அதை பயன்படுத்தவும்.
+> **குறிப்புரை செயலாக்கம்:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) முழுமையான செயல்படும் எடுத்துக்காட்டு ஆகும். உங்கள் பணியை ஒப்பிட அதை பயன்படுத்தவும்.
 
 ### அடித்தளம் வழிகாட்டு ஓட்டம்
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` ஐ நிறுவுகிறது, போர்ட் 8088 ஓ픈்செய்கிறது, `python main.py` ஓட்டுகிறது |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **குறிப்புரை:** முழுமையான உருவாக்கப்பட்ட உள்ளடக்கத்திற்காக [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) மற்றும் [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt)ஐ பார்க்கவும்.
+> **குறிப்புரை:** முழுமையான உருவாக்கப்பட்ட உள்ளடக்கத்திற்காக [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) மற்றும் [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt)ஐ பார்க்கவும்.
 
 ---
 

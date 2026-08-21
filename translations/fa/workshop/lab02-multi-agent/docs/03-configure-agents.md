@@ -4,7 +4,7 @@
 
 در این ماژول، چارچوب اولیه را به **جریان کاری چندعامله خودتان** تبدیل می‌کنید - با تنظیم متغیرهای محیطی، نوشتن دستورات عامل‌ها، افزودن ابزار MCP، اتصال نمودار جریان کاری و نصب وابستگی‌ها.
 
-> **مرجع:** کد کامل در حال اجرا در [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) موجود است. هنگام ساخت نمودار جریان کاری و بلوک‌های پرامپت خود از آن به عنوان مرجع استفاده کنید.
+> **مرجع:** کد کامل در حال اجرا در [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) موجود است. هنگام ساخت نمودار جریان کاری و بلوک‌های پرامپت خود از آن به عنوان مرجع استفاده کنید.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## گام ۲: نوشتن دستورات عامل‌ها
 
-دستورات نقش هر عامل، قالب خروجی و قوانین را تعریف می‌کنند. فایل `main.py` را باز کنید و چهار مقدار ثابت دستور را تعریف (یا جایگزین) کنید - رشته‌های کامل در [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) موجود است.
+دستورات نقش هر عامل، قالب خروجی و قوانین را تعریف می‌کنند. فایل `main.py` را باز کنید و چهار مقدار ثابت دستور را تعریف (یا جایگزین) کنید - رشته‌های کامل در [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) موجود است.
 
 ### ۲.۱ `RESUME_PARSER_INSTRUCTIONS`
 رزومه را به نمایه ساختاریافته کاندیدا تبدیل می‌کند **و** شرح شغل را به صورت عیناً در `[JOB DESCRIPTION PASS-THROUGH]` کپی می‌کند. هر دو بخش برچسب‌گذاری شده باید در خروجی ظاهر شوند.
@@ -88,7 +88,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## گام ۳: افزودن ابزار MCP
 
-GapAnalyzer با [سرور Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) تماس می‌گیرد تا منابع واقعی یادگیری برای هر شکاف مهارتی را دریافت کند. تابع کامل `search_microsoft_learn_for_plan` در [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) است.
+GapAnalyzer با [سرور Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) تماس می‌گیرد تا منابع واقعی یادگیری برای هر شکاف مهارتی را دریافت کند. تابع کامل `search_microsoft_learn_for_plan` در [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) است.
 
 هنگام ایجاد عامل، ابزار را روی GapAnalyzer ثبت کنید:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> نمودار کامل `WorkflowBuilder` با `FoundryChatClient`، `AgentExecutor`، و همه فراخوانی‌های `add_edge()` را در [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ببینید.
+> نمودار کامل `WorkflowBuilder` با `FoundryChatClient`، `AgentExecutor`، و همه فراخوانی‌های `add_edge()` را در [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ببینید.
 
 ---
 

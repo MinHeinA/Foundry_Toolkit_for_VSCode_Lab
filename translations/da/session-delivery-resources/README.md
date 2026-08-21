@@ -23,7 +23,7 @@ Inden du leverer workshoppen, bedes du:
 | Lab 01 - enkelt agent         | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Hands-on laboratorium: byg, test og udrul *Explain Like I'm an Executive* hosted agent   |
 | Lab 02 - multi-agent workflow | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Hands-on laboratorium: byg 4-agent *Resume to Job Fit Evaluator* workflow                |
 | Demo 1: Executive Agent       | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                             | Lab 01 demo: oversæt teknisk jargon til et ledelsessammendrag                           |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)  | Lab 02 demo: 4-agent workflow som scorer resume-job fit og genererer anbefalinger       |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)  | Lab 02 demo: 4-agent workflow som scorer resume-job fit og genererer anbefalinger       |
 
 > **Note til trænere:** Slide deck og videolinks tilføjes, når optagelserne er offentliggjort. Indtil da, kontakt vedligeholderen (se [Kontakter](#kontakter)) for de nyeste materialer.
 
@@ -97,7 +97,7 @@ Dækket følger samme flow som laboratorierne. Foreslåede samtalepunkter for hv
 | Arkitektur diagram          | Gennemgå [README arkitektur](../README.md#architecture): scaffold, Inspector, ACR, Agent Service.            |
 | Anatomi af en hosted agent   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - hvad hver fil gør.                              |
 | Live demo: Executive Agent   | Skift til VS Code og kør [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) demo fra ende til anden (se [Demo 1](#demo-1-executive-agent)). |
-| Live demo: Resume to Job Fit Evaluator | Skift til VS Code og kør [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-agent demo (se [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
+| Live demo: Resume to Job Fit Evaluator | Skift til VS Code og kør [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-agent demo (se [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
 | Lab 01 kort                  | Overdrag til deltagerne. Henvis til [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Multi-agent mønstre         | Sekventiel vs samtidig vs overlevering - forhåndsvis inden Lab 02 starter.                                  |
 | Lab 02 kort                  | Overdrag til deltagerne. Henvis til [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ To live-demoer er inkluderet i leveringen. Afsæt 10 minutter til hver.
 | Demo | Lab | Filer | Hvad der vises |
 |------|-----|-------|----------------|
 | Executive Agent | Lab 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Enkel hosted agent; oversæt teknisk jargon til et ledelsessammendrag |
-| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-agent orkestrering; vurder resume-job fit og generer en anbefaling |
+| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-agent orkestrering; vurder resume-job fit og generer en anbefaling |
 
 ### Demo 1: Executive Agent
 
@@ -126,14 +126,14 @@ En enkeltstående agent i [`workshop/lab01-single-agent/agent/`](../../../worksh
 
 ### Demo 2: Resume to Job Fit Evaluator
 
-En 4-agent workflow i [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Brug denne som en 10-minutters demo før Lab 02.
+En 4-agent workflow i [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Brug denne som en 10-minutters demo før Lab 02.
 
-1. Åbn [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) og vis, hvordan de fire agenter er forbundet i en sekventiel orkestrering.
+1. Åbn [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) og vis, hvordan de fire agenter er forbundet i en sekventiel orkestrering.
 2. Tryk `F5` for at starte **Agent Inspector** for multi-agent workflowet.
 3. Indsæt en kort jobbeskrivelse og et eksempel på et CV i Inspector chatten.
 4. Gå igennem fire-agent pipeline: CV-parser, jobkrav-ekstraktor, fit scorer og anbefalingsforfatter.
 5. Peg på, hvordan hver sub-agent's output bliver næste agents kontekst, og fremhæv overleveringsmønsteret.
-6. Vis [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) for at sammenligne med enkelt-agent ekvivalent fra Demo 1.
+6. Vis [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) for at sammenligne med enkelt-agent ekvivalent fra Demo 1.
 
 ---
 

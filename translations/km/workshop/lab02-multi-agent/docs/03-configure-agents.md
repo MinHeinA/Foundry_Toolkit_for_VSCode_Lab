@@ -4,7 +4,7 @@
 
 ក្នុងមូឌុលនេះ អ្នកបំលែងស្ទុបដែលបានរៀបចំជាមូលដ្ឋានទៅជាដំណើរការអ្នកប្រតិបត្តិការច្រើនរបស់ **អ្នក** ដោយកំណត់អថេរបរិយាកាស សរសេរការណែនាំភ្នាក់ងារ បន្ថែមឧបករណ៍ MCP ខ្សែស្រឡាយដំណើរការ និងដំឡើងកម្មវិធីអាស្រ័យ។
 
-> **យោង៖** កូដដំណើរការពេញលេញមាននៅក្នុង [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)។ ប្រើវាជាគំរូនៅពេលសាងសង់ខ្សែស្រឡាយដំណើរការអ្នកប្រតិបត្តិការរបស់អ្នក និងប្លុកពេញបំពេញ។
+> **យោង៖** កូដដំណើរការពេញលេញមាននៅក្នុង [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)។ ប្រើវាជាគំរូនៅពេលសាងសង់ខ្សែស្រឡាយដំណើរការអ្នកប្រតិបត្តិការរបស់អ្នក និងប្លុកពេញបំពេញ។
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## ជំហានទី 2៖ សរសេរការណែនាំភ្នាក់ងារ
 
-ការណែនាំកំណត់តួនាទីនៃភ្នាក់ងារនីមួយៗ ទ្រង់ទ្រាយចេញលទ្ធផល និងច្បាប់។ បើក `main.py` ហើយកំណត់ (ឬជំនួស) ខូស្តង់តិចការណែនាំ ៤គ្រាប់ - ខ្សែពេញនៅក្នុង [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)។
+ការណែនាំកំណត់តួនាទីនៃភ្នាក់ងារនីមួយៗ ទ្រង់ទ្រាយចេញលទ្ធផល និងច្បាប់។ បើក `main.py` ហើយកំណត់ (ឬជំនួស) ខូស្តង់តិចការណែនាំ ៤គ្រាប់ - ខ្សែពេញនៅក្នុង [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)។
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 វាផ្ទុកប្រវត្តិរូបទៅជាគណនីដៃគូដែលមានរចនាសម្ព័ន្ធ **និង** ចម្លងពិពណ៌នាការងារយ៉ាងដាច់ចូលទៅក្នុង `[JOB DESCRIPTION PASS-THROUGH]`។ ផ្នែកទាំងពីរដែលមានស្លាកត្រូវតែបង្ហាញនៅក្នុងលទ្ធផល។
@@ -88,7 +88,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## ជំហានទី 3៖ បន្ថែមឧបករណ៍ MCP
 
-GapAnalyzer ហៅម៉ាស៊ីនបម្រើ [Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) ដើម្បីយកធនធានរៀនពិតសម្រាប់សមត្ថភាពខ្វះនីមួយៗ។ លំហូរ `search_microsoft_learn_for_plan` ពេញលេញមាននៅក្នុង [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)។
+GapAnalyzer ហៅម៉ាស៊ីនបម្រើ [Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) ដើម្បីយកធនធានរៀនពិតសម្រាប់សមត្ថភាពខ្វះនីមួយៗ។ លំហូរ `search_microsoft_learn_for_plan` ពេញលេញមាននៅក្នុង [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)។
 
 ចុះបញ្ជីឧបករណ៍នៅលើ GapAnalyzer ពេលបង្កើតភ្នាក់ងារ៖
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> មើល [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) សម្រាប់ខ្សែបណ្តាញ `WorkflowBuilder` ពេញលេញជាមួយ `FoundryChatClient`, `AgentExecutor`, និងការហៅ `add_edge()` ទាំងអស់។
+> មើល [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) សម្រាប់ខ្សែបណ្តាញ `WorkflowBuilder` ពេញលេញជាមួយ `FoundryChatClient`, `AgentExecutor`, និងការហៅ `add_edge()` ទាំងអស់។
 
 ---
 

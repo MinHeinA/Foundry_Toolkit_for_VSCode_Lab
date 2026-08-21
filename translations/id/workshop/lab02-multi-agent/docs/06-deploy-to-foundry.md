@@ -36,7 +36,7 @@ Sebelum menerapkan, verifikasi setiap item berikut:
    - Periksa ikon Akun di kiri bawah VS Code. Nama akun Anda harus terlihat.
 
 4. **`agent.yaml` berisi nilai yang benar:**
-   - Buka `PersonalCareerCopilot/agent.yaml` dan verifikasi:
+   - Buka `PersonalCareerCopilot/main.py` dan verifikasi:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

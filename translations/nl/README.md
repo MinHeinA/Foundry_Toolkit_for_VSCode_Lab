@@ -168,7 +168,7 @@ Het is een doodsimpele, eenduidige agent - perfect om de workflow van hosted age
         │   ├── 06-deploy-to-foundry.md
         │   ├── 07-verify-in-playground.md
         │   └── 08-troubleshooting.md
-        └── 📂 PersonalCareerCopilot/ ← Reference solution (multi-agent workflow)
+        └── 📂 PersonalCareerCopilotCompleted/ ← Reference solution (multi-agent workflow)
             ├── agent.yaml
             ├── Dockerfile
             ├── main.py

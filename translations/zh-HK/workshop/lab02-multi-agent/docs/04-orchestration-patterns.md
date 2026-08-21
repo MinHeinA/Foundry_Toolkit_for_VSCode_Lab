@@ -68,7 +68,7 @@ flowchart LR
 
 ## 閱讀 WorkflowBuilder 程式碼
 
-完整的 `create_workflow()` 函數位於 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) 中。三次 `add_edge()` 呼叫組成順序管線：
+完整的 `create_workflow()` 函數位於 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) 中。三次 `add_edge()` 呼叫組成順序管線：
 
 | # | 邊 | 功能 |
 |---|------|--------|

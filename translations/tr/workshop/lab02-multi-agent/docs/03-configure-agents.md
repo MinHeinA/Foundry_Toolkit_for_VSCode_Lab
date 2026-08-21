@@ -4,7 +4,7 @@
 
 Bu modülde, iskelet halindeki taslağı, ortam değişkenlerini ayarlayarak, ajan talimatları yazarak, MCP aracını ekleyerek, iş akışı grafiğini bağlayarak ve bağımlılıkları kurarak **kendi** çok ajanlı iş akışınıza dönüştürürsünüz.
 
-> **Referans:** Tam çalışan kod [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) içinde. Kendi iş akışı grafiğinizi ve prompt bloklarınızı oluştururken referans olarak kullanın.
+> **Referans:** Tam çalışan kod [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) içinde. Kendi iş akışı grafiğinizi ve prompt bloklarınızı oluştururken referans olarak kullanın.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Adım 2: Ajan talimatlarını yazın
 
-Talimatlar, her ajanın rolünü, çıktı formatını ve kurallarını tanımlar. `main.py` dosyasını açın ve dört talimat sabitini tanımlayın (veya değiştirin) - tam metinler [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) dosyasında.
+Talimatlar, her ajanın rolünü, çıktı formatını ve kurallarını tanımlar. `main.py` dosyasını açın ve dört talimat sabitini tanımlayın (veya değiştirin) - tam metinler [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) dosyasında.
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Özgeçmişi yapılandırılmış bir aday profiline ayırır **ve** iş tanımını kelimesi kelimesine `[JOB DESCRIPTION PASS-THROUGH]` alanına kopyalar. Her iki etiketli bölüm de çıktı içinde görünmelidir.
@@ -88,7 +88,7 @@ Uyum raporunu okur. **Her** eksik beceri için Microsoft Learn kaynaklarını ge
 
 ## Adım 3: MCP aracını ekleyin
 
-GapAnalyzer, her beceri boşluğu için gerçek öğrenme kaynaklarını almak amacıyla [Microsoft Learn MCP sunucusunu](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) çağırır. Tam `search_microsoft_learn_for_plan` fonksiyonu [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) dosyasında.
+GapAnalyzer, her beceri boşluğu için gerçek öğrenme kaynaklarını almak amacıyla [Microsoft Learn MCP sunucusunu](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) çağırır. Tam `search_microsoft_learn_for_plan` fonksiyonu [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) dosyasında.
 
 Ajan oluştururken aracı GapAnalyzer'a kaydedin:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Tam `WorkflowBuilder` grafiği `FoundryChatClient`, `AgentExecutor` ve tüm `add_edge()` çağrıları ile [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) içinde bulunabilir.
+> Tam `WorkflowBuilder` grafiği `FoundryChatClient`, `AgentExecutor` ve tüm `add_edge()` çağrıları ile [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) içinde bulunabilir.
 
 ---
 

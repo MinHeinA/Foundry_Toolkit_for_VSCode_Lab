@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### الخيار 2: حذف الوكيل المستضاف فقط
 
 1. افتح [ai.azure.com](https://ai.azure.com) → مشروعك → **Build** → **Agents**.
-2. ابحث عن **PersonalCareerCopilot** → انقر **Delete**.
+2. ابحث عن **PersonalCareerCopilotCompleted** → انقر **Delete**.
 
 ### الخيار 3: حذف نشر النموذج
 

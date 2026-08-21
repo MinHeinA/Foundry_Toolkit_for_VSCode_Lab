@@ -68,7 +68,7 @@ Pregledovalec agentov prikaže isto strukturo grafa, ko agent deluje lokalno. Za
 
 ## Branje kode WorkflowBuilder
 
-Celotna funkcija `create_workflow()` je v [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Trije klici `add_edge()` zgradijo zaporedno cevovodno linijo:
+Celotna funkcija `create_workflow()` je v [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Trije klici `add_edge()` zgradijo zaporedno cevovodno linijo:
 
 | # | Povezava | Učinek |
 |---|----------|---------|

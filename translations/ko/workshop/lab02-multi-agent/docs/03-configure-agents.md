@@ -4,7 +4,7 @@
 
 이 모듈에서는 스캐폴딩 된 스텁을 <strong>자신만의</strong> 멀티 에이전트 워크플로우로 변환합니다 - 환경 변수 설정, 에이전트 지침 작성, MCP 도구 추가, 워크플로우 그래프 연결 및 종속성 설치를 통해서입니다.
 
-> **참고:** 전체 작동 코드는 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)에 있습니다. 자신의 워크플로우 그래프 및 프롬프트 블록을 구축할 때 참고하세요.
+> **참고:** 전체 작동 코드는 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)에 있습니다. 자신의 워크플로우 그래프 및 프롬프트 블록을 구축할 때 참고하세요.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## 2단계: 에이전트 지침 작성
 
-각 에이전트의 역할, 출력 형식, 규칙을 지침으로 정의합니다. `main.py`를 열고 네 개의 지침 상수를 정의하거나 교체하세요 - 전체 문자열은 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)에 있습니다.
+각 에이전트의 역할, 출력 형식, 규칙을 지침으로 정의합니다. `main.py`를 열고 네 개의 지침 상수를 정의하거나 교체하세요 - 전체 문자열은 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)에 있습니다.
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 이력서를 구조화된 후보자 프로필로 파싱하고 <strong>동시에</strong> 채용 공고를 그대로 `[JOB DESCRIPTION PASS-THROUGH]`에 복사합니다. 두 개의 레이블 섹션 모두 출력에 포함되어야 합니다.
@@ -88,7 +88,7 @@ ResumeParser 출력에서 `[PARSED RESUME]`와 `[JOB DESCRIPTION PASS-THROUGH]`�
 
 ## 3단계: MCP 도구 추가
 
-GapAnalyzer는 [Microsoft Learn MCP 서버](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol)를 호출해 각 기술 격차에 실질적인 학습 리소스를 가져옵니다. 전체 `search_microsoft_learn_for_plan` 함수는 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)에 있습니다.
+GapAnalyzer는 [Microsoft Learn MCP 서버](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol)를 호출해 각 기술 격차에 실질적인 학습 리소스를 가져옵니다. 전체 `search_microsoft_learn_for_plan` 함수는 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)에 있습니다.
 
 에이전트 생성 시 GapAnalyzer에 이 도구를 등록합니다:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> `FoundryChatClient`, `AgentExecutor`, 모든 `add_edge()` 호출을 포함한 완전한 `WorkflowBuilder` 그래프는 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)를 참고하세요.
+> `FoundryChatClient`, `AgentExecutor`, 모든 `add_edge()` 호출을 포함한 완전한 `WorkflowBuilder` 그래프는 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)를 참고하세요.
 
 ---
 

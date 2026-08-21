@@ -1,109 +1,164 @@
-# Module 2 - Start from the Original Lab 02 Baseline
+# Module 2 - Scaffold the Attendee Workflow Project
 
-⏱️ ~5 min
+⏱️ ~15 min
 
-Lab 02 separates the attendee workspace from the completed solution:
+Create your own Lab 02 project from the official Microsoft Foundry sample. The
+repository intentionally does not contain an attendee `PersonalCareerCopilot/`
+directory.
 
-```text
-lab02-multi-agent/
-├── azure.yaml
-├── PersonalCareerCopilotStarter/  # attendee working directory
-│   ├── .agentignore
-│   ├── .env.example
-│   ├── .vscode/
-│   ├── main.py
-│   ├── requirements.txt
-│   └── requirements-dev.txt
-├── PersonalCareerCopilot/         # completed solution and trainer reference
-│   ├── careers_mcp.py
-│   ├── eval.yaml
-│   ├── main.py
-│   └── tests/
-├── careers-job-mcp/       # trainer-owned service source; attendees do not deploy it
-└── trainer-deployment/    # trainer-only azd/Bicep; attendees never run it
-```
+## Step 1: Confirm the workflow sample
 
-> [!NOTE]
-> Older workshop scaffolding wizards could generate an `agent.yaml` and
-> Dockerfile for container deployment. Those legacy artifacts are not part of
-> either checked-in Python directory and are not used in this lab.
-> Agent Inspector remains the local test client, not the deployment path.
-
-## Key files
-
-| File | Purpose |
-|---|---|
-| [`../azure.yaml`](../azure.yaml) | Attendee agent-only `azd` manifest; deploys the completed starter, runtime `python_3_13`, no infrastructure |
-| [`../PersonalCareerCopilotStarter/main.py`](../PersonalCareerCopilotStarter/main.py) | Runnable original pasted-JD workflow plus numbered Careers MCP TODOs |
-| [`../PersonalCareerCopilotStarter/.env.example`](../PersonalCareerCopilotStarter/.env.example) | Credential-free attendee configuration template |
-| [`../PersonalCareerCopilotStarter/.vscode/tasks.json`](../PersonalCareerCopilotStarter/.vscode/tasks.json) | Direct local HTTP host task used by Inspector and F5 debugging |
-| [`../PersonalCareerCopilot/careers_mcp.py`](../PersonalCareerCopilot/careers_mcp.py) | Provided bounded MCP helper to copy into the starter during the challenge |
-| [`../PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py) | Completed read-only solution for comparison and trainer deployment |
-
-Both directories use the same tested Agent Framework, hosting, identity,
-HTTP, MCP, and dotenv pins, with exact debugging and tracing pins:
-
-- `debugpy==1.8.21` for direct local breakpoint attach.
-- `opentelemetry-exporter-otlp-proto-grpc==1.43.0` for reproducible, optional
-  OTLP trace export.
-
-`requirements-dev.txt` layers the pinned pytest dependency on the same runtime
-requirements.
-
-## Inspect the deployment manifest
-
-The attendee [`azure.yaml`](../azure.yaml) declares only
-`personal-career-copilot`. It contains no `infra` block and cannot provision the
-shared MCP service. Confirm it has:
-
-- `host: azure.ai.agent`
-- `project: PersonalCareerCopilotStarter`
-- `codeConfiguration.runtime: python_3_13`
-- `codeConfiguration.entryPoint: main.py`
-- `kind: hosted`
-- Responses protocol `2.0.0`
-- service name `personal-career-copilot`
-- the model, Careers endpoint/key/timeout, and Microsoft Learn runtime values
-- no infrastructure provider or Bicep path
-
-## Prove the original baseline
-
-Before adding Careers MCP, run the starter with a synthetic resume and pasted
-job description. Confirm it returns the original fit report and Microsoft Learn
-roadmap.
-
-Then copy the bounded helper:
+From `workshop/lab02-multi-agent`:
 
 ```bash
-cd workshop/lab02-multi-agent/PersonalCareerCopilotStarter
-cp ../PersonalCareerCopilot/careers_mcp.py .
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd ai agent sample list --language python --output text
 ```
 
-## Inspect the target agent boundary
+PowerShell:
 
-Use the numbered TODOs in starter `main.py`; consult the solution only after
-attempting each task. The completed boundary should have:
+```powershell
+$env:AZURE_DEV_USER_AGENT = "microsoft_foundry_skill"
+azd ai agent sample list --language python --output text
+Remove-Item Env:AZURE_DEV_USER_AGENT
+```
 
-1. `get_selected_careers_job` calls the validated client by exact key.
-2. Careers output is labeled untrusted data.
-3. `JobDescriptionAgent` alone registers the Careers tool.
-4. `GapAnalyzer` alone registers the Microsoft Learn tool.
-5. All four agents disable response storage.
-6. `WorkflowBuilder` has exactly three edges in sequence.
-7. `configure_tracing()` and required-environment validation run before the
-   Foundry client is created.
+Select **Workflow agent (Responses, Agent Framework, Python)**. This lab pins
+its current manifest:
+
+```text
+https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/05-workflows/azure.yaml
+```
+
+## Step 2: Generate the project
+
+Confirm neither `agent-framework-workflows-responses/` nor
+`PersonalCareerCopilot/` already exists. Do not rerun initialization over an
+existing project; the extension can create duplicate services.
+
+```bash
+test ! -e agent-framework-workflows-responses
+test ! -e PersonalCareerCopilot
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd ai agent init --no-prompt \
+  -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/05-workflows/azure.yaml" \
+  --deploy-mode code \
+  --runtime python_3_13 \
+  --entry-point main.py
+```
+
+PowerShell:
+
+```powershell
+if (Test-Path agent-framework-workflows-responses) { throw "Generated folder already exists." }
+if (Test-Path PersonalCareerCopilot) { throw "Lab 02 project already exists." }
+$env:AZURE_DEV_USER_AGENT = "microsoft_foundry_skill"
+azd ai agent init --no-prompt `
+  -m "https://github.com/microsoft-foundry/foundry-samples/blob/main/samples/python/hosted-agents/agent-framework/responses/05-workflows/azure.yaml" `
+  --deploy-mode code `
+  --runtime python_3_13 `
+  --entry-point main.py
+Remove-Item Env:AZURE_DEV_USER_AGENT
+```
+
+The current scaffold creates `agent-framework-workflows-responses/`, including
+its own `azure.yaml`, local azd environment, source tree, `main.py`, requirements,
+and deployment metadata.
+
+If the command reports missing subscription/location values, continue. Module 6
+binds the generated project to the existing Lab 01 Foundry project before
+deployment.
+
+## Step 3: Normalize the workshop names
+
+macOS/Linux:
+
+```bash
+mv agent-framework-workflows-responses PersonalCareerCopilot
+cd PersonalCareerCopilot
+mv src/agent-framework-workflows-responses src/PersonalCareerCopilot
+```
+
+Windows PowerShell:
+
+```powershell
+Rename-Item agent-framework-workflows-responses PersonalCareerCopilot
+Set-Location PersonalCareerCopilot
+Rename-Item src/agent-framework-workflows-responses PersonalCareerCopilot
+```
+
+The expected structure is:
+
+```text
+PersonalCareerCopilot/
+├── azure.yaml
+├── .azure/
+└── src/
+    └── PersonalCareerCopilot/
+        ├── main.py
+        ├── requirements.txt
+        └── .env.example
+```
+
+## Step 4: Apply attendee-only assets
+
+The generated sample can provision its own AI project. Lab 02 instead reuses the
+attendee's existing Lab 01 project, so replace the generated manifest with the
+attendee-only reference:
+
+macOS/Linux:
+
+```bash
+cp ../lab-assets/azure.attendee.yaml azure.yaml
+cp ../lab-assets/requirements.completed.txt \
+  src/PersonalCareerCopilot/requirements.txt
+cp ../lab-assets/.env.example src/PersonalCareerCopilot/.env
+cp ../lab-assets/.agentignore src/PersonalCareerCopilot/.agentignore
+```
+
+Windows PowerShell:
+
+```powershell
+Copy-Item ../lab-assets/azure.attendee.yaml azure.yaml -Force
+Copy-Item ../lab-assets/requirements.completed.txt `
+  src/PersonalCareerCopilot/requirements.txt -Force
+Copy-Item ../lab-assets/.env.example `
+  src/PersonalCareerCopilot/.env -Force
+Copy-Item ../lab-assets/.agentignore `
+  src/PersonalCareerCopilot/.agentignore -Force
+```
+
+The attendee manifest:
+
+- contains only `personal-career-copilot`;
+- uses direct-code runtime `python_3_13`;
+- points to `src/PersonalCareerCopilot/main.py`;
+- contains no `infra` or `ai-project` service;
+- receives model and MCP values from the attendee azd environment.
+
+## Step 5: Preserve the generated starting point
+
+Open `src/PersonalCareerCopilot/main.py`. It is the generated slogan workflow,
+not the Resume → Job Fit Evaluator. Module 3 replaces its three sample agents
+with the four Lab 02 agents.
+
+Do not copy the completed `main.py`. Use
+[`PersonalCareerCopilotCompleted`](../PersonalCareerCopilotCompleted) only after
+attempting each module or during the trainer debrief.
+
+The generated `PersonalCareerCopilot/` directory is ignored by the parent
+workshop repository, but it remains its own local azd/git project.
 
 ### Checkpoint
 
-- [ ] I am editing `PersonalCareerCopilotStarter`, not the solution.
-- [ ] The original pasted-JD baseline works before I add Careers MCP.
-- [ ] I copied the provided bounded helper into the starter.
-- [ ] I found attendee `azure.yaml` at the Lab 02 root.
-- [ ] I confirmed the Hosted Agent runtime is `python_3_13`.
-- [ ] I confirmed all runtime, debugging, and OTLP requirements are pinned.
-- [ ] I understand `PersonalCareerCopilot` is the end-state reference.
-- [ ] I understand `careers-job-mcp/` and `trainer-deployment/` are trainer-owned.
-- [ ] I will not run `azd provision` or `azd up` for Lab 02.
+- [ ] The official workflow sample generated my own project.
+- [ ] The outer directory is `PersonalCareerCopilot/`.
+- [ ] Source is under `src/PersonalCareerCopilot/`.
+- [ ] `azure.yaml` came from `lab-assets/azure.attendee.yaml`.
+- [ ] `.agentignore` excludes `.env`, virtual environments, tests, and `.vscode`.
+- [ ] The manifest has no infrastructure section.
+- [ ] `main.py` still contains the generated slogan workflow.
+- [ ] I have not copied code from `PersonalCareerCopilotCompleted/`.
 
 ---
 

@@ -49,14 +49,14 @@ Lihat laluan pembelajaran penuh di:
 
 - [Dokumen Makmal 2 - Prasyarat](docs/00-prerequisites.md)
 - [Dokumen Makmal 2 - Laluan Pembelajaran Penuh](docs/README.md)
-- [Panduan menjalankan PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Panduan menjalankan PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Bahagian 2: Bina dan uji aliran kerja
 
 1. Gunakan wizard Foundry Toolkit untuk menyediakan projek berasaskan aliran kerja.
-2. Salin blok arahan dan graf aliran kerja dari `PersonalCareerCopilot/main.py` ke dalam ruang kerja anda.
+2. Salin blok arahan dan graf aliran kerja dari `PersonalCareerCopilotCompleted/main.py` ke dalam ruang kerja anda.
 3. Jalankan secara lokal dengan Agent Inspector dan sahkan kesemua empat agen serta alat MCP.
 4. Sebarkan agen yang dihoskan ke Foundry apabila ujian tempatan lulus.
 

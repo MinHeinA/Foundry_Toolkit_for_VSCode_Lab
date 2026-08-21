@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Επιλογή 2: Διαγραφή μόνο του φιλοξενούμενου πράκτορα
 
 1. Ανοίξτε το [ai.azure.com](https://ai.azure.com) → το έργο σας → **Build** → **Agents**.
-2. Βρείτε το **PersonalCareerCopilot** → κάντε κλικ στο **Delete**.
+2. Βρείτε το **PersonalCareerCopilotCompleted** → κάντε κλικ στο **Delete**.
 
 ### Επιλογή 3: Διαγραφή της ανάπτυξης μοντέλου
 

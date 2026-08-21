@@ -68,7 +68,7 @@ Agent Inspector näyttää tämän saman graafirakenteen, kun agentti toimii pai
 
 ## WorkflowBuilder-koodin lukeminen
 
-Koko `create_workflow()`-funktio löytyy tiedostosta [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Kolme `add_edge()`-kutsua rakentavat peräkkäisen putken:
+Koko `create_workflow()`-funktio löytyy tiedostosta [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Kolme `add_edge()`-kutsua rakentavat peräkkäisen putken:
 
 | # | Reuna | Vaikutus |
 |---|--------|----------|

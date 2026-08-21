@@ -12,15 +12,15 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Build, test, and deploy AI agents to **Microsoft Foundry Agent Service** as
-**Hosted Agents**. Lab 01 keeps the VS Code Foundry Toolkit flow; Lab 02 uses the
-current direct-code `azd` deployment path defined in `azure.yaml`.
+**Hosted Agents**. Lab 01 keeps the VS Code Foundry Toolkit flow; Lab 02 starts
+from the official Agent Framework workflow scaffold and uses direct-code `azd`
+deployment.
 
 > **Hosted Agents are currently in preview.** Supported regions are limited - see [region availability](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents#region-availability).
 
-> Lab 01's `agent/` folder is scaffolded by the Foundry extension. Lab 02 uses
-> `PersonalCareerCopilotStarter/` as the attendee workspace and keeps
-> `PersonalCareerCopilot/` as the completed solution/trainer reference. It does
-> not deploy from `agent.yaml`.
+> Lab 01's `agent/` folder is scaffolded by the Foundry extension. Lab 02
+> attendees generate their own untracked `PersonalCareerCopilot/` project.
+> `PersonalCareerCopilotCompleted/` is a post-attempt solution/trainer reference.
 
 ### 🌐 Multi-Language Support
 
@@ -189,13 +189,13 @@ It is a dead-simple, single-purpose agent - perfect for learning the hosted agen
         │   ├── 07-verify-in-playground.md
         │   ├── 08-troubleshooting.md
         │   └── 09-summary.md
-        ├── azure.yaml                ← Attendee direct-code Hosted Agent deployment
-        ├── 📂 PersonalCareerCopilot/ ← Reference solution (multi-agent workflow)
+        ├── 📂 lab-assets/            ← Files copied into the generated attendee project
+        ├── 📂 PersonalCareerCopilotCompleted/ ← Completed solution/reference
         │   ├── careers_mcp.py        ← Out-of-band Careers search CLI + MCP client
         │   ├── main.py               ← Four strict sequential agents
         │   └── requirements.txt      ← Pinned Python dependencies
         ├── 📂 careers-job-mcp/       ← Trainer-owned read-only service source
-        └── 📂 trainer-deployment/    ← Trainer-only azd/Bicep project
+        └── 📂 trainer-deployment/    ← Trainer-only azd/Bicep project and manifest
 ```
 
 > **Note:** Lab 01 still uses the **Microsoft Foundry extension** scaffold. Lab
@@ -275,13 +275,15 @@ Each lab is self-contained with its own modules. Start with **Lab 01** to learn 
 |---|--------|------|
 | 1 | Prerequisites (Lab 02) | [00-prerequisites.md](workshop/lab02-multi-agent/docs/00-prerequisites.md) |
 | 2 | Understand multi-agent architecture | [01-understand-multi-agent.md](workshop/lab02-multi-agent/docs/01-understand-multi-agent.md) |
-| 3 | Start from the original Lab 02 baseline | [02-scaffold-multi-agent.md](workshop/lab02-multi-agent/docs/02-scaffold-multi-agent.md) |
+| 3 | Scaffold the attendee workflow project | [02-scaffold-multi-agent.md](workshop/lab02-multi-agent/docs/02-scaffold-multi-agent.md) |
 | 4 | Configure agents & environment | [03-configure-agents.md](workshop/lab02-multi-agent/docs/03-configure-agents.md) |
 | 5 | Orchestration patterns | [04-orchestration-patterns.md](workshop/lab02-multi-agent/docs/04-orchestration-patterns.md) |
 | 6 | Test locally (multi-agent) | [05-test-locally.md](workshop/lab02-multi-agent/docs/05-test-locally.md) |
 | 7 | Deploy to Foundry | [06-deploy-to-foundry.md](workshop/lab02-multi-agent/docs/06-deploy-to-foundry.md) |
 | 8 | Verify in playground | [07-verify-in-playground.md](workshop/lab02-multi-agent/docs/07-verify-in-playground.md) |
 | 9 | Troubleshooting (multi-agent) | [08-troubleshooting.md](workshop/lab02-multi-agent/docs/08-troubleshooting.md) |
+| 10 | Summary & next steps | [09-summary.md](workshop/lab02-multi-agent/docs/09-summary.md) |
+| 11 | Optional Careers@Gov MCP challenge | [10-careers-mcp-challenge.md](workshop/lab02-multi-agent/docs/10-careers-mcp-challenge.md) |
 
 ---
 

@@ -68,7 +68,7 @@ Agent Inspector מציג את מבנה הגרף הזה כאשר הסוכן רץ 
 
 ## קריאת קוד WorkflowBuilder
 
-הפונקציה המלאה `create_workflow()` נמצאת בקובץ [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). שלוש הקריאות ל-`add_edge()` בונות את הצינור הסידורי:
+הפונקציה המלאה `create_workflow()` נמצאת בקובץ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). שלוש הקריאות ל-`add_edge()` בונות את הצינור הסידורי:
 
 | # | קשת | אפקט |
 |---|-----|-------|

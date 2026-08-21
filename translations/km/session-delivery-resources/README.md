@@ -23,7 +23,7 @@
 | មណ្ឌលហាត់ 01 - ហត្ថវត្ថុតែមួយ       | [Lab 01](../workshop/lab01-single-agent/README.md)                               | មណ្ឌលហាត់ប្រាណដៃ: បង្កើត, សាកល្បង និងចេញផ្សាយ *Explain Like I'm an Executive* ហត្ថវត្ថុបម្រើ |
 | មណ្ឌលហាត់ 02 - ការងារហត្ថវត្ថុច្រើន | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | មណ្ឌលហាត់ប្រាណដៃ: បង្កើតដំណើរការហត្ថវត្ថុ 4 តួ *Resume to Job Fit Evaluator*         |
 | បង្ហាញ 1: អ្នកបម្រើអគ្គនាយក           | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | បង្ហាញមណ្ឌល 01: បកប្រែកហេតុផលបច្ចេកទេសទៅជាសង្ខេបអ្នកអគ្គនាយក                       |
-| បង្ហាញ 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | បង្ហាញមណ្ឌល 02: ដំណើរការហត្ថវត្ថុ 4 តួដែលវាយតំលៃ ភាពសមស្របរបស់ប្រវត្តិរូប និងធ្វើអនុសាសន៍     |
+| បង្ហាញ 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | បង្ហាញមណ្ឌល 02: ដំណើរការហត្ថវត្ថុ 4 តួដែលវាយតំលៃ ភាពសមស្របរបស់ប្រវត្តិរូប និងធ្វើអនុសាសន៍     |
 
 > **ចំណាំសម្រាប់អ្នកបង្រៀន:** ស្លាយនិងតំណវីដេអូ នឹងត្រូវបន្ថែមពេលកំណត់ត្រាត្រូវបានផ្សព្វផ្សាយ។ រហូតដល់ពេលនោះ សូមទាក់ទងអ្នកគ្រប់គ្រង (មើល [Contacts](#ទំនាក់ទំនង)) សម្រាប់ឯកសារថ្មីៗ។
 
@@ -97,7 +97,7 @@
 | គំនូសស្ថាបត្យកម្ម          | ដើរតាម [README architecture](../README.md#architecture): scaffold, Inspector, ACR, Agent Service។          |
 | រចនាសម្ព័ន្ធរបស់ hosted agent | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - មុខងាររបស់ឯកសារនីមួយៗ។                              |
 | បង្ហាញបន្តផ្ទាល់: Executive Agent | ប្ដូរទៅ VS Code និងដំណើរការ​ដំណើរការបង្ហាញ [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) ពេញលេញ (មើល [បង្ហាញ១](#បង្ហាញ-១-executive-agent))។ |
-| បង្ហាញបន្តផ្ទាល់: Resume to Job Fit Evaluator | ប្ដូរទៅ VS Code និងដំណើរការ [PersonalCareerCopilot/](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ដំណើរការហត្ថវត្ថុ 4 តួ (មើល [បង្ហាញ២](#បង្ហាញ-២-resume-to-job-fit-evaluator))។ |
+| បង្ហាញបន្តផ្ទាល់: Resume to Job Fit Evaluator | ប្ដូរទៅ VS Code និងដំណើរការ [PersonalCareerCopilotCompleted/](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ដំណើរការហត្ថវត្ថុ 4 តួ (មើល [បង្ហាញ២](#បង្ហាញ-២-resume-to-job-fit-evaluator))។ |
 | សេចក្ដីសង្ខេបមណ្ឌល 01         | ទំនាក់ទំនងទៅអ្នករៀន។ បង្ហាញ [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md)។ |
 | លំនាំហត្ថវត្ថុច្រើន       | ដំណើរតាមជួរ ប្រតិបត្តិ តំណត្រឡប់ - ទិដ្ឋភាពមុនចាប់ផ្ដើមមណ្ឌល 02។                                        |
 | សេចក្ដីសង្ខេបមណ្ឌល 02         | ទំនាក់ទំនងទៅអ្នករៀន។ បង្ហាញ [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md)។ |
@@ -112,7 +112,7 @@
 | បង្ហាញ | មណ្ឌល | ឯកសារ | ត្រូវបង្ហាញអ្វី |
 |------|-----|-------|--------------|
 | Executive Agent | មណ្ឌល 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | អ្នកបម្រើ hosted តែមួយ; បកប្រែលក្ខណៈបច្ចេកទេសទៅជាសង្ខេបអ្នកអគ្គនាយក |
-| Resume to Job Fit Evaluator | មណ្ឌល 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | ការសម្របសម្រួលអ្នកបម្រើ ៤ តួ; វាយតំលៃភាពសមរម្យរវាងប្រវត្តិរូបនិងតម្រូវការងារ និងផ្តល់អនុសាសន៍ |
+| Resume to Job Fit Evaluator | មណ្ឌល 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | ការសម្របសម្រួលអ្នកបម្រើ ៤ តួ; វាយតំលៃភាពសមរម្យរវាងប្រវត្តិរូបនិងតម្រូវការងារ និងផ្តល់អនុសាសន៍ |
 
 ### បង្ហាញ ១: Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### បង្ហាញ ២: Resume to Job Fit Evaluator
 
-ដំណើរការអ្នកបម្រើ ៤ តួនៅក្នុង [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). ប្រើវាជាបង្ហាញ ១០ នាទីមុនមណ្ឌល ០២។
+ដំណើរការអ្នកបម្រើ ៤ តួនៅក្នុង [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). ប្រើវាជាបង្ហាញ ១០ នាទីមុនមណ្ឌល ០២។
 
-1. បើក [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ហើយបង្ហាញរបៀបភ្ជាប់អ្នកបម្រើចំនួនបួនជាលំដាប់ត្រឡប់។
+1. បើក [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ហើយបង្ហាញរបៀបភ្ជាប់អ្នកបម្រើចំនួនបួនជាលំដាប់ត្រឡប់។
 2. ចុច `F5` ដើម្បីបើក **Agent Inspector** សម្រាប់ដំណើរការអ្នកបម្រើច្រើន។
 3. បញ្ចូលការពិពណ៌នាការងារតូច និងប្រវត្តិរូបមួយនៅក្នុងការចរចារបស់ Inspector។
 4. ដើរតាមបង្គោលអ្នកបម្រើ ៤ តួ: resume parser, job requirement extractor, fit scorer, និង recommendation writer។
 5. ថ្លែងបញ្ជាក់ថាត output របស់អ្នកបម្រើកូនមួយៗក្លាយជាសំណុំបែបបទរបស់អ្នកបម្រើបន្ទាប់ និងបង្ហាញលំនាំ handoff។
-6. បង្ហាញ [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) ដើម្បីធៀបជាមួយតួអង្គបម្រើតែមួយនៃបង្ហាញ ១។
+6. បង្ហាញ [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ដើម្បីធៀបជាមួយតួអង្គបម្រើតែមួយនៃបង្ហាញ ១។
 
 ---
 

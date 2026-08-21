@@ -36,7 +36,7 @@ Prieš diegdami, įsitikinkite, kad viskas žemiau yra įvykdyta:
    - Patikrinkite paskyrų ikoną apatiniame kairiajame VS Code kampe. Turėtumėte matyti savo paskyros vardą.
 
 4. **`agent.yaml` turi tinkamas reikšmes:**
-   - Atidarykite `PersonalCareerCopilot/agent.yaml` ir patikrinkite:
+   - Atidarykite `PersonalCareerCopilot/main.py` ir patikrinkite:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

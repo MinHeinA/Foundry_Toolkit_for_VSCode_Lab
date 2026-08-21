@@ -68,7 +68,7 @@ Agent Inspector приказује ову исту структуру графа
 
 ## Читање кода WorkflowBuilder-а
 
-Целу функцију `create_workflow()` можете наћи у [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Три позива `add_edge()` граде редоследну линију:
+Целу функцију `create_workflow()` можете наћи у [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Три позива `add_edge()` граде редоследну линију:
 
 | # | Веза | Ефекат |
 |---|-------|---------|

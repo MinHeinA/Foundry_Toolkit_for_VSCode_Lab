@@ -4,7 +4,7 @@
 
 Ebben a modulban az előkészített sablont alakítod át **saját** többügynökös munkafolyamatoddá - környezeti változók beállításával, ügynökök utasításainak megírásával, az MCP eszköz hozzáadásával, a munkafolyamat gráf összekapcsolásával és függőségek telepítésével.
 
-> **Referencia:** A teljes működő kód a [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) fájlban található. Használd referenciaként a saját munkafolyamat gráfod és prompt blokkok építése közben.
+> **Referencia:** A teljes működő kód a [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) fájlban található. Használd referenciaként a saját munkafolyamat gráfod és prompt blokkok építése közben.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## 2. lépés: Írd meg az ügynök utasításokat
 
-Az utasítások határozzák meg az ügynök szerepét, kimeneti formátumát és szabályait. Nyisd meg a `main.py`-t, és definiáld (vagy cseréld le) a négy utasítás konstansát - a teljes szövegek a [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) fájlban találhatók.
+Az utasítások határozzák meg az ügynök szerepét, kimeneti formátumát és szabályait. Nyisd meg a `main.py`-t, és definiáld (vagy cseréld le) a négy utasítás konstansát - a teljes szövegek a [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) fájlban találhatók.
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 A motivációs levelet strukturált jelöltprofilra bontja **és** szó szerint átmásolja az álláshirdetés szövegét a `[JOB DESCRIPTION PASS-THROUGH]` részbe. Mindkét címkézett szakasznak meg kell jelennie a kimenetben.
@@ -88,7 +88,7 @@ Beolvassa az illeszkedési jelentést. Minden egyes hiányzó készséghez megh�
 
 ## 3. lépés: Add hozzá az MCP eszközt
 
-A GapAnalyzer a [Microsoft Learn MCP szervert](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) hívja meg, hogy valós tananyagokat töltsön be minden egyes készség hiányhoz. A teljes `search_microsoft_learn_for_plan` függvény megtalálható a [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) fájlban.
+A GapAnalyzer a [Microsoft Learn MCP szervert](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) hívja meg, hogy valós tananyagokat töltsön be minden egyes készség hiányhoz. A teljes `search_microsoft_learn_for_plan` függvény megtalálható a [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) fájlban.
 
 Regisztráld az eszközt a GapAnalyzerhez az ügynök létrehozásakor:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Lásd a teljes `WorkflowBuilder` gráfot a [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) fájlban a `FoundryChatClient`, `AgentExecutor`, és az összes `add_edge()` hívással együtt.
+> Lásd a teljes `WorkflowBuilder` gráfot a [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) fájlban a `FoundryChatClient`, `AgentExecutor`, és az összes `add_edge()` hívással együtt.
 
 ---
 

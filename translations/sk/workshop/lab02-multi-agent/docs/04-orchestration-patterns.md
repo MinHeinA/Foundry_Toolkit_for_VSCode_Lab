@@ -68,7 +68,7 @@ Agent Inspector zobrazuje túto rovnakú štruktúru grafu, keď agent beží lo
 
 ## Čítanie kódu WorkflowBuilder
 
-Celá funkcia `create_workflow()` je v [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Tri volania `add_edge()` vytvárajú sekvenčný pipeline:
+Celá funkcia `create_workflow()` je v [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Tri volania `add_edge()` vytvárajú sekvenčný pipeline:
 
 | # | Hrana | Efekt |
 |---|------|--------|

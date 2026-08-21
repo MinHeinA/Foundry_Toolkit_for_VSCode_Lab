@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### 2. lehetőség: Csak a hosztolt ügynök törlése
 
 1. Nyisd meg a [ai.azure.com](https://ai.azure.com) oldalt → a projekted → **Build** → **Agents**.
-2. Találd meg a **PersonalCareerCopilot** → kattints a **Törlés** gombra.
+2. Találd meg a **PersonalCareerCopilotCompleted** → kattints a **Törlés** gombra.
 
 ### 3. lehetőség: A modell telepítésének törlése
 

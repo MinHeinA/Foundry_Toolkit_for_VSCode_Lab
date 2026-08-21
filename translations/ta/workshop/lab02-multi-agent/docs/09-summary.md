@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### விருப்பம் 2: செய்யப்பட்ட செயல் காரரை மட்டும் நீக்கவும்
 
 1. [ai.azure.com](https://ai.azure.com) → உங்கள் திட்டம் → **Build** → **Agents** என்பதை திறக்கவும்.
-2. **PersonalCareerCopilot** ஐ கண்டுபிடித்து → **Delete** கிளிக் செய்யவும்.
+2. **PersonalCareerCopilotCompleted** ஐ கண்டுபிடித்து → **Delete** கிளிக் செய்யவும்.
 
 ### விருப்பம் 3: மாதிரி வெளியீட்டை நீக்கவும்
 

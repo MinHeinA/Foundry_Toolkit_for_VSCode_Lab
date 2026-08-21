@@ -4,7 +4,7 @@
 
 Dalam modul ini, anda menukar kerangka asas yang distruktur menjadi **aliran kerja** pelbagai ejen anda - dengan menetapkan pembolehubah persekitaran, menulis arahan ejen, menambah alat MCP, menyambung graf aliran kerja, dan memasang kebergantungan.
 
-> **Rujukan:** Kod kerja lengkap terdapat dalam [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Gunakannya sebagai rujukan semasa membina graf aliran kerja dan blok arahan anda sendiri.
+> **Rujukan:** Kod kerja lengkap terdapat dalam [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Gunakannya sebagai rujukan semasa membina graf aliran kerja dan blok arahan anda sendiri.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Langkah 2: Tulis arahan ejen
 
-Arahan menentukan peranan setiap ejen, format output, dan peraturan. Buka `main.py` dan takrifkan (atau gantikan) empat konstanta arahan - rentetan lengkap ada dalam [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Arahan menentukan peranan setiap ejen, format output, dan peraturan. Buka `main.py` dan takrifkan (atau gantikan) empat konstanta arahan - rentetan lengkap ada dalam [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Mengurai resume menjadi profil calon yang berstruktur **dan** menyalin deskripsi kerja secara tepat ke dalam `[JOB DESCRIPTION PASS-THROUGH]`. Kedua-dua bahagian berlabel mesti muncul dalam output.
@@ -88,7 +88,7 @@ Membaca laporan kesesuaian. Untuk **setiap** kemahiran yang hilang, memanggil `s
 
 ## Langkah 3: Tambah alat MCP
 
-GapAnalyzer memanggil [server Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) untuk mendapatkan sumber pembelajaran sebenar bagi setiap jurang kemahiran. Fungsi penuh `search_microsoft_learn_for_plan` ada dalam [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer memanggil [server Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) untuk mendapatkan sumber pembelajaran sebenar bagi setiap jurang kemahiran. Fungsi penuh `search_microsoft_learn_for_plan` ada dalam [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Daftarkan alat tersebut pada GapAnalyzer semasa mencipta ejen:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Lihat [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) untuk graf lengkap `WorkflowBuilder` dengan `FoundryChatClient`, `AgentExecutor`, dan semua panggilan `add_edge()`.
+> Lihat [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) untuk graf lengkap `WorkflowBuilder` dengan `FoundryChatClient`, `AgentExecutor`, dan semua panggilan `add_edge()`.
 
 ---
 

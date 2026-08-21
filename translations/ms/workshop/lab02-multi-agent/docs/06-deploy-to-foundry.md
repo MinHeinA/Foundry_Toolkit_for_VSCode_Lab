@@ -36,7 +36,7 @@ Sebelum mengerahkan, pastikan setiap item berikut:
    - Semak ikon Akaun di bahagian bawah-kiri VS Code. Nama akaun anda harus kelihatan.
 
 4. **`agent.yaml` mengandungi nilai yang betul:**
-   - Buka `PersonalCareerCopilot/agent.yaml` dan sahkan:
+   - Buka `PersonalCareerCopilot/main.py` dan sahkan:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

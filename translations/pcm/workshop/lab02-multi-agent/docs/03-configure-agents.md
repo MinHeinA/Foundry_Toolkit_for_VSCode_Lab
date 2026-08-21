@@ -4,7 +4,7 @@
 
 for dis module, you go transform di scaffolded stub into **your** multi-agent workflow - by setting environment variables, writing agent instructions, adding di MCP tool, wiring di workflow graph, and installing dependencies.
 
-> **Reference:** Di full working code dey for [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Use am as reference while you dey build your own workflow graph and prompt blocks.
+> **Reference:** Di full working code dey for [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Use am as reference while you dey build your own workflow graph and prompt blocks.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Step 2: Write agent instructions
 
-Instructions dey define every agent role, output format, and rules. Open `main.py` and define (or replace) di four instruction constants - di full strings dey for [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Instructions dey define every agent role, output format, and rules. Open `main.py` and define (or replace) di four instruction constants - di full strings dey for [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 E go parse di resume into structured candidate profile **and** go copy di job description word for word into `[JOB DESCRIPTION PASS-THROUGH]`. Both labeled sections mus dey for di output.
@@ -88,7 +88,7 @@ E dey read di fit report. For **every** missing skill, e go call `search_microso
 
 ## Step 3: Add di MCP tool
 
-Di GapAnalyzer go call di [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) to fetch real learning resources for every skill gap. Di full `search_microsoft_learn_for_plan` function dey in [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Di GapAnalyzer go call di [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) to fetch real learning resources for every skill gap. Di full `search_microsoft_learn_for_plan` function dey in [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Register di tool on di GapAnalyzer wen you dey create di agent:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> See [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) for di full `WorkflowBuilder` graph wit `FoundryChatClient`, `AgentExecutor`, and all `add_edge()` calls.
+> See [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) for di full `WorkflowBuilder` graph wit `FoundryChatClient`, `AgentExecutor`, and all `add_edge()` calls.
 
 ---
 

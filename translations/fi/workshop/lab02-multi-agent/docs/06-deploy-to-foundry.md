@@ -36,7 +36,7 @@ Ennen julkaisua varmista kaikki allaolevat kohdat:
    - Tarkista oikeasta alakulmasta tilikuvake. Nimesi pitäisi näkyä.
 
 4. **`agent.yaml` sisältää oikeat arvot:**
-   - Avaa `PersonalCareerCopilot/agent.yaml` ja varmista:
+   - Avaa `PersonalCareerCopilot/main.py` ja varmista:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

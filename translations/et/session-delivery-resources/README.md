@@ -23,7 +23,7 @@ Enne töötuba viimist palun:
 | Harjutus 01 – ühe agendi        | [Lab 01](../workshop/lab01-single-agent/README.md)                             | Praktiline ülesanne: ehitada, testida ja juurutada *Explain Like I'm an Executive* majutatud agent |
 | Harjutus 02 – mitme agendi töövoog | [Lab 02](../workshop/lab02-multi-agent/README.md)                              | Praktiline ülesanne: ehitada 4-agendi *Resume to Job Fit Evaluator* töövoog        |
 | Demo 1: Juhataja agent             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                           | Harjutus 01 demo: tõlgi tehniline žargoon juhataja kokkuvõtteks                    |
-| Demo 2: CV sobivuse hindaja         | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)   | Harjutus 02 demo: 4-agendi töövoog, mis hindab CV ja töö sobivust ja annab soovitusi |
+| Demo 2: CV sobivuse hindaja         | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)   | Harjutus 02 demo: 4-agendi töövoog, mis hindab CV ja töö sobivust ja annab soovitusi |
 
 > **Märkus koolitajatele:** Slaidide deck ja videolinkid lisatakse, kui salvestused on avaldatud. Seni võtke uuemate materjalide saamiseks ühendust hooldajaga (vt [Kontaktid](#kontaktid)).
 
@@ -97,7 +97,7 @@ Deck järgib sama struktuuri nagu harjutused. Iga osa soovitatud rääkepunktid:
 | Arhitektuuri diagramm      | Läbivaade [README arhitektuurist](../README.md#architecture): scaffolding, Inspector, ACR, Agent Service |
 | Majutatud agendi olemus    | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - iga faili ülesanded.                   |
 | Otseülekande demo: Juhataja agent | Lülituge VS Code’i ja jooksutage [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) demo algusest lõpuni (vt [Demo 1](#demo-1-juhataja-agent)). |
-| Otseülekande demo: CV sobivuse hindaja | Lülituge VS Code’i ja jooksutage [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-agendi demo (vt [Demo 2](#demo-2-cv-sobivuse-hindaja)). |
+| Otseülekande demo: CV sobivuse hindaja | Lülituge VS Code’i ja jooksutage [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-agendi demo (vt [Demo 2](#demo-2-cv-sobivuse-hindaja)). |
 | Harjutus 01 tutvustus       | Andke õppijatele üle, suunake [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Mitme agendi mustrid        | Sekventaalne vs korraga vs üleandmine - eelvaade enne Harjutus 02 algust.                         |
 | Harjutus 02 tutvustus       | Andke õppijatele üle, suunake [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Esitluses on kaasatud kaks otseülekande demo. Igaühele eraldage 10 minutit.
 | Demo                | Harjutus | Failid                                              | Mida näidata                                      |
 |---------------------|----------|----------------------------------------------------|--------------------------------------------------|
 | Juhataja agent      | Harjutus 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Üksik majutatud agent; tõlkige tehniline keelekasutus juhataja kokkuvõtteks |
-| CV sobivuse hindaja | Harjutus 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-agendi orkestreerimine; hindage CV-töö sobivust ja tehke soovitusi |
+| CV sobivuse hindaja | Harjutus 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-agendi orkestreerimine; hindage CV-töö sobivust ja tehke soovitusi |
 
 ### Demo 1: Juhataja agent
 
@@ -126,14 +126,14 @@ Iseseisev agent kaustas [`workshop/lab01-single-agent/agent/`](../../../workshop
 
 ### Demo 2: CV sobivuse hindaja
 
-Nelja agendi töövoog kaustas [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Kasutage seda 10-minutilise demonstreerimiseks enne Harjutus 02 algust.
+Nelja agendi töövoog kaustas [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Kasutage seda 10-minutilise demonstreerimiseks enne Harjutus 02 algust.
 
-1. Avage [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ja selgitage, kuidas neli agenti on järjestikuse orkestreerimise jaoks ühendatud.
+1. Avage [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ja selgitage, kuidas neli agenti on järjestikuse orkestreerimise jaoks ühendatud.
 2. Vajutage `F5`, et käivitada **Agent Inspector** mitme agendi töövoo jaoks.
 3. Kopeerige lühike töökuulutus ja näidis-CV Inspector'i vestlusesse.
 4. Läbige nelja agendi torujuhe: CV parser, töö nõuete eraldaja, sobivuse hindaja ja soovituste kirjutaja.
 5. Näidake, kuidas iga sub-agendi väljund saab järgmise agendi kontekstiks, tõstes esile üleandmise mustrit.
-6. Näidake [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml), et võrrelda seda Demo 1 vastava üksikagendiga.
+6. Näidake [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py), et võrrelda seda Demo 1 vastava üksikagendiga.
 
 ---
 

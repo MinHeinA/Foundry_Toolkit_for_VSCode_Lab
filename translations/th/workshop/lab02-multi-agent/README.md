@@ -49,14 +49,14 @@ flowchart TD
 
 - [เอกสารแล็บ 2 - สิ่งที่ต้องเตรียม](docs/00-prerequisites.md)
 - [เอกสารแล็บ 2 - เส้นทางการเรียนรู้เต็มรูปแบบ](docs/README.md)
-- [คู่มือการใช้งาน PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [คู่มือการใช้งาน PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## ส่วนที่ 2: สร้างและทดสอบเวิร์กโฟลว์
 
 1. ใช้วิซาร์ดจาก Foundry Toolkit เพื่อสร้างโครงงานแบบเวิร์กโฟลว์
-2. คัดลอกบล็อกคำสั่งและกราฟเวิร์กโฟลว์จาก `PersonalCareerCopilot/main.py` ลงในพื้นที่ทำงานของคุณ
+2. คัดลอกบล็อกคำสั่งและกราฟเวิร์กโฟลว์จาก `PersonalCareerCopilotCompleted/main.py` ลงในพื้นที่ทำงานของคุณ
 3. รันแบบโลคอลด้วย Agent Inspector และตรวจสอบว่าเอเจนต์ทั้งสี่ตัวและเครื่องมือ MCP ทำงานครบถ้วน
 4. ปรับใช้เอเจนต์โฮสต์ไปยัง Foundry เมื่อการทดสอบโลคอลผ่าน
 

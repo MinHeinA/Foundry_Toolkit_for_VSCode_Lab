@@ -8,16 +8,16 @@
 
 ## What you'll build
 
-Lab 02 extends the sequential Resume → Job Fit Evaluator with an optional shared
-Careers@Gov MCP enhancement:
+Lab 02 starts from the official Agent Framework **Workflow agent (Responses,
+Python)** sample:
 
-1. Run the original pasted-job-description workflow from the attendee starter.
-2. Complete the numbered Careers MCP TODOs without editing the solution.
-3. Search the trainer-hosted read-only job snapshot from a local CLI.
-4. Explicitly choose one returned stable job key.
-5. Give Agent Inspector a synthetic resume and `Selected Job Key:`.
-6. Let `JobDescriptionAgent` retrieve exactly that listing.
-7. Receive a fit score, source provenance, gaps, and a Microsoft Learn roadmap.
+1. Generate your own untracked `PersonalCareerCopilot/` project.
+2. Replace the sample slogan agents with Resume, Job Description, Matching, and
+   Gap Analyzer agents.
+3. Verify the original pasted-job-description workflow.
+4. Optionally add the shared Careers@Gov MCP enhancement.
+5. Search the trainer-hosted read-only snapshot and choose one stable key.
+6. Receive a grounded fit score, source provenance, gaps, and Learn roadmap.
 
 The original pasted `Job Description:` input remains a required fallback.
 
@@ -39,8 +39,8 @@ deploy the shared MCP service.
 - Your own Azure subscription and Foundry project in a Hosted Agent region.
 - A deployed model with sufficient quota.
 - **Foundry Project Manager** on **your** Foundry project for deployment.
-- Azure CLI, Azure Developer CLI (`azd`), and the current Foundry `azd`
-  extension declared by [`../azure.yaml`](../azure.yaml).
+- Azure CLI, Azure Developer CLI (`azd`), and `azure.ai.agents`
+  `>=1.0.0-beta.4`.
 - Python **3.13 recommended** for local work; the direct-code Hosted Agent uses
   `python_3_13`.
 - VS Code and Foundry Toolkit for local Agent Inspector testing.
@@ -48,10 +48,9 @@ deploy the shared MCP service.
   - `CAREERS_MCP_ENDPOINT`
   - `CAREERS_MCP_API_KEY`
 
-The packages in
-[`PersonalCareerCopilotStarter/requirements.txt`](../PersonalCareerCopilotStarter/requirements.txt)
-are pinned to tested versions. Do not replace them with unpinned “latest”
-packages during the workshop.
+[`lab-assets/requirements.completed.txt`](../lab-assets/requirements.completed.txt)
+contains the tested completed dependency set. Do not replace those pins with
+unpinned “latest” packages during the workshop.
 
 ## Validate your starting point
 
@@ -64,20 +63,9 @@ azd version
 ```
 
 Confirm Python reports 3.13 and the Azure subscription shown is yours. If Azure
-authentication is missing, authenticate interactively before the lab.
-
-Copy the environment template, but do not commit `.env`:
-
-```bash
-cd workshop/lab02-multi-agent/PersonalCareerCopilotStarter
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-```
-
-Windows users can activate with `.\.venv\Scripts\Activate.ps1` and copy with
-`copy .env.example .env`.
+authentication is missing, authenticate interactively before the lab. Module 2
+creates the project and local environment; no attendee `main.py`, requirements,
+or `azure.yaml` is pre-created in this repository.
 
 ## Data-safety rules
 
@@ -92,7 +80,9 @@ Windows users can activate with `.\.venv\Scripts\Activate.ps1` and copy with
 - [ ] Python 3.13 is available.
 - [ ] My Azure CLI context points to my own subscription.
 - [ ] My own Foundry project/model and model quota are ready.
+- [ ] `azure.ai.agents` version `1.0.0-beta.4` or later is installed.
 - [ ] I received the Careers endpoint/key out of band.
+- [ ] I understand Module 2 generates my `PersonalCareerCopilot/` directory.
 - [ ] I understand I must not access the trainer project or deploy trainer infrastructure.
 - [ ] I will use synthetic resume data only.
 

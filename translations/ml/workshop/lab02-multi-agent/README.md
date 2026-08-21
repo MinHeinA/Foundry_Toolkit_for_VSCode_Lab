@@ -49,14 +49,14 @@ flowchart TD
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## ഭാഗം 2: വർക്ക്‌ഫ്ലോ നിർമ്മിക്കുകയും പരീക്ഷിക്കുകയും ചെയ്യുക
 
 1. Foundry Toolkit വിസർഡ് ഉപയോഗിച്ച് വർക്ക്‌ഫ്ലോ അടിസ്ഥാന പ്രോജക്ട് സ്‌കാഫോൾഡ് ചെയ്യുക.
-2. `PersonalCareerCopilot/main.py` ൽ നിന്നും പ്രോംപ്റ്റ് ബ്ലോക്കുകളും വർക്ക്‌ഫ്ലോ ഗ്രാഫും കോപ്പി ചെയ്ത് നിങ്ങളുടെ വർക്ക്‌സ്പേസിലേക്ക് പേസ്റ്റ് ചെയ്യുക.
+2. `PersonalCareerCopilotCompleted/main.py` ൽ നിന്നും പ്രോംപ്റ്റ് ബ്ലോക്കുകളും വർക്ക്‌ഫ്ലോ ഗ്രാഫും കോപ്പി ചെയ്ത് നിങ്ങളുടെ വർക്ക്‌സ്പേസിലേക്ക് പേസ്റ്റ് ചെയ്യുക.
 3. ഏജന്റ് ഇൻസ്പക്ടർ ഉപയോഗിച്ച് ലോക്കലായി പ്രവർത്തിപ്പിച്ച് നാല് ഏജന്റുമെല്ലാം കൂടാതെ MCP ടൂൾ ശരിയാണ് എന്ന് സ്ഥിരീകരിക്കുക.
 4. ലോക്കൽ ടെസ്റ്റിംഗ് വിജയിച്ചാൽ ഹോസ്റ്റ് ചെയ്ത ഏജന്റ് Foundry ലേക്ക് വിന്യസിക്കുക.
 

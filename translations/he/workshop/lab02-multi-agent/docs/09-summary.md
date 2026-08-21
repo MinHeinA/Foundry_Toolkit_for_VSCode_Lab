@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### אפשרות 2: מחיקת הסוכן המאוחסן בלבד
 
 1. פתחו [ai.azure.com](https://ai.azure.com) → הפרויקט שלכם → **בנה** → **סוכנים**.
-2. מצאו את **PersonalCareerCopilot** → לחצו על **מחיקה**.
+2. מצאו את **PersonalCareerCopilotCompleted** → לחצו על **מחיקה**.
 
 ### אפשרות 3: מחיקת פריסת המודל
 

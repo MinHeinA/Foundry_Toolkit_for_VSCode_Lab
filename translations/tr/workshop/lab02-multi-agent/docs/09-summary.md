@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Seçenek 2: Sadece barındırılan ajanı silin
 
 1. [ai.azure.com](https://ai.azure.com) → projenize gidin → **Build** → **Agents**.
-2. **PersonalCareerCopilot** bulun → **Delete**’ye tıklayın.
+2. **PersonalCareerCopilotCompleted** bulun → **Delete**’ye tıklayın.
 
 ### Seçenek 3: Model dağıtımını silin
 

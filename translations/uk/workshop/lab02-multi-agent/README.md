@@ -49,14 +49,14 @@ flowchart TD
 
 - [Документація Лабораторної 2 - Вимоги](docs/00-prerequisites.md)
 - [Документація Лабораторної 2 - Повний навчальний шлях](docs/README.md)
-- [Посібник з запуску PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Посібник з запуску PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Частина 2: Створіть і протестуйте робочий процес
 
 1. Використайте майстер Foundry Toolkit для створення проекту на основі робочого процесу.
-2. Скопіюйте блоки підказок і граф робочого процесу з `PersonalCareerCopilot/main.py` у вашу робочу директорію.
+2. Скопіюйте блоки підказок і граф робочого процесу з `PersonalCareerCopilotCompleted/main.py` у вашу робочу директорію.
 3. Запустіть локально через Agent Inspector та перевірте роботу всіх чотирьох агентів і інструмент MCP.
 4. Розгорніть хостингового агента у Foundry, коли локальне тестування успішне.
 

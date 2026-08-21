@@ -23,7 +23,7 @@
 | लॅब 01 - सिंगल एजंट          | [Lab 01](../workshop/lab01-single-agent/README.md)                               | हाताळणी लॅब: *Explain Like I'm an Executive* होस्टेड एजंट तयार करा, चाचणी द्या, आणि तैनात करा     |
 | लॅब 02 - मल्टी-एजंट वर्कफ्लो | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | हाताळणी लॅब: 4-एजंट *Resume to Job Fit Evaluator* वर्कफ्लो तयार करा                     |
 | डेमो 1: Executive Agent             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | लॅब 01 डेमो: तांत्रिक झागण (jargon) चे कार्यकारी सारांशात भाषांतर करा                          |
-| डेमो 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | लॅब 02 डेमो: 4-एजंट वर्कफ्लो जो रिज्युमे-जॉब फिट स्कोर करतो आणि शिफारशी तयार करतो            |
+| डेमो 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | लॅब 02 डेमो: 4-एजंट वर्कफ्लो जो रिज्युमे-जॉब फिट स्कोर करतो आणि शिफारशी तयार करतो            |
 
 > **ट्रेनर्ससाठी नोंद:** स्लाइड डेक आणि व्हिडिओ दुवे रेकॉर्डिंग प्रकाशित झाल्यानंतर जोडले जातील. तोपर्यंत, ताज्या स्रोतांसाठी देखभाल करणाऱ्याला (बघा [Contacts](#संपर्क)) विचारा.
 
@@ -97,7 +97,7 @@
 | वास्तुकला आरेख            | [README वास्तुकला](../README.md#architecture) मधून पुढे जा: scaffold, Inspector, ACR, Agent Service.   |
 | होस्टेड एजंट ची रचना   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - प्रत्येक फाइल काय करते.                              |
 | थेट डेमो: Executive Agent  | VS Code कडे स्विच करा आणि [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) डेमो अखेरपर्यंत चालवा (बघा [Demo 1](#डेमो-1-executive-agent)). |
-| थेट डेमो: Resume to Job Fit Evaluator | VS Code कडे स्विच करा आणि [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-एजंट डेमो चालवा (बघा [Demo 2](#डेमो-2-resume-to-job-fit-evaluator)). |
+| थेट डेमो: Resume to Job Fit Evaluator | VS Code कडे स्विच करा आणि [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-एजंट डेमो चालवा (बघा [Demo 2](#डेमो-2-resume-to-job-fit-evaluator)). |
 | लॅब 01 सारांश                | शिकणाऱ्यांना सोपवा. [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) कडे निर्देश करा. |
 | मल्टी-एजंट नमुने        | साखळीप्रमाणे विरुद्ध एकाचवेळी विरुद्ध हँडऑफ - लॅब 02 सुरू होण्यापूर्वी पूर्वावलोकन करा.                                           |
 | लॅब 02 सारांश                | शिकणाऱ्यांना सोपवा. [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) कडे निर्देश करा. |
@@ -112,7 +112,7 @@
 | डेमो | लॅब | फाइल्स | काय दाखवायचे |
 |------|-----|-------|--------------|
 | Executive Agent | लॅब 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | एकल होस्टेड एजंट; तांत्रिक झागण (jargon) चे कार्यकारी सारांशात भाषांतर करा |
-| Resume to Job Fit Evaluator | लॅब 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-एजंट संयोजन; रिज्युमे-जॉब फिट स्कोर करा आणि शिफारस तयार करा |
+| Resume to Job Fit Evaluator | लॅब 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-एजंट संयोजन; रिज्युमे-जॉब फिट स्कोर करा आणि शिफारस तयार करा |
 
 ### डेमो 1: Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### डेमो 2: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) मध्ये एक 4-एजंट वर्कफ्लो. लॅब 02 पूर्वी 10 मिनिटांचा डेमो म्हणून वापरा.
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) मध्ये एक 4-एजंट वर्कफ्लो. लॅब 02 पूर्वी 10 मिनिटांचा डेमो म्हणून वापरा.
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) उघडा आणि चार एजंट कसे साखळीप्रमाणे जोडलेले आहेत ते दाखवा.
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) उघडा आणि चार एजंट कसे साखळीप्रमाणे जोडलेले आहेत ते दाखवा.
 2. मल्टी-एजंट वर्कफ्लोसाठी **Agent Inspector** सुरू करण्यासाठी `F5` दाबा.
 3. Inspector चॅटमध्ये एक लहान नोकरीचे वर्णन आणि नमुना रिज्युमे पेस्ट करा.
 4. चार एजंटांची प्रक्रिया समजावून सांगा: रिज्युमे पार्सर, कामाची गरज काढणारा, फिट स्कोअरर, आणि शिफारस लेखक.
 5. प्रत्येक उप-अॅजंटचे आउटपुट पुढील एजंटच्या संदर्भासाठी कसे जाते ते दाखवा, हँडऑफ नमुना अधोरेखित करा.
-6. सिंगल एजंटच्या तुलनेत [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) दाखवा.
+6. सिंगल एजंटच्या तुलनेत [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) दाखवा.
 
 ---
 

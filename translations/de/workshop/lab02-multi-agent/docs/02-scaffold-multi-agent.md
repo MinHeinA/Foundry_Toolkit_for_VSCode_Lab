@@ -6,7 +6,7 @@ In diesem Modul verwendest du das [Foundry Toolkit für VS Code](https://aka.ms/
 
 > **Wichtiges Konzept:** Das Gerüst ist eine funktionierende Vorlage mit einem Agenten. Du ersetzt die Platzhalter-Logik durch den `WorkflowBuilder`-Graphen im Modul 3. Du musst den Boilerplate-Code nicht von Grund auf neu schreiben.
 
-> **Referenzimplementation:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ist ein vollständiges, funktionierendes Beispiel. Nutze es, um deine Arbeit während des Fortschreitens zu vergleichen.
+> **Referenzimplementation:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ist ein vollständiges, funktionierendes Beispiel. Nutze es, um deine Arbeit während des Fortschreitens zu vergleichen.
 
 ### Ablauf des Scaffold-Assistenten
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, installiert `requirements.txt`, öffnet Port 8088, führt `python main.py` aus |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Referenz:** Siehe [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) und [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) für den vollständigen generierten Inhalt.
+> **Referenz:** Siehe [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) und [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) für den vollständigen generierten Inhalt.
 
 ---
 

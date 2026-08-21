@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Vaihtoehto 2: Poista vain isännöity agentti
 
 1. Avaa [ai.azure.com](https://ai.azure.com) → projektisi → **Build** → **Agents**.
-2. Etsi **PersonalCareerCopilot** → klikkaa **Delete**.
+2. Etsi **PersonalCareerCopilotCompleted** → klikkaa **Delete**.
 
 ### Vaihtoehto 3: Poista mallijulkaisu
 

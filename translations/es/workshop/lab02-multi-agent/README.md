@@ -49,14 +49,14 @@ Consulta la ruta de aprendizaje completa en:
 
 - [Documentación Lab 2 - Prerrequisitos](docs/00-prerequisites.md)
 - [Documentación Lab 2 - Ruta de aprendizaje completa](docs/README.md)
-- [Guía de ejecución PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Guía de ejecución PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Parte 2: Construir y probar el flujo de trabajo
 
 1. Usa el asistente Foundry Toolkit para crear la estructura del proyecto basado en flujo de trabajo.
-2. Copia los bloques de prompt y el gráfico de flujo de trabajo de `PersonalCareerCopilot/main.py` a tu espacio de trabajo.
+2. Copia los bloques de prompt y el gráfico de flujo de trabajo de `PersonalCareerCopilotCompleted/main.py` a tu espacio de trabajo.
 3. Ejecuta localmente con el Inspector de Agentes y verifica los cuatro agentes más la herramienta MCP.
 4. Despliega el agente alojado en Foundry cuando las pruebas locales sean exitosas.
 

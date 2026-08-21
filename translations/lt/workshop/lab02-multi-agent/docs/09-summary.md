@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### 2 variantas: Ištrinti tik talpinamą agentą
 
 1. Atidarykite [ai.azure.com](https://ai.azure.com) → savo projektą → **Build** → **Agents**.
-2. Suraskite **PersonalCareerCopilot** → spustelėkite **Delete**.
+2. Suraskite **PersonalCareerCopilotCompleted** → spustelėkite **Delete**.
 
 ### 3 variantas: Ištrinti modelio diegimą
 

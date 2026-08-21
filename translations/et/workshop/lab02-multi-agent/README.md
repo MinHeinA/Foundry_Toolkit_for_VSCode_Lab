@@ -49,14 +49,14 @@ Vaata kogu õpitud teekonda aadressil:
 
 - [Labor 2 Dokumendid - Eeltingimused](docs/00-prerequisites.md)
 - [Labor 2 Dokumendid - Täielik õpituteekond](docs/README.md)
-- [PersonalCareerCopilot jooksutamisjuhend](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted jooksutamisjuhend](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Osa 2: Ehita ja testi töövoogu
 
 1. Kasuta Foundry Toolkiti viisardit töövoogupõhise projekti raamitekstiks.
-2. Kopeeri promptplokid ja töövoo graafik failist `PersonalCareerCopilot/main.py` oma tööruumi.
+2. Kopeeri promptplokid ja töövoo graafik failist `PersonalCareerCopilotCompleted/main.py` oma tööruumi.
 3. Käivita kohapeal Agent Inspectoriga ja kontrolli kõigi nelja agendi ning MCP tööriista tööd.
 4. Juhi majutatud agent Foundry'sse, kui kohalik testimine õnnestub.
 

@@ -23,7 +23,7 @@ Mulțumim că susțineți această sesiune!
 | Laborator 01 - agent unic    | [Lab 01](../workshop/lab01-single-agent/README.md)                              | Laborator practic: construire, testare și implementare a agentului *Explain Like I'm an Executive* |
 | Laborator 02 - flux multi-agent | [Lab 02](../workshop/lab02-multi-agent/README.md)                             | Laborator practic: construire fluxul *Resume to Job Fit Evaluator* cu 4 agenți           |
 | Demo 1: Agent Executiv       | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                            | Demo Laborator 01: traduceți jargon tehnic într-un rezumat executiv                      |
-| Demo 2: Evaluator Adecvare CV la Job | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Demo Laborator 02: flux de lucru cu 4 agenți care evaluează adecvarea CV-ului la job și generează recomandări |
+| Demo 2: Evaluator Adecvare CV la Job | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Demo Laborator 02: flux de lucru cu 4 agenți care evaluează adecvarea CV-ului la job și generează recomandări |
 
 > **Notă pentru instructori:** Slide-urile și linkurile video vor fi adăugate odată ce înregistrările vor fi publicate. Până atunci, contactați managerul (vedeți [Contacte](#contacte)) pentru cele mai noi resurse.
 
@@ -97,7 +97,7 @@ Deck-ul urmează aceeași structură ca laboratoarele. Puncte sugerate de discu�
 | Diagramă arhitectură      | Parcurgeți [architectura din README](../README.md#architecture): schelet, Inspector, ACR, Agent Service.       |
 | Anatomia unui agent găzduit | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ce face fiecare fișier.                            |
 | Demo live: Agent Executiv  | Comutați la VS Code și rulați demo-ul [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) end-to-end (vedeți [Demo 1](#demo-1-agent-executiv)). |
-| Demo live: Evaluator Adecvare CV la Job | Comutați la VS Code și rulați demo-ul cu 4 agenți [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (vedeți [Demo 2](#demo-2-evaluator-adecvare-cv-la-job)). |
+| Demo live: Evaluator Adecvare CV la Job | Comutați la VS Code și rulați demo-ul cu 4 agenți [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (vedeți [Demo 2](#demo-2-evaluator-adecvare-cv-la-job)). |
 | Prezentare Laborator 01    | Predați participanților. Indicați către [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Modele multi-agent        | Secvențial vs concurent vs transfer - previzualizare înainte să înceapă Laboratorul 02.                        |
 | Prezentare Laborator 02    | Predați participanților. Indicați către [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Două demo-uri live sunt incluse în prezentare. Alocați câte 10 minute fiecă
 | Demo                       | Laborator | Fișiere                                                       | Ce să arătați                                     |
 |----------------------------|-----------|---------------------------------------------------------------|--------------------------------------------------|
 | Agent Executiv             | Laborator 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent)       | Agent unic găzduit; traduce jargon tehnic într-un rezumat executiv |
-| Evaluator Adecvare CV la Job | Laborator 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)  | Orchestrare cu 4 agenți; evaluează adecvarea CV-ului la job și oferă recomandări |
+| Evaluator Adecvare CV la Job | Laborator 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)  | Orchestrare cu 4 agenți; evaluează adecvarea CV-ului la job și oferă recomandări |
 
 ### Demo 1: Agent Executiv
 
@@ -126,14 +126,14 @@ Un agent autonom în [`workshop/lab01-single-agent/agent/`](../../../workshop/la
 
 ### Demo 2: Evaluator Adecvare CV la Job
 
-Un flux de lucru cu 4 agenți în [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Folosiți-l ca demo de 10 minute înainte de Laborator 02.
+Un flux de lucru cu 4 agenți în [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Folosiți-l ca demo de 10 minute înainte de Laborator 02.
 
-1. Deschideți [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) și arătați cum cei patru agenți sunt conectați într-o orchestrare secvențială.
+1. Deschideți [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) și arătați cum cei patru agenți sunt conectați într-o orchestrare secvențială.
 2. Apăsați `F5` pentru a lansa **Agent Inspector** pentru fluxul multi-agent.
 3. Lipiți o descriere scurtă a jobului și un CV exemplu în chat-ul Inspectorului.
 4. Parcurgeți fluxul celor patru agenți: parser CV, extractor cerințe job, evaluator potrivire, și scriitor recomandări.
 5. Evidențiați cum ieșirea fiecărui sub-agent devine contextul agentului următor, arătând modelul transferului.
-6. Arătați [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) pentru a compara cu echivalentul pentru un singur agent din Demo 1.
+6. Arătați [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) pentru a compara cu echivalentul pentru un singur agent din Demo 1.
 
 ---
 

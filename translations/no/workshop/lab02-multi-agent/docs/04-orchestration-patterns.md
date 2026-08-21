@@ -68,7 +68,7 @@ Agentinspektøren viser denne samme grafstrukturen når agenten kjører lokalt. 
 
 ## Lese WorkflowBuilder-koden
 
-Den fullstendige `create_workflow()`-funksjonen ligger i [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). De tre kallene til `add_edge()` bygger den sekvensielle pipelinen:
+Den fullstendige `create_workflow()`-funksjonen ligger i [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). De tre kallene til `add_edge()` bygger den sekvensielle pipelinen:
 
 | # | Kante | Effekt |
 |---|------|--------|

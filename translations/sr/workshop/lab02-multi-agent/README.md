@@ -49,14 +49,14 @@ flowchart TD
 
 - [Лаб 2 Документација - Предуслови](docs/00-prerequisites.md)
 - [Лаб 2 Документација - Цели пут учења](docs/README.md)
-- [Упутство за покретање PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Упутство за покретање PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Део 2: Направите и тестирате радни ток
 
 1. Користите Foundry Toolkit чаробњак за скелетирање пројекта базираног на радном току.
-2. Копирајте блокове команды и граф радног тока из `PersonalCareerCopilot/main.py` у ваш радни простор.
+2. Копирајте блокове команды и граф радног тока из `PersonalCareerCopilotCompleted/main.py` у ваш радни простор.
 3. Покрените локално са Agent Inspector-ом и проверите сва четири агента и MCP алатку.
 4. Распоредите хостованог агента на Foundry након успешног локалног тестирања.
 

@@ -6,7 +6,7 @@ I denna modul använder du [Foundry Toolkit för VS Code](https://aka.ms/foundry
 
 > **Nyckelkoncept:** Grundstrukturen är en fungerande stub med en agent. Du ersätter platshållarlogiken med `WorkflowBuilder`-grafen i Modul 3. Du behöver inte skriva grundkoden från början.
 
-> **Referensimplementation:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) är ett komplett, fungerande exempel. Använd det för att jämföra ditt arbete under tiden.
+> **Referensimplementation:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) är ett komplett, fungerande exempel. Använd det för att jämföra ditt arbete under tiden.
 
 ### Flöde för scaffold-guiden
 
@@ -92,7 +92,7 @@ Efter att scaffolding är klar, verifiera att du ser dessa filer i Utforskaren (
 | `Dockerfile` | `python:3.12-slim`, installerar `requirements.txt`, exponerar port 8088, kör `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Referens:** Se [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) och [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) för komplett genererat innehåll.
+> **Referens:** Se [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) och [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) för komplett genererat innehåll.
 
 ---
 

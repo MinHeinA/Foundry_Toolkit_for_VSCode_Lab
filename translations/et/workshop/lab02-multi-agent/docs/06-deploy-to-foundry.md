@@ -36,7 +36,7 @@ Enne avaldamist kontrollige kõiki allolevaid punkte:
    - Vaadake vasakus allnurgas asuvat Kontode ikooni. Teie kontonimi peaks seal olema nähtav.
 
 4. **`agent.yaml` sisaldab õigeid väärtusi:**
-   - Avage `PersonalCareerCopilot/agent.yaml` ja kontrollige:
+   - Avage `PersonalCareerCopilot/main.py` ja kontrollige:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

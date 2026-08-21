@@ -11,8 +11,9 @@ resume data in an issue.
 `main.py` calls `get_required_environment_variable()` before creating the
 Foundry client. It rejects missing values and scaffold placeholders.
 
-1. Confirm `.env` is in `PersonalCareerCopilotStarter/`, beside `main.py`.
-2. Copy `.env.example` to `.env`.
+1. Confirm `.env` is in
+   `PersonalCareerCopilot/src/PersonalCareerCopilot/`, beside `main.py`.
+2. Recopy `lab-assets/.env.example` if the generated template is incomplete.
 3. Replace every placeholder, especially:
 
    ```env
@@ -42,17 +43,12 @@ For breakpoint attach from the command line, run:
 python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
 ```
 
-Or run the VS Code task **Run Agent HTTP Server**. For breakpoints, select
-**Debug Local Agent HTTP Server**; the task hosts the direct local server on port
-8088 and attaches `debugpy` on port 5679.
-
 If startup hangs or a port is occupied:
 
-- Stop any earlier Lab 02 task/process before starting another.
+- Stop any earlier Lab 02 process before starting another.
 - Confirm both 8088 and 5679 are available.
-- Run **Validate prerequisites** from `.vscode/tasks.json`.
-- Reopen `PersonalCareerCopilotStarter` as the VS Code workspace so `${workspaceFolder}`
-  and `.venv` resolve correctly.
+- Reopen generated `PersonalCareerCopilot/` as the VS Code workspace and select
+  its Python 3.13 virtual environment.
 
 ### Agent Inspector or Workflow Visualizer does not connect
 
@@ -224,8 +220,13 @@ next stage.
 
 ### Duplicate final response
 
-The `WorkflowBuilder` must have one start executor, `gap_executor` as the single
-output executor, and exactly three sequential edges.
+For the original pasted-JD workflow, `WorkflowBuilder` has one start executor,
+`gap_executor` as the single output executor, and exactly three sequential
+edges.
+
+For the Careers challenge, it has two output executors (`gap_executor` and the
+failure stop executor) plus four edges. See
+[`lab-assets/careers-failure-gate.md`](../lab-assets/careers-failure-gate.md).
 
 ### `[MICROSOFT LEARN MCP FAILURE]`
 
@@ -287,7 +288,8 @@ does not, first compare endpoint/key values without printing the secret.
 
 ### Deployment is missing or not ready
 
-Run from `workshop/lab02-multi-agent`:
+Run from generated project root
+`workshop/lab02-multi-agent/PersonalCareerCopilot`:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \

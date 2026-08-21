@@ -68,7 +68,7 @@ flowchart LR
 
 ## WorkflowBuilderコードの読み方
 
-完全な `create_workflow()` 関数は [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) にあります。3つの `add_edge()` 呼び出しがシーケンシャルパイプラインを作成します：
+完全な `create_workflow()` 関数は [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) にあります。3つの `add_edge()` 呼び出しがシーケンシャルパイプラインを作成します：
 
 | # | エッジ | 効果 |
 |---|----------|-------------------------------|

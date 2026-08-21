@@ -4,7 +4,7 @@
 
 Σε αυτήν την ενότητα, μετασχηματίζετε τον προκαθορισμένο σκελετό σε **το δικό σας** πολλαπλό ροή εργασίας πράκτορα - ορίζοντας μεταβλητές περιβάλλοντος, γράφοντας οδηγίες πρακτόρων, προσθέτοντας το εργαλείο MCP, συνδέοντας το γράφημα ροής εργασίας και εγκαθιστώντας εξαρτήσεις.
 
-> **Αναφορά:** Ο πλήρης λειτουργικός κώδικας βρίσκεται στο [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Χρησιμοποιήστε το ως αναφορά κατά την κατασκευή του δικού σας γραφήματος ροής εργασίας και μπλοκ προτροπών.
+> **Αναφορά:** Ο πλήρης λειτουργικός κώδικας βρίσκεται στο [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Χρησιμοποιήστε το ως αναφορά κατά την κατασκευή του δικού σας γραφήματος ροής εργασίας και μπλοκ προτροπών.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Βήμα 2: Γράψτε οδηγίες πρακτόρων
 
-Οι οδηγίες ορίζουν τον ρόλο κάθε πράκτορα, τη μορφή εξόδου και τους κανόνες. Ανοίξτε το `main.py` και ορίστε (ή αντικαταστήστε) τις τέσσερις σταθερές οδηγιών - οι πλήρεις συμβολοσειρές βρίσκονται στο [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Οι οδηγίες ορίζουν τον ρόλο κάθε πράκτορα, τη μορφή εξόδου και τους κανόνες. Ανοίξτε το `main.py` και ορίστε (ή αντικαταστήστε) τις τέσσερις σταθερές οδηγιών - οι πλήρεις συμβολοσειρές βρίσκονται στο [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Αναλύει το βιογραφικό σε ένα δομημένο προφίλ υποψηφίου **και** αντιγράφει την περιγραφή θέσης ακριβώς μέσα στο `[JOB DESCRIPTION PASS-THROUGH]`. Και οι δύο επισημασμένες ενότητες πρέπει να εμφανίζονται στην έξοδο.
@@ -88,7 +88,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Βήμα 3: Προσθέστε το εργαλείο MCP
 
-Ο GapAnalyzer καλεί τον [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) για να ανακτήσει πραγματικούς μαθησιακούς πόρους για κάθε κενό δεξιότητας. Η πλήρης συνάρτηση `search_microsoft_learn_for_plan` βρίσκεται στο [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Ο GapAnalyzer καλεί τον [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) για να ανακτήσει πραγματικούς μαθησιακούς πόρους για κάθε κενό δεξιότητας. Η πλήρης συνάρτηση `search_microsoft_learn_for_plan` βρίσκεται στο [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Εγγράψτε το εργαλείο στον GapAnalyzer κατά τη δημιουργία του πράκτορα:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Δείτε το [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) για το πλήρες γράφημα `WorkflowBuilder` με `FoundryChatClient`, `AgentExecutor` και όλες τις κλήσεις `add_edge()`.
+> Δείτε το [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) για το πλήρες γράφημα `WorkflowBuilder` με `FoundryChatClient`, `AgentExecutor` και όλες τις κλήσεις `add_edge()`.
 
 ---
 

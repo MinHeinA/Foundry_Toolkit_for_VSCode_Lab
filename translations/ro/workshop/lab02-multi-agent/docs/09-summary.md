@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Opțiunea 2: Șterge doar agentul găzduit
 
 1. Deschide [ai.azure.com](https://ai.azure.com) → proiectul tău → **Build** → **Agents**.
-2. Găsește **PersonalCareerCopilot** → apasă pe **Delete**.
+2. Găsește **PersonalCareerCopilotCompleted** → apasă pe **Delete**.
 
 ### Opțiunea 3: Șterge implementarea modelului
 

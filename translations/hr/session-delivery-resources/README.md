@@ -23,7 +23,7 @@ Prije održavanja radionice, molimo:
 | Lab 01 - pojedinačni agent   | [Lab 01](../workshop/lab01-single-agent/README.md)                             | Praktični laboratorij: izgradnja, testiranje i implementacija *Explain Like I'm an Executive* hostiranog agenta |
 | Lab 02 - višestruki agent workflow | [Lab 02](../workshop/lab02-multi-agent/README.md)                              | Praktični laboratorij: izgradnja 4-agentskog *Resume to Job Fit Evaluator* workflowa      |
 | Demo 1: Executive Agent      | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                           | Demo Lab 01: prevod tehničkog žargona u izvršni sažetak                                  |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)  | Demo Lab 02: 4-agent workflow koji ocjenjuje podudarnost životopisa s poslom i generira preporuke |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)  | Demo Lab 02: 4-agent workflow koji ocjenjuje podudarnost životopisa s poslom i generira preporuke |
 
 > **Napomena za trenere:** Poveznice na prezentaciju i videozapise bit će dodane nakon objave snimki. Do tada, kontaktirajte održavatelja (vidi [Kontakti](#kontakti)) za najnovije materijale.
 
@@ -97,7 +97,7 @@ Prezentacija prati isti tijek kao i laboratoriji. Predložene teme za svaku sekc
 | Dijagram arhitekture       | Prođite kroz [README arhitekturu](../README.md#architecture): kostur, Inspector, ACR, Agent Service.         |
 | Anatomija hostiranog agenta | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - što svaka datoteka radi.                         |
 | Živi demo: Executive Agent  | Prebacite se na VS Code i pokrenite demo [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) od početka do kraja (vidi [Demo 1](#demo-1-executive-agent)). |
-| Živi demo: Resume to Job Fit Evaluator | Prebacite se na VS Code i pokrenite 4-agent demo [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (vidi [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
+| Živi demo: Resume to Job Fit Evaluator | Prebacite se na VS Code i pokrenite 4-agent demo [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (vidi [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
 | Kratko o Lab 01            | Predajte sudionicima. Uputite ih na [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Obrasci višestrukih agenata | Sekvencijalno vs istovremeno vs predaja - ukratko prije početka Lab 02.                                     |
 | Kratko o Lab 02            | Predajte sudionicima. Uputite ih na [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ U dostavi su uključena dva živa demo prikaza. Odvojite po 10 minuta za svaki.
 | Demo                    | Laboratorij | Datoteke                                                 | Što prikazati                                                   |
 |-------------------------|-------------|----------------------------------------------------------|----------------------------------------------------------------|
 | Executive Agent         | Lab 01      | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Pojedinačni hostirani agent; prevod tehničkog žargona u izvršni sažetak |
-| Resume to Job Fit Evaluator | Lab 02      | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-agent orkestracija; ocjena podudarnosti životopisa s poslom i generiranje preporuke |
+| Resume to Job Fit Evaluator | Lab 02      | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-agent orkestracija; ocjena podudarnosti životopisa s poslom i generiranje preporuke |
 
 ### Demo 1: Executive Agent
 
@@ -126,14 +126,14 @@ Samostalni agent u [`workshop/lab01-single-agent/agent/`](../../../workshop/lab0
 
 ### Demo 2: Resume to Job Fit Evaluator
 
-4-agent workflow u [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Koristite ga kao desetominutni demo prije Lab 02.
+4-agent workflow u [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Koristite ga kao desetominutni demo prije Lab 02.
 
-1. Otvorite [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) i pokažite kako su četiri agenta povezana u sekvencijalnu orkestraciju.
+1. Otvorite [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) i pokažite kako su četiri agenta povezana u sekvencijalnu orkestraciju.
 2. Pritisnite `F5` za pokretanje **Agent Inspectora** za višestruki agentski workflow.
 3. Zalijepite kratki opis posla i primjer životopisa u razgovor Inspectora.
 4. Prođite kroz pipeline sa četiri agenta: parser životopisa, ekstraktor zahtjeva posla, ocjenjivač podudarnosti i pisac preporuka.
 5. Istaknite kako je izlaz svakog pod-agenta kontekst za sljedećeg agenta, naglašavajući obrazac predaje.
-6. Pokažite [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) za usporedbu s ekvivalentom pojedinačnog agenta iz Demo 1.
+6. Pokažite [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) za usporedbu s ekvivalentom pojedinačnog agenta iz Demo 1.
 
 ---
 

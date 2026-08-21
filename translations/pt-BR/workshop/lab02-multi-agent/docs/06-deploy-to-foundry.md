@@ -36,7 +36,7 @@ Antes de implantar, verifique cada item abaixo:
    - Verifique o ícone Contas no canto inferior esquerdo do VS Code. O nome da sua conta deve estar visível.
 
 4. **`agent.yaml` tem valores corretos:**
-   - Abra `PersonalCareerCopilot/agent.yaml` e verifique:
+   - Abra `PersonalCareerCopilot/main.py` e verifique:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

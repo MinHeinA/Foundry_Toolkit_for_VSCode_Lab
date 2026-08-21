@@ -68,7 +68,7 @@ flowchart LR
 
 ## WorkflowBuilder കോഡ് വായിക്കൽ
 
-പൂർണ്ണ `create_workflow()` ഫംഗ്ഷൻ [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)-ൽ ഉണ്ട്. മൂന്ന് `add_edge()` കോൾസുകൾ സീക്വൻഷ്യൽ പൈപ്പ്ലൈൻ നിർമ്മിക്കുന്നു:
+പൂർണ്ണ `create_workflow()` ഫംഗ്ഷൻ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)-ൽ ഉണ്ട്. മൂന്ന് `add_edge()` കോൾസുകൾ സീക്വൻഷ്യൽ പൈപ്പ്ലൈൻ നിർമ്മിക്കുന്നു:
 
 | # | എഡ്ജ് | ഫലങ്ങൾ |
 |---|-------|----------|

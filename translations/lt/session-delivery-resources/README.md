@@ -23,7 +23,7 @@ Prieš pristatant dirbtuvę, prašome:
 | Laboratorija 01 – vienas agentas | [Lab 01](../workshop/lab01-single-agent/README.md)                             | Praktinis darbas: sukurti, išbandyti ir diegti *Explain Like I'm an Executive* talpinamą agentą |
 | Laboratorija 02 – kelių agentų darbo eiga | [Lab 02](../workshop/lab02-multi-agent/README.md)                              | Praktinis darbas: sukurti 4-agentų *Resume to Job Fit Evaluator* darbo eigą              |
 | Demo 1: Executive Agent      | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                            | Laboratorijos 01 demo: iš techninio žargono išversti į vykdomąją santrauką               |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)  | Laboratorijos 02 demo: 4 agentų darbo eiga, kuri vertina CV atitikimą darbui ir generuoja rekomendacijas |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)  | Laboratorijos 02 demo: 4 agentų darbo eiga, kuri vertina CV atitikimą darbui ir generuoja rekomendacijas |
 
 > **Pastaba treneriams:** Skaidrių komplektas ir vaizdo įrašų nuorodos bus pridėtos, kai įrašai bus paskelbti. Iki tol kreipkitės į atsakingą asmenį (žr. [Kontaktai](#kontaktai)) dėl naujausių medžiagų.
 
@@ -97,7 +97,7 @@ Skaidrių komplektas seka tą pačią eigą kaip laboratoriniai darbai. Siūlomi
 | Architektūros diagrama     | Pereikite per [README architektūrą](../README.md#architecture): karkasas, Inspector, ACR, Agentų paslauga.     |
 | Talpinamo agento sandara   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` – ką daro kiekvienas failas.                         |
 | Tiesioginis demonstravimas: Executive Agent  | Pereikite į VS Code ir paleiskite [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) demo nuo pradžios iki galo (žr. [Demo 1](#demo-1-executive-agent)). |
-| Tiesioginis demonstravimas: Resume to Job Fit Evaluator | Pereikite į VS Code ir paleiskite [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-agentų demo (žr. [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
+| Tiesioginis demonstravimas: Resume to Job Fit Evaluator | Pereikite į VS Code ir paleiskite [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-agentų demo (žr. [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
 | Laboratorija 01 santrauka | Pateikite mokiniams. Nukreipkite į [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Kelių agentų modeliai      | Nuoseklus, lygiagretus, perdavimo modelis – peržiūrėkite prieš pradedant Laboratoriją 02.                    |
 | Laboratorija 02 santrauka | Pateikite mokiniams. Nukreipkite į [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Pristatymo metu yra įtrauktos dvi tiesioginės demonstracijos. Skirkite kiekvie
 | Demo                     | Laboratorija | Failai                                                                       | Ką demonstruoti                                    |
 |--------------------------|--------------|-----------------------------------------------------------------------------|----------------------------------------------------|
 | Executive Agent          | Laboratorija 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Vienas talpinamas agentas; versti techninį žargoną į vykdomąją santrauką |
-| Resume to Job Fit Evaluator | Laboratorija 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-agentų orkestracija; vertina CV-darbo atitikimą ir generuoja rekomendaciją|
+| Resume to Job Fit Evaluator | Laboratorija 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-agentų orkestracija; vertina CV-darbo atitikimą ir generuoja rekomendaciją|
 
 ### Demo 1: Executive Agent
 
@@ -126,14 +126,14 @@ Atskiras agentas [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-
 
 ### Demo 2: Resume to Job Fit Evaluator
 
-4 agentų darbo eiga [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Naudokite kaip 10 minučių demo prieš Laboratoriją 02.
+4 agentų darbo eiga [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Naudokite kaip 10 minučių demo prieš Laboratoriją 02.
 
-1. Atidarykite [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ir parodykite, kaip keturi agentai jungiasi į nuoseklią orkestraciją.
+1. Atidarykite [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ir parodykite, kaip keturi agentai jungiasi į nuoseklią orkestraciją.
 2. Paspauskite `F5`, kad paleistumėte **Agentų Inspector** kelių agentų darbo eigai.
 3. Inspector pokalbyje įklijuokite trumpą darbo aprašymą ir pavyzdinį CV.
 4. Pereikite per keturių agentų procesą: CV analizatorius, darbo reikalavimų išskinėtojas, tinkamumo vertintojas ir rekomendacijų rašytojas.
 5. Pabrėžkite, kaip kiekvieno sub-agento išvestis tampa kito agento kontekstu, akcentuodami perdavimo modelį.
-6. Parodykite [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) ir palyginkite su vieno agente aprašymu Debo 1.
+6. Parodykite [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ir palyginkite su vieno agente aprašymu Debo 1.
 
 ---
 

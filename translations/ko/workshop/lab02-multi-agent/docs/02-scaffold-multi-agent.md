@@ -6,7 +6,7 @@
 
 > **핵심 개념:** 스캐폴드는 하나의 에이전트가 작동하는 스텁입니다. 자리 표시자 로직은 모듈 3에서 `WorkflowBuilder` 그래프로 교체합니다. 보일러플레이트를 처음부터 작성하지 않습니다.
 
-> **참고 구현:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot)는 완전한 작동 예제입니다. 작업하면서 비교해 보세요.
+> **참고 구현:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)는 완전한 작동 예제입니다. 작업하면서 비교해 보세요.
 
 ### 스캐폴드 마법사 흐름
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` 설치, 포트 8088 공개, `python main.py` 실행 |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **참고:** 전체 생성 내용을 [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml)과 [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt)에서 확인하세요.
+> **참고:** 전체 생성 내용을 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)과 [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt)에서 확인하세요.
 
 ---
 

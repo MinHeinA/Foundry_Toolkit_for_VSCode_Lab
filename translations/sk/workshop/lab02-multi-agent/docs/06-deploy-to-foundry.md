@@ -36,7 +36,7 @@ Pred nasadením overte každý bod nižšie:
    - Skontrolujte ikonu Účty v ľavom dolnom rohu VS Code. Malo by byť vidieť meno vášho účtu.
 
 4. **`agent.yaml` má správne hodnoty:**
-   - Otvorte `PersonalCareerCopilot/agent.yaml` a overte:
+   - Otvorte `PersonalCareerCopilot/main.py` a overte:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

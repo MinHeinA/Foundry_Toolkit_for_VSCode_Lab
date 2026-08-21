@@ -5,18 +5,18 @@
 Deploy the tested workflow as one direct-code Hosted Agent. Run this module from:
 
 ```bash
-cd workshop/lab02-multi-agent
+cd workshop/lab02-multi-agent/PersonalCareerCopilot
 ```
 
-The checked-in [`azure.yaml`](../azure.yaml) contains one agent-only service and
-no infrastructure. It uploads the completed `PersonalCareerCopilotStarter` to
-runtime `python_3_13`.
+Module 2 copied `lab-assets/azure.attendee.yaml` into this generated project as
+`azure.yaml`. It contains one agent-only service, no infrastructure, and uploads
+`src/PersonalCareerCopilot` to runtime `python_3_13`.
 The shared Careers MCP service is trainer-owned and is never deployed by
 attendees.
 
 ```mermaid
 flowchart LR
-    A["Lab 02 source + azure.yaml"] -->|"azd deploy personal-career-copilot"| B["Your Foundry project"]
+    A["Generated project + attendee azure.yaml"] -->|"azd deploy personal-career-copilot"| B["Your Foundry project"]
     B --> C["Direct-code Hosted Agent runtime python_3_13"]
     C --> D["Four strict sequential agents"]
     D --> E["Careers MCP get_job + Microsoft Learn MCP"]
@@ -24,8 +24,8 @@ flowchart LR
 
 ## Prerequisites
 
-- Your selected-key and pasted-JD tests passed through the local agent host and
-  Agent Inspector.
+- The original pasted-JD test passed locally.
+- If you completed the Careers challenge, its selected-key/failure tests passed.
 - You have an attendee-owned Foundry project and model deployment.
 - You know the Foundry project endpoint and full ARM project resource ID.
 - You have **Foundry Project Manager** on that project.
@@ -36,7 +36,7 @@ flowchart LR
 ### Package checklist
 
 Do not loosen or replace the exact pins in
-`PersonalCareerCopilotStarter/requirements.txt`. Confirm it contains:
+`src/PersonalCareerCopilot/requirements.txt`. Confirm it contains:
 
 ```text
 agent-framework-foundry==1.10.4
@@ -53,24 +53,21 @@ The hosting package serves the local `/responses` endpoint, `debugpy` enables
 direct breakpoint attach, and the OTLP exporter supports privacy-safe optional
 tracing. Their exact pins keep local diagnostics reproducible.
 
-## Step 1: Create or select an `azd` environment
+## Step 1: Confirm the generated `azd` environment
 
-Create one:
-
-```bash
-AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd env new <your-lab02-environment-name> --no-prompt
-```
-
-Or select an existing environment:
+`azd ai agent init` created the local project/environment. Inspect it:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd env select <your-lab02-environment-name>
+  azd env list
 ```
 
-Use one environment per attendee/project combination. Every command in this
-module sets `AZURE_DEV_USER_AGENT=microsoft_foundry_skill` inline.
+Use one environment per attendee/project combination. Do not run `azd init`
+again; rerunning it can create duplicate services. Every command in this module
+sets `AZURE_DEV_USER_AGENT=microsoft_foundry_skill` inline.
+
+Do not run `azd env get-values` after configuring the event key; it can display
+secret environment values.
 
 ## Step 2: Set all non-secret deployment values
 
@@ -88,6 +85,23 @@ AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   CAREERS_MCP_ENDPOINT=https://<trainer-provided-host>/mcp \
   CAREERS_MCP_TIMEOUT_SECONDS=10 \
   MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
+```
+
+PowerShell:
+
+```powershell
+$env:AZURE_DEV_USER_AGENT = "microsoft_foundry_skill"
+azd env set `
+  AZURE_SUBSCRIPTION_ID=<your-subscription-id> `
+  AZURE_LOCATION=<your-foundry-project-region> `
+  AZURE_AI_PROJECT_ENDPOINT=https://<your-foundry-resource>.services.ai.azure.com/api/projects/<your-project> `
+  FOUNDRY_PROJECT_ENDPOINT=https://<your-foundry-resource>.services.ai.azure.com/api/projects/<your-project> `
+  AZURE_AI_PROJECT_ID='<full-ARM-resource-ID-of-your-foundry-project>' `
+  AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name> `
+  CAREERS_MCP_ENDPOINT=https://<trainer-provided-host>/mcp `
+  CAREERS_MCP_TIMEOUT_SECONDS=10 `
+  MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
+Remove-Item Env:AZURE_DEV_USER_AGENT
 ```
 
 The settings have distinct purposes:
@@ -134,11 +148,11 @@ screenshot.
 
 ## Step 4: Review the agent-only manifest
 
-Confirm [`azure.yaml`](../azure.yaml) declares:
+Confirm generated-project `azure.yaml` declares:
 
 - service `personal-career-copilot`
 - `host: azure.ai.agent`
-- source project `PersonalCareerCopilotStarter`
+- source project `src/PersonalCareerCopilot`
 - direct-code runtime `python_3_13`
 - entry point `main.py`
 - `kind: hosted` and Responses protocol `2.0.0`
@@ -150,6 +164,14 @@ Confirm [`azure.yaml`](../azure.yaml) declares:
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd deploy personal-career-copilot --no-prompt
+```
+
+PowerShell:
+
+```powershell
+$env:AZURE_DEV_USER_AGENT = "microsoft_foundry_skill"
+azd deploy personal-career-copilot --no-prompt
+Remove-Item Env:AZURE_DEV_USER_AGENT
 ```
 
 This is the only Lab 02 deployment command. Do not run `azd provision`, `azd
@@ -170,7 +192,9 @@ see [Module 8](08-troubleshooting.md).
 > Do not display the full agent definition as JSON/YAML while the shared event
 > key is configured. Hosted environment values can appear in that output.
 
-## Step 7: Invoke with the selected key
+## Step 7: Invoke
+
+If you completed the Careers challenge, reuse the exact key from Module 5:
 
 Reuse the exact key from Module 5:
 
@@ -182,6 +206,9 @@ AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
 
 Use synthetic data only. The deployed agent sends the exact key—not the
 resume—to the shared Careers service.
+
+If you skipped the optional challenge, invoke a new session with the synthetic
+resume plus pasted job description used in Module 5.
 
 ### Checkpoint
 

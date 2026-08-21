@@ -68,7 +68,7 @@ O Inspector de Agentes mostra essa mesma estrutura gráfica quando o agente est�
 
 ## Lendo o código WorkflowBuilder
 
-A função completa `create_workflow()` está em [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). As três chamadas `add_edge()` constroem o pipeline sequencial:
+A função completa `create_workflow()` está em [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). As três chamadas `add_edge()` constroem o pipeline sequencial:
 
 | # | Aresta | Efeito |
 |---|-------|---------|

@@ -23,7 +23,7 @@
 | 實驗 01 - 單一代理          | [Lab 01](../workshop/lab01-single-agent/README.md)                               | 實作實驗：構建、測試及部署 <em>解釋給行政人員聽</em> 的單一託管代理                            |
 | 實驗 02 - 多代理工作流程    | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | 實作實驗：構建 4 代理 <em>履歷到職務匹配評估器</em> 工作流程                                  |
 | 示範 1：行政代理             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                             | 實驗 01 示範：將技術術語翻譯成行政摘要                                                   |
-| 示範 2：履歷到職務匹配評估器 | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)    | 實驗 02 示範：4 代理工作流程，評分履歷-職務匹配並生成建議                               |
+| 示範 2：履歷到職務匹配評估器 | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)    | 實驗 02 示範：4 代理工作流程，評分履歷-職務匹配並生成建議                               |
 
 > **講師備註：** 投影片與示範影片連結將於錄影完成後新增。完成前請聯絡維護者（請參閱 [聯絡資訊](#聯絡方式)）以取得最新資源。
 
@@ -97,7 +97,7 @@
 | 架構圖                      | 演示[README 架構說明](../README.md#architecture)：骨架、檢查器、ACR、代理服務。                 |
 | 託管代理的結構              | `agent.yaml`、`Dockerfile`、`main.py`、`requirements.txt` - 每個檔案的角色說明。                 |
 | 即時示範：行政代理          | 切換至 VS Code 運行 [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) 示範（詳見[示範 1](#示範-1：行政代理)）。 |
-| 即時示範：履歷到職務匹配評估器 | 切換至 VS Code 運行 [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4 代理示範（詳見[示範 2](#示範-2：履歷到職務匹配評估器)）。 |
+| 即時示範：履歷到職務匹配評估器 | 切換至 VS Code 運行 [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4 代理示範（詳見[示範 2](#示範-2：履歷到職務匹配評估器)）。 |
 | 實驗 01 簡介               | 交棒給學員。指向 [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md)。 |
 | 多代理模式                 | 串行、並行與交接模式 - 在實驗 02 開始前預覽說明。                                              |
 | 實驗 02 簡介               | 交棒給學員。指向 [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md)。 |
@@ -112,7 +112,7 @@
 | 示範             | 實驗  | 檔案                                                                    | 示範內容                                                   |
 |-----------------|-------|-------------------------------------------------------------------------|------------------------------------------------------------|
 | 行政代理         | 實驗 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | 單一託管代理；將技術術語翻譯成行政摘要                       |
-| 履歷到職務匹配評估器 | 實驗 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4 代理協調工作流程；評分履歷與職務匹配並生成推薦            |
+| 履歷到職務匹配評估器 | 實驗 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4 代理協調工作流程；評分履歷與職務匹配並生成推薦            |
 
 ### 示範 1：行政代理
 
@@ -126,14 +126,14 @@
 
 ### 示範 2：履歷到職務匹配評估器
 
-在 [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 的 4 代理工作流程。作為實驗 02 前的 10 分鐘示範。
+在 [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 的 4 代理工作流程。作為實驗 02 前的 10 分鐘示範。
 
-1. 開啟 [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)，展示四個代理如何串接成串行協調工作流程。
+1. 開啟 [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)，展示四個代理如何串接成串行協調工作流程。
 2. 按下 `F5` 啟動多代理工作流程的 **Agent Inspector**。
 3. 在 Inspector 聊天視窗貼上簡短的職務描述與範例履歷。
 4. 說明四代理流程：履歷解析器、職務需求擷取器、匹配分數評估器與推薦撰寫器。
 5. 指出每個子代理的輸出成為下一代理的上下文，強調交接模式。
-6. 顯示 [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml)，與示範 1 的單一代理作比較。
+6. 顯示 [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)，與示範 1 的單一代理作比較。
 
 ---
 

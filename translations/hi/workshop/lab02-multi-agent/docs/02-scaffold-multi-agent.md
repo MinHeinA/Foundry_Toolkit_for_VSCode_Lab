@@ -6,7 +6,7 @@
 
 > **मुख्य अवधारणा:** स्कैफोल्ड एक कार्यशील स्टब है जिसमें एक एजेंट होता है। आप प्लेसहोल्डर लॉजिक को मॉड्यूल 3 में `WorkflowBuilder` ग्राफ़ से बदलते हैं। आप बायलरप्लेट को शून्य से नहीं लिखते हैं।
 
-> **संदर्भ कार्यान्वयन:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) एक पूर्ण कार्यशील उदाहरण है। इसे अपनी प्रगति की तुलना के लिए उपयोग करें।
+> **संदर्भ कार्यान्वयन:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) एक पूर्ण कार्यशील उदाहरण है। इसे अपनी प्रगति की तुलना के लिए उपयोग करें।
 
 ### स्कैफोल्ड विज़ार्ड फ्लो
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` इंस्टॉल करता है, पोर्ट 8088 एक्सपोज़ करता है, `python main.py` चलाता है |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **संदर्भ:** पूरा जनरेट किया गया कंटेंट देखिए [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) और [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) में।
+> **संदर्भ:** पूरा जनरेट किया गया कंटेंट देखिए [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) और [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) में।
 
 ---
 

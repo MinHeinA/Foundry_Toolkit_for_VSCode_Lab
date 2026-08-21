@@ -36,7 +36,7 @@ Avant de déployer, vérifiez chaque élément ci-dessous :
    - Vérifiez l’icône Comptes dans le coin inférieur gauche de VS Code. Le nom de votre compte doit être visible.
 
 4. **`agent.yaml` a les bonnes valeurs :**
-   - Ouvrez `PersonalCareerCopilot/agent.yaml` et vérifiez :
+   - Ouvrez `PersonalCareerCopilot/main.py` et vérifiez :
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

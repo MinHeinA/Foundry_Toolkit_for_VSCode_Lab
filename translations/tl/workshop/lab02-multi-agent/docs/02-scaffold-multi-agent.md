@@ -6,7 +6,7 @@ Sa module na ito, gagamitin mo ang [Foundry Toolkit para sa VS Code](https://aka
 
 > **Pangunahing konsepto:** Ang scaffold ay isang gumaganang stub na may isang agent. Papalitan mo ang placeholder logic gamit ang `WorkflowBuilder` graph sa Module 3. Hindi mo kailangang isulat ang boilerplate mula sa simula.
 
-> **Sanggunian na implementasyon:** Ang [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ay isang kumpletong gumaganang halimbawa. Gamitin ito upang i-compare ang iyong ginagawa habang nagpapatuloy ka.
+> **Sanggunian na implementasyon:** Ang [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ay isang kumpletong gumaganang halimbawa. Gamitin ito upang i-compare ang iyong ginagawa habang nagpapatuloy ka.
 
 ### Daloy ng scaffold wizard
 
@@ -92,7 +92,7 @@ Pagkatapos makumpleto ang scaffolding, tiyaking nakikita mo ang mga sumusunod na
 | `Dockerfile` | `python:3.12-slim`, nag-iinstall ng `requirements.txt`, nag-eexpose ng port 8088, nagpapatakbo ng `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Sanggunian:** Tingnan ang [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) at [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) para sa kumpletong nilalaman ng nabuo.
+> **Sanggunian:** Tingnan ang [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) at [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) para sa kumpletong nilalaman ng nabuo.
 
 ---
 

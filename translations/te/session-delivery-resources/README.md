@@ -23,7 +23,7 @@
 | ల్యాబ్ 01 - సింగిల్ ఏజెంట్          | [Lab 01](../workshop/lab01-single-agent/README.md)                               | హ్యాండ్స్-ఆన్ ల్యాబ్: *Explain Like I'm an Executive* హోస్టెడ్ ఏజెంట్‌ను నిర్మించండి, పరీక్షించండి మరియు పంపిణీ చేయండి     |
 | ల్యాబ్ 02 - మల్టీ-ఏజెంట్ వర్క్‌ఫ్లో    | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | హ్యాండ్స్-ఆన్ ల్యాబ్: 4-ఏజెంట్ *Resume to Job Fit Evaluator* వర్క్‌ఫ్లోను నిర్మించండి                     |
 | డెమో 1: ఎగ్జిక్యూటివ్ ఏజెంట్             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | ల్యాబ్ 01 డెమో: సాంకేతిక పదజాలాన్ని ఎగ్జిక్యూటివ్ సారాంశంగా అనువదించండి                          |
-| డెమో 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | ల్యాబ్ 02 డెమో: 4-ఏజెంట్ వర్క్‌ఫ్లో, రిస్యూమే-జాబ్ ఫిట్‌ను స్కోర్ చేసి సిఫార్సులను సృష్టిస్తుంది     |
+| డెమో 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | ల్యాబ్ 02 డెమో: 4-ఏజెంట్ వర్క్‌ఫ్లో, రిస్యూమే-జాబ్ ఫిట్‌ను స్కోర్ చేసి సిఫార్సులను సృష్టిస్తుంది     |
 
 > **శిక్షణదారులకు గమనిక:** స్లైడ్ డెక్ మరియు వీడియో లింకులు రికార్డింగ్స్ ప్రచురించిన తర్వాత జమ చేయబడతాయి. ఆింగ్ వరకు, తాజా ఆస్తుల కోసం నిర్వహణదారునిని సంప్రదించండి (చూడండి [Contacts](#సంప్రదింపులు)).
 
@@ -97,7 +97,7 @@
 | ఆర్కిటెక్చర్ డయాగ్రామ్        | [README ఆర్కిటెక్చర్](../README.md#architecture) ను వివరించండి: స్కాఫోల్డ్, ఇన్స్పెక్టర్, ACR, ఏజెంట్ సర్వీస్.   |
 | హోస్టెడ్ ఏజెంట్ యొక్క శరీరం   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ప్రతి ఫైల్ ఏమి చేస్తుంది.                              |
 | లైవ్ డెమో: ఎగ్జిక్యూటివ్ ఏజెంట్  | VS Code కు మార్చి [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) డెమోను పూర్తిగా నడపండి (చూడండి [డెమో 1](#డెమో-1-ఎగ్జిక్యూటివ్-ఏజెంట్)). |
-| లైవ్ డెమో: Resume to Job Fit Evaluator | VS Code కు మార్చి [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-ఏజెంట్ డెమోను నడపండి (చూడండి [డెమో 2](#డెమో-2-resume-to-job-fit-evaluator)). |
+| లైవ్ డెమో: Resume to Job Fit Evaluator | VS Code కు మార్చి [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-ఏజెంట్ డెమోను నడపండి (చూడండి [డెమో 2](#డెమో-2-resume-to-job-fit-evaluator)). |
 | ల్యాబ్ 01 సంక్షిప్త    | లెర్నర్లకు హస్తాంతరం. [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) ను సూచించండి. |
 | మల్టీ-ఏజెంట్ నమూనాల పూర్వ దర్శనం    | వరుసగా vs సమాంతర vs హ్యాండాఫ్ - ల్యాబ్ 02 మొదలయ్యేముందు అవి చూపండి.                                           |
 | ల్యాబ్ 02 సంక్షిప్త    | లెర్నర్లకు హస్తాంతరం. [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) ను సూచించండి. |
@@ -112,7 +112,7 @@
 | డెమో | ల్యాబ్ | ఫైల్స్ | ఏమి చూపాలి |
 |------|-----|-------|--------------|
 | ఎగ్జిక్యూటివ్ ఏజెంట్ | ల్యాబ్ 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | ఒక్కో హోస్టెడ్ ఏజెంట్; సాంకేతిక పదజాలాన్ని ఎగ్జిక్యూటివ్ సారాంశంగా అనువదించండి |
-| Resume to Job Fit Evaluator | ల్యాబ్ 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-ఏజెంట్ సమన్వయం; రిస్యూమే-జాబ్ ఫిట్‌ను స్కోర్ చేసి సిఫార్సు సృష్టించు |
+| Resume to Job Fit Evaluator | ల్యాబ్ 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-ఏజెంట్ సమన్వయం; రిస్యూమే-జాబ్ ఫిట్‌ను స్కోర్ చేసి సిఫార్సు సృష్టించు |
 
 ### డెమో 1: ఎగ్జిక్యూటివ్ ఏజెంట్
 
@@ -126,14 +126,14 @@
 
 ### డెమో 2: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)లో ఒక 4-ఏజెంట్ వర్క్‌ఫ్లో. ల్యాబ్ 02 ముందు 10 నిమిషాల డెమోగా ఉపయోగించండి.
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)లో ఒక 4-ఏజెంట్ వర్క్‌ఫ్లో. ల్యాబ్ 02 ముందు 10 నిమిషాల డెమోగా ఉపయోగించండి.
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ను తెరవండి మరియు నాలుగు ఏజెంట్లు వరుసగా ఎలా ముడిపెడితే తెలుసుకోండి.
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ను తెరవండి మరియు నాలుగు ఏజెంట్లు వరుసగా ఎలా ముడిపెడితే తెలుసుకోండి.
 2. మల్టీ-ఏజెంట్ వర్క్‌ఫ్లో కోసం **ఏజెంట్ ఇన్స్పెక్టర్** ప్రారంభించడానికి `F5` నొక్కండి.
 3. ఇన్స్పెక్టర్ చాట్‌లో ఒక చిన్న జాబ్ వివరణ మరియు ఒక నమూనా రిస్యూమే పేస్ట్ చేయండి.
 4. నాలుగు ఏజెంట్ పైప్‌లైన్: రిస్యూమే పార్సర్, జాబ్ రిక్వైర్మెంట్ ఎక్స్‌ట్రాక్టర్, ఫిట్ స్కోరర్, మరియు సిఫార్సు రచయితను వివరించండి.
 5. ప్రతి సబ్ఆఏజెంట్ ఔట్‌పుట్ తర్వాతి ఏజెంట్ సందర్భంగా ఎలా మారుతుందో, హ్యాండాఫ్ నమూనాను హైలైట్ చేయండి.
-6. [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) ను చూపించి డెమో 1 లో ఉన్న సింగిల్ ఏజెంట్ సమానతను పోల్చండి.
+6. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ను చూపించి డెమో 1 లో ఉన్న సింగిల్ ఏజెంట్ సమానతను పోల్చండి.
 
 ---
 

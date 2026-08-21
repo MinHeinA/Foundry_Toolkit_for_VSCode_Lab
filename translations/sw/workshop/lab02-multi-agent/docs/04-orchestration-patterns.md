@@ -68,7 +68,7 @@ Muangalizi wa Wakala anaonyesha muundo huu wa mchoro wakati wakala anapokuwa ana
 
 ## Kusoma msimbo wa WorkflowBuilder
 
-Kazi kamili ya `create_workflow()` iko katika [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Simu tatu za `add_edge()` hutengeneza mnyororo wa mfuatano:
+Kazi kamili ya `create_workflow()` iko katika [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Simu tatu za `add_edge()` hutengeneza mnyororo wa mfuatano:
 
 | # | Edge | Athari |
 |---|------|--------|

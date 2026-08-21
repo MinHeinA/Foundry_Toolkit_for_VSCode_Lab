@@ -23,7 +23,7 @@
 | ಲ್ಯಾಬ್ 01 - ಏಕ ਏಜೆಂಟ್         | [Lab 01](../workshop/lab01-single-agent/README.md)                               | ಹ್ಯಾಂಡ್ಸ್-ಆನ್ ಲ್ಯಾಬ್: *ನಾನು ಎಕ್ಸಿಕ್ಯೂಟಿವ್ ಆಗಿದ್ದಂತೆ ವಿವರಿಸಿ* ಎಂಬ ಏಜೆಂಟ್ ನಿರ್ಮಿಸಿ, ಪರೀಕ್ಷಿಸಿ, ನಿಯೋಜಿಸಿ     |
 | ಲ್ಯಾಬ್ 02 - ಬಹು ಏಜೆಂಟ್ ಕಾರ್ಯವಾಹಿ | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | ಹ್ಯಾಂಡ್ಸ್-ಆನ್ ಲ್ಯಾಬ್: 4 ಏಜೆಂಟ್ *ರಜ್ಯೂಮ್ ನಿಂದ ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವ ಮೌಲ್ಯಮಾಪನಕಾರ* ಕಾರ್ಯವಾಹಿ ನಿರ್ಮಿಸಿ                     |
 | ಡೆಮೊ 1: ಎಕ್ಸಿಕ್ಯೂಟಿವ್ ಏಜೆಂಟ್            | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | ಲ್ಯಾಬ್ 01 ಡೆಮೊ: ತಾಂತ್ರಿಕ ಶಬ್ದಜ್ಞಾನವನ್ನು ನಿರ್ವಾಹಕ ಸಾರಾಂಶಕ್ಕೆ ಪರಿವರ್ತಿಸಿ                          |
-| ಡೆಮೊ 2: ರಜ್ಯೂಮ್ ನಿಂದ ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವ ಮೌಲ್ಯಮಾಪನಕಾರ | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | ಲ್ಯಾಬ್ 02 ಡೆಮೊ: 4 ಏಜೆಂಟ್ ಕಾರ್ಯವಾಹಿ, ರಜ್ಯೂಮ್-ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವಿಕೆ ಅಂಕಯ್ತು ಮತ್ತು ಶಿಫಾರಸು ಮಾಡುತ್ತದೆ     |
+| ಡೆಮೊ 2: ರಜ್ಯೂಮ್ ನಿಂದ ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವ ಮೌಲ್ಯಮಾಪನಕಾರ | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | ಲ್ಯಾಬ್ 02 ಡೆಮೊ: 4 ಏಜೆಂಟ್ ಕಾರ್ಯವಾಹಿ, ರಜ್ಯೂಮ್-ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವಿಕೆ ಅಂಕಯ್ತು ಮತ್ತು ಶಿಫಾರಸು ಮಾಡುತ್ತದೆ     |
 
 > **ಶಿಕ್ಷಕರಿಗಾಗಿ ಟಿಪ್ಪಣಿ:** ಸ್ಲೈಡ್ ಡೆಕ್ ಹಾಗೂ ವೀಡಿಯೊ ಲಿಂಕ್‌ಗಳನ್ನು ರೆಕಾರ್ಡಿಂಗ್ ಪ್ರಕಟಿಸಿದ ನಂತರ ಸೇರಿಸಲಾಗುವುದು. ಅದರವರೆಗೆ, ನಿರ್ವಹಣಾಧಿಕಾರಿಯನ್ನು ಸಂಪರ್ಕಿಸಿ ( ನೋಡಿ [Contacts](#ಸಂಪರ್ಕಗಳು)) ಇತ್ತೀಚಿನ ಸಂಪನ್ಮೂಲಗಳಿಗಾಗಿ.
 
@@ -97,7 +97,7 @@
 | ವಾಸ್ತುಶಾಸ್ತ್ರ диаг್ರಾಂ        | [README ವಾಸ್ತುಶಾಸ್ತ್ರ](../README.md#architecture) ಮೂಲಕ ನಡೆದುಕೊಳ್ಳಿ: ಸ್ಕ್ಯಾಫೋಲ್ಡ್, ಇನ್ಸ್‌ಪೆಕ್ಟರ್, ACR, ಏಜೆಂಟ್ ಸೇವೆ.   |
 | ಹೋಸ್ಟ್ ಮಾಡಿದ ಏಜೆಂಟ್ ರಚನೆ   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ಪ್ರತಿಯೊಂದು ಫೈಲ್‌ನ ಕಾರ್ಯ.                              |
 | ಲೈವ್ ಡೆಮೊ: ಎಕ್ಸಿಕ್ಯೂಟಿವ್ ಏಜೆಂಟ್  | VS Code ಗೆ ಬದಲಿಸಿ ಮತ್ತು [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) ಡೆಮೊ ಪ್ರಕ್ರಿಯೆಯನ್ನು (ಆರಂಭದಿಂದ ಕೊನೆವರೆಗೆ) ಚಲಾಯಿಸಿ ( ನೋಡಿ [ಡೆಮೊ 1](#ಡೆಮೊ-1-ಎಕ್ಸಿಕ್ಯೂಟಿವ್-ಏಜೆಂಟ್)). |
-| ಲೈವ್ ಡೆಮೊ: ರಜ್ಯೂಮ್ ನಿಂದ ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವ ಮೌಲ್ಯಮಾಪನಕಾರ | VS Code ಗೆ ಬದಲಿಸಿ ಮತ್ತು [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4 ಏಜೆಂಟ್ ಡೆಮೊ ಚಾಲನೆ ಮಾಡಿ ( ನೋಡಿ [ಡೆಮೊ 2](#ಡೆಮೊ-2-ರಜ್ಯೂಮ್-ನಿಂದ-ಉದ್ಯೋಗ-ಸರಿಹೊಂದಿಸುವ-ಮೌಲ್ಯಮಾಪನಕಾರ)). |
+| ಲೈವ್ ಡೆಮೊ: ರಜ್ಯೂಮ್ ನಿಂದ ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವ ಮೌಲ್ಯಮಾಪನಕಾರ | VS Code ಗೆ ಬದಲಿಸಿ ಮತ್ತು [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4 ಏಜೆಂಟ್ ಡೆಮೊ ಚಾಲನೆ ಮಾಡಿ ( ನೋಡಿ [ಡೆಮೊ 2](#ಡೆಮೊ-2-ರಜ್ಯೂಮ್-ನಿಂದ-ಉದ್ಯೋಗ-ಸರಿಹೊಂದಿಸುವ-ಮೌಲ್ಯಮಾಪನಕಾರ)). |
 | ಲ್ಯಾಬ್ 01 ಸಾರಾಂಶ                | ಕಲಿಯುವವರಿಗೆ ವಿತರಿಸಿ. [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) ಗೆ ಸೂಚಿಸಿ. |
 | ಬಹು ಏಜೆಂಟ್ ಮಾದರಿಗಳು        | ಕ್ರಮವಂತೆ, ಸಮಕಾಲೀನ ಮತ್ತು ಹಸ್ತಾಂತರವೇ - ಲ್ಯಾಬ್ 02 ಪ್ರಾರಂಭಿಸುವ ಮೊದಲು ಪೂರ್ವದೃಷ್ಟಿ.                                           |
 | ಲ್ಯಾಬ್ 02 ಸಾರಾಂಶ                | ಕಲಿಯುವವರಿಗೆ ವಿತರಿಸಿ. [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) ಗೆ ಸೂಚಿಸಿ. |
@@ -112,7 +112,7 @@
 | ಡೆಮೊ | ಲ್ಯಾಬ್ | ಫೈಲ್ಗಳು | ಗೋಚರಿಸಲು ఏನು |
 |------|-----|-------|--------------|
 | ಎಕ್ಸಿಕ್ಯೂಟಿವ್ ಏಜೆಂಟ್ | ಲ್ಯಾಬ್ 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | ಏಕ ಹೋಸ್ಟ್ ಮಾಡಲಾದ ಏಜೆಂಟ್; ತಾಂತ್ರಿಕ ಶಬ್ದಜ್ಞಾನವನ್ನು ನಿರ್ವಾಹಕ ಸಾರಾಂಶಕ್ಕೆ ಪರಿವರ್ತಿಸಿ |
-| ರಜ್ಯೂಮ್ ನಿಂದ ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವ ಮೌಲ್ಯಮಾಪನಕಾರ | ಲ್ಯಾಬ್ 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4 ಏಜೆಂಟ್ ಕಾರ್ಯವಾಹಿ; ರಜ್ಯೂಮ್-ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವಿಕೆ ಅಂಕಯ್ತು ಮತ್ತು ಶಿಫಾರಸು ನಿರ್ಮಾಣ |
+| ರಜ್ಯೂಮ್ ನಿಂದ ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವ ಮೌಲ್ಯಮಾಪನಕಾರ | ಲ್ಯಾಬ್ 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4 ಏಜೆಂಟ್ ಕಾರ್ಯವಾಹಿ; ರಜ್ಯೂಮ್-ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವಿಕೆ ಅಂಕಯ್ತು ಮತ್ತು ಶಿಫಾರಸು ನಿರ್ಮಾಣ |
 
 ### ಡೆಮೊ 1: ಎಕ್ಸಿಕ್ಯೂಟಿವ್ ಏಜೆಂಟ್
 
@@ -126,14 +126,14 @@
 
 ### ಡೆಮೊ 2: ರಜ್ಯೂಮ್ ನಿಂದ ಉದ್ಯೋಗ ಸರಿಹೊಂದಿಸುವ ಮೌಲ್ಯಮಾಪನಕಾರ
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ನಲ್ಲಿ 4 ಏಜೆಂಟ್ ಕಾರ್ಯವಾಹಿ. ಲ್ಯಾಬ್ 02 ಮೊದಲು 10 ನಿಮಿಷಗಳ ಡೆಮೊಗೆ ಇದನ್ನು ಉಪಯೋಗಿಸಿ.
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ನಲ್ಲಿ 4 ಏಜೆಂಟ್ ಕಾರ್ಯವಾಹಿ. ಲ್ಯಾಬ್ 02 ಮೊದಲು 10 ನಿಮಿಷಗಳ ಡೆಮೊಗೆ ಇದನ್ನು ಉಪಯೋಗಿಸಿ.
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ತೆರೆಯಿರಿ ಮತ್ತು ನಾಲ್ಕು ಏಜೆಂಟ್‌ಗಳು ಕ್ರಮವಂತರಾಗಿಯೂ ಜೋಡಣೆ ಮಾಡಲಾದ ರೀತಿಯನ್ನು ತೋರಿಸಿ.
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ತೆರೆಯಿರಿ ಮತ್ತು ನಾಲ್ಕು ಏಜೆಂಟ್‌ಗಳು ಕ್ರಮವಂತರಾಗಿಯೂ ಜೋಡಣೆ ಮಾಡಲಾದ ರೀತಿಯನ್ನು ತೋರಿಸಿ.
 2. ಬಹು ಏಜೆಂಟ್ ಕಾರ್ಯವಾಹಿಗೆ **Agent Inspector** ಆರಂಭಿಸಲು `F5` ಒತ್ತಿ.
 3. ಇನ್ಸ್‌ಪೆಕ್ಟರ್ ಚಾಟ್‌ನಲ್ಲಿ ಸಣ್ಣ ಕೆಲಸದ ವಿವರಣೆ ಮತ್ತು ನಿದರ್ಶನ ರಜ್ಯೂಮ್ ಪೇಸ್ಟ್ ಮಾಡಿ.
 4. ನಾಲ್ಕು ಏಜೆಂಟ್ ಪೈಪ್‌ಲೈನ್ ಮೂಲಕ ನಡೆಯಿರಿ: ರಜ್ಯೂಮ್ ಪಾರ್ಸರ್, ಕೆಲಸ ಆವಶ್ಯಕತೆ ತೆಗೆಯುವಿಕೆ, ಸರಿಹೊಂದಿಸುವಿಕೆಯ ಅಂಕಯ್ತು, ಶಿಫಾರಸು ಬರಹಗಾರ.
 5. ಪ್ರತಿ ಉಪ-ಏಜೆಂಟ್‌ನ ಔಟ್‌ಪುಟ್ ಮುಂದಿನ ಏಜೆಂಟ್ ಗೆ ಹಂತವಾಯು ಸೇರಿದಂತೆ ಹಸ್ತಾಂತರ ಮಾದರಿಯನ್ನು ಗುರುತಿಸಿ.
-6. [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) ತೋರಿಸಿ ಮತ್ತು ಡೆಮೊ 1 ರ ಏಕ ಏಜೆಂಟ್ ಜೊತೆ ಹೋಲಿಸಿ.
+6. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ತೋರಿಸಿ ಮತ್ತು ಡೆಮೊ 1 ರ ಏಕ ಏಜೆಂಟ್ ಜೊತೆ ಹೋಲಿಸಿ.
 
 ---
 

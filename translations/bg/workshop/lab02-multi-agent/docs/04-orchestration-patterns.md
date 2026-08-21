@@ -68,7 +68,7 @@ Agent Inspector показва същата структура на графа, 
 
 ## Четене на кода на WorkflowBuilder
 
-Цялата функция `create_workflow()` се намира в [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Трите извиквания на `add_edge()` изграждат последователния pipeline:
+Цялата функция `create_workflow()` се намира в [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Трите извиквания на `add_edge()` изграждат последователния pipeline:
 
 | # | Ребро | Ефект |
 |---|-------|--------|

@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### گزینه ۲: فقط حذف عامل میزبانی شده
 
 1. به [ai.azure.com](https://ai.azure.com) → پروژه خود → **Build** → **Agents** بروید.
-2. عامل **PersonalCareerCopilot** را پیدا کنید → روی **Delete** کلیک کنید.
+2. عامل **PersonalCareerCopilotCompleted** را پیدا کنید → روی **Delete** کلیک کنید.
 
 ### گزینه ۳: حذف استقرار مدل
 

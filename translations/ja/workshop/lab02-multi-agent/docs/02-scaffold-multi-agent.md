@@ -6,7 +6,7 @@
 
 > **重要な概念:** スキャフォールドは1つのエージェントの動作するスタブです。モジュール 3 でプレースホルダーのロジックを `WorkflowBuilder` グラフに置き換えます。ボイラープレートを最初から書く必要はありません。
 
-> **参考実装:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) は完全な動作例です。進めながらご自身の作業と比較してください。
+> **参考実装:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) は完全な動作例です。進めながらご自身の作業と比較してください。
 
 ### スキャフォールドウィザードの流れ
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim` を使用し `requirements.txt` インストール、ポート8088公開、`python main.py`を実行 |
 | `requirements.txt` | `agent-framework-foundry`、`agent-framework-foundry-hosting`、`mcp<2,>=1.24.0`、`debugpy` |
 
-> **参考:** 完全な生成内容は [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) と [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) を参照してください。
+> **参考:** 完全な生成内容は [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) と [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) を参照してください。
 
 ---
 

@@ -4,7 +4,7 @@
 
 V tomto modulu proměníte scaffoldovaný základ do **vašeho** multiagentního pracovního postupu – nastavením proměnných prostředí, napsáním instrukcí pro agenty, přidáním nástroje MCP, propojením grafu pracovního postupu a instalací závislostí.
 
-> **Reference:** Kompletní funkční kód najdete v [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Použijte jej jako referenci při vytváření vlastního grafu pracovního postupu a bloků promptů.
+> **Reference:** Kompletní funkční kód najdete v [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Použijte jej jako referenci při vytváření vlastního grafu pracovního postupu a bloků promptů.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Krok 2: Napište instrukce agentům
 
-Instrukce definují roli každého agenta, formát výstupu a pravidla. Otevřete `main.py` a definujte (nebo nahraďte) čtyři konstanty instrukcí – kompletní texty jsou v [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Instrukce definují roli každého agenta, formát výstupu a pravidla. Otevřete `main.py` a definujte (nebo nahraďte) čtyři konstanty instrukcí – kompletní texty jsou v [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Parsuje životopis do strukturovaného profilu kandidáta **a** doslovně kopíruje popis práce do `[JOB DESCRIPTION PASS-THROUGH]`. Obě označené sekce musí být v tomto výstupu.
@@ -88,7 +88,7 @@ Parsuje životopis do strukturovaného profilu kandidáta **a** doslovně kopír
 
 ## Krok 3: Přidejte nástroj MCP
 
-GapAnalyzer volá [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol), aby získal skutečné učební zdroje pro každou mezery ve znalostech. Kompletní funkce `search_microsoft_learn_for_plan` je v [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer volá [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol), aby získal skutečné učební zdroje pro každou mezery ve znalostech. Kompletní funkce `search_microsoft_learn_for_plan` je v [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Registrujte nástroj na GapAnalyzer při vytváření agenta:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Viz [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) pro kompletní graf `WorkflowBuilder` s `FoundryChatClient`, `AgentExecutor` a všemi voláními `add_edge()`.
+> Viz [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) pro kompletní graf `WorkflowBuilder` s `FoundryChatClient`, `AgentExecutor` a všemi voláními `add_edge()`.
 
 ---
 

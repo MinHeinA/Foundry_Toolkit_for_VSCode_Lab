@@ -49,14 +49,14 @@ See the full learning path in:
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Part 2: Build and test the workflow
 
 1. Use the Foundry Toolkit wizard to scaffold the workflow-based project.
-2. Copy the prompt blocks and workflow graph from `PersonalCareerCopilot/main.py` into your workspace.
+2. Copy the prompt blocks and workflow graph from `PersonalCareerCopilotCompleted/main.py` into your workspace.
 3. Run locally with the Agent Inspector and verify all four agents plus the MCP tool.
 4. Deploy the hosted agent to Foundry when local testing passes.
 

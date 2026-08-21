@@ -68,7 +68,7 @@ flowchart LR
 
 ## អានកូដ WorkflowBuilder
 
-មុខងារ `create_workflow()`ពេញលេញមាននៅក្នុងឯកសារ [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)។ ការហៅ `add_edge()` បីដងកសាងខ្សែស្រឡាយតាមលំដាប់៖
+មុខងារ `create_workflow()`ពេញលេញមាននៅក្នុងឯកសារ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)។ ការហៅ `add_edge()` បីដងកសាងខ្សែស្រឡាយតាមលំដាប់៖
 
 | # | វាលចូល | ផលបត់ |
 |---|---------|---------|

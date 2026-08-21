@@ -6,7 +6,7 @@
 
 > **核心概念：** 搭建的骨架是一個帶有一個代理的可運行存根。您會在模組 3 中用 `WorkflowBuilder` 圖替換佔位符邏輯。您無需從頭編寫樣板代碼。
 
-> **參考實現：** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 是一個完整的工作示例。在實踐中可以用來與您的工作進行比較。
+> **參考實現：** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 是一個完整的工作示例。在實踐中可以用來與您的工作進行比較。
 
 ### 搭建精靈流程
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | 使用 `python:3.12-slim`，安裝 `requirements.txt`，開放 8088 端口，運行 `python main.py` |
 | `requirements.txt` | 包含 `agent-framework-foundry`、`agent-framework-foundry-hosting`、`mcp<2,>=1.24.0`、`debugpy` |
 
-> **參考：** 請參見 [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) 和 [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) 了解完整生成內容。
+> **參考：** 請參見 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) 和 [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) 了解完整生成內容。
 
 ---
 

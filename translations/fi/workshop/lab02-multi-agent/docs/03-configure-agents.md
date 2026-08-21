@@ -4,7 +4,7 @@
 
 Tässä moduulissa muunnat ohjelmallisen rungon **oman** monitoimittajatyönkuluksesi - asettamalla ympäristömuuttujat, kirjoittamalla toimittajaohjeet, lisäämällä MCP-työkalun, kytkemällä työnkulun kaavion ja asentamalla riippuvuudet.
 
-> **Viite:** Täydellinen toimiva koodi on [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Käytä sitä viitteenä rakentaessasi omaa työnkulun kaaviotasi ja kehotelohkojasi.
+> **Viite:** Täydellinen toimiva koodi on [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Käytä sitä viitteenä rakentaessasi omaa työnkulun kaaviotasi ja kehotelohkojasi.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Vaihe 2: Kirjoita toimittajaohjeet
 
-Ohjeet määrittelevät kunkin toimittajan roolin, tulostusmuodon ja säännöt. Avaa `main.py` ja määritä (tai korvaa) neljä ohjevakioita - täydelliset merkkijonot löytyvät [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Ohjeet määrittelevät kunkin toimittajan roolin, tulostusmuodon ja säännöt. Avaa `main.py` ja määritä (tai korvaa) neljä ohjevakioita - täydelliset merkkijonot löytyvät [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Jäsentää ansioluettelon rakenteelliseksi ehdokasprofiiliksi **ja** kopioi työkuvauksen sanasta sanaan kohtaan `[JOB DESCRIPTION PASS-THROUGH]`. Molempien merkittyjen osioiden on oltava tulosteessa.
@@ -88,7 +88,7 @@ Lukee sopivuusraportin. Kutsuu jokaiselle puuttuvalle taidolle `search_microsoft
 
 ## Vaihe 3: Lisää MCP-työkalu
 
-GapAnalyzer kutsuu [Microsoft Learnin MCP-palvelinta](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) noutaakseen aitoja oppimisresursseja kutakin taitoaukkoa varten. Täysi `search_microsoft_learn_for_plan` -funktio on [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer kutsuu [Microsoft Learnin MCP-palvelinta](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) noutaakseen aitoja oppimisresursseja kutakin taitoaukkoa varten. Täysi `search_microsoft_learn_for_plan` -funktio on [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Rekisteröi työkalu GapAnalyzerille toimittajaa luodessasi:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Katso [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) täydellinen `WorkflowBuilder`-kaavio `FoundryChatClient`, `AgentExecutor` ja kaikkien `add_edge()`-kutsujen kanssa.
+> Katso [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) täydellinen `WorkflowBuilder`-kaavio `FoundryChatClient`, `AgentExecutor` ja kaikkien `add_edge()`-kutsujen kanssa.
 
 ---
 

@@ -49,14 +49,14 @@ Consulta l'intero percorso di apprendimento in:
 
 - [Documentazione Lab 2 - Prerequisiti](docs/00-prerequisites.md)
 - [Documentazione Lab 2 - Percorso completo di apprendimento](docs/README.md)
-- [Guida all'esecuzione di PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Guida all'esecuzione di PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Parte 2: Costruisci e testa il workflow
 
 1. Usa il wizard Foundry Toolkit per creare la struttura del progetto basato sul workflow.
-2. Copia i blocchi prompt e il grafo del workflow da `PersonalCareerCopilot/main.py` nel tuo workspace.
+2. Copia i blocchi prompt e il grafo del workflow da `PersonalCareerCopilotCompleted/main.py` nel tuo workspace.
 3. Esegui localmente con Agent Inspector e verifica tutti e quattro gli agenti più lo strumento MCP.
 4. Distribuisci l'agente ospitato su Foundry quando i test locali hanno successo.
 

@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### অপশন ২: শুধুমাত্র হোস্টেড এজেন্ট ডিলেট করুন
 
 ১. [ai.azure.com](https://ai.azure.com) → আপনার প্রজেক্ট → **Build** → **Agents** খুলুন।
-২. **PersonalCareerCopilot** খুঁজুন → **Delete** ক্লিক করুন।
+২. **PersonalCareerCopilotCompleted** খুঁজুন → **Delete** ক্লিক করুন।
 
 ### অপশন ৩: মডেল ডিপ্লয়মেন্ট ডিলেট করুন
 

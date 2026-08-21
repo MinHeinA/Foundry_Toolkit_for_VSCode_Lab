@@ -68,7 +68,7 @@ flowchart LR
 
 ## Ανάγνωση του κώδικα WorkflowBuilder
 
-Η ολοκληρωμένη συνάρτηση `create_workflow()` βρίσκεται στο [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Οι τρεις κλήσεις `add_edge()` χτίζουν την αλληλουχία:
+Η ολοκληρωμένη συνάρτηση `create_workflow()` βρίσκεται στο [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Οι τρεις κλήσεις `add_edge()` χτίζουν την αλληλουχία:
 
 | # | Ακμή | Επίδραση |
 |---|------|--------|

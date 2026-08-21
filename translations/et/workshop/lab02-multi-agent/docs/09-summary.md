@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Valik 2: Kustuta ainult majutatud agent
 
 1. Ava [ai.azure.com](https://ai.azure.com) → oma projekt → **Build** → **Agents**.
-2. Leia **PersonalCareerCopilot** → klõpsa **Delete**.
+2. Leia **PersonalCareerCopilotCompleted** → klõpsa **Delete**.
 
 ### Valik 3: Kustuta mudeli juurutus
 

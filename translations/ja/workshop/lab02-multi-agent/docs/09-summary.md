@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### オプション2：ホスト型エージェントだけを削除
 
 1. [ai.azure.com](https://ai.azure.com) → プロジェクト → <strong>ビルド</strong> → <strong>エージェント</strong> を開く。
-2. <strong>PersonalCareerCopilot</strong>を探して<strong>削除</strong>をクリック。
+2. <strong>PersonalCareerCopilotCompleted</strong>を探して<strong>削除</strong>をクリック。
 
 ### オプション3：モデル展開を削除
 

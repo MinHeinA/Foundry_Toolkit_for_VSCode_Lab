@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### 选项 2：只删除托管代理
 
 1. 打开 [ai.azure.com](https://ai.azure.com) → 你的项目 → <strong>构建</strong> → <strong>代理</strong>。
-2. 找到 **PersonalCareerCopilot** → 点击 <strong>删除</strong>。
+2. 找到 **PersonalCareerCopilotCompleted** → 点击 <strong>删除</strong>。
 
 ### 选项 3：删除模型部署
 

@@ -68,7 +68,7 @@ flowchart LR
 
 ## WorkflowBuilder कोड पढ़ना
 
-पूरा `create_workflow()` फ़ंक्शन [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) में है। तीनों `add_edge()` कॉल अनुक्रमिक पाइपलाइन बनाते हैं:
+पूरा `create_workflow()` फ़ंक्शन [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) में है। तीनों `add_edge()` कॉल अनुक्रमिक पाइपलाइन बनाते हैं:
 
 | # | एज | प्रभाव |
 |---|------|--------|

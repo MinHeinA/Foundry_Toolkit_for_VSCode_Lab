@@ -49,14 +49,14 @@ Kompletnú vzdelávaciu cestu nájdete v:
 
 - [Dokumentácia Laboratória 2 - Predpoklady](docs/00-prerequisites.md)
 - [Dokumentácia Laboratória 2 - Kompletná vzdelávacia cesta](docs/README.md)
-- [Príručka na spustenie PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Príručka na spustenie PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Časť 2: Vybudujte a otestujte pracovný tok
 
 1. Použite sprievodcu Foundry Toolkit na vytvorenie projektu založeného na pracovnom toku.
-2. Skopírujte bloky výziev a graf pracovného toku zo súboru `PersonalCareerCopilot/main.py` do svojho pracovného priestoru.
+2. Skopírujte bloky výziev a graf pracovného toku zo súboru `PersonalCareerCopilotCompleted/main.py` do svojho pracovného priestoru.
 3. Spustite lokálne pomocou Agent Inspector a overte všetkých štyroch agentov plus nástroj MCP.
 4. Po úspešnom lokálnom teste nasadte hostovaného agenta do Foundry.
 

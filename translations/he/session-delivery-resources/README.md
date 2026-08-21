@@ -23,7 +23,7 @@
 | מעבדה 01 - סוכן יחיד       | [Lab 01](../workshop/lab01-single-agent/README.md)                             | מעבדה מעשית: בנייה, בדיקה ופריסה של סוכן *Explain Like I'm an Executive* מאוחסן             |
 | מעבדה 02 - זרימת עבודה מרובת סוכנים | [Lab 02](../workshop/lab02-multi-agent/README.md)                             | מעבדה מעשית: בניית זרימת עבודה עם 4 סוכנים *Resume to Job Fit Evaluator*                 |
 | הדגמה 1: סוכן ביצועי          | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                           | הדגמה של מעבדה 01: תרגום מונחים טכניים לסיכום ביצועי                                    |
-| הדגמה 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | הדגמה של מעבדה 02: זרימת עבודה עם 4 סוכנים שמדרגת התאמת קורות חיים לעבודה ומייצרת המלצות |
+| הדגמה 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | הדגמה של מעבדה 02: זרימת עבודה עם 4 סוכנים שמדרגת התאמת קורות חיים לעבודה ומייצרת המלצות |
 
 > **הערה למרצים:** מצגת הסדנה וקישורי הווידאו יתווספו כאשר ההקלטות יפורסמו. עד אז, פנו למתחזק (ראו [צור קשר](#אנשי-קשר)) לקבלת הנכסים המעודכנים.
 
@@ -97,7 +97,7 @@
 | תרשים ארכיטקטורה          | הסבר את [ארכיטקטורת README](../README.md#architecture): scaffold, Inspector, ACR, Agent Service.         |
 | אנטומיה של סוכן מאוחסן     | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - מה עושה כל קובץ.                              |
 | הדגמה חיה: סוכן ביצועי     | עבור ל-VS Code והרץ את הדגמת  [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) מקצה לקצה (ראה [Demo 1](#הדגמה-1-סוכן-ביצועי)). |
-| הדגמה חיה: Resume to Job Fit Evaluator | עבור ל-VS Code והרץ את הדגמת 4 סוכנים [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (ראה [Demo 2](#הדגמה-2-resume-to-job-fit-evaluator)). |
+| הדגמה חיה: Resume to Job Fit Evaluator | עבור ל-VS Code והרץ את הדגמת 4 סוכנים [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (ראה [Demo 2](#הדגמה-2-resume-to-job-fit-evaluator)). |
 | סיכום מעבדה 01             | העבר ללומדים. הפנה אל [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | דפוסי סוכנים מרובים       | רציף לעומת מקביל לעומת handoff - תצוגה מקדימה לפני התחלת מעבדה 02.                                    |
 | סיכום מעבדה 02             | העבר ללומדים. הפנה אל [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@
 | הדגמה  | מעבדה | קבצים                                                        | מה להראות                                                         |
 |---------|-------|---------------------------------------------------------------|------------------------------------------------------------------|
 | סוכן ביצועי | מעבדה 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | סוכן מאוחסן יחיד; תרגום מונחים טכניים לסיכום ביצועי              |
-| Resume to Job Fit Evaluator | מעבדה 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | תזמור 4 סוכנים; דירוג התאמת קורות חיים לעבודה ויצירת המלצה       |
+| Resume to Job Fit Evaluator | מעבדה 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | תזמור 4 סוכנים; דירוג התאמת קורות חיים לעבודה ויצירת המלצה       |
 
 ### הדגמה 1: סוכן ביצועי
 
@@ -126,14 +126,14 @@
 
 ### הדגמה 2: Resume to Job Fit Evaluator
 
-זרימת עבודה עם 4 סוכנים ב-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). השתמש בזה כהדגמה של 10 דקות לפני מעבדה 02.
+זרימת עבודה עם 4 סוכנים ב-[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). השתמש בזה כהדגמה של 10 דקות לפני מעבדה 02.
 
-1. פתח את [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) והראה כיצד ארבעת הסוכנים מקושרים יחד בתזמור רציף.
+1. פתח את [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) והראה כיצד ארבעת הסוכנים מקושרים יחד בתזמור רציף.
 2. לחץ על `F5` כדי להפעיל את **Agent Inspector** לזרימת העבודה המרובת סוכנים.
 3. הדבק תיאור קצר של משרה וקורות חיים לדוגמא בצ'אט של ה-Inspector.
 4. עבור על צינור הארבעה סוכנים: מנתח קורות חיים, מחלץ דרישות תפקיד, מדרג התאמה, וכותב המלצות.
 5. הצבע כיצד הפלט של כל תת-סוכן הופך להקשר עבור הסוכן הבא, תוך הדגשת דפוס ה-handoff.
-6. הצג את [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) להשוואה עם המקבילה לסוכן יחיד מהדגמה 1.
+6. הצג את [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) להשוואה עם המקבילה לסוכן יחיד מהדגמה 1.
 
 ---
 

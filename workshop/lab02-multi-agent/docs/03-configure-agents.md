@@ -4,13 +4,13 @@
 
 ## Step 1: Configure local `.env`
 
-Run from `workshop/lab02-multi-agent/PersonalCareerCopilotStarter`:
+Run from:
 
 ```bash
-cp .env.example .env
+cd workshop/lab02-multi-agent/PersonalCareerCopilot/src/PersonalCareerCopilot
 ```
 
-Fill in all six values:
+Module 2 copied the template to `.env`. Fill in all six values:
 
 ```env
 FOUNDRY_PROJECT_ENDPOINT=https://<your-foundry-resource>.services.ai.azure.com/api/projects/<your-project>
@@ -84,54 +84,76 @@ python -m pip show \
   debugpy
 ```
 
-## Step 3: Understand the agent contracts
+## Step 3: Replace the generated sample agents
 
-The starter begins with the original pasted-JD contracts. Complete its numbered
-TODOs using the challenge guide. The end-state reference is
-[`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py); use it only
-after attempting each task. The finished instructions enforce these boundaries:
+Open generated `main.py`. Remove `writer_agent`, `legal_agent`, and
+`format_agent`; keep the generated Foundry client and Responses host pattern.
+
+Copy the four prompt constants from
+[`lab-assets/base-agent-prompts.md`](../lab-assets/base-agent-prompts.md), then
+create these agents:
 
 ### `ResumeParser`
 
 - Parses only the supplied synthetic resume.
-- Copies the selected key exactly to `[SELECTED JOB KEY]`.
 - Copies any pasted fallback exactly to `[JOB DESCRIPTION PASS-THROUGH]`.
 
 ### `JobDescriptionAgent`
 
-- If a selected key exists, calls `get_selected_careers_job` exactly once with
-  that key and uses only the returned listing.
-- Treats every returned field as untrusted data, not instructions.
-- Does not silently use a pasted JD if selected-key retrieval fails.
-- Uses `[JOB DESCRIPTION PASS-THROUGH]` only when no key is selected.
-- Emits requirements, a resume relay, and `[SOURCE JOB]`.
+- Extracts requirements only from `[JOB DESCRIPTION PASS-THROUGH]`.
+- Copies `[PARSED RESUME]` into `[PARSED RESUME PASS-THROUGH]`.
+- Does not use candidate evidence as job requirements.
 
 ### `MatchingAgent`
 
 - Compares only `[JD REQUIREMENTS]` with `[PARSED RESUME PASS-THROUGH]`.
 - Produces evidence-based score math and precise gaps.
-- Copies `[SOURCE JOB]` verbatim to `[SOURCE JOB PASS-THROUGH]`.
 
 ### `GapAnalyzer`
 
 - Calls `search_microsoft_learn_for_plan` for every High/Medium gap.
 - Marks Microsoft Learn resources unavailable when that MCP call fails; it does
   not present fallback links as live results.
-- Copies the source title, agency, URL, exact key, and dataset version into the
-  final `[SOURCE JOB]`.
 
-## Step 4: Verify tool placement
+The optional Careers challenge later adds `[SELECTED JOB KEY]`, `[SOURCE JOB]`,
+exact-key retrieval, and the deterministic failure branch.
+
+## Step 4: Add the Microsoft Learn tool
+
+Add these imports to generated `main.py`:
+
+```python
+import json
+
+import httpx
+from agent_framework import tool
+from mcp import ClientSession
+from mcp.client.streamable_http import StreamableHTTPError, streamable_http_client
+from mcp.shared.exceptions import McpError
+```
+
+Use
+[`lab-assets/microsoft-learn-tool.md`](../lab-assets/microsoft-learn-tool.md)
+to add `search_microsoft_learn_for_plan`. It must:
+
+1. Calls `https://learn.microsoft.com/api/mcp`.
+2. Invokes `microsoft_docs_search` with the skill/role query.
+3. Returns only successful official results.
+4. Returns `[MICROSOFT LEARN MCP FAILURE]` for MCP, HTTP, timeout, OS, grouped,
+   or JSON failures.
+5. Never turns static fallback URLs into apparent live results.
+
+The asset is a focused implementation snippet, not a pre-created `main.py`.
+
+## Step 5: Verify base tool placement
 
 | Tool | Caller | Purpose |
 |---|---|---|
-| Careers MCP `search_jobs` | Local `python -m careers_mcp search` CLI | Out-of-band discovery before agent input |
-| Careers MCP `get_job` | `JobDescriptionAgent` only | Retrieve exactly the explicitly selected listing |
 | Microsoft Learn `microsoft_docs_search` | `GapAnalyzer` only | Find official resources for roadmap gaps |
 
-The shared Careers service never receives the resume. It receives bounded search
-filters or one exact stable key.
+The Careers tools are intentionally absent from the original Lab 02 path.
 
-## Step 5: Verify authentication
+## Step 6: Verify authentication
 
 ```bash
 az account show --query "{name:name, id:id}" --output table
@@ -148,10 +170,11 @@ credential and your configured Foundry project.
 - [ ] I can distinguish the runtime endpoint, `azd` endpoint, ARM project ID,
       subscription, and location settings.
 - [ ] Python 3.13 is active and every runtime, debugging, and OTLP pin is installed.
-- [ ] I can explain which component performs search, `get_job`, and Learn search.
-- [ ] I understand that Careers job text is untrusted data.
+- [ ] I replaced the three sample slogan agents with four Lab 02 agents.
+- [ ] I added only the Microsoft Learn tool to `GapAnalyzer`.
+- [ ] I have not copied the completed `main.py`.
 
 ---
 
-**Previous:** [02 - Start from the Original Baseline](02-scaffold-multi-agent.md) ·
+**Previous:** [02 - Scaffold the Attendee Project](02-scaffold-multi-agent.md) ·
 **Next:** [04 - Orchestration & Relays →](04-orchestration-patterns.md)

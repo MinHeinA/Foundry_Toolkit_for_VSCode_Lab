@@ -49,14 +49,14 @@ Vezi calea completă de învățare în:
 
 - [Documentația Laboratorului 2 - Cerințe preliminare](docs/00-prerequisites.md)
 - [Documentația Laboratorului 2 - Calea completă de învățare](docs/README.md)
-- [Ghidul de rulare PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Ghidul de rulare PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Partea 2: Construiește și testează fluxul de lucru
 
 1. Folosește wizard-ul Foundry Toolkit pentru a crea structura proiectului bazat pe flux de lucru.
-2. Copiază blocurile de prompt și graficul fluxului de lucru din `PersonalCareerCopilot/main.py` în spațiul tău de lucru.
+2. Copiază blocurile de prompt și graficul fluxului de lucru din `PersonalCareerCopilotCompleted/main.py` în spațiul tău de lucru.
 3. Rulează local cu Agent Inspector și verifică toți cei patru agenți plus instrumentul MCP.
 4. Realizează deploy agentului găzduit pe Foundry după ce testarea locală este reușită.
 

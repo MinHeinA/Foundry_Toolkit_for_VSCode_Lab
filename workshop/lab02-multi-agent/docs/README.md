@@ -13,10 +13,10 @@ one stable job key, and keep the pasted-job-description regression path.
 |---|---|---|
 | 0 | [Prerequisites](00-prerequisites.md) | Verify Python 3.13, your project/model, trainer-issued Careers settings, and privacy rules |
 | 1 | [Understand the Architecture](01-understand-multi-agent.md) | Trace CLI search, exact selection, four sequential agents, both MCP services, and provenance relays |
-| 2 | [Start from the Original Baseline](02-scaffold-multi-agent.md) | Run the attendee starter, preserve the completed solution, and review the agent-only `azure.yaml` |
-| 3 | [Configure Agents & Environment](03-configure-agents.md) | Configure the starter `.env`, understand the target contracts, and install pinned packages |
-| 4 | [Orchestration & Relays](04-orchestration-patterns.md) | Verify the strict chain and labeled relay sections |
-| 5 | [Search & Test Locally](05-test-locally.md) | Search Careers MCP, choose a key, use Agent Inspector with synthetic data, and test the pasted-JD fallback |
+| 2 | [Scaffold the Attendee Project](02-scaffold-multi-agent.md) | Generate `PersonalCareerCopilot/` from the official workflow sample and apply attendee assets |
+| 3 | [Configure Agents & Environment](03-configure-agents.md) | Replace the sample agents with the Resume/JD/Matching/Gap contracts and configure `.env` |
+| 4 | [Orchestration & Relays](04-orchestration-patterns.md) | Build the strict four-agent chain and labeled relay sections |
+| 5 | [Test Locally](05-test-locally.md) | Prove the original pasted-JD workflow, then optionally test Careers exact-key retrieval |
 | 6 | [Deploy with `azd`](06-deploy-to-foundry.md) | Target your existing Foundry project and deploy only the direct-code Hosted Agent |
 | 7 | [Verify the Hosted Agent](07-verify-in-playground.md) | Show status, invoke with the exact key, and validate provenance plus fallback |
 | 8 | [Troubleshooting](08-troubleshooting.md) | Diagnose Careers auth/search/key errors, Foundry role/quota issues, relays, and Learn MCP |

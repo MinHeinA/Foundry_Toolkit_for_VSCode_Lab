@@ -6,7 +6,7 @@ U ovom modulu koristite [Foundry Toolkit za VS Code](https://aka.ms/foundrytk) z
 
 > **Ključni pojam:** Postavljanje je radni kostur s jednim agentom. Zamjenjujete logiku privremenog sadržaja s grafom `WorkflowBuilder` u Modulu 3. Ne pišete osnovni kod od nule.
 
-> **Referentna implementacija:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) je cjelovit radni primjer. Koristite ga za usporedbu svog rada tijekom procesa.
+> **Referentna implementacija:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) je cjelovit radni primjer. Koristite ga za usporedbu svog rada tijekom procesa.
 
 ### Tijek rada čarobnjaka za postavljanje
 
@@ -92,7 +92,7 @@ Nakon dovršetka postavljanja, provjerite da vidite ove datoteke u Exploreru (`C
 | `Dockerfile` | `python:3.12-slim`, instalira `requirements.txt`, otvara port 8088, pokreće `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Referenca:** Pogledajte [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) i [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) za kompletan generirani sadržaj.
+> **Referenca:** Pogledajte [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) i [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) za kompletan generirani sadržaj.
 
 ---
 

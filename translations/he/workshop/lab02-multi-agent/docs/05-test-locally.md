@@ -10,7 +10,7 @@
 
 ### אפשרות א: שימוש במשימת VS Code (מומלץ)  
 
-1. פתח את התיקייה `workshop/lab02-multi-agent/PersonalCareerCopilot/` ב-VS Code שלך.  
+1. פתח את התיקייה `workshop/lab02-multi-agent/PersonalCareerCopilot/` ב-VS Code שלך.
 2. לחץ `Ctrl+Shift+P` → הקלד **Tasks: Run Task** → בחר **Run Agent HTTP Server**.  
 3. המשימה מפעילה את השרת עם debugpy מחובר בפורט `5679` והסוכן בפורט `8088`.  
 4. המתן עד שהתוצאה תציג:  

@@ -36,7 +36,7 @@ Dağıtıma başlamadan önce, aşağıdaki maddelerin her birini doğrulayın:
    - VS Code’un sol alt köşesindeki Hesaplar simgesini kontrol edin. Hesap adınız görünmelidir.
 
 4. **`agent.yaml` dosyası doğru değerleri içeriyor:**
-   - `PersonalCareerCopilot/agent.yaml` dosyasını açın ve doğrulayın:
+   - `PersonalCareerCopilot/main.py` dosyasını açın ve doğrulayın:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+requiredVersions:
+  extensions:
+    azure.ai.agents: '>=1.0.0-beta.4'
+name: careers-job-fit-trainer
+resourceGroup: ${AZURE_RESOURCE_GROUP}
+infra:
+  provider: bicep
+  path: infra
+services:
+  careers-job-mcp:
+    host: containerapp
+    project: ../careers-job-mcp
+    language: python
+    resourceGroup: ${AZURE_RESOURCE_GROUP}
+    resourceName: ${CAREERS_MCP_CONTAINER_APP_NAME}
+    docker:
+      path: Dockerfile
+      context: .
+      platform: linux/amd64
+      registry: ${AZURE_CONTAINER_REGISTRY_ENDPOINT}
+      image: careers-job-mcp
+      remoteBuild: true
+  personal-career-copilot-reference:
+    host: azure.ai.agent
+    project: ../PersonalCareerCopilotCompleted
+    language: python
+    codeConfiguration:
+      runtime: python_3_13
+      entryPoint: main.py
+    kind: hosted
+    name: personal-career-copilot-reference
+    description: >
+      Trainer reference deployment of the Careers@Gov-grounded Resume to Job
+      Fit Evaluator.
+    protocols:
+      - protocol: responses
+        version: 2.0.0
+    environmentVariables:
+      - name: AZURE_AI_MODEL_DEPLOYMENT_NAME
+        value: ${AZURE_AI_MODEL_DEPLOYMENT_NAME}
+      - name: CAREERS_MCP_ENDPOINT
+        value: ${CAREERS_MCP_ENDPOINT}
+      - name: CAREERS_MCP_API_KEY
+        value: ${CAREERS_MCP_API_KEY}
+      - name: CAREERS_MCP_TIMEOUT_SECONDS
+        value: ${CAREERS_MCP_TIMEOUT_SECONDS}
+      - name: MICROSOFT_LEARN_MCP_ENDPOINT
+        value: ${MICROSOFT_LEARN_MCP_ENDPOINT}
+    container:
+      resources:
+        cpu: '0.5'
+        memory: 1Gi

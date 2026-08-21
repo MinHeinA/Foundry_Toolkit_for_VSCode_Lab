@@ -1,9 +1,9 @@
 # Trainer deployment
 
-The repository-root `azure.yaml` is the trainer-only `azd` project. It deploys
-one shared Careers job MCP Container App and one reference Hosted Agent.
-Attendees use the agent-only `workshop/lab02-multi-agent/azure.yaml` project
-instead.
+This directory is the isolated trainer-only `azd` project. Its `azure.yaml`
+deploys one shared Careers job MCP Container App and the completed reference
+Hosted Agent. Attendees generate a separate `PersonalCareerCopilot/` project in
+Module 2 and never use this manifest.
 
 ## Existing resources
 
@@ -33,7 +33,8 @@ tenant policy exemption for those resource IDs before provisioning.
 
 ## Configure
 
-Run from the repository root. Authenticate manually before continuing;
+Run from `workshop/lab02-multi-agent/trainer-deployment`. Authenticate manually
+before continuing;
 automation must not run `az login` or `azd auth login` for you.
 
 ```bash
@@ -97,12 +98,12 @@ Use the approved upstream commit and generated timestamp before building the
 container:
 
 ```bash
-cd workshop/lab02-multi-agent/careers-job-mcp
+cd ../careers-job-mcp
 PYTHONPATH=src .venv/bin/python -m careers_job_mcp.build_index \
   --source-commit 84de3599f6927aa48be6f03c4bbb3c58d3965ba5 \
   --generated-at 2026-08-26T00:00:00Z \
   --output data/careers-jobs.sqlite3
-cd ../../..
+cd ../trainer-deployment
 ```
 
 Replace the development commit with the final approved event snapshot.
@@ -218,26 +219,26 @@ After setting a new `CAREERS_MCP_API_KEY` in the azd environment:
 Server-side synthetic dataset generation is unavailable in Southeast Asia. The
 reference agent therefore includes a manual fallback:
 
-- `PersonalCareerCopilot/eval.yaml`
-- `PersonalCareerCopilot/eval.coverage.yaml`
+- `../PersonalCareerCopilotCompleted/eval.yaml`
+- `../PersonalCareerCopilotCompleted/eval.coverage.yaml`
 - `.foundry/datasets/careers-job-fit-smoke.jsonl`
 - `.foundry/datasets/careers-job-fit-coverage.jsonl`
 
-Run the core smoke suite from the repository root:
+Run the core smoke suite from this trainer project directory:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd ai agent eval run \
-  --config eval.yaml \
+  --config ../PersonalCareerCopilotCompleted/eval.yaml \
   --name careers-job-fit-core-smoke \
   --no-wait \
   --no-prompt
 ```
 
-The CLI resolves `eval.yaml` relative to the selected agent source folder. Use
-`azd ai agent eval list` and `azd ai agent eval show` to monitor the run.
-Clear `LAST_EVAL_ID` before switching to `eval.coverage.yaml`, otherwise the
-CLI reuses the prior evaluator definition.
+Use `azd ai agent eval list` and `azd ai agent eval show` to monitor the run.
+Clear `LAST_EVAL_ID` before switching to
+`../PersonalCareerCopilotCompleted/eval.coverage.yaml`, otherwise the CLI reuses
+the prior evaluator definition.
 
 The seed rows retain `expected_behavior` for a later custom behavioral
 evaluator. The compatible built-in baseline evaluators do not consume that

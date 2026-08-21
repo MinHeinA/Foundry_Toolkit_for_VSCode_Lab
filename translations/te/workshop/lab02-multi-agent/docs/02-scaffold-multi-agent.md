@@ -6,7 +6,7 @@
 
 > **కీ కాన్సెప్ట్:** స్కాఫోల్డ్ ఒక పని చేసే స్టబ్ ఒక ఏజెంట్ తో ఉంటుంది. ప్లేస్‌హోల్డర్ లాజిక్ ను మాడ్యూల్ 3 లోని `WorkflowBuilder` గ్రాఫ్ తో మార్చుతారు. మీరు బాయిలర్‌ప్లేట్ ను మొదలుకొనకుండా రాయవద్దు.
 
-> **రికమండేషన్ అమలు:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) పూర్తిగా పని చేసే ఉదాహరణ. మీరు మీ పని తో పోల్చడానికి దీన్ని ఉపయోగించండి.
+> **రికమండేషన్ అమలు:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) పూర్తిగా పని చేసే ఉదాహరణ. మీరు మీ పని తో పోల్చడానికి దీన్ని ఉపయోగించండి.
 
 ### స్కాఫోల్డ్ విజార్ ఫ్లో
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` ఇనిస్టాల్ చేస్తుంది, పోర్ట్ 8088 ఎక్స్‌పోస్ చేస్తుంది, `python main.py` నడుపుతుంది |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **సూచన:** పూర్తి రూపొందించిన విషయం కోసం [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) మరియు [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) చూడండి.
+> **సూచన:** పూర్తి రూపొందించిన విషయం కోసం [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) మరియు [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) చూడండి.
 
 ---
 

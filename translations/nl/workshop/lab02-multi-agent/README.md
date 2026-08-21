@@ -49,14 +49,14 @@ Bekijk het volledige leerpad in:
 
 - [Lab 2 Docs - Vereisten](docs/00-prerequisites.md)
 - [Lab 2 Docs - Volledig Leerpad](docs/README.md)
-- [PersonalCareerCopilot handleiding](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted handleiding](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Deel 2: Bouw en test de workflow
 
 1. Gebruik de Foundry Toolkit wizard om het workflow-gebaseerde project op te zetten.
-2. Kopieer de prompt-blokken en workflow-grafiek van `PersonalCareerCopilot/main.py` naar je werkruimte.
+2. Kopieer de prompt-blokken en workflow-grafiek van `PersonalCareerCopilotCompleted/main.py` naar je werkruimte.
 3. Voer lokaal uit met de Agent Inspector en verifieer alle vier agents plus de MCP-tool.
 4. Zet de gehoste agent in Foundry uit zodra de lokale test slaagt.
 

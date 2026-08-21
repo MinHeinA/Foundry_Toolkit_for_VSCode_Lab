@@ -4,7 +4,7 @@
 
 Dalam modul ini, Anda mengubah stub yang telah dibangun menjadi **alur kerja multi-agen Anda** - dengan menetapkan variabel lingkungan, menulis instruksi agen, menambahkan alat MCP, menghubungkan grafik alur kerja, dan menginstal dependensi.
 
-> **Referensi:** Kode kerja lengkap ada di [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Gunakan sebagai referensi saat membangun grafik alur kerja dan blok prompt Anda sendiri.
+> **Referensi:** Kode kerja lengkap ada di [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Gunakan sebagai referensi saat membangun grafik alur kerja dan blok prompt Anda sendiri.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Langkah 2: Tulis instruksi agen
 
-Instruksi mendefinisikan peran setiap agen, format keluaran, dan aturan. Buka `main.py` dan definisikan (atau ganti) empat konstanta instruksi - string lengkapnya ada di [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Instruksi mendefinisikan peran setiap agen, format keluaran, dan aturan. Buka `main.py` dan definisikan (atau ganti) empat konstanta instruksi - string lengkapnya ada di [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Menguraikan resume menjadi profil kandidat yang terstruktur **dan** menyalin deskripsi pekerjaan secara verbatim ke dalam `[JOB DESCRIPTION PASS-THROUGH]`. Kedua bagian yang diberi label harus muncul dalam keluaran.
@@ -88,7 +88,7 @@ Membaca laporan kesesuaian. Untuk **setiap** keterampilan yang hilang, memanggil
 
 ## Langkah 3: Tambahkan alat MCP
 
-GapAnalyzer memanggil [server Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) untuk mengambil sumber daya pembelajaran nyata untuk setiap gap keterampilan. Fungsi lengkap `search_microsoft_learn_for_plan` ada di [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer memanggil [server Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) untuk mengambil sumber daya pembelajaran nyata untuk setiap gap keterampilan. Fungsi lengkap `search_microsoft_learn_for_plan` ada di [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Daftarkan alat pada GapAnalyzer saat membuat agen:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Lihat [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) untuk grafik `WorkflowBuilder` lengkap dengan `FoundryChatClient`, `AgentExecutor`, dan semua panggilan `add_edge()`.
+> Lihat [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) untuk grafik `WorkflowBuilder` lengkap dengan `FoundryChatClient`, `AgentExecutor`, dan semua panggilan `add_edge()`.
 
 ---
 

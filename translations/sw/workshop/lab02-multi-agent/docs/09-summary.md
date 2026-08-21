@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Chaguo 2: Futa wakala mwenyeji tu
 
 1. Fungua [ai.azure.com](https://ai.azure.com) → mradi wako → **Build** → **Agents**.
-2. Tafuta **PersonalCareerCopilot** → bofya **Delete**.
+2. Tafuta **PersonalCareerCopilotCompleted** → bofya **Delete**.
 
 ### Chaguo 3: Futa uenezaji wa mfano
 

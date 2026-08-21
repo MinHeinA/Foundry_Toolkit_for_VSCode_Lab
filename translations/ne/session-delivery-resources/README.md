@@ -23,7 +23,7 @@
 | प्रयोगशाला 01 - एकल एजेन्ट       | [Lab 01](../workshop/lab01-single-agent/README.md)                               | व्यावहारिक प्रयोगशाला: *Explain Like I'm an Executive* होस्ट गरिएको एजेन्ट निर्माण, परीक्षण, परिनियोजन |
 | प्रयोगशाला 02 - बहु-एजेन्ट कार्यप्रवाह | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | व्यावहारिक प्रयोगशाला: 4-एजेन्ट *Resume to Job Fit Evaluator* कार्यप्रवाह निर्माण       |
 | डेमो 1: Executive Agent          | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                              | प्रयोगशाला 01 डेमो: प्राविधिक शब्दावलीलाई कार्यकारी सारांशमा अनुवाद गर्नु                  |
-| डेमो 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)     | प्रयोगशाला 02 डेमो: 4-एजेन्ट कार्यप्रवाह जसले रिजुमे-जॉब फिट स्कोर गर्दछ र सिफारिसहरू उत्पन्न गर्दछ  |
+| डेमो 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)     | प्रयोगशाला 02 डेमो: 4-एजेन्ट कार्यप्रवाह जसले रिजुमे-जॉब फिट स्कोर गर्दछ र सिफारिसहरू उत्पन्न गर्दछ  |
 
 > **प्रशिक्षकहरूका लागि नोट:** रेकर्डिङहरू प्रकाशन भएसँगै स्लाइड डेक र भिडियो लिङ्कहरू थपिने छन्। तबसम्म, नवीनतम साधनहरूको लागि मर्मतकर्तासँग सम्पर्क गर्नुहोस् (हेर्नुहोस् [Contacts](#सम्पर्कहरू))।
 
@@ -97,7 +97,7 @@
 | वास्तुकला चित्र             | [README वास्तुकला](../README.md#architecture) हिँड्नुहोस्: ढाँचा, Inspector, ACR, एजेन्ट सेवा।              |
 | होस्ट गरिएको एजेन्टको संरचना | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - प्रत्येक फाइलले के गर्छ।                          |
 | प्रत्यक्ष डेमो: Executive Agent | VS Code मा स्विच गरी [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) डेमो अन्त्यदेखि अन्तसम्म चलाउनुहोस् (हेर्नुहोस् [Demo 1](#डेमो-1-executive-agent))। |
-| प्रत्यक्ष डेमो: Resume to Job Fit Evaluator | VS Code मा स्विच गरी [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-एजेन्ट डेमो चलाउनुहोस् (हेर्नुहोस् [Demo 2](#डेमो-2-resume-to-job-fit-evaluator))। |
+| प्रत्यक्ष डेमो: Resume to Job Fit Evaluator | VS Code मा स्विच गरी [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-एजेन्ट डेमो चलाउनुहोस् (हेर्नुहोस् [Demo 2](#डेमो-2-resume-to-job-fit-evaluator))। |
 | प्रयोगशाला 01 सारांश         | सिक्नेहरूले सम्हाल्न। [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) संकेत गर्नुहोस्।       |
 | बहु-एजेन्ट ढाँचाहरू        | क्रमबद्ध vs समसामयिक vs हस्तान्तरण - प्रयोगशाला 02 अघि पूर्वावलोकन।                                      |
 | प्रयोगशाला 02 सारांश         | सिक्नेहरूले सम्हाल्न। [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) संकेत गर्नुहोस्।       |
@@ -112,7 +112,7 @@
 | डेमो | प्रयोगशाला | फाइलहरू | के देखाउने |
 |------|---------|---------|------------|
 | Executive Agent | प्रयोगशाला 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | एकल होस्ट गरिएको एजेन्ट; प्राविधिक शब्दावलीलाई कार्यकारी सारांशमा अनुवाद गर्नुहोस् |
-| Resume to Job Fit Evaluator | प्रयोगशाला 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-एजेन्ट आयोजन; रिजुमे-जॉब फिट स्कोर र सिफारिस निर्माण गर्नुहोस् |
+| Resume to Job Fit Evaluator | प्रयोगशाला 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-एजेन्ट आयोजन; रिजुमे-जॉब फिट स्कोर र सिफारिस निर्माण गर्नुहोस् |
 
 ### डेमो 1: Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### डेमो 2: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) मा 4-एजेन्ट कार्यप्रवाह। प्रयोगशाला 02 अघि यो 10 मिनेटको डेमोको रूपमा प्रयोग गर्नुहोस्।
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) मा 4-एजेन्ट कार्यप्रवाह। प्रयोगशाला 02 अघि यो 10 मिनेटको डेमोको रूपमा प्रयोग गर्नुहोस्।
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) खोल्नुहोस् र चार एजेन्टहरू कसरी क्रमशः संयोजन गरिएको छ देखाउनुहोस्।
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) खोल्नुहोस् र चार एजेन्टहरू कसरी क्रमशः संयोजन गरिएको छ देखाउनुहोस्।
 2. बहु-एजेन्ट कार्यप्रवाहका लागि **Agent Inspector** सुरु गर्न `F5` थिच्नुहोस्।
 3. Inspector च्याटमा छोटो जागिर विवरण र नमूना रिजुमे टाँस्नुहोस्।
 4. चार-एजेन्ट पाइपलाइनमा हिँड्नुहोस्: रिजुमे पार्सर, जागिर आवश्यकताहरू निकाल्ने, फिट स्कोर गर्ने, र सिफारिस लेखक।
 5. हरेक उप-एजेन्टको आउटपुट कसरी अर्को एजेन्टको सन्दर्भ बन्छ भन्ने कुरामा ध्यान दिनुहोस्, हस्तान्तरण ढाँचालाई हाइलाइट गर्दै।
-6. एकल-एजेन्ट समकक्षसँग तुलना गर्न [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) देखाउनुहोस्।
+6. एकल-एजेन्ट समकक्षसँग तुलना गर्न [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) देखाउनुहोस्।
 
 ---
 

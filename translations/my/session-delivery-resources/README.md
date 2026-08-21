@@ -23,7 +23,7 @@
 | Lab 01 - single agent         | [Lab 01](../workshop/lab01-single-agent/README.md)                                       | လက်တွေ့လေ့ကျင့်မှု: *Explain Like I'm an Executive* ဟုတ်ဆောထားသော single agent ကို တည်ဆောက်၊ စမ်းသပ်၊ ဖြန့်ချိခြင်း   |
 | Lab 02 - multi-agent workflow | [Lab 02](../workshop/lab02-multi-agent/README.md)                                        | လက်တွေ့လေ့ကျင့်မှု: 4-agent *Resume to Job Fit Evaluator* လုပ်ငန်းစဉ်တစ်ခု တည်ဆောက်ခြင်း                      |
 | Demo 1: Executive Agent             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                      | Lab 01 demo: နည်းပညာစာလုံးလုံးချက်များကို အမှုဆောင်အကျဉ်းချုပ်သို့ ဘာသာပြန်ခြင်း                      |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)             | Lab 02 demo: 4-agent လုပ်ငန်းစဉ်၊ ရုပ်ပုံတင်ပြချက်နှင့် အကြံပြုချက်များ ထုတ်လုပ်ခြင်း                    |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)             | Lab 02 demo: 4-agent လုပ်ငန်းစဉ်၊ ရုပ်ပုံတင်ပြချက်နှင့် အကြံပြုချက်များ ထုတ်လုပ်ခြင်း                    |
 
 > **လေ့ကျင့်သူများအတွက် မှတ်ချက်:** slide deck နှင့် ဗီဒီယိုလင့်ခ်များကို မှတ်တမ်းထုတ်ပြန်ပြီးနောက် ထည့်သွင်းပါမည်။ အထိန်းသိမ်းသူ (ကြည့်ရန် [Contacts](#ဆက်သွယ်ရန်)) ကို ဆက်သွယ်ပြီး နောက်ဆုံး အသစ်များ ရယူပါ။
 
@@ -97,7 +97,7 @@
 | ပုံစံဇယား                 | [README architecture](../README.md#architecture) အတိုင်း လမ်းညွှန်ပါ: scaffold, Inspector, ACR, Agent Service ။           |
 | hosted agent တည်ဆောက်ပုံ   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ဖိုင်တိုင်း၏ တာဝန်များ။                                |
 | တိုက်ရိုက်ပြသမှု: Executive Agent | VS Code သို့ အပြောင်းပြန်ပြီး [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) အပြီးသတ် demo ကို ပြုလုပ်ပါ (ကြည့်ရန် [Demo 1](#ပြသမှု-၁-executive-agent))။ |
-| တိုက်ရိုက်ပြသမှု: Resume to Job Fit Evaluator | VS Code သို့ ပြောင်းပြီး [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-agent demo ကို ပြုလုပ်ပါ (ကြည့်ရန် [Demo 2](#ပြသမှု-၂-resume-to-job-fit-evaluator))။ |
+| တိုက်ရိုက်ပြသမှု: Resume to Job Fit Evaluator | VS Code သို့ ပြောင်းပြီး [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-agent demo ကို ပြုလုပ်ပါ (ကြည့်ရန် [Demo 2](#ပြသမှု-၂-resume-to-job-fit-evaluator))။ |
 | Lab 01 အကျဉ်း             | လေ့လာသူများအား လွှဲပြောင်းပေးပါ။ [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) သို့ ဦးတည်ပါ။ |
 | Multi-agent ပုံစံများ         | အစဉ်လိုက်၊ တပြိုင်နက် သို့မဟုတ် လက်ခံဆက်လက်ပြောင်းရွှေ့ခြင်း - Lab 02 စတင်မီ ကြိုတင်ကြည့်ရှုပါ။                      |
 | Lab 02 အကျဉ်း             | လေ့လာသူများအား လွှဲပြောင်းပေးပါ။ [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) သို့ ဦးတည်ပါ။ |
@@ -112,7 +112,7 @@
 | ပြသမှု | Lab | ဖိုင်များ | မည်ကိုပြသမည် |
 |--------|-----|---------|----------------|
 | Executive Agent | Lab 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | single hosted agent; နည်းပညာစာလုံးလုံးချက်များကို အမှုဆောင်အကျဉ်းချုပ်သို့ ဘာသာပြန်ခြင်း |
-| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-agent လုပ်ငန်းစဉ်; ရုပ်ပုံတင်ပြချက်နှင့် အကြံပြုချက် ထုတ်ပေးခြင်း |
+| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-agent လုပ်ငန်းစဉ်; ရုပ်ပုံတင်ပြချက်နှင့် အကြံပြုချက် ထုတ်ပေးခြင်း |
 
 ### ပြသမှု ၁: Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### ပြသမှု ၂: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) တွင် ၄-agent Workflow တစ်ခု။ Lab 02 မတိုင်မီ ၁၀ မိနစ် ဒေမိုအဖြစ် အသုံးပြုပါ။
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) တွင် ၄-agent Workflow တစ်ခု။ Lab 02 မတိုင်မီ ၁၀ မိနစ် ဒေမိုအဖြစ် အသုံးပြုပါ။
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ကို ဖွင့်ပြီး agent ၄ ဦးကို စဉ်လိုက် အလှည့်အပြောင်း ပြုလုပ်သော စနစ်လမ်းကြောင်းနှင့် ရေးဆွဲထားသည်ကို ပြပါ။
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ကို ဖွင့်ပြီး agent ၄ ဦးကို စဉ်လိုက် အလှည့်အပြောင်း ပြုလုပ်သော စနစ်လမ်းကြောင်းနှင့် ရေးဆွဲထားသည်ကို ပြပါ။
 2. `F5` ကိုနှိပ်ပြီး မတူညီသော agent များအတွက် **Agent Inspector** ကို စတင်ပါ။
 3. Inspector chat တွင် အလုပ်အညွှန်းတိုတစ်ခုနှင့် နမူနာ ရုပ်ပုံတင်ပြချက် တစ်ခုကို ပေးပို့ပါ။
 4. လူကြီးagent လေးခု၏ လုပ်ငန်းစဉ်အားလုံးကို လမ်းလျှောက်ပြပါ: ရုပ်ပုံတင်မည့် resume parser, အလုပ်လိုအပ်ချက် အစိတ်အပိုင်း extractor, ကိုက်ညီမှုစာရင်း scorer, အကြံပြုချက်ရေးသူ။
 5. ခွဲခြမ်းသုံးသပ်ချက် sub-agent တစ်ခုချင်းစီ၏ output သည် နောက်တစ် agent ၏ context ဖြစ်တယ်ဟု ဖော်ပြပြီး handoff ပုံစံကို ညွှန်ပြပါ။
-6. [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) ကို ပြပါ။ Demo 1မှ single-agent agent.yaml နှင့် နှိုင်းယှဉ်ပါ။
+6. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ကို ပြပါ။ Demo 1မှ single-agent agent.yaml နှင့် နှိုင်းယှဉ်ပါ။
 
 ---
 

@@ -6,7 +6,7 @@ I dette modul bruger du [Foundry Toolkit for VS Code](https://aka.ms/foundrytk) 
 
 > **Hovedkoncept:** Scaffolden er en fungerende stub med én agent. Du erstatter standardlogikken med `WorkflowBuilder` grafen i Modul 3. Du skal ikke skrive standardkode fra bunden.
 
-> **Referenceimplementering:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) er et komplet fungerende eksempel. Brug det til at sammenligne dit arbejde undervejs.
+> **Referenceimplementering:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) er et komplet fungerende eksempel. Brug det til at sammenligne dit arbejde undervejs.
 
 ### Scaffold-guide flow
 
@@ -92,7 +92,7 @@ Efter scaffold er færdig, bekræft at du ser disse filer i Explorer (`Ctrl+Shif
 | `Dockerfile` | `python:3.12-slim`, installerer `requirements.txt`, eksponerer port 8088, kører `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Reference:** Se [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) og [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) for det komplette genererede indhold.
+> **Reference:** Se [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) og [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) for det komplette genererede indhold.
 
 ---
 

@@ -68,7 +68,7 @@ Az Agent Inspector ugyanezt a gráfszerkezetet mutatja, amikor az ügynök helyi
 
 ## A WorkflowBuilder kód olvasása
 
-A teljes `create_workflow()` függvény a [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) fájlban található. A három `add_edge()` hívás felépíti a szekvenciális csővezetéket:
+A teljes `create_workflow()` függvény a [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) fájlban található. A három `add_edge()` hívás felépíti a szekvenciális csővezetéket:
 
 | # | Él | Hatás |
 |---|------|--------|

@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Možnost 2: Smazat pouze hostovaného agenta
 
 1. Otevřete [ai.azure.com](https://ai.azure.com) → svůj projekt → **Build** → **Agents**.
-2. Najděte **PersonalCareerCopilot** → klikněte na **Delete**.
+2. Najděte **PersonalCareerCopilotCompleted** → klikněte na **Delete**.
 
 ### Možnost 3: Smazat nasazení modelu
 

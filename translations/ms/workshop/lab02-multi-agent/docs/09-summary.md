@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Pilihan 2: Padam hanya ejen dihoskan
 
 1. Buka [ai.azure.com](https://ai.azure.com) → projek anda → **Bangunkan** → **Ejen**.
-2. Cari **PersonalCareerCopilot** → klik **Padam**.
+2. Cari **PersonalCareerCopilotCompleted** → klik **Padam**.
 
 ### Pilihan 3: Padam pelancaran model
 

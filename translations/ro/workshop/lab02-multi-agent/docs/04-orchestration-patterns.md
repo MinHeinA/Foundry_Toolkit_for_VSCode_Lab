@@ -68,7 +68,7 @@ Inspectorul de Agenți afișează aceeași structură grafică când agentul rul
 
 ## Citirea codului WorkflowBuilder
 
-Funcția completă `create_workflow()` se găsește în [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Cele trei apeluri `add_edge()` construiesc pipeline-ul secvențial:
+Funcția completă `create_workflow()` se găsește în [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Cele trei apeluri `add_edge()` construiesc pipeline-ul secvențial:
 
 | # | Muchie | Efect |
 |---|------|--------|
