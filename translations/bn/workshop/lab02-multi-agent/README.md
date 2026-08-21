@@ -49,14 +49,14 @@ flowchart TD
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## পার্ট ২: ওয়ার্কফ্লো তৈরি ও পরীক্ষা করুন
 
 1. Foundry Toolkit উইজার্ড ব্যবহার করে ওয়ার্কফ্লো ভিত্তিক প্রোজেক্ট স্ক্যাফোল্ড করুন।
-2. `PersonalCareerCopilot/main.py` থেকে প্রম্পট ব্লক এবং ওয়ার্কফ্লো গ্রাফ আপনার ওয়ার্কস্পেসে কপি করুন।
+2. `PersonalCareerCopilotCompleted/main.py` থেকে প্রম্পট ব্লক এবং ওয়ার্কফ্লো গ্রাফ আপনার ওয়ার্কস্পেসে কপি করুন।
 3. Agent Inspector দিয়ে লোকালি চালিয়ে সব চার এজেন্ট এবং MCP টুল যাচাই করুন।
 4. লোকাল টেস্ট পাস হলে হোস্ট এজেন্টটি Foundry-তে ডিপ্লয় করুন।
 

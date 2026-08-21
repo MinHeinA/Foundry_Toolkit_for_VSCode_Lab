@@ -68,7 +68,7 @@ flowchart LR
 
 ## خواندن کد WorkflowBuilder
 
-تابع کامل `create_workflow()` در [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) قرار دارد. سه فراخوانی `add_edge()` خط لوله متوالی را می‌سازند:
+تابع کامل `create_workflow()` در [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) قرار دارد. سه فراخوانی `add_edge()` خط لوله متوالی را می‌سازند:
 
 | # | لبه | تأثیر |
 |---|------|--------|

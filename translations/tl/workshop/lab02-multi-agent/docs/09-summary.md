@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Opsyon 2: I-delete lang ang hosted agent
 
 1. Buksan ang [ai.azure.com](https://ai.azure.com) → ang iyong project → **Build** → **Agents**.
-2. Hanapin ang **PersonalCareerCopilot** → i-click ang **Delete**.
+2. Hanapin ang **PersonalCareerCopilotCompleted** → i-click ang **Delete**.
 
 ### Opsyon 3: I-delete ang model deployment
 

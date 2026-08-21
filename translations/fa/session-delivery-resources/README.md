@@ -23,7 +23,7 @@
 | آزمایشگاه ۰۱ - عامل تک    | [Lab 01](../workshop/lab01-single-agent/README.md)                               | آزمایشگاه عملی: ساخت، آزمایش و استقرار عامل *Explain Like I'm an Executive* میزبانی شده    |
 | آزمایشگاه ۰۲ - جریان کاری چندعاملی | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | آزمایشگاه عملی: ساخت جریان ۴عاملی *Resume to Job Fit Evaluator*                            |
 | دموی ۱: عامل اجرایی           | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | دموی آزمایشگاه ۰۱: ترجمه اصطلاحات فنی به خلاصه اجرایی                                     |
-| دموی ۲: ارزیاب تطابق رزومه و شغل | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | دموی آزمایشگاه ۰۲: جریان کاری ۴عاملی که تطابق رزومه و شغل را امتیازدهی و توصیه تولید می‌کند |
+| دموی ۲: ارزیاب تطابق رزومه و شغل | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | دموی آزمایشگاه ۰۲: جریان کاری ۴عاملی که تطابق رزومه و شغل را امتیازدهی و توصیه تولید می‌کند |
 
 > **توجه برای مربیان:** لینک اسلایدها و ویدیوها پس از انتشار ضبط‌ها اضافه خواهد شد. تا آن زمان، برای دریافت آخرین منابع با مسئول تماس بگیرید (ببینید [تماس‌ها](#تماس‌ها)).
 
@@ -97,7 +97,7 @@
 | نمودار معماری             | مرور [معماری README](../README.md#architecture): اسکفولد، Inspector، ACR، سرویس عامل.                  |
 | آناتومی عامل میزبان       | `agent.yaml`، `Dockerfile`، `main.py`، `requirements.txt` - هر فایل چه کاری انجام می‌دهد.                |
 | دموی زنده: عامل اجرایی     | به VS Code بروید و دمو [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) را از ابتدا تا انتها اجرا کنید (ببینید [دمو ۱](#دمو-۱-عامل-اجرایی)). |
-| دموی زنده: ارزیاب تطابق رزومه | به VS Code بروید و دمو ۴عاملی [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) را اجرا کنید (ببینید [دمو ۲](#دمو-۲-ارزیاب-تطابق-رزومه-و-شغل)). |
+| دموی زنده: ارزیاب تطابق رزومه | به VS Code بروید و دمو ۴عاملی [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) را اجرا کنید (ببینید [دمو ۲](#دمو-۲-ارزیاب-تطابق-رزومه-و-شغل)). |
 | خلاصه آزمایشگاه ۰۱         | تحویل به فراگیران. اشاره به [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | الگوهای چندعاملی           | تسلسل، موازی و تحویل دست - پیش‌نمایش قبل از شروع آزمایشگاه ۰۲.                                          |
 | خلاصه آزمایشگاه ۰۲         | تحویل به فراگیران. اشاره به [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@
 | دمو | آزمایشگاه | فایل‌ها | چه چیزی نشان داده شود |
 |------|-----|-------|---------------------|
 | عامل اجرایی | آزمایشگاه ۰۱ | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | عامل میزبانی شده تک؛ ترجمه اصطلاحات فنی به خلاصه اجرایی |
-| ارزیاب تطابق رزومه و شغل | آزمایشگاه ۰۲ | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | هماهنگی ۴عاملی؛ امتیازدهی تطابق رزومه با شغل و تولید توصیه  |
+| ارزیاب تطابق رزومه و شغل | آزمایشگاه ۰۲ | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | هماهنگی ۴عاملی؛ امتیازدهی تطابق رزومه با شغل و تولید توصیه  |
 
 ### دمو ۱: عامل اجرایی
 
@@ -126,14 +126,14 @@
 
 ### دمو ۲: ارزیاب تطابق رزومه و شغل
 
-یک جریان کاری ۴عاملی در [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). این را به عنوان دمو ۱۰ دقیقه‌ای قبل از آزمایشگاه ۰۲ استفاده کنید.
+یک جریان کاری ۴عاملی در [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). این را به عنوان دمو ۱۰ دقیقه‌ای قبل از آزمایشگاه ۰۲ استفاده کنید.
 
-1. فایل [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) را باز کرده و نحوه اتصال چهار عامل در هماهنگی ترتیبی را نشان دهید.
+1. فایل [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) را باز کرده و نحوه اتصال چهار عامل در هماهنگی ترتیبی را نشان دهید.
 2. کلید `F5` را فشار دهید تا **Agent Inspector** برای جریان کاری چندعاملی اجرا شود.
 3. یک شرح شغل کوتاه و یک نمونه رزومه را در چت Inspector پیست کنید.
 4. خط لوله چهارعاملی را مرور کنید: تجزیه‌کننده رزومه، استخراج‌کننده نیازمندی شغل، امتیازدهنده تطابق و نویسنده توصیه.
 5. توضیح دهید چگونه خروجی هر زیرعامل زمینه عامل بعدی می‌شود و الگوی تحویل دست را برجسته کنید.
-6. فایل [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) را نشان دهید تا با معادل تک‌عاملی دمو ۱ مقایسه شود.
+6. فایل [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) را نشان دهید تا با معادل تک‌عاملی دمو ۱ مقایسه شود.
 
 ---
 

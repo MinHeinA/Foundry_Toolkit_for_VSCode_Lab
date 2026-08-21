@@ -4,7 +4,7 @@
 
 În acest modul, transformați scheletul șablon într-un flux de lucru multi-agent **al dvs.** - prin setarea variabilelor de mediu, scrierea instrucțiunilor agenților, adăugarea instrumentului MCP, conectarea graficului fluxului și instalarea dependențelor.
 
-> **Referință:** Codul complet funcțional este în [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Folosiți-l ca referință în timp ce construiți propriul grafic de flux și blocuri de prompturi.
+> **Referință:** Codul complet funcțional este în [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Folosiți-l ca referință în timp ce construiți propriul grafic de flux și blocuri de prompturi.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Pasul 2: Scrieți instrucțiunile agenților
 
-Instrucțiunile definesc rolul fiecărui agent, formatul output-ului și regulile. Deschideți `main.py` și definiți (sau înlocuiți) cele patru constante de instrucțiuni - șirurile complete sunt în [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Instrucțiunile definesc rolul fiecărui agent, formatul output-ului și regulile. Deschideți `main.py` și definiți (sau înlocuiți) cele patru constante de instrucțiuni - șirurile complete sunt în [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Parsează CV-ul într-un profil structurat al candidatului **și** copiază descrierea postului literal în `[JOB DESCRIPTION PASS-THROUGH]`. Ambele secțiuni etichetate trebuie să apară în output.
@@ -88,7 +88,7 @@ Citește raportul de potrivire. Pentru **fiecare** competență lipsă, apeleaz�
 
 ## Pasul 3: Adăugați instrumentul MCP
 
-GapAnalyzer apelează [serverul Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) pentru a obține resurse reale de învățare pentru fiecare lacună de competență. Funcția completă `search_microsoft_learn_for_plan` este în [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer apelează [serverul Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) pentru a obține resurse reale de învățare pentru fiecare lacună de competență. Funcția completă `search_microsoft_learn_for_plan` este în [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Înregistrați instrumentul pe GapAnalyzer la crearea agentului:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Consultați [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) pentru graficul complet `WorkflowBuilder` cu `FoundryChatClient`, `AgentExecutor` și toate apelurile `add_edge()`.
+> Consultați [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) pentru graficul complet `WorkflowBuilder` cu `FoundryChatClient`, `AgentExecutor` și toate apelurile `add_edge()`.
 
 ---
 

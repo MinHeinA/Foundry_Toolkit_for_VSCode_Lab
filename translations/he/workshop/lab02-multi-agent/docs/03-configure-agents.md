@@ -4,7 +4,7 @@
 
 במודול זה, תמיר את השלד שנבנה לזרימת עבודה רב-סוכנים **שלך** - על ידי הגדרת משתני סביבה, כתיבת הוראות סוכן, הוספת כלי MCP, חיבור גרף הזרימה והתקנת התלותים.
 
-> **הפניה:** הקוד המלא עובד נמצא ב-[`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). השתמש בו כהפניה בעת בניית גרף הזרימה וחסימות הפרומפט שלך.
+> **הפניה:** הקוד המלא עובד נמצא ב-[`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). השתמש בו כהפניה בעת בניית גרף הזרימה וחסימות הפרומפט שלך.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## שלב 2: כתיבת הוראות סוכן
 
-ההוראות מגדירות את תפקיד כל סוכן, פורמט הפלט והכללים. פתח את `main.py` והגדר (או החלף) את ארבעת הקבועים של ההוראות - המחרוזות המלאות נמצאות ב- [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+ההוראות מגדירות את תפקיד כל סוכן, פורמט הפלט והכללים. פתח את `main.py` והגדר (או החלף) את ארבעת הקבועים של ההוראות - המחרוזות המלאות נמצאות ב- [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 מפרש את קורות החיים לפרופיל מועמד במבנה **וגם** מעתיק את תיאור התפקיד במדויק אל `[JOB DESCRIPTION PASS-THROUGH]`. שני החלקים המסומנים חייבים להופיע בפלט.
@@ -88,7 +88,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## שלב 3: הוסף את כלי MCP
 
-ה-GapAnalyzer קורא לשרת MCP של [Microsoft Learn](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) כדי להביא משאבי למידה אמיתיים לכל פער כישורים. הפונקציה המלאה `search_microsoft_learn_for_plan` נמצאת ב- [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+ה-GapAnalyzer קורא לשרת MCP של [Microsoft Learn](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) כדי להביא משאבי למידה אמיתיים לכל פער כישורים. הפונקציה המלאה `search_microsoft_learn_for_plan` נמצאת ב- [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 רישום הכלי על GapAnalyzer בעת יצירת הסוכן:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> ראה ב-[`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) את גרף `WorkflowBuilder` המלא עם `FoundryChatClient`, `AgentExecutor` וכל קריאות `add_edge()`.
+> ראה ב-[`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) את גרף `WorkflowBuilder` המלא עם `FoundryChatClient`, `AgentExecutor` וכל קריאות `add_edge()`.
 
 ---
 

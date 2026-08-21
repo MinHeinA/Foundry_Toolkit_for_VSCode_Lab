@@ -68,7 +68,7 @@ flowchart LR
 
 ## 閱讀 WorkflowBuilder 程式碼
 
-`create_workflow()` 函式完整程式碼位於 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)。三次 `add_edge()` 呼叫建立序列流水線：
+`create_workflow()` 函式完整程式碼位於 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)。三次 `add_edge()` 呼叫建立序列流水線：
 
 | # | 邊 | 效果 |
 |---|------|--------|

@@ -49,14 +49,14 @@ Lihat jalur pembelajaran lengkap di:
 
 - [Dokumentasi Lab 2 - Prasyarat](docs/00-prerequisites.md)
 - [Dokumentasi Lab 2 - Jalur Pembelajaran Lengkap](docs/README.md)
-- [Panduan menjalankan PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Panduan menjalankan PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Bagian 2: Bangun dan uji alur kerja
 
 1. Gunakan wizard Foundry Toolkit untuk membuat proyek berbasis alur kerja.
-2. Salin blok prompt dan grafik alur kerja dari `PersonalCareerCopilot/main.py` ke dalam workspace Anda.
+2. Salin blok prompt dan grafik alur kerja dari `PersonalCareerCopilotCompleted/main.py` ke dalam workspace Anda.
 3. Jalankan secara lokal dengan Agent Inspector dan verifikasi semua empat agen plus alat MCP.
 4. Terapkan agen yang dihosting ke Foundry ketika pengujian lokal lulus.
 

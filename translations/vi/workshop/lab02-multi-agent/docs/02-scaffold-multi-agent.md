@@ -6,7 +6,7 @@ Trong mô-đun này, bạn sẽ sử dụng [Foundry Toolkit cho VS Code](https:
 
 > **Khái niệm chính:** Khung dự án là một bản stub hoạt động với một tác nhân. Bạn sẽ thay thế logic giữ chỗ này bằng đồ thị `WorkflowBuilder` trong Mô-đun 3. Bạn không phải viết mã nền từ đầu.
 
-> **Triển khai tham khảo:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) là ví dụ hoàn chỉnh hoạt động. Sử dụng nó để so sánh công việc của bạn khi làm.
+> **Triển khai tham khảo:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) là ví dụ hoàn chỉnh hoạt động. Sử dụng nó để so sánh công việc của bạn khi làm.
 
 ### Quy trình trình hướng dẫn tạo khung
 
@@ -92,7 +92,7 @@ Sau khi tạo khung xong, xác nhận bạn thấy các file sau trong Explorer 
 | `Dockerfile` | `python:3.12-slim`, cài đặt `requirements.txt`, mở cổng 8088, chạy `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Tham khảo:** Xem [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) và [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) để biết nội dung đầy đủ.
+> **Tham khảo:** Xem [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) và [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) để biết nội dung đầy đủ.
 
 ---
 

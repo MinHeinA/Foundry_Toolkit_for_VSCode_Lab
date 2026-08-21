@@ -68,7 +68,7 @@ El Inspector de Agentes muestra esta misma estructura de grafo cuando el agente 
 
 ## Leyendo el código de WorkflowBuilder
 
-La función completa `create_workflow()` está en [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Las tres llamadas `add_edge()` construyen la canalización secuencial:
+La función completa `create_workflow()` está en [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Las tres llamadas `add_edge()` construyen la canalización secuencial:
 
 | # | Arista | Efecto |
 |---|--------|--------|

@@ -68,7 +68,7 @@ flowchart LR
 
 ## قراءة كود WorkflowBuilder
 
-الدالة الكاملة `create_workflow()` موجودة في [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). استدعاءات الثلاث `add_edge()` تبني خط الأنابيب المتسلسل:
+الدالة الكاملة `create_workflow()` موجودة في [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). استدعاءات الثلاث `add_edge()` تبني خط الأنابيب المتسلسل:
 
 | # | الحافة | التأثير |
 |---|------|--------|

@@ -4,7 +4,7 @@
 
 இந்த மொட்யூலில், நீங்கள் உருவாக்கப்பட்ட துவக்கக் கட்டுரையை **உங்கள்** பல-ஏஜன்ட் பணித் தொடர் ஆக மாற்றுவீர்கள் - சுற்றுச்சூழல் மாறிலிகளை அமைத்தல், ஏஜன்ட் கட்டளைகள் எழுதுதல், MCP கருவியைச் சேர்த்தல், பணித் தொடர் வரைபடத்தை இணைத்தல் மற்றும் சார்புகள் நிறுவல்.
 
-> **குறிப்பு:** முழு செயல்திறன் உள்ள குறியீடு [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)ல் உள்ளது. உங்கள் சொந்த பணித் தொடர் வரைபடமும் முன்மொழிவு தொகுதிகளும் உருவாக்கும் போது இதைப் பரிந்துரை/reference ஆக பயன்படுத்துங்கள்.
+> **குறிப்பு:** முழு செயல்திறன் உள்ள குறியீடு [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)ல் உள்ளது. உங்கள் சொந்த பணித் தொடர் வரைபடமும் முன்மொழிவு தொகுதிகளும் உருவாக்கும் போது இதைப் பரிந்துரை/reference ஆக பயன்படுத்துங்கள்.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## படி 2: ஏஜன்ட் கட்டளைகள் எழுதுக
 
-கட்டளைகள் ஒவ்வொரு ஏஜன்டின் பங்கு, வெளிப்பாட்டு ஆகாரம் மற்றும் விதிகளை வர்ணிக்கின்றன. `main.py` திறந்து நான்கு கட்டளை நிலைகளை வரையறுக்கவும் (அல்லது மாற்றவும்) - முழுமையான உரைகள் [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)ல் உள்ளன.
+கட்டளைகள் ஒவ்வொரு ஏஜன்டின் பங்கு, வெளிப்பாட்டு ஆகாரம் மற்றும் விதிகளை வர்ணிக்கின்றன. `main.py` திறந்து நான்கு கட்டளை நிலைகளை வரையறுக்கவும் (அல்லது மாற்றவும்) - முழுமையான உரைகள் [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)ல் உள்ளன.
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 ரெசுமேவை கட்டமைக்கப்பட்ட வேட்க்குருஞ் பரிமாற்றமாக பிரிக்கிறது **மற்றும்** வேலைவாய்ப்பு விளக்கத்தை சரியாக `[JOB DESCRIPTION PASS-THROUGH]` இல் பிரதியிடுகிறது. இரண்டு பிரிவுகளும் வெளியீட்டில் இருப்பது அவசியம்.
@@ -88,7 +88,7 @@ ResumeParser வெளியீட்டிலிருந்து `[PARSED RES
 
 ## படி 3: MCP கருவியைச் சேர்க்க
 
-GapAnalyzer [Microsoft Learn MCP சேவையகம்](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol)க்கு அழைத்து ஒவ்வொரு திறன் குறைபாடிற்கும் பாதுகாப்பான கற்றல் வளங்களை பெறுகிறது. முழு `search_microsoft_learn_for_plan` செயல்பாடு [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)ல் உள்ளது.
+GapAnalyzer [Microsoft Learn MCP சேவையகம்](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol)க்கு அழைத்து ஒவ்வொரு திறன் குறைபாடிற்கும் பாதுகாப்பான கற்றல் வளங்களை பெறுகிறது. முழு `search_microsoft_learn_for_plan` செயல்பாடு [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)ல் உள்ளது.
 
 ஏஜன்டை உருவாக்கும் போது காரியம் GapAnalyzer மீது பதிவு செய்க:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> முழு `WorkflowBuilder` வரைபடத்துக்கான `FoundryChatClient`, `AgentExecutor` மற்றும் அனைத்து `add_edge()` அழைப்புகளுக்கு பார்க்க [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+> முழு `WorkflowBuilder` வரைபடத்துக்கான `FoundryChatClient`, `AgentExecutor` மற்றும் அனைத்து `add_edge()` அழைப்புகளுக்கு பார்க்க [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ---
 

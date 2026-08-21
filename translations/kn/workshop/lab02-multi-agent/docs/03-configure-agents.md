@@ -4,7 +4,7 @@
 
 ಈ ಮೋಡ್ಯೂಲ್‌ನಲ್ಲಿ, ನೀವು ಸ್ಕಾಫೋಲ್ಡೆಡ್ ಸ್ಟಬ್ ಅನ್ನು **ನಿಮ್ಮ** ಬಹು-_AGENT ವರ್ಕ್‌ಫ್ಲೋ ಆಗಿ ಪರಿವರ್ತಿಸುತ್ತೀರಿ - ಪರಿಸರ ಚರಗಳನ್ನು ಹೊಂದಿಸುವ ಮೂಲಕ, ಏಜೆಂಟ್ ಸೂಚನೆಗಳನ್ನು ಬರೆಯುವ ಮೂಲಕ, MCP ಸಾಧನ ಸೇರಿಸುವ ಮೂಲಕ, ವರ್ಕ್‌ಫ್ಲೋ ಗ್ರಾಫ್ ಅನ್ನು ಸಂಪರ್ಕಿಸುವ ಮೂಲಕ ಮತ್ತು ಅವಲಂಬನಗಳನ್ನು ಅನುಸ್ಥಾಪಿಸುವ ಮೂಲಕ.
 
-> **ಉಲ್ಲೇಖ:** ಸಂಪೂರ್ಣ ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಕೋಡ್ [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ನಲ್ಲಿ ಇರುತ್ತದೆ. ನಿಮ್ಮ ಸ್ವಂತ ವರ್ಕ್‌ಫ್ಲೋ ಗ್ರಾಫ್ ಮತ್ತು ಪ್ರಾಂಪ್ಟ್ ಬ್ಲಾಕ್‌ಗಳನ್ನು ತಯಾರಿಸುವಾಗ ಇದನ್ನು ಉಲ್ಲೇಖವಾಗಿ ಬಳಸಿಕೊಳ್ಳಿ.
+> **ಉಲ್ಲೇಖ:** ಸಂಪೂರ್ಣ ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಕೋಡ್ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ನಲ್ಲಿ ಇರುತ್ತದೆ. ನಿಮ್ಮ ಸ್ವಂತ ವರ್ಕ್‌ಫ್ಲೋ ಗ್ರಾಫ್ ಮತ್ತು ಪ್ರಾಂಪ್ಟ್ ಬ್ಲಾಕ್‌ಗಳನ್ನು ತಯಾರಿಸುವಾಗ ಇದನ್ನು ಉಲ್ಲೇಖವಾಗಿ ಬಳಸಿಕೊಳ್ಳಿ.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## ಹಂತ 2: ಏಜೆಂಟ್ ಸೂಚನೆಗಳನ್ನು ಬರೆಯಿರಿ
 
-ಸೂಚನೆಗಳು ಪ್ರತಿ ಏಜೆಂಟ್ ಪಾತ್ರ, ಔಟ್‌ಪುಟ್ ಫಾರ್ಮಾಟ್ ಮತ್ತು ನಿಯಮಗಳನ್ನು ನಿರ್ಧರಿಸುತ್ತವೆ. `main.py`ನ್ನು ತೆರೆಯಿರಿ ಮತ್ತು ನಾಲ್ಕು ಸೂಚನಾ ಸ್ಥಿರಾಂಕಗಳನ್ನು (ಅಥವಾ ಬದಲಾಯಿಸಿ) ವ್ಯಾಖ್ಯಾನಿಸಿ - ಸಂಪೂರ್ಣ ಸಾಲುಗಳು [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ನಲ್ಲಿ ದೊರೆಯುತ್ತವೆ.
+ಸೂಚನೆಗಳು ಪ್ರತಿ ಏಜೆಂಟ್ ಪಾತ್ರ, ಔಟ್‌ಪುಟ್ ಫಾರ್ಮಾಟ್ ಮತ್ತು ನಿಯಮಗಳನ್ನು ನಿರ್ಧರಿಸುತ್ತವೆ. `main.py`ನ್ನು ತೆರೆಯಿರಿ ಮತ್ತು ನಾಲ್ಕು ಸೂಚನಾ ಸ್ಥಿರಾಂಕಗಳನ್ನು (ಅಥವಾ ಬದಲಾಯಿಸಿ) ವ್ಯಾಖ್ಯಾನಿಸಿ - ಸಂಪೂರ್ಣ ಸಾಲುಗಳು [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ನಲ್ಲಿ ದೊರೆಯುತ್ತವೆ.
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 ರೆಸ್ಯೂಮೆಯನ್ನು ಸಂರಚಿತ ಮಾಡಿದ ಅಭ್ಯರ್ಥಿ ಪ್ರೊಫೈಲ್ಗೆ ಪಾರ್ಸ್ ಮಾಡುತ್ತದೆ **ಮತ್ತು** ಉದ್ಯೋಗ ವಿವರಣೆಯನ್ನು ನಕಲುಮಾಡಿ `[JOB DESCRIPTION PASS-THROUGH]` ಯಲ್ಲಿ ನಕಲಿಸುತ್ತದೆ. ಎರಡೂ ಲೇಬಲ್ ಮಾಡಿದ ವಿಭಾಗಗಳು ಔಟ್‌ಪುಟ್‌ನಲ್ಲಿ ಕಾಣಿಸಬೇಕು.
@@ -88,7 +88,7 @@ ResumeParser ಔಟ್‌ಪುಟ್ ನಲ್ಲಿ ಇರುವ `[PARSED RESU
 
 ## ಹಂತ 3: MCP ಸಾಧನ ಸೇರಿಸಿ
 
-GapAnalyzer [Microsoft Learn MCP ಸರ್ವರ್](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) ಅನ್ನು ಕರೆದು ಪ್ರತಿ ನಿಪುಣತಾ ಗ್ಯಾಪ್ ಗೆ ನಿಜವಾದ ಕಲಿಕಾ ಸಂಪನ್ಮೂಲಗಳನ್ನು ಪಡೆಯುತ್ತದೆ. ಸಂಪೂರ್ಣ `search_microsoft_learn_for_plan` ಫಂಕ್ಷನ್ [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ನಲ್ಲಿ ಇರುವುದು.
+GapAnalyzer [Microsoft Learn MCP ಸರ್ವರ್](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) ಅನ್ನು ಕರೆದು ಪ್ರತಿ ನಿಪುಣತಾ ಗ್ಯಾಪ್ ಗೆ ನಿಜವಾದ ಕಲಿಕಾ ಸಂಪನ್ಮೂಲಗಳನ್ನು ಪಡೆಯುತ್ತದೆ. ಸಂಪೂರ್ಣ `search_microsoft_learn_for_plan` ಫಂಕ್ಷನ್ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ನಲ್ಲಿ ಇರುವುದು.
 
 ಏಜೆಂಟ್ ಸೃಷ್ಟಿಸುವಾಗ GapAnalyzer ಮೇಲೆ ಸಾಧನವನ್ನು ನೋಂದಾಯಿಸಿ:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> ಸಂಪೂರ್ಣ `WorkflowBuilder` ಗ್ರಾಫ್ ಅನ್ನು `FoundryChatClient`, `AgentExecutor`, ಮತ್ತು ಎಲ್ಲಾ `add_edge()` ಕರೆಗಳನ್ನು ನೋಡಲು [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ನೋಡಿ.
+> ಸಂಪೂರ್ಣ `WorkflowBuilder` ಗ್ರಾಫ್ ಅನ್ನು `FoundryChatClient`, `AgentExecutor`, ಮತ್ತು ಎಲ್ಲಾ `add_edge()` ಕರೆಗಳನ್ನು ನೋಡಲು [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ನೋಡಿ.
 
 ---
 

@@ -23,7 +23,7 @@
 | ラボ01 - シングルエージェント      | [Lab 01](../workshop/lab01-single-agent/README.md)                               | ハンズオンラボ：*Explain Like I'm an Executive* ホスト型エージェントの構築、テスト、展開   |
 | ラボ02 - マルチエージェントワークフロー | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | ハンズオンラボ：4エージェントの *Resume to Job Fit Evaluator* ワークフローの構築         |
 | デモ1：エグゼクティブエージェント   | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | ラボ01デモ：技術用語を経営陣向け要約に翻訳                                               |
-| デモ2：Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | ラボ02デモ：履歴書適合度を評価し推奨を生成する4エージェントワークフロー               |
+| デモ2：Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | ラボ02デモ：履歴書適合度を評価し推奨を生成する4エージェントワークフロー               |
 
 > **トレーナー向けメモ：** スライドデッキおよびビデオリンクは録画公開後に追加予定です。それまでの間は最新の資産についてはメンテナーに問い合わせてください（[Contacts](#連絡先)参照）。
 
@@ -97,7 +97,7 @@
 | アーキテクチャ図            | [READMEアーキテクチャ](../README.md#architecture)を説明：スキャフォールド、Inspector、ACR、Agent Service。|
 | ホスト型エージェントの構成   | `agent.yaml`、`Dockerfile`、`main.py`、`requirements.txt` の役割を説明。                                   |
 | ライブデモ：エグゼクティブエージェント | VS Code に切り替えて [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) のデモをエンドツーエンドで実演（[Demo 1](#デモ-1：エグゼクティブエージェント)参照）。           |
-| ライブデモ：Resume to Job Fit Evaluator | VS Code に切り替えて [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) の4エージェントデモを実行（[Demo 2](#デモ-2：resume-to-job-fit-evaluator)参照）。  |
+| ライブデモ：Resume to Job Fit Evaluator | VS Code に切り替えて [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) の4エージェントデモを実行（[Demo 2](#デモ-2：resume-to-job-fit-evaluator)参照）。  |
 | ラボ01説明                  | 学習者に作業を渡す。[`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md)を案内。 |
 | マルチエージェントパターン   | 逐次実行、同時実行、ハンドオフの説明。ラボ02開始前にプレビュー。                                  |
 | ラボ02説明                  | 学習者に作業を渡す。[`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md)を案内。 |
@@ -112,7 +112,7 @@
 | デモ | ラボ | ファイル | 内容説明 |
 |------|-----|-------|--------------|
 | エグゼクティブエージェント | ラボ01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | シングルホスト型エージェント；専門用語を経営陣向け要約に変換 |
-| Resume to Job Fit Evaluator | ラボ02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4エージェントオーケストレーション；履歴書適合度スコアと推奨を生成 |
+| Resume to Job Fit Evaluator | ラボ02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4エージェントオーケストレーション；履歴書適合度スコアと推奨を生成 |
 
 ### デモ 1：エグゼクティブエージェント
 
@@ -126,14 +126,14 @@
 
 ### デモ 2：Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) にある4エージェントワークフロー。ラボ02の前に10分間のデモに使用。
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) にある4エージェントワークフロー。ラボ02の前に10分間のデモに使用。
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) を開き、4つのエージェントが逐次オーケストレーションでどのように連携しているか説明。
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) を開き、4つのエージェントが逐次オーケストレーションでどのように連携しているか説明。
 2. `F5` を押してマルチエージェントワークフローの **Agent Inspector** を起動。
 3. インスペクターチャットに短い求人説明文とサンプル履歴書を貼り付け。
 4. 4エージェントのパイプライン（履歴書解析、求人要件抽出、適合度スコアリング、推奨文作成）を説明。
 5. 各サブエージェントの出力が次のエージェントのコンテキストになる流れを示し、ハンドオフパターンを強調。
-6. [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) を示して、デモ1のシングルエージェント版と比較。
+6. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) を示して、デモ1のシングルエージェント版と比較。
 
 ---
 

@@ -23,7 +23,7 @@ Trước khi trình bày workshop, vui lòng:
 | Lab 01 - tác nhân đơn         | [Lab 01](../workshop/lab01-single-agent/README.md)                              | Lab tương tác: xây dựng, kiểm thử, và triển khai tác nhân *Explain Like I'm an Executive* |
 | Lab 02 - quy trình đa tác nhân | [Lab 02](../workshop/lab02-multi-agent/README.md)                              | Lab tương tác: xây dựng quy trình 4 tác nhân *Resume to Job Fit Evaluator*                |
 | Demo 1: Tác nhân Executive    | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                            | Demo Lab 01: dịch thuật thuật ngữ kỹ thuật thành tóm tắt dành cho lãnh đạo                |
-| Demo 2: Đánh giá CV phù hợp   | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)  | Demo Lab 02: quy trình 4 tác nhân chấm điểm sự phù hợp CV-công việc và tạo đề xuất       |
+| Demo 2: Đánh giá CV phù hợp   | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)  | Demo Lab 02: quy trình 4 tác nhân chấm điểm sự phù hợp CV-công việc và tạo đề xuất       |
 
 > **Lưu ý dành cho người đào tạo:** Bộ slide và liên kết video sẽ được bổ sung sau khi bản ghi phát hành. Đến lúc đó, hãy liên hệ người duy trì (xem [Liên hệ](#liên-hệ)) để có tài nguyên mới nhất.
 
@@ -97,7 +97,7 @@ Bộ slide theo luồng giống như các lab. Các điểm trình bày gợi ý
 | Sơ đồ kiến trúc             | Đưa qua [README kiến trúc](../README.md#architecture): scaffold, Inspector, ACR, Dịch vụ Tác nhân.           |
 | Cấu trúc một tác nhân lưu trữ | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - chức năng từng file.                             |
 | Demo trực tiếp: Tác nhân Executive | Chuyển sang VS Code và chạy demo [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) từ đầu đến cuối (xem [Demo 1](#demo-1-tác-nhân-executive)). |
-| Demo trực tiếp: Đánh giá CV phù hợp | Chuyển sang VS Code và chạy demo 4 tác nhân [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (xem [Demo 2](#demo-2-đánh-giá-cv-phù-hợp)). |
+| Demo trực tiếp: Đánh giá CV phù hợp | Chuyển sang VS Code và chạy demo 4 tác nhân [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (xem [Demo 2](#demo-2-đánh-giá-cv-phù-hợp)). |
 | Tóm tắt Lab 01              | Giao cho người học. Hướng dẫn tới [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Mẫu đa tác nhân             | Tuần tự, đồng thời, hoặc bàn giao - xem trước trước khi bắt đầu Lab 02.                                       |
 | Tóm tắt Lab 02              | Giao cho người học. Hướng dẫn tới [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Hai demo trực tiếp được bao gồm trong bài trình bày. Dự trù mỗ
 | Demo              | Lab   | File                                                  | Nội dung trình bày                                         |
 |-------------------|-------|-------------------------------------------------------|-----------------------------------------------------------|
 | Tác nhân Executive | Lab 01| [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Tác nhân đơn lưu trữ; dịch thuật ngữ kỹ thuật sang tóm tắt lãnh đạo |
-| Đánh giá CV phù hợp | Lab 02| [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Điều phối 4 tác nhân; chấm điểm phù hợp CV-công việc và tạo đề xuất |
+| Đánh giá CV phù hợp | Lab 02| [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Điều phối 4 tác nhân; chấm điểm phù hợp CV-công việc và tạo đề xuất |
 
 ### Demo 1: Tác nhân Executive
 
@@ -126,14 +126,14 @@ Một tác nhân độc lập trong [`workshop/lab01-single-agent/agent/`](../..
 
 ### Demo 2: Đánh giá CV phù hợp
 
-Quy trình 4 tác nhân trong [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Dùng làm demo 10 phút trước Lab 02.
+Quy trình 4 tác nhân trong [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Dùng làm demo 10 phút trước Lab 02.
 
-1. Mở [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) và trình bày cách bốn tác nhân được kết nối trong trình tự điều phối.
+1. Mở [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) và trình bày cách bốn tác nhân được kết nối trong trình tự điều phối.
 2. Nhấn `F5` để khởi chạy **Agent Inspector** cho quy trình đa tác nhân.
 3. Dán mô tả công việc ngắn và CV mẫu trong chat của Inspector.
 4. Trình bày pipeline 4 tác nhân: phân tích CV, trích xuất yêu cầu công việc, chấm điểm phù hợp, và viết đề xuất.
 5. Chỉ ra cách đầu ra của từng tác nhân phụ trở thành ngữ cảnh cho tác nhân kế tiếp, nhấn mạnh mẫu bàn giao.
-6. Trưng bày [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) để so sánh với phiên bản tác nhân đơn trong Demo 1.
+6. Trưng bày [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) để so sánh với phiên bản tác nhân đơn trong Demo 1.
 
 ---
 

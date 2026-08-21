@@ -36,7 +36,7 @@ Kabla ya kuweka, hakiki kila kipengele kilicho chini:
    - Angalia ikoni ya Akaunti chini kushoto ya VS Code. Jina la akaunti yako linapaswa kuonekana.
 
 4. **`agent.yaml` ina maadili sahihi:**
-   - Fungua `PersonalCareerCopilot/agent.yaml` na hakiki:
+   - Fungua `PersonalCareerCopilot/main.py` na hakiki:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

@@ -49,14 +49,14 @@ flowchart TD
 
 - [ಪ್ರಯೋಗಾಲಯ 2 ಡಾಕ್ಸ್ - ಪೂರ್ವಶರತ್ತುಗಳು](docs/00-prerequisites.md)
 - [ಪ್ರಯೋಗಾಲಯ 2 ಡಾಕ್ಸ್ - ಸಂಪೂರ್ಣ ಕಲಿಕೆ ಮಾರ್ಗ](docs/README.md)
-- [PersonalCareerCopilot ರನ್ ಮಾರ್ಗದರ್ಶಿ](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted ರನ್ ಮಾರ್ಗದರ್ಶಿ](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## ಭಾಗ 2: ವರ್ಕ್‌ಫ್ಲೋ ನಿರ್ಮಿಸಿ ಮತ್ತು ಪರೀಕ್ಷಿಸಿ
 
 1. Foundry Toolkit ವಿಜಾರ್ಡ್ ಬಳಸಿ ವರ್ಕ್‌ಫ್ಲೋ ಆಧಾರಿತ ಪ್ರಾಜೆಕ್ಟ್ ಸ್ಕ್ಯಾಫೋಲ್ಡ್ ಮಾಡಿ.
-2. `PersonalCareerCopilot/main.py`ನಿಂದ ಪ್ರಾಂಪ್ಟ್ ಬ್ಲಾಕ್ಸ್ ಮತ್ತು ವರ್ಕ್‌ಫ್ಲೋ ಗ್ರಾಫ್ ನಕಲಿಸಿ ನಿಮ್ಮ ವರಕ್‌ಸ್ಪೇಸ್‌ಗೆ ಇಲಿ.
+2. `PersonalCareerCopilotCompleted/main.py`ನಿಂದ ಪ್ರಾಂಪ್ಟ್ ಬ್ಲಾಕ್ಸ್ ಮತ್ತು ವರ್ಕ್‌ಫ್ಲೋ ಗ್ರಾಫ್ ನಕಲಿಸಿ ನಿಮ್ಮ ವರಕ್‌ಸ್ಪೇಸ್‌ಗೆ ಇಲಿ.
 3. ಏಜೆಂಟ್ ಇನ್ಸ್ಪೆಕ್ಟರ್ನೊಂದಿಗೆ ಸ್ಥಳೀಯವಾಗಿ ಓಡಿಸಿ ಮತ್ತು ಎಲ್ಲಾ ನಾಲ್ಕು ಏಜೆಂಟ್‌ಗಳು ಹಾಗೂ MCP ಯಂತ್ರವನ್ನು ಪರಿಶೀಲಿಸಿ.
 4. ಸ್ಥಳೀಯ ಪರೀಕ್ಷೆ ಯಶಸ್ವಿಯಾದಾಗ Foundry ಗೆ ಹೋಸ್ಟ್ ಮಾಡಿದ ಏಜೆಂಟ್ ಅನ್ನು ನಿಯೋಜಿಸಿ.
 

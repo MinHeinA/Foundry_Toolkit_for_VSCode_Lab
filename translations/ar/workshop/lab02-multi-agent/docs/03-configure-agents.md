@@ -4,7 +4,7 @@
 
 في هذه الوحدة، تقوم بتحويل النموذج الأولي المُؤسس إلى سير عمل **خاص بك** متعدد العملاء - عن طريق تعيين متغيرات البيئة، وكتابة تعليمات العملاء، وإضافة أداة MCP، وربط رسم سير العمل، وتثبيت التبعيات.
 
-> **مرجع:** الكود الكامل العامل موجود في [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). استخدمه كمرجع أثناء بناء رسم سير عملك وكتل التعليمات.
+> **مرجع:** الكود الكامل العامل موجود في [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). استخدمه كمرجع أثناء بناء رسم سير عملك وكتل التعليمات.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## الخطوة 2: كتابة تعليمات العميل
 
-تحدد التعليمات دور كل وكيل، وتنسيق المخرجات، والقواعد. افتح `main.py` وقم بتعريف (أو استبدال) ثوابت التعليمات الأربعة - النصوص الكاملة موجودة في [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+تحدد التعليمات دور كل وكيل، وتنسيق المخرجات، والقواعد. افتح `main.py` وقم بتعريف (أو استبدال) ثوابت التعليمات الأربعة - النصوص الكاملة موجودة في [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 تقوم بتحليل السيرة الذاتية إلى ملف تعريف مرشح منظم **وأيضًا** تنسخ وصف الوظيفة حرفيًا إلى `[JOB DESCRIPTION PASS-THROUGH]`. يجب أن تظهر الأقسام الموسومة في الإخراج.
@@ -88,7 +88,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## الخطوة 3: إضافة أداة MCP
 
-يستدعي GapAnalyzer خادم [Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) لجلب موارد تعلم فعلية لكل فجوة مهارية. الدالة الكاملة `search_microsoft_learn_for_plan` موجودة في [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+يستدعي GapAnalyzer خادم [Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) لجلب موارد تعلم فعلية لكل فجوة مهارية. الدالة الكاملة `search_microsoft_learn_for_plan` موجودة في [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 سجّل الأداة على GapAnalyzer عند إنشاء الوكيل:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> انظر [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) لرسم بياني كامل `WorkflowBuilder` مع `FoundryChatClient`، `AgentExecutor`، وجميع استدعاءات `add_edge()`.
+> انظر [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) لرسم بياني كامل `WorkflowBuilder` مع `FoundryChatClient`، `AgentExecutor`، وجميع استدعاءات `add_edge()`.
 
 ---
 

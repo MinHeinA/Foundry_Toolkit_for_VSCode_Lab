@@ -68,7 +68,7 @@ Agent Inspector က agent ကို လိုကယ် ဆော့သောအ�
 
 ## WorkflowBuilder ကုဒ် ဖတ်ခြင်း
 
-အပြည့်အစုံ `create_workflow()` function က [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) မှာ ရှိပြီး `add_edge()` နောက်ဆုံးသုံးချက်နဲ့ အဆင့်လိုက် pipeline တည်ဆောက်ထားသည်။
+အပြည့်အစုံ `create_workflow()` function က [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) မှာ ရှိပြီး `add_edge()` နောက်ဆုံးသုံးချက်နဲ့ အဆင့်လိုက် pipeline တည်ဆောက်ထားသည်။
 
 | # | Edge | အသက်ဝင်မှု |
 |---|------|--------|

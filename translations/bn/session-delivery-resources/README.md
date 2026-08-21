@@ -23,7 +23,7 @@
 | ল্যাব ০১ - একক এজেন্ট        | [Lab 01](../workshop/lab01-single-agent/README.md)                               | হ্যান্ডস-অন ল্যাব: *Explain Like I'm an Executive* হোস্টেড এজেন্ট তৈরি, পরীক্ষা ও ডিপ্লয় করা  |
 | ল্যাব ০২ - বহু-এজেন্ট ওয়ার্কফ্লো | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | হ্যান্ডস-অন ল্যাব: ৪-এজেন্ট *Resume to Job Fit Evaluator* ওয়ার্কফ্লো নির্মাণ                   |
 | ডেমো ১: Executive Agent             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | ল্যাব ০১ ডেমো: প্রযুক্তিগত জর্জর ভাষা অনুবাদ করে নির্বাহী সারাংশ তৈরি                       |
-| ডেমো ২: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | ল্যাব ০২ ডেমো: ৪-এজেন্ট ওয়ার্কফ্লো যা রেজুমে-জব ফিট স্কোর করে এবং সুপারিশ তৈরি করে           |
+| ডেমো ২: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | ল্যাব ০২ ডেমো: ৪-এজেন্ট ওয়ার্কফ্লো যা রেজুমে-জব ফিট স্কোর করে এবং সুপারিশ তৈরি করে           |
 
 > **প্রশিক্ষকদের জন্য নোট:** রেকর্ডিং প্রকাশিত হলে স্লাইড ডেক ও ভিডিও লিঙ্ক যুক্ত করা হবে। এর আগে সর্বশেষ অ্যাসেটের জন্য মেইনটেইনারের (দেখুন [Contacts](#যোগাযোগ)) সাথে যোগাযোগ করুন।
 
@@ -97,7 +97,7 @@
 | আর্কিটেকচার ডায়াগ্রাম       | [README আর্কিটেকচার](../README.md#architecture) অনুসারে ব্যাখ্যা করুন: স্ক্যাফোল্ড, ইনস্পেক্টর, ACR, এজেন্ট সার্ভিস। |
 | একটি হোস্টেড এজেন্টের গঠন     | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - প্রতিটি ফাইলের ভূমিকা।                            |
 | লাইভ ডেমো: Executive Agent    | VS Code এ যান এবং [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) ডেমোটি শুরু থেকে শেষ পর্যন্ত চালান (দেখুন [ডেমো ১](#ডেমো-১-executive-agent))। |
-| লাইভ ডেমো: Resume to Job Fit Evaluator | VS Code এ যান এবং [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ৪-এজেন্ট ডেমো চালান (দেখুন [ডেমো ২](#ডেমো-২-resume-to-job-fit-evaluator))। |
+| লাইভ ডেমো: Resume to Job Fit Evaluator | VS Code এ যান এবং [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ৪-এজেন্ট ডেমো চালান (দেখুন [ডেমো ২](#ডেমো-২-resume-to-job-fit-evaluator))। |
 | ল্যাব ০১ পরিচিতি               | শিক্ষার্থীদের হাতে সরবরাহ করুন। নির্দেশ দিন [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) এ। |
 | বহু-এজেন্ট প্যাটার্ন          | সিকোয়েন্সিয়াল বনাম কনকারেন্ট বনাম হ্যান্ডঅফ - ল্যাব ০২ শুরু হওয়ার আগে পরিচয় করিয়ে দিন।                   |
 | ল্যাব ০২ পরিচিতি               | শিক্ষার্থীদের হাতে সরবরাহ করুন। নির্দেশ দিন [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) এ। |
@@ -112,7 +112,7 @@
 | ডেমো | ল্যাব | ফাইলসমূহ | কী দেখাবেন |
 |------|-----|-------|--------------|
 | Executive Agent | ল্যাব ০১ | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | একটি একক হোস্টেড এজেন্ট; প্রযুক্তিগত জর্জর ভাষাকে নির্বাহী সারাংশে অনুবাদ করুন |
-| Resume to Job Fit Evaluator | ল্যাব ০২ | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | ৪-এজেন্ট অর্কেস্ট্রেশন; রেজুমে-জব ফিট স্কোর করুন এবং সুপারিশ তৈরি করুন |
+| Resume to Job Fit Evaluator | ল্যাব ০২ | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | ৪-এজেন্ট অর্কেস্ট্রেশন; রেজুমে-জব ফিট স্কোর করুন এবং সুপারিশ তৈরি করুন |
 
 ### ডেমো ১: Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### ডেমো ২: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) এ একটি ৪-এজেন্ট ওয়ার্কফ্লো। ল্যাব ০২ এর আগে একটি ১০-মিনিটের ডেমো হিসেবে ব্যবহার করুন।
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) এ একটি ৪-এজেন্ট ওয়ার্কফ্লো। ল্যাব ০২ এর আগে একটি ১০-মিনিটের ডেমো হিসেবে ব্যবহার করুন।
 
-১। [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) খুলে দেখান কিভাবে চারটি এজেন্ট সিকোয়েন্সিয়াল অর্কেস্ট্রেশনে ওয়্যার করা হয়েছে।
+১। [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) খুলে দেখান কিভাবে চারটি এজেন্ট সিকোয়েন্সিয়াল অর্কেস্ট্রেশনে ওয়্যার করা হয়েছে।
 ২। বহু-এজেন্ট ওয়ার্কফ্লোর জন্য **Agent Inspector** চালু করতে `F5` চাপুন।
 ৩। ইনস্পেক্টর চ্যাটে একটি সংক্ষিপ্ত চাকরির বর্ণনা এবং একটি নমুনা রেজুমে পেস্ট করুন।
 ৪। চার-এজেন্ট পাইপলাইনটি ব্যাখ্যা করুন: রেজুমে পার্সার, চাকরির প্রয়োজনীয়তা এক্সট্রাক্টর, ফিট স্কোরার, এবং রিকমেন্ডেশন লেখক।
 ৫। দেখান কিভাবে প্রতিটি উপ-এজেন্টের আউটপুট পরবর্তী এজেন্টের প্রসঙ্গ হয়, হ্যান্ডঅফ প্যাটার্নকে হাইলাইট করুন।
-৬। ডেমো ১ থেকে একক এজেন্টের সাথে তুলনা করার জন্য [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) দেখান।
+৬। ডেমো ১ থেকে একক এজেন্টের সাথে তুলনা করার জন্য [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) দেখান।
 
 ---
 

@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### 옵션 2: 호스팅 에이전트만 삭제
 
 1. [ai.azure.com](https://ai.azure.com) → 프로젝트 → **Build** → **Agents** 열기.
-2. **PersonalCareerCopilot** 찾기 → **Delete** 클릭.
+2. **PersonalCareerCopilotCompleted** 찾기 → **Delete** 클릭.
 
 ### 옵션 3: 모델 배포 삭제
 

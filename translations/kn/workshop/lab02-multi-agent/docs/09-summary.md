@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### ಆಯ್ಕೆ 2: ಕೇವಲ ಹೋಸ್ಟೆಡ್ ಏಜೆಂಟ್ ಅಳಿಸಿ
 
 1. [ai.azure.com](https://ai.azure.com) → ನಿಮ್ಮ ಪ್ರಾಜೆಕ್ಟ್ → **Build** → **Agents** ತೆರಿ.
-2. **PersonalCareerCopilot** ಅನ್ನು ಕಂಡು → **Delete** ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ.
+2. **PersonalCareerCopilotCompleted** ಅನ್ನು ಕಂಡು → **Delete** ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ.
 
 ### ಆಯ್ಕೆ 3: ಮಾದರಿ ನಿಯೋಜನೆಯನ್ನು ಅಳಿಸಿ
 

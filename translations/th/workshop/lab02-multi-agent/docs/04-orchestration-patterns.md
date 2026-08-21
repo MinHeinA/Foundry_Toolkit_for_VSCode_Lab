@@ -68,7 +68,7 @@ Agent Inspector จะแสดงโครงสร้างกราฟนี�
 
 ## การอ่านโค้ด WorkflowBuilder
 
-ฟังก์ชัน `create_workflow()` ฉบับเต็มอยู่ใน [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) การเรียก `add_edge()` ทั้งสามครั้งสร้างท่อโซ่ตามลำดับ:
+ฟังก์ชัน `create_workflow()` ฉบับเต็มอยู่ใน [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) การเรียก `add_edge()` ทั้งสามครั้งสร้างท่อโซ่ตามลำดับ:
 
 | # | Edge | ผลลัพธ์ |
 |---|------|--------|

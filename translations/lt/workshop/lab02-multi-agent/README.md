@@ -49,14 +49,14 @@ Pilną mokymosi kelią rasite:
 
 - [Laboratorijos 2 dokumentai - Išankstinės sąlygos](docs/00-prerequisites.md)
 - [Laboratorijos 2 dokumentai - Pilnas mokymosi kelias](docs/README.md)
-- [PersonalCareerCopilot paleidimo vadovas](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted paleidimo vadovas](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## 2 dalis: Kurkite ir testuokite darbo eigą
 
 1. Naudokite Foundry Toolkit vedlį, kad sukurtumėte darbo eigos pagrindu veikiančią programėlę.
-2. Nukopijuokite užklausų blokus ir darbo eigos schemą iš `PersonalCareerCopilot/main.py` į savo darbo aplinką.
+2. Nukopijuokite užklausų blokus ir darbo eigos schemą iš `PersonalCareerCopilotCompleted/main.py` į savo darbo aplinką.
 3. Paleiskite vietoje su Agent Inspector ir patikrinkite visus keturis agentus bei MCP įrankį.
 4. Kai vietinis testavimas praeina, diegkite agentą Foundry platformoje.
 

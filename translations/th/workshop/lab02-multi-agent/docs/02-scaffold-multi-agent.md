@@ -6,7 +6,7 @@
 
 > **แนวคิดหลัก:** โครงร่างคือโค้ดตัวอย่างที่ใช้งานได้ที่มีเอเย่นต์หนึ่งตัว คุณแทนที่ตรรกะที่เป็นตัวแทนด้วยกราฟ `WorkflowBuilder` ในโมดูล 3 คุณไม่ต้องเขียนโค้ดพื้นฐานตั้งแต่ต้น
 
-> **ตัวอย่างอ้างอิง:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) เป็นตัวอย่างที่สมบูรณ์และทำงานได้ ใช้ตรวจสอบงานของคุณขณะดำเนินการ
+> **ตัวอย่างอ้างอิง:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) เป็นตัวอย่างที่สมบูรณ์และทำงานได้ ใช้ตรวจสอบงานของคุณขณะดำเนินการ
 
 ### ขั้นตอนการใช้งานตัวช่วยสร้างโครงร่าง
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | ใช้ `python:3.12-slim`, ติดตั้งจาก `requirements.txt`, เปิดพอร์ต 8088, รัน `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **อ้างอิง:** ดูที่ [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) และ [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) สำหรับเนื้อหาที่สร้างครบถ้วน
+> **อ้างอิง:** ดูที่ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) และ [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) สำหรับเนื้อหาที่สร้างครบถ้วน
 
 ---
 

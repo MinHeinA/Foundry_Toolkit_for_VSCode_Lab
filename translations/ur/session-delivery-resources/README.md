@@ -23,7 +23,7 @@
 | لیب 01 - سنگل ایجنٹ           | [لیب 01](../workshop/lab01-single-agent/README.md)                               | ہینڈز-آن لیب: *Explain Like I'm an Executive* میزبانی شدہ ایجنٹ تیار کریں، ٹیسٹ اور ڈیپلائے کریں    |
 | لیب 02 - ملٹی ایجنٹ ورک فلو    | [لیب 02](../workshop/lab02-multi-agent/README.md)                                | ہینڈز-آن لیب: 4 ایجنٹ *Resume to Job Fit Evaluator* ورک فلو تیار کریں                          |
 | ڈیمو 1: ایگزیکٹو ایجنٹ           | [لیب01 ایجنٹ](../../../workshop/lab01-single-agent/agent)                                              | لیب 01 ڈیمو: تکنیکی اصطلاحات کو ایگزیکٹو خلاصہ میں ترجمہ کریں                                   |
-| ڈیمو 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | لیب 02 ڈیمو: 4-ایجنٹ ورک فلو جو ریزیومے-جاب فٹ کی درجہ بندی کرتا ہے اور سفارشات جنریٹ کرتا ہے   |
+| ڈیمو 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | لیب 02 ڈیمو: 4-ایجنٹ ورک فلو جو ریزیومے-جاب فٹ کی درجہ بندی کرتا ہے اور سفارشات جنریٹ کرتا ہے   |
 
 > **تربیت دہندگان کے لیے نوٹ:** جب ریکارڈنگز شائع ہو جائیں گی تو سلائیڈ ڈیک اور ویڈیو کے لنکس شامل کیے جائیں گے۔ تب تک تازہ ترین مواد کے لیے مینٹینر سے رابطہ کریں (دیکھیں [Contacts](#رابطے))۔
 
@@ -97,7 +97,7 @@
 | فن تعمیر کا خاکہ         | [README فن تعمیر](../README.md#architecture) کا واک تھرو: اسکافولڈ، انسپیکٹر، ACR، ایجنٹ سروس۔              |
 | میزبانی شدہ ایجنٹ کی بناوٹ | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ہر فائل کا کام۔                               |
 | لائیو ڈیمو: ایگزیکٹو ایجنٹ | VS Code پر تبدیل ہوں اور [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) ڈیمو پورے طور پر چلائیں (دیکھیں [Demo 1](#ڈیمو-1-ایگزیکٹو-ایجنٹ))۔ |
-| لائیو ڈیمو: Resume to Job Fit Evaluator | VS Code پر تبدیل ہوں اور [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-ایجنٹ ڈیمو چلائیں (دیکھیں [Demo 2](#ڈیمو-2-resume-to-job-fit-evaluator))۔ |
+| لائیو ڈیمو: Resume to Job Fit Evaluator | VS Code پر تبدیل ہوں اور [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-ایجنٹ ڈیمو چلائیں (دیکھیں [Demo 2](#ڈیمو-2-resume-to-job-fit-evaluator))۔ |
 | لیب 01 کا مختصر تعارف    | شرکاء کو حوالے کریں۔ [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) کی جانب اشارہ کریں۔ |
 | ملٹی ایجنٹ پیٹرنز         | ترتیب وار بمقابلہ متوازی بمقابلہ ہینڈ آف - لیب 02 شروع ہونے سے پہلے پیش نظر۔                                |
 | لیب 02 کا مختصر تعارف    | شرکاء کو حوالے کریں۔ [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) کی جانب اشارہ کریں۔ |
@@ -112,7 +112,7 @@
 | ڈیمو                  | لیب  | فائلز                                                                                     | کیا دکھانا ہے                                           |
 |-----------------------|-------|--------------------------------------------------------------------------------------------|----------------------------------------------------------|
 | ایگزیکٹو ایجنٹ         | لیب 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent)                | واحد میزبانی شدہ ایجنٹ؛ تکنیکی اصطلاحات کو ایگزیکٹو خلاصہ میں ترجمہ کریں |
-| Resume to Job Fit Evaluator | لیب 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-ایجنٹ آرکسیسٹریشن؛ ریزیومے-جاب فٹ کی درجہ بندی کریں اور سفارش جنریٹ کریں |
+| Resume to Job Fit Evaluator | لیب 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-ایجنٹ آرکسیسٹریشن؛ ریزیومے-جاب فٹ کی درجہ بندی کریں اور سفارش جنریٹ کریں |
 
 ### ڈیمو 1: ایگزیکٹو ایجنٹ
 
@@ -126,14 +126,14 @@
 
 ### ڈیمو 2: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) میں 4-ایجنٹ ورک فلو۔ یہ لیب 02 سے پہلے 10 منٹ کا ڈیمو کے طور پر استعمال کریں۔
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) میں 4-ایجنٹ ورک فلو۔ یہ لیب 02 سے پہلے 10 منٹ کا ڈیمو کے طور پر استعمال کریں۔
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) کھولیں اور دکھائیں کہ چار ایجنٹس ایک ترتیب وار آرکسیسٹریشن میں کیسے منسلک ہیں۔
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) کھولیں اور دکھائیں کہ چار ایجنٹس ایک ترتیب وار آرکسیسٹریشن میں کیسے منسلک ہیں۔
 2. ملٹی-ایجنٹ ورک فلو کے لیے **Agent Inspector** چلانے کے لیے `F5` دبائیں۔
 3. انسپیکٹر چیٹ میں ایک مختصر ملازمت کی تفصیل اور ایک نمونہ ریزیومے پیسٹ کریں۔
 4. چار ایجنٹ کی پائپ لائن کا جائزہ لیں: ریزیومے پارسر، جاب ریکوائرمنٹ ایکسٹریکٹر، فٹ سکورر، اور ریکمینڈیشن رائٹر۔
 5. بتائیں کہ ہر ذیلی ایجنٹ کا آؤٹ پٹ اگلے ایجنٹ کے سیاق و سباق میں کیسے بدلتا ہے، ہینڈ آف پیٹرن کو اجاگر کریں۔
-6. [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) دکھائیں اور اسے ڈیمو 1 کے سنگل ایجنٹ کے مقابلہ میں رکھیں۔
+6. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) دکھائیں اور اسے ڈیمو 1 کے سنگل ایجنٹ کے مقابلہ میں رکھیں۔
 
 ---
 

@@ -68,7 +68,7 @@ Agent Inspector prikazuje istu strukturu grafa kada agent radi lokalno. Pogledaj
 
 ## Čitanje koda WorkflowBuilder-a
 
-Cijela funkcija `create_workflow()` nalazi se u [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Tri poziva `add_edge()` grade sekvencijalnu liniju:
+Cijela funkcija `create_workflow()` nalazi se u [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Tri poziva `add_edge()` grade sekvencijalnu liniju:
 
 | # | Brid | Učinak |
 |---|------|--------|

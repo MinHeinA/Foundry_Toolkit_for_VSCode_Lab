@@ -36,7 +36,7 @@ Innan du distribuerar, verifiera varje punkt nedan:
    - Kolla ikonen för Konton längst ner till vänster i VS Code. Ditt kontonamn bör vara synligt.
 
 4. **`agent.yaml` har korrekta värden:**
-   - Öppna `PersonalCareerCopilot/agent.yaml` och verifiera:
+   - Öppna `PersonalCareerCopilot/main.py` och verifiera:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

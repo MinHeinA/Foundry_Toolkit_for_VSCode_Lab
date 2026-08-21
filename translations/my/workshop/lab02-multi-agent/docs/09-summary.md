@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### ရွေးချယ်စရာ ၂: hosted agent ကိုသာ ဖျက်ရန်
 
 1. [ai.azure.com](https://ai.azure.com) ဖြင့် ဝင်ကြည့်ပြီး → သင့် project → **Build** → **Agents** သို့ သွားပါ။
-2. **PersonalCareerCopilot** ကို ရှာပြီး → **ဖျက်ရန်**ကို နှိပ်ပါ။
+2. **PersonalCareerCopilotCompleted** ကို ရှာပြီး → **ဖျက်ရန်**ကို နှိပ်ပါ။
 
 ### ရွေးချယ်စရာ ၃: model deployment ကို ဖျက်ရန်
 

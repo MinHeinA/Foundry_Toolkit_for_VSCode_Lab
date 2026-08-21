@@ -23,7 +23,7 @@
 | Εργαστήριο 01 - μονοατ Agent | [Lab 01](../workshop/lab01-single-agent/README.md)                             | Πρακτικό εργαστήριο: δημιουργία, δοκιμή και ανάπτυξη του *Explain Like I'm an Executive* agent      |
 | Εργαστήριο 02 - multi-agent workflow | [Lab 02](../workshop/lab02-multi-agent/README.md)                          | Πρακτικό εργαστήριο: δημιουργία της ροής εργασίας 4-agent *Resume to Job Fit Evaluator*             |
 | Επίδειξη 1: Executive Agent | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                           | Επίδειξη εργαστηρίου 01: μετάφραση τεχνικής ορολογίας σε εκτελεστική περίληψη                       |
-| Επίδειξη 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Επίδειξη εργαστηρίου 02: ροή εργασίας 4-agent που βαθμολογεί την αντιστοιχία βιογραφικού και εργασίας και δημιουργεί προτάσεις |
+| Επίδειξη 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Επίδειξη εργαστηρίου 02: ροή εργασίας 4-agent που βαθμολογεί την αντιστοιχία βιογραφικού και εργασίας και δημιουργεί προτάσεις |
 
 > **Σημείωση για τους εκπαιδευτές:** Οι σύνδεσμοι για το deck των διαφανειών και τα βίντεο θα προστεθούν μόλις δημοσιευτούν οι εγγραφές. Μέχρι τότε, επικοινωνήστε με τον διαχειριστή (βλ. [Επαφές](#επαφές)) για τα πιο πρόσφατα αρχεία.
 
@@ -97,7 +97,7 @@
 | Διάγραμμα αρχιτεκτονικής    | Περιήγηση στην [README αρχιτεκτονική](../README.md#architecture): scaffold, Inspector, ACR, Agent Service.   |
 | Ανατομία ενός hosted agent  | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - τι κάνει κάθε αρχείο.                              |
 | Ζωντανή επίδειξη: Executive Agent | Μεταβείτε στο VS Code και εκτελέστε την επίδειξη [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) από την αρχή έως το τέλος (βλ. [Επίδειξη 1](#επίδειξη-1-executive-agent)). |
-| Ζωντανή επίδειξη: Resume to Job Fit Evaluator | Μεταβείτε στο VS Code και εκτελέστε την επίδειξη 4-agent [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (βλ. [Επίδειξη 2](#επίδειξη-2-resume-to-job-fit-evaluator)). |
+| Ζωντανή επίδειξη: Resume to Job Fit Evaluator | Μεταβείτε στο VS Code και εκτελέστε την επίδειξη 4-agent [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (βλ. [Επίδειξη 2](#επίδειξη-2-resume-to-job-fit-evaluator)). |
 | Περίληψη Εργαστηρίου 01    | Παραδώστε στους συμμετέχοντες. Δείξτε το [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Πρότυπα multi-agent         | Διαδοχικά vs παράλληλα vs μεταβίβαση - προεπισκόπηση πριν ξεκινήσει το Εργαστήριο 02.                         |
 | Περίληψη Εργαστηρίου 02    | Παραδώστε στους συμμετέχοντες. Δείξτε το [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@
 | Επίδειξη           | Εργαστήριο | Αρχεία                                                  | Τι να δείξετε                                          |
 |--------------------|------------|---------------------------------------------------------|--------------------------------------------------------|
 | Executive Agent     | Εργαστήριο 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Μονοατ hosted agent; μετάφραση τεχνικής ορολογίας σε εκτελεστική περίληψη |
-| Resume to Job Fit Evaluator | Εργαστήριο 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-agent ορχήστρωση; βαθμολόγηση προσαρμογής βιογραφικού με θέση και δημιουργία πρότασης |
+| Resume to Job Fit Evaluator | Εργαστήριο 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-agent ορχήστρωση; βαθμολόγηση προσαρμογής βιογραφικού με θέση και δημιουργία πρότασης |
 
 ### Επίδειξη 1: Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### Επίδειξη 2: Resume to Job Fit Evaluator
 
-Μια ροή εργασίας 4-agent στο [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Χρησιμοποιήστε το ως επίδειξη 10 λεπτών πριν το Εργαστήριο 02.
+Μια ροή εργασίας 4-agent στο [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Χρησιμοποιήστε το ως επίδειξη 10 λεπτών πριν το Εργαστήριο 02.
 
-1. Ανοίξτε το [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) και δείξτε πώς οι τέσσερις agents συνδέονται σε μια διαδοχική ορχήστρωση.
+1. Ανοίξτε το [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) και δείξτε πώς οι τέσσερις agents συνδέονται σε μια διαδοχική ορχήστρωση.
 2. Πατήστε `F5` για να εκκινήσετε το **Agent Inspector** για τη ροή εργασίας multi-agent.
 3. Επικολλήστε μια σύντομη περιγραφή θέσης και ένα δείγμα βιογραφικού στο chat του Inspector.
 4. Περιηγηθείτε στη σωλήνωση των τεσσάρων agents: ανάλυση βιογραφικού, εξαγωγή απαιτήσεων εργασίας, βαθμολόγηση αντιστοιχίας, και συγγραφή σύστασης.
 5. Τονίστε πώς η έξοδος κάθε υπο-agent γίνεται το πλαίσιο για τον επόμενο agent, αναδεικνύοντας το πρότυπο μεταβίβασης.
-6. Δείξτε το [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) για σύγκριση με το ισοδύναμο μονοατ agent από την Επίδειξη 1.
+6. Δείξτε το [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) για σύγκριση με το ισοδύναμο μονοατ agent από την Επίδειξη 1.
 
 ---
 

@@ -49,14 +49,14 @@ Celotno pot učenja si oglejte na:
 
 - [Dokumenti za Lab 2 - Zahteve](docs/00-prerequisites.md)
 - [Dokumenti za Lab 2 - Celotna pot učenja](docs/README.md)
-- [Navodila za zagon PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Navodila za zagon PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Del 2: Izdelajte in preizkusite delovni tok
 
 1. Uporabite čarovnika Foundry Toolkit za ustvarjanje projekta, ki temelji na delovnem toku.
-2. Kopirajte bloke pozivov in graf delovnega toka iz `PersonalCareerCopilot/main.py` v vaš delovni prostor.
+2. Kopirajte bloke pozivov in graf delovnega toka iz `PersonalCareerCopilotCompleted/main.py` v vaš delovni prostor.
 3. Zaženite lokalno z Agent Inspector in preverite vse štiri agente ter orodje MCP.
 4. Ko lokalno testiranje uspe, uvedite gostujočega agenta v Foundry.
 

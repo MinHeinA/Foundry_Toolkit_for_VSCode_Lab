@@ -6,7 +6,7 @@
 
 > **មន្ដសំខាន់:** Scaffold គឺជាស្តាប់ការងារដែលមានភ្នាក់ងារមួយ។ អ្នកជំនួសតុល្យភាព placeholder ជាមួយក្រាហ្វ `WorkflowBuilder` ក្នុងមូឌុល 3។ អ្នកមិនចាំបាច់សរសេរកូដ boilerplate ពីដើមឡើយ។
 
-> **អនុវត្តន៍យោង:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) គឺជាឧទាហរណ៍ពេញលេញដែលដំណើរការបាន។ ប្រើវាដើម្បីប្រៀបធៀបការងាររបស់អ្នកក្រោយមក។
+> **អនុវត្តន៍យោង:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) គឺជាឧទាហរណ៍ពេញលេញដែលដំណើរការបាន។ ប្រើវាដើម្បីប្រៀបធៀបការងាររបស់អ្នកក្រោយមក។
 
 ### ដំណើរការស្គាល់វីហ្សាត scaffold
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, តំឡើង `requirements.txt`, បង្ហាញ port 8088, រំកិល `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **យោង៖** មើល [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) និង [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) សម្រាប់ខ្លឹមសារបំពេញលេញ។
+> **យោង៖** មើល [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) និង [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) សម្រាប់ខ្លឹមសារបំពេញលេញ។
 
 ---
 

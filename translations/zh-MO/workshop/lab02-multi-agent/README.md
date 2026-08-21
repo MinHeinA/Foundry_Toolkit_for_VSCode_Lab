@@ -49,14 +49,14 @@ flowchart TD
 
 - [實驗 2 文件 - 前置條件](docs/00-prerequisites.md)
 - [實驗 2 文件 - 完整學習路徑](docs/README.md)
-- [PersonalCareerCopilot 運行指南](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted 運行指南](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## 第二部分：建立並測試工作流程
 
 1. 使用 Foundry Toolkit 向導來生成基於工作流程的專案骨架。
-2. 從 `PersonalCareerCopilot/main.py` 複製提示區塊和工作流程圖至您的工作區。
+2. 從 `PersonalCareerCopilotCompleted/main.py` 複製提示區塊和工作流程圖至您的工作區。
 3. 使用 Agent Inspector 本地執行並驗證所有四個代理以及 MCP 工具。
 4. 當本地測試通過後，部署此托管代理至 Foundry。
 

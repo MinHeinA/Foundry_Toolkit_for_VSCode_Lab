@@ -6,7 +6,7 @@
 
 > **اہم تصور:** ڈھانچہ ایک کام کرنے والا اسٹب ہے جس میں ایک ایجنٹ ہوتا ہے۔ آپ پلیس ہولڈر منطق کی جگہ ماڈیول 3 میں `WorkflowBuilder` گراف سے بدلتے ہیں۔ آپ بوائلر پلیٹ شروع سے نہیں لکھتے۔
 
-> **حوالہ عملدرآمد:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ایک مکمل کام کرنے والا نمونہ ہے۔ اسے اپنے کام کے ساتھ موازنہ کرنے کے لیے استعمال کریں۔
+> **حوالہ عملدرآمد:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ایک مکمل کام کرنے والا نمونہ ہے۔ اسے اپنے کام کے ساتھ موازنہ کرنے کے لیے استعمال کریں۔
 
 ### اسکافولڈ وزرڈ کا بہاؤ
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` انسٹال کرتا ہے، پورٹ 8088 کو ایکسپوز کرتا ہے، `python main.py` چلاتا ہے |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **حوالہ:** مکمل تیار شدہ مواد کے لیے [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) اور [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) دیکھیں۔
+> **حوالہ:** مکمل تیار شدہ مواد کے لیے [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) اور [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) دیکھیں۔
 
 ---
 

@@ -49,14 +49,14 @@ flowchart TD
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## भाग २: वर्कफ्लो बनाउनुहोस् र परीक्षण गर्नुहोस्
 
 1. Foundry Toolkit विजार्डको प्रयोग गरेर वर्कफ्लो-आधारित प्रोजेक्ट स्क्याफोल्ड गर्नुहोस्।
-2. `PersonalCareerCopilot/main.py` बाट प्रॉम्प्ट ब्लकहरू र वर्कफ्लो ग्राफ कपी गरेर आफ्नो वर्कस्पेसमा राख्नुहोस्।
+2. `PersonalCareerCopilotCompleted/main.py` बाट प्रॉम्प्ट ब्लकहरू र वर्कफ्लो ग्राफ कपी गरेर आफ्नो वर्कस्पेसमा राख्नुहोस्।
 3. एजेन्ट इन्स्पेक्टरसँग स्थानीय रूपमा चलाउनुहोस् र सबै चार एजेन्टहरू तथा MCP उपकरणको जाँच गर्नुहोस्।
 4. स्थानीय परीक्षण पास भएपछि होस्ट गरिएको एजेन्टलाई Foundry मा तैनाथ गर्नुहोस्।
 

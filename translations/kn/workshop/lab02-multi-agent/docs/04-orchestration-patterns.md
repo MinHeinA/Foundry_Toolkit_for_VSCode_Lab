@@ -68,7 +68,7 @@ flowchart LR
 
 ## WorkflowBuilder ಕೋಡ್ ಓದುವಿಕೆ
 
-ಪೂರ್ಣ `create_workflow()` ಕಾರ್ಯ [PersonalCareerCopilot/main.py](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ನಲ್ಲಿ ಇದೆ. ಮೂರು `add_edge()` ಕಾಲುಗಳು ಕ್ರಮಬದ್ಧ ಪೈಪ್‌ಲೈನ್ ಅನ್ನು ನಿರ್ಮಿಸುತ್ತವೆ:
+ಪೂರ್ಣ `create_workflow()` ಕಾರ್ಯ [PersonalCareerCopilotCompleted/main.py](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ನಲ್ಲಿ ಇದೆ. ಮೂರು `add_edge()` ಕಾಲುಗಳು ಕ್ರಮಬದ್ಧ ಪೈಪ್‌ಲೈನ್ ಅನ್ನು ನಿರ್ಮಿಸುತ್ತವೆ:
 
 | # | ಎಡ್ಜ್ | ಪರಿಣಾಮ |
 |---|------|--------|

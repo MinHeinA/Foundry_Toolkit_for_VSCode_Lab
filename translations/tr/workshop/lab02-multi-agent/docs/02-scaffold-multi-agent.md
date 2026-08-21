@@ -6,7 +6,7 @@ Bu modülde, [Foundry Toolkit for VS Code](https://aka.ms/foundrytk) kullanarak 
 
 > **Ana kavram:** İskelet, tek bir ajan içeren çalışan bir taslak yapıdır. Yer tutucu mantığı, Modül 3'te `WorkflowBuilder` grafiği ile değiştirirsiniz. Standart kodu sıfırdan yazmazsınız.
 
-> **Referans uygulama:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) tam çalışan bir örnektir. İlerlerken kendi çalışmanızla karşılaştırmak için kullanabilirsiniz.
+> **Referans uygulama:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) tam çalışan bir örnektir. İlerlerken kendi çalışmanızla karşılaştırmak için kullanabilirsiniz.
 
 ### İskelet Sihirbazı Akışı
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` yükler, 8088 portunu açar, `python main.py` çalıştırır |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Referans:** Tam içerik için [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) ve [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) dosyalarına bakın.
+> **Referans:** Tam içerik için [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ve [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) dosyalarına bakın.
 
 ---
 

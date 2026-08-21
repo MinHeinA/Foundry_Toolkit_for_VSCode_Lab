@@ -49,14 +49,14 @@ flowchart TD
 
 - [실습 2 문서 - 사전 준비](docs/00-prerequisites.md)
 - [실습 2 문서 - 전체 학습 경로](docs/README.md)
-- [PersonalCareerCopilot 실행 가이드](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted 실행 가이드](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## 2부: 워크플로우 구축 및 테스트
 
 1. Foundry Toolkit 마법사를 사용하여 워크플로우 기반 프로젝트를 스캐폴딩합니다.
-2. `PersonalCareerCopilot/main.py`에서 프롬프트 블록과 워크플로우 그래프를 복사하여 작업 공간에 붙여넣습니다.
+2. `PersonalCareerCopilotCompleted/main.py`에서 프롬프트 블록과 워크플로우 그래프를 복사하여 작업 공간에 붙여넣습니다.
 3. Agent Inspector로 로컬에서 실행하여 네 개의 에이전트와 MCP 도구가 모두 작동하는지 확인합니다.
 4. 로컬 테스트가 통과하면 호스팅 에이전트를 Foundry에 배포합니다.
 

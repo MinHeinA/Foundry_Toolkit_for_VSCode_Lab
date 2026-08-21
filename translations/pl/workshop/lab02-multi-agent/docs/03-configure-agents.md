@@ -4,7 +4,7 @@
 
 W tym module przekształcisz szkieletowy szablon w **własny** wieloagentowy przepływ pracy - ustawiając zmienne środowiskowe, pisząc instrukcje dla agentów, dodając narzędzie MCP, łącząc graf przepływu pracy oraz instalując zależności.
 
-> **Odniesienie:** Kompletny działający kod znajduje się w [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Używaj go jako odniesienia podczas tworzenia własnego grafu przepływu pracy i bloków promptów.
+> **Odniesienie:** Kompletny działający kod znajduje się w [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Używaj go jako odniesienia podczas tworzenia własnego grafu przepływu pracy i bloków promptów.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Krok 2: Napisz instrukcje dla agentów
 
-Instrukcje definiują rolę każdego agenta, format wyjścia oraz zasady. Otwórz `main.py` i określ (lub zamień) cztery stałe instrukcje - kompletne ciągi znajdują się w [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Instrukcje definiują rolę każdego agenta, format wyjścia oraz zasady. Otwórz `main.py` i określ (lub zamień) cztery stałe instrukcje - kompletne ciągi znajdują się w [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Parsuje życiorys na ustrukturyzowany profil kandydata **i** kopiuje opis stanowiska dosłownie do `[JOB DESCRIPTION PASS-THROUGH]`. Obie oznaczone sekcje muszą pojawić się w wyjściu.
@@ -88,7 +88,7 @@ Odczytuje raport dopasowania. Dla **każdej** brakującej umiejętności wywołu
 
 ## Krok 3: Dodaj narzędzie MCP
 
-GapAnalyzer wywołuje [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol), aby pobrać rzeczywiste zasoby edukacyjne dla każdej luki w umiejętnościach. Pełna funkcja `search_microsoft_learn_for_plan` znajduje się w [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer wywołuje [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol), aby pobrać rzeczywiste zasoby edukacyjne dla każdej luki w umiejętnościach. Pełna funkcja `search_microsoft_learn_for_plan` znajduje się w [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Zarejestruj narzędzie na GapAnalyzer przy tworzeniu agenta:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Zobacz [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) dla pełnego grafu `WorkflowBuilder` z `FoundryChatClient`, `AgentExecutor` i wszystkimi wywołaniami `add_edge()`.
+> Zobacz [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) dla pełnego grafu `WorkflowBuilder` z `FoundryChatClient`, `AgentExecutor` i wszystkimi wywołaniami `add_edge()`.
 
 ---
 

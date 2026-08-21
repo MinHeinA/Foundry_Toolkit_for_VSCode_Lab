@@ -23,7 +23,7 @@ Bago ihatid ang workshop, pakiusap:
 | Lab 01 - single agent         | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Hands-on lab: gumawa, subukan, at i-deploy ang *Explain Like I'm an Executive* hosted agent  |
 | Lab 02 - multi-agent workflow | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Hands-on lab: bumuo ng 4-agent *Resume to Job Fit Evaluator* workflow                       |
 | Demo 1: Executive Agent             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | Demo ng Lab 01: isalin ang teknikal na jargon sa executive summary                          |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | Demo ng Lab 02: 4-agent workflow na nagsusuri ng resume-job fit at bumubuo ng mga rekomendasyon |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | Demo ng Lab 02: 4-agent workflow na nagsusuri ng resume-job fit at bumubuo ng mga rekomendasyon |
 
 > **Note para sa mga tagapagsanay:** Idadagdag ang mga slide deck at link sa video kapag nailathala na ang mga recording. Hanggang noon, kontakin ang maintainer (tingnan ang [Contacts](#mga-kontak)) para sa pinakabagong mga assets.
 
@@ -97,7 +97,7 @@ Ang deck ay sumusunod sa parehong daloy tulad ng mga labs. Mga mungkahing punto 
 | Arkitekturang diagram        | I-walkthrough ang [README architecture](../README.md#architecture): scaffold, Inspector, ACR, Agent Service.     |
 | Anyo ng hosted agent         | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ano ang ginagawa ng bawat file.                        |
 | Live demo: Executive Agent   | Lumipat sa VS Code at patakbuhin ang [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) demo mula simula hanggang dulo (tingnan ang [Demo 1](#demo-1-executive-agent)). |
-| Live demo: Resume to Job Fit Evaluator | Lumipat sa VS Code at patakbuhin ang [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-agent demo (tingnan ang [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
+| Live demo: Resume to Job Fit Evaluator | Lumipat sa VS Code at patakbuhin ang [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-agent demo (tingnan ang [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
 | Maikling paliwanag sa Lab 01 | I-turnover sa mga learners. Ituro ang [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Mga pattern ng multi-agent   | Sequential vs concurrent vs handoff - preview bago magsimula ang Lab 02.                                         |
 | Maikling paliwanag sa Lab 02 | I-turnover sa mga learners. Ituro ang [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Dalawang live demo ang kasama sa paghahatid. Maglaan ng 10 minuto para sa bawat 
 | Demo | Lab | Mga File | Ano ang ipapakita |
 |------|-----|---------|-------------------|
 | Executive Agent | Lab 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Isang hosted agent; isalin ang teknikal na jargon sa isang executive summary |
-| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-agent orchestration; markahan ang resume-job fit at bumuo ng rekomendasyon |
+| Resume to Job Fit Evaluator | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-agent orchestration; markahan ang resume-job fit at bumuo ng rekomendasyon |
 
 ### Demo 1: Executive Agent
 
@@ -126,14 +126,14 @@ Isang standalone agent sa [`workshop/lab01-single-agent/agent/`](../../../worksh
 
 ### Demo 2: Resume to Job Fit Evaluator
 
-Isang 4-agent workflow sa [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Gamitin ito bilang 10-minutong demo bago ang Lab 02.
+Isang 4-agent workflow sa [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Gamitin ito bilang 10-minutong demo bago ang Lab 02.
 
-1. Buksan ang [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) at ipakita kung paano naka-wiring ang apat na agents sa isang sequential orchestration.
+1. Buksan ang [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) at ipakita kung paano naka-wiring ang apat na agents sa isang sequential orchestration.
 2. Pindutin ang `F5` upang ilunsad ang **Agent Inspector** para sa multi-agent workflow.
 3. I-paste ang maikling job description at isang sample resume sa Inspector chat.
 4. Suriin ang four-agent pipeline: resume parser, job requirement extractor, fit scorer, at recommendation writer.
 5. Ituro kung paano ang output ng bawat sub-agent ay nagiging konteksto ng susunod na agent, binibigyang-diin ang handoff pattern.
-6. Ipakita ang [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) para ihambing sa single-agent na katumbas mula sa Demo 1.
+6. Ipakita ang [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) para ihambing sa single-agent na katumbas mula sa Demo 1.
 
 ---
 

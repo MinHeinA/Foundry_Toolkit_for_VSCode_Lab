@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### ตัวเลือก 2: ลบเฉพาะ Hosted agent
 
 1. เปิด [ai.azure.com](https://ai.azure.com) → โครงการของคุณ → **Build** → **Agents**
-2. หา **PersonalCareerCopilot** → คลิก **Delete**
+2. หา **PersonalCareerCopilotCompleted** → คลิก **Delete**
 
 ### ตัวเลือก 3: ลบการนำโมเดลไปใช้
 

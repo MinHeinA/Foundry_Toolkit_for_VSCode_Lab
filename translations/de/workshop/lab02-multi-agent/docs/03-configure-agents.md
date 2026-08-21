@@ -4,7 +4,7 @@
 
 In diesem Modul verwandelst du das erstellte Gerüst in **deinen** Multi-Agenten-Workflow – indem du Umgebungsvariablen setzt, Agentenanweisungen schreibst, das MCP-Tool hinzufügst, den Workflow-Graphen verdrahtest und Abhängigkeiten installierst.
 
-> **Referenz:** Der vollständige funktionierende Code befindet sich in [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Nutze ihn als Referenz beim Aufbau deines eigenen Workflow-Graphs und der Prompt-Blöcke.
+> **Referenz:** Der vollständige funktionierende Code befindet sich in [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Nutze ihn als Referenz beim Aufbau deines eigenen Workflow-Graphs und der Prompt-Blöcke.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Schritt 2: Agentenanweisungen schreiben
 
-Anweisungen definieren die Rolle, das Ausgabeformat und die Regeln jedes Agenten. Öffne `main.py` und definiere (oder ersetze) die vier Anweisungskonstanten – die vollständigen Strings sind in [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Anweisungen definieren die Rolle, das Ausgabeformat und die Regeln jedes Agenten. Öffne `main.py` und definiere (oder ersetze) die vier Anweisungskonstanten – die vollständigen Strings sind in [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Analysiert den Lebenslauf in ein strukturiertes Kandidatenprofil **und** kopiert die Stellenbeschreibung wortwörtlich in `[JOB DESCRIPTION PASS-THROUGH]`. Beide mit Labels versehene Abschnitte müssen in der Ausgabe erscheinen.
@@ -88,7 +88,7 @@ Liest den Passungsbericht. Für **jede** fehlende Fähigkeit ruft er `search_mic
 
 ## Schritt 3: Das MCP-Tool hinzufügen
 
-Der GapAnalyzer ruft den [Microsoft Learn MCP Server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) auf, um echte Lernressourcen für jede Fähigkeitslücke abzurufen. Die vollständige Funktion `search_microsoft_learn_for_plan` befindet sich in [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Der GapAnalyzer ruft den [Microsoft Learn MCP Server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) auf, um echte Lernressourcen für jede Fähigkeitslücke abzurufen. Die vollständige Funktion `search_microsoft_learn_for_plan` befindet sich in [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Registriere das Tool beim GapAnalyzer beim Erstellen des Agenten:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Siehe [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) für den vollständigen `WorkflowBuilder`-Graph mit `FoundryChatClient`, `AgentExecutor` und allen `add_edge()`-Aufrufen.
+> Siehe [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) für den vollständigen `WorkflowBuilder`-Graph mit `FoundryChatClient`, `AgentExecutor` und allen `add_edge()`-Aufrufen.
 
 ---
 

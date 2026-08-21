@@ -49,14 +49,14 @@ Se den fulde læringssti i:
 
 - [Lab 2 Docs - Forudsætninger](docs/00-prerequisites.md)
 - [Lab 2 Docs - Fulde Læringssti](docs/README.md)
-- [PersonalCareerCopilot kørselsvejledning](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted kørselsvejledning](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Del 2: Byg og test workflowet
 
 1. Brug Foundry Toolkit-guiden til at opbygge workflow-baseret projekt.
-2. Kopier prompt-blokkene og workflow-grafen fra `PersonalCareerCopilot/main.py` til dit arbejdsområde.
+2. Kopier prompt-blokkene og workflow-grafen fra `PersonalCareerCopilotCompleted/main.py` til dit arbejdsområde.
 3. Kør lokalt med Agent Inspector og verificer alle fire agenter plus MCP-værktøjet.
 4. Deploy den hostede agent til Foundry, når lokal test godkendes.
 

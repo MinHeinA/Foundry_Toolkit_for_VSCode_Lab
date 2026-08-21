@@ -6,7 +6,7 @@
 
 > **ಪ್ರಮುಖ ಸಂಜ್ಞೆ:** ಈ ವಿಸ್ತರಣೆ ಒಂದು ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಸ್ಟಬ್ ಆಗಿದೆ ಒಂದು ಕಾರ್ಯನಿರ್ವಹಕದೊಂದಿಗೆ. ನೀವು ಮೋಡುಲ್ 3 ರಲ್ಲಿ `WorkflowBuilder` ಗ್ರಾಫ್ ಅನ್ನು ಸ್ಥಳಾಪಕ ನಿಯಮಿಕತೆಗೆ ಬದಲಾಯಿಸುತ್ತೀರಿ. ನೀವು ಬೊಯ್ಲರ್ ಪ್ಲೇಟ್ ಅನ್ನು ಶುರಿನಿಂದ ಬರೆಯುವುದಿಲ್ಲ.
 
-> **ರೆಫರೆನ್ಸ್ ಅನುಷ್ಠಾನ:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ಒಂದು ಸಕಲ ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಉದಾಹರಣೆ. ನೀವು ಕೆಲಸ ಮಾಡುತ್ತಿದ್ದಂತೆ ಅದನ್ನು ಹೋಲಿಕೆ ಮಾಡಲು ಉಪಯೋಗಿಸಿ.
+> **ರೆಫರೆನ್ಸ್ ಅನುಷ್ಠಾನ:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ಒಂದು ಸಕಲ ಕಾರ್ಯನಿರ್ವಹಿಸುವ ಉದಾಹರಣೆ. ನೀವು ಕೆಲಸ ಮಾಡುತ್ತಿದ್ದಂತೆ ಅದನ್ನು ಹೋಲಿಕೆ ಮಾಡಲು ಉಪಯೋಗಿಸಿ.
 
 ### ವಿಸ್ತರಣೆ ವಿಜಾರ್ಡ್ ಪ್ರವಾಹ
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` ಸ್ಥಾಪಿಸುತ್ತದೆ, 8088 ಪೋರ್ಟ್ ತೆರೆಯುತ್ತದೆ, `python main.py` ರನ್ ಮಾಡುತ್ತದೆ |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **ರೆಫರೆನ್ಸ್:** ಸಕಲ ಉತ್ಪಾದಿತ ವಿಷಯಕ್ಕಾಗಿ [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) ಮತ್ತು [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) ನೋಡಿ.
+> **ರೆಫರೆನ್ಸ್:** ಸಕಲ ಉತ್ಪಾದಿತ ವಿಷಯಕ್ಕಾಗಿ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ಮತ್ತು [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) ನೋಡಿ.
 
 ---
 

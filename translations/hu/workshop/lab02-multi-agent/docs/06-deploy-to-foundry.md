@@ -36,7 +36,7 @@ A telepítés előtt ellenőrizd az alábbiakat:
    - Nézd meg az alsó-bal oldalon az Accounts ikont a VS Code-ban. A fióknevednek láthatónak kell lennie.
 
 4. **`agent.yaml` helyes értékeket tartalmaz:**
-   - Nyisd meg a `PersonalCareerCopilot/agent.yaml` fájlt, és ellenőrizd:
+   - Nyisd meg a `PersonalCareerCopilot/main.py` fájlt, és ellenőrizd:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

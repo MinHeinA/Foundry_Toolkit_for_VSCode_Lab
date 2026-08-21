@@ -49,14 +49,14 @@ flowchart TD
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## パート 2: ワークフローの構築とテスト
 
 1. Foundry Toolkit のウィザードを使ってワークフローベースのプロジェクトをスキャフォールドします。
-2. `PersonalCareerCopilot/main.py` からプロンプトブロックとワークフローグラフをワークスペースにコピーします。
+2. `PersonalCareerCopilotCompleted/main.py` からプロンプトブロックとワークフローグラフをワークスペースにコピーします。
 3. エージェントインスペクターでローカル実行し、4つのエージェントと MCP ツールがすべて動作することを確認します。
 4. ローカルテストが合格したらホストされたエージェントを Foundry にデプロイします。
 

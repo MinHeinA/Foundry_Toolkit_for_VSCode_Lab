@@ -68,7 +68,7 @@ flowchart LR
 
 ## Читання коду WorkflowBuilder
 
-Повна функція `create_workflow()` знаходиться у [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Три виклики `add_edge()` створюють послідовний конвеєр:
+Повна функція `create_workflow()` знаходиться у [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Три виклики `add_edge()` створюють послідовний конвеєр:
 
 | # | Ребро | Ефект |
 |---|--------|---------|

@@ -23,7 +23,7 @@ Antes de realizar o workshop, por favor:
 | Laboratório 01 - agente único  | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Laboratório prático: construir, testar e implantar o agente hóspede *Explique como se fosse um executivo*  |
 | Laboratório 02 - fluxo multi-agente | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Laboratório prático: construir o fluxo com 4 agentes *Avaliador de Compatibilidade de Currículo para Emprego* |
 | Demonstração 1: Agente Executivo             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | Demonstração do Lab 01: traduzir linguagem técnica em resumo executivo                         |
-| Demonstração 2: Avaliador de Compatibilidade Currículo-Emprego | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | Demonstração do Lab 02: fluxo com 4 agentes que avalia compatibilidade e gera recomendações    |
+| Demonstração 2: Avaliador de Compatibilidade Currículo-Emprego | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | Demonstração do Lab 02: fluxo com 4 agentes que avalia compatibilidade e gera recomendações    |
 
 > **Nota para formadores:** O deck de slides e os links dos vídeos serão adicionados assim que as gravações forem publicadas. Até lá, contacte o mantenedor (ver [Contactos](#contactos)) para obter os ativos mais recentes.
 
@@ -97,7 +97,7 @@ O deck segue o mesmo fluxo dos laboratórios. Pontos sugeridos a abordar para ca
 | Diagrama da arquitetura     | Explique a [arquitetura do README](../README.md#architecture): scaffold, Inspector, ACR, Agent Service.      |
 | Anatomia de um agente hospedado | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - o que cada ficheiro faz.                      |
 | Demonstração ao vivo: Agente Executivo | Mude para VS Code e execute de ponta a ponta a demo em [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) (ver [Demo 1](#demonstração-1-agente-executivo)). |
-| Demonstração ao vivo: Avaliador de Compatibilidade Currículo-Emprego | Mude para VS Code e execute a demo de 4 agentes em [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (ver [Demo 2](#demonstração-2-avaliador-de-compatibilidade-currículo-emprego)). |
+| Demonstração ao vivo: Avaliador de Compatibilidade Currículo-Emprego | Mude para VS Code e execute a demo de 4 agentes em [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (ver [Demo 2](#demonstração-2-avaliador-de-compatibilidade-currículo-emprego)). |
 | Resumo do Lab 01             | Passe a palavra aos participantes. Aponte para [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Padrões multi-agente         | Sequencial vs concorrente vs passagem de tarefas - introdução antes de começar o Lab 02.                   |
 | Resumo do Lab 02             | Passe a palavra aos participantes. Aponte para [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Duas demonstrações ao vivo estão incluídas na entrega. Dedique 10 minutos a 
 | Demonstração | Laboratório | Ficheiros                                                                                           | O que mostrar                                           |
 |-------------|-------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------|
 | Agente Executivo | Lab 01     | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent)                      | Agente hóspede único; traduzir jargão técnico em resumo executivo |
-| Avaliador de Compatibilidade Currículo-Emprego | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Orquestração com 4 agentes; avaliar compatibilidade e gerar recomendação      |
+| Avaliador de Compatibilidade Currículo-Emprego | Lab 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Orquestração com 4 agentes; avaliar compatibilidade e gerar recomendação      |
 
 ### Demonstração 1: Agente Executivo
 
@@ -126,14 +126,14 @@ Um agente autónomo em [`workshop/lab01-single-agent/agent/`](../../../workshop/
 
 ### Demonstração 2: Avaliador de Compatibilidade Currículo-Emprego
 
-Um fluxo com 4 agentes em [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Use isto como uma demonstração de 10 minutos antes do Lab 02.
+Um fluxo com 4 agentes em [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Use isto como uma demonstração de 10 minutos antes do Lab 02.
 
-1. Abra [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) e mostre como os quatro agentes estão ligados numa orquestração sequencial.
+1. Abra [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) e mostre como os quatro agentes estão ligados numa orquestração sequencial.
 2. Prima `F5` para lançar o **Agent Inspector** para o fluxo multi-agente.
 3. Cole uma breve descrição do trabalho e um currículo de exemplo no chat do Inspector.
 4. Explique a pipeline dos quatro agentes: parser de currículo, extrator de requisitos do trabalho, avaliador de compatibilidade e escritor de recomendações.
 5. Aponte como a saída de cada sub-agente se torna o contexto do agente seguinte, destacando o padrão de passagem.
-6. Mostre [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) para comparar com o agente único do Demo 1.
+6. Mostre [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) para comparar com o agente único do Demo 1.
 
 ---
 

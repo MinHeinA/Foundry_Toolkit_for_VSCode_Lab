@@ -49,14 +49,14 @@ Se hele læringsløpet i:
 
 - [Lab 2 Docs - Forutsetninger](docs/00-prerequisites.md)
 - [Lab 2 Docs - Hele læringsløpet](docs/README.md)
-- [PersonalCareerCopilot kjøreveiledning](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted kjøreveiledning](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Del 2: Bygg og test arbeidsflyten
 
 1. Bruk Foundry Toolkit-veiviseren til å scaffolde prosjektet basert på arbeidsflyt.
-2. Kopier prompt-blokkene og arbeidsflytdiagrammet fra `PersonalCareerCopilot/main.py` til arbeidsområdet ditt.
+2. Kopier prompt-blokkene og arbeidsflytdiagrammet fra `PersonalCareerCopilotCompleted/main.py` til arbeidsområdet ditt.
 3. Kjør lokalt med Agent Inspector og verifiser alle fire agenter pluss MCP-verktøyet.
 4. Distribuer den hostede agenten til Foundry når lokal testing er godkjent.
 

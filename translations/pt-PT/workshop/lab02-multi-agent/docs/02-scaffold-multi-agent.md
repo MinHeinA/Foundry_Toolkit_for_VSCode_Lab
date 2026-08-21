@@ -6,7 +6,7 @@ Neste módulo, você usa [Foundry Toolkit para VS Code](https://aka.ms/foundrytk
 
 > **Conceito chave:** A estrutura é um esqueleto funcional com um agente. Você substitui a lógica temporária pelo grafo do `WorkflowBuilder` no Módulo 3. Você não precisa escrever o código-base do zero.
 
-> **Implementação de referência:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) é um exemplo funcional completo. Use-o para comparar seu progresso.
+> **Implementação de referência:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) é um exemplo funcional completo. Use-o para comparar seu progresso.
 
 ### Fluxo do assistente de estruturação
 
@@ -92,7 +92,7 @@ Após concluir a estruturação, verifique se estes ficheiros aparecem no Explor
 | `Dockerfile` | `python:3.12-slim`, instala `requirements.txt`, expõe porta 8088, executa `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Referência:** Veja [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) e [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) para o conteúdo gerado completo.
+> **Referência:** Veja [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) e [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) para o conteúdo gerado completo.
 
 ---
 

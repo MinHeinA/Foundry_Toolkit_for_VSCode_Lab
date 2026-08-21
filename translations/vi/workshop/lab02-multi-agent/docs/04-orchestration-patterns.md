@@ -68,7 +68,7 @@ Agent Inspector hiển thị cấu trúc đồ thị tương tự khi tác nhân
 
 ## Đọc mã WorkflowBuilder
 
-Hàm đầy đủ `create_workflow()` nằm trong [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Ba lần gọi `add_edge()` xây dựng đường ống tuần tự:
+Hàm đầy đủ `create_workflow()` nằm trong [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Ba lần gọi `add_edge()` xây dựng đường ống tuần tự:
 
 | # | Cạnh | Hiệu ứng |
 |---|------|--------|

@@ -4,7 +4,7 @@
 
 Selles moodulis muudate moodustatud mallitüki **oma** mitmeagendi töövooguks - seadistades keskkonnamuutujad, kirjutades agendi juhised, lisades MCP tööriista, ühendades töövoo graafiku ja paigaldades sõltuvused.
 
-> **Viide:** Täielik töövalmis kood on failis [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Kasutage seda oma töövoo graafiku ja promptiplokkide koostamisel viitena.
+> **Viide:** Täielik töövalmis kood on failis [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Kasutage seda oma töövoo graafiku ja promptiplokkide koostamisel viitena.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Samm 2: Kirjuta agendi juhised
 
-Juhised määravad iga agendi rolli, väljundi vormingu ja reeglid. Ava `main.py` ja määra (või asenda) neli juhiste konstanti – täielikud stringid on failis [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Juhised määravad iga agendi rolli, väljundi vormingu ja reeglid. Ava `main.py` ja määra (või asenda) neli juhiste konstanti – täielikud stringid on failis [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Töötleb CV struktureeritud kandidaadi profiiliks **ja** kopeerib töökuulutuse täpselt sõnasõnalt väljundisse `[JOB DESCRIPTION PASS-THROUGH]`. Mõlemad märgistatud sektsioonid peavad väljundis ilmuma.
@@ -88,7 +88,7 @@ Loeb sobivusaruannet. Iga vajaliku oskuse puhul kutsub `search_microsoft_learn_f
 
 ## Samm 3: Lisa MCP tööriist
 
-GapAnalyzer kutsub [Microsoft Learn MCP serverit](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol), et laadida iga oskuse lünga kohta reaalsed õpperessursid. Täielik `search_microsoft_learn_for_plan` funktsioon on failis [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer kutsub [Microsoft Learn MCP serverit](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol), et laadida iga oskuse lünga kohta reaalsed õpperessursid. Täielik `search_microsoft_learn_for_plan` funktsioon on failis [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Registreeri tööriist GapAnalyseril agendi loomise ajal:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Vaata täielikku `WorkflowBuilder` graafikut koos `FoundryChatClient`, `AgentExecutor` ja kõigi `add_edge()` kutsungitega failis [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+> Vaata täielikku `WorkflowBuilder` graafikut koos `FoundryChatClient`, `AgentExecutor` ja kõigi `add_edge()` kutsungitega failis [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ---
 

@@ -4,7 +4,7 @@
 
 在本模組中，您將把腳手架模板改造成 <strong>您自己的</strong> 多代理工作流程 — 透過設定環境變數、撰寫代理指令、加入 MCP 工具、連接工作流程圖，並安裝依賴套件。
 
-> **參考：** 完整運作的程式碼在 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)。在建立您自己的工作流程圖與提示區塊時，請參考它。
+> **參考：** 完整運作的程式碼在 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)。在建立您自己的工作流程圖與提示區塊時，請參考它。
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## 步驟 2：撰寫代理指令
 
-指令定義每個代理的角色、輸出格式與規則。打開 `main.py` 並定義（或替換）四個指令常數 — 完整字串在 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) 中。
+指令定義每個代理的角色、輸出格式與規則。打開 `main.py` 並定義（或替換）四個指令常數 — 完整字串在 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) 中。
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 將履歷解析成結構化的候選人簡介，<strong>並且</strong> 原樣複製職務說明到 `[JOB DESCRIPTION PASS-THROUGH]`，兩個標記區段必須出現在輸出中。
@@ -88,7 +88,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## 步驟 3：加入 MCP 工具
 
-GapAnalyzer 會呼叫 [Microsoft Learn MCP 伺服器](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) 以取得每項技能缺口的真實學習資源。完整的 `search_microsoft_learn_for_plan` 函式在 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)。
+GapAnalyzer 會呼叫 [Microsoft Learn MCP 伺服器](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) 以取得每項技能缺口的真實學習資源。完整的 `search_microsoft_learn_for_plan` 函式在 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)。
 
 在建立代理時，於 GapAnalyzer 上註冊該工具：
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> 參見 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) 中，完整的 `WorkflowBuilder` 圖表與 `FoundryChatClient`、`AgentExecutor` 和所有 `add_edge()` 呼叫。
+> 參見 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) 中，完整的 `WorkflowBuilder` 圖表與 `FoundryChatClient`、`AgentExecutor` 和所有 `add_edge()` 呼叫。
 
 ---
 

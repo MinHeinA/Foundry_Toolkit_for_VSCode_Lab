@@ -23,7 +23,7 @@
 | 实验01 - 单代理              | [Lab 01](../workshop/lab01-single-agent/README.md)                               | 动手实验：构建、测试并部署<em>Explain Like I'm an Executive</em>托管代理                          |
 | 实验02 - 多代理工作流        | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | 动手实验：构建包含4个代理的<em>Resume to Job Fit Evaluator</em>工作流                           |
 | 演示1：执行代理              | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | 实验01演示：将技术术语翻译成执行摘要                                                      |
-| 演示2：简历职位匹配评估器   | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | 实验02演示：4代理工作流，评分简历职位匹配度并生成推荐                                    |
+| 演示2：简历职位匹配评估器   | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | 实验02演示：4代理工作流，评分简历职位匹配度并生成推荐                                    |
 
 > **讲师注意：** 一旦录制视频发布，我们将添加幻灯片和视频链接。在此之前，请联系维护者（参见[联系方式](#联系方式)）获取最新资料。
 
@@ -97,7 +97,7 @@
 | 架构图                   | 讲解[README 中的架构部分](../README.md#architecture)：脚手架、Inspector、ACR、Agent 服务。           |
 | 托管代理结构              | `agent.yaml`、`Dockerfile`、`main.py`、`requirements.txt` —— 每个文件的功能说明。                         |
 | 现场演示：执行代理         | 切换到 VS Code 并运行 [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) 端到端演示（参见[演示1](#演示1：执行代理)）。 |
-| 现场演示：简历职位匹配评估器 | 切换到 VS Code 并运行 [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4代理演示（参见[演示2](#演示2：简历职位匹配评估器)）。 |
+| 现场演示：简历职位匹配评估器 | 切换到 VS Code 并运行 [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4代理演示（参见[演示2](#演示2：简历职位匹配评估器)）。 |
 | 实验01简述                | 交给学员，指向 [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md)。 |
 | 多代理模式                | 顺序执行、并发执行和交接模式——在实验02开始前进行预览。                                               |
 | 实验02简述                | 交给学员，指向 [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md)。   |
@@ -112,7 +112,7 @@
 | 演示       | 实验    | 文件路径                                                                        | 演示内容                                  |
 |-----------|---------|---------------------------------------------------------------------------------|-------------------------------------------|
 | 执行代理   | 实验01  | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent)      | 单托管代理；将技术术语转化为执行摘要        |
-| 简历职位匹配评估器 | 实验02  | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4代理编排；评分简历与职位匹配度并生成推荐  |
+| 简历职位匹配评估器 | 实验02  | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4代理编排；评分简历与职位匹配度并生成推荐  |
 
 ### 演示1：执行代理
 
@@ -126,14 +126,14 @@
 
 ### 演示2：简历职位匹配评估器
 
-一个位于[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)的4代理工作流，适合实验02前的10分钟演示。
+一个位于[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)的4代理工作流，适合实验02前的10分钟演示。
 
-1. 打开 [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)，展示四个代理如何在顺序编排中连接。
+1. 打开 [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)，展示四个代理如何在顺序编排中连接。
 2. 按 `F5` 启动多代理工作流的 **Agent Inspector**。
 3. 在 Inspector 聊天中粘贴一段简短的职位描述和示范简历。
 4. 逐步讲解四代理流程：简历解析器、职位需求提取器、匹配度评分器和推荐编写器。
 5. 指出每个子代理的输出如何成为下一个代理的上下文，突出交接模式。
-6. 展示 [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml)，并与演示1中的单代理示例进行对比。
+6. 展示 [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)，并与演示1中的单代理示例进行对比。
 
 ---
 

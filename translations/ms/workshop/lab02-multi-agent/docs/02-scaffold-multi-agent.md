@@ -6,7 +6,7 @@ Dalam modul ini, anda menggunakan [Foundry Toolkit untuk VS Code](https://aka.ms
 
 > **Konsep utama:** Rangka ini adalah kerangka kerja yang berfungsi dengan satu ejen. Anda menggantikan logik tempat letak dengan graf `WorkflowBuilder` dalam Modul 3. Anda tidak menulis kod asas dari awal.
 
-> **Implementasi rujukan:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) adalah contoh kerja lengkap. Gunakannya untuk membandingkan kerja anda semasa anda berjalan.
+> **Implementasi rujukan:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) adalah contoh kerja lengkap. Gunakannya untuk membandingkan kerja anda semasa anda berjalan.
 
 ### Aliran wizard rangka
 
@@ -92,7 +92,7 @@ Selepas rangka selesai, sahkan anda melihat fail-fail ini dalam Explorer (`Ctrl+
 | `Dockerfile` | `python:3.12-slim`, memasang `requirements.txt`, membuka port 8088, menjalankan `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Rujukan:** Lihat [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) dan [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) untuk kandungan lengkap yang dijana.
+> **Rujukan:** Lihat [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) dan [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) untuk kandungan lengkap yang dijana.
 
 ---
 

@@ -4,7 +4,7 @@
 
 В этом модуле вы превратите заготовку в **ваш** многоагентный рабочий процесс — настроив переменные окружения, написав инструкции для агентов, добавив инструмент MCP, связав граф рабочего процесса и установив зависимости.
 
-> **Справка:** Полный рабочий код находится в [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Используйте его в качестве ориентира при построении собственного графа рабочего процесса и блоков подсказок.
+> **Справка:** Полный рабочий код находится в [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Используйте его в качестве ориентира при построении собственного графа рабочего процесса и блоков подсказок.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Шаг 2: Написание инструкций для агентов
 
-Инструкции определяют роль каждого агента, формат вывода и правила. Откройте `main.py` и определите (или замените) четыре константы инструкций — полные строки находятся в [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Инструкции определяют роль каждого агента, формат вывода и правила. Откройте `main.py` и определите (или замените) четыре константы инструкций — полные строки находятся в [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Анализирует резюме в структурированный профиль кандидата **и** копирует описание вакансии дословно в `[JOB DESCRIPTION PASS-THROUGH]`. Оба отмеченных раздела должны быть в выводе.
@@ -88,7 +88,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Шаг 3: Добавление инструмента MCP
 
-GapAnalyzer вызывает [сервер Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol), чтобы получить реальные обучающие материалы для каждого пробела в навыках. Полная функция `search_microsoft_learn_for_plan` находится в [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer вызывает [сервер Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol), чтобы получить реальные обучающие материалы для каждого пробела в навыках. Полная функция `search_microsoft_learn_for_plan` находится в [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Зарегистрируйте инструмент на GapAnalyzer при создании агента:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Смотрите [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) для полного графа `WorkflowBuilder` с `FoundryChatClient`, `AgentExecutor` и всеми вызовами `add_edge()`.
+> Смотрите [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) для полного графа `WorkflowBuilder` с `FoundryChatClient`, `AgentExecutor` и всеми вызовами `add_edge()`.
 
 ---
 

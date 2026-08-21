@@ -23,7 +23,7 @@
 | Лабораторна 01 - один агент | [Lab 01](../workshop/lab01-single-agent/README.md)                                | Практична лабораторна: створення, тестування та розгортання *Explain Like I'm an Executive* хостованого агента |
 | Лабораторна 02 - мультиагентний робочий процес | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Практична лабораторна: створення 4-агентного робочого процесу *Resume to Job Fit Evaluator* |
 | Демонстрація 1: Executive Agent             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                              | Демонстрація Лаб 01: переклад технічного жаргону у виконавчий підсумок                    |
-| Демонстрація 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)    | Демонстрація Лаб 02: 4-агентний робочий процес, що оцінює відповідність резюме до вакансії та генерує рекомендації |
+| Демонстрація 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)    | Демонстрація Лаб 02: 4-агентний робочий процес, що оцінює відповідність резюме до вакансії та генерує рекомендації |
 
 > **Примітка для тренерів:** Слайди та посилання на відео будуть додані після публікації записів. Поки що звертайтеся до відповідального (див. [Контакти](#контакти)) для отримання останніх матеріалів.
 
@@ -97,7 +97,7 @@
 | Діаграма архітектури    | Розгляньте [архітектуру в README](../README.md#architecture): каркас, Inspector, ACR, Agent Service. |
 | Будова хостованого агента| `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - пояснення ролі файлів.            |
 | Жива демонстрація: Executive Agent  | Перейдіть у VS Code і запустіть демо [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) повністю (див. [Демо 1](#демо-1-executive-agent)). |
-| Жива демонстрація: Resume to Job Fit Evaluator | Перейдіть у VS Code і запустіть 4-агентне демо [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (див. [Демо 2](#демо-2-resume-to-job-fit-evaluator)). |
+| Жива демонстрація: Resume to Job Fit Evaluator | Перейдіть у VS Code і запустіть 4-агентне демо [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (див. [Демо 2](#демо-2-resume-to-job-fit-evaluator)). |
 | Короткий огляд Лаб 01  | Передайте учням. Покажіть [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Патерни мульти-агентів | Послідовність vs паралельність vs передача – короткий огляд перед початком Лаб 02.            |
 | Короткий огляд Лаб 02  | Передайте учням. Покажіть [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@
 | Демонстрація             | Лабораторна | Файли                                                               | Що показувати                                     |
 |-------------------------|-------------|---------------------------------------------------------------------|--------------------------------------------------|
 | Executive Agent          | Лаб 01      | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent)                | Один хостований агент; переклад технічного жаргону у виконавчий підсумок |
-| Resume to Job Fit Evaluator | Лаб 02      | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-агентна оркестрація; оцінка відповідності резюме до вакансії та генерація рекомендації |
+| Resume to Job Fit Evaluator | Лаб 02      | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-агентна оркестрація; оцінка відповідності резюме до вакансії та генерація рекомендації |
 
 ### Демо 1: Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### Демо 2: Resume to Job Fit Evaluator
 
-4-агентний робочий процес у [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Використовуйте це як 10-хвилинне демо перед Лаб 02.
+4-агентний робочий процес у [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Використовуйте це як 10-хвилинне демо перед Лаб 02.
 
-1. Відкрийте [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) і покажіть, як чотири агенти зв’язані послідовною оркестрацією.
+1. Відкрийте [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) і покажіть, як чотири агенти зв’язані послідовною оркестрацією.
 2. Натисніть `F5`, щоб запустити **Agent Inspector** для мультиагентного робочого процесу.
 3. Вставте короткий опис вакансії та приклад резюме у чат Inspectora.
 4. Пройдіться по чотирьох агентам конвеєра: парсер резюме, екстрактор вимог до роботи, оцінювач відповідності, автор рекомендацій.
 5. Поясніть, як вихідні дані кожного підагента стають контекстом наступного агента, наголосивши на патерні передачі.
-6. Покажіть [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) для порівняння з еквівалентом одиночного агента з Демо 1.
+6. Покажіть [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) для порівняння з еквівалентом одиночного агента з Демо 1.
 
 ---
 

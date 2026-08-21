@@ -36,7 +36,7 @@ flowchart LR
    - ពិនិត្យរូបតំណាងគណនីនៅជ្រុងក្រោម-ឆ្វេងនៃ VS Code។ ឈ្មោះគណនីរបស់អ្នកគួរតែបង្ហាញ។
 
 4. **`agent.yaml` មានតម្លៃត្រឹមត្រូវ៖**
-   - បើក `PersonalCareerCopilot/agent.yaml` ហើយផ្ទៀងផ្ទាត់៖
+   - បើក `PersonalCareerCopilot/main.py` ហើយផ្ទៀងផ្ទាត់៖
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

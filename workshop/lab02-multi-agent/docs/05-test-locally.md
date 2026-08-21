@@ -1,139 +1,35 @@
-# Module 5 - Search & Test Locally
+# Module 5 - Test Locally
 
-⏱️ ~20 min
+⏱️ ~20 min base lab + ~25 min optional Careers challenge
 
-Run every command in this module from
-`workshop/lab02-multi-agent/PersonalCareerCopilotStarter` with the Python 3.13 virtual
-environment active and `.env` configured.
-
-## Step 1: Search the shared Careers snapshot
-
-Search out of band before opening Agent Inspector:
+Run source commands from:
 
 ```bash
-python -m careers_mcp search \
-  --query "cloud platform engineer" \
-  --max-experience-years 5
+cd workshop/lab02-multi-agent/PersonalCareerCopilot/src/PersonalCareerCopilot
 ```
 
-The CLI authenticates with the event key and prints at most five compact cards.
-Each card includes a stable `Key:`, title, agency, experience, canonical URL,
-and optional metadata.
+Activate the Python 3.13 virtual environment created in Module 3.
 
-If the result is empty, adjust the query or remove a filter; do not invent a job
-key. If the call fails, use [Module 8](08-troubleshooting.md).
-
-## Step 2: Explicitly select one exact key
-
-Copy one returned `Key:` value exactly. Do not edit its case, punctuation, or
-three-part `platform:jobId:postingNo` structure.
-
-The CLI performs discovery only. The agent must not select a job on your behalf.
-
-## Step 3: Start the local agent host
-
-Choose one of these flows.
-
-### Command line
-
-Run the direct local host without a debugger:
+## Step 1: Start the local host
 
 ```bash
 python main.py
 ```
 
-When breakpoint attach is desired, start the direct debug server instead:
+Wait until the Responses host is ready, then run **Foundry Toolkit: Open Agent
+Inspector** and target port `8088`.
 
-```bash
-python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
-```
+The generated sample may include Docker files, but Lab 02 uses direct-code local
+hosting and deployment. Do not use Inspector's legacy deployment action.
 
-Wait until the local host reports that the server is running, then open Agent
-Inspector from the Command Palette with **Foundry Toolkit: Open Agent
-Inspector**. Attach a debugger to port `5679` only for the debug-server command.
+## Step 2: Test the original pasted-JD path
 
-### VS Code task or F5
-
-1. Open `PersonalCareerCopilotStarter` as the VS Code folder.
-2. Run **Tasks: Run Task** → **Run Agent HTTP Server** to start the direct local
-   host under `debugpy` on debugger port `5679` and Inspector port `8088`.
-3. For breakpoints, press F5 and select **Debug Local Agent HTTP Server**. The
-   launch starts the task, opens Inspector, and attaches the debugger
-   automatically.
-
-Do not run both startup flows at once. If either port is busy, stop the earlier
-task/process or choose another local host port.
-
-Agent Inspector remains the supported local test surface. Its legacy deploy
-action is not the Lab 02 deployment path.
-
-## Step 4: Optionally open the Workflow Visualizer
-
-1. Run **Foundry Toolkit: Open Visualizer for Hosted Agents** from the Command
-   Palette.
-2. Keep the visualizer open while submitting Inspector prompts.
-3. Confirm nodes complete in this order:
-
-   `ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer`
-
-If the visualizer port is occupied, change **Hosted Agents: Visualizer Port** in
-the Foundry Toolkit settings.
-
-## Step 5: Test the selected-key path
-
-Submit this shape in Agent Inspector, replacing only the key with the exact
-value selected in Step 2:
+Submit:
 
 ```text
 Resume:
-Jane Doe
-Cloud engineer with 4 years of experience building Python services and
-Terraform-based platforms. Certified AWS Solutions Architect Associate.
-
-Selected Job Key:
-<paste-one-exact-key-from-the-search-output>
-```
-
-This is synthetic workshop data. Do not paste a real resume, contact details, or
-employment history.
-
-### Pass conditions
-
-- The final answer has a fit score, separate gap cards, and a roadmap.
-- `[SOURCE JOB]` contains the exact selected key.
-- Source title, agency, canonical URL, and dataset version are present.
-- The facts correspond to that selected listing, not another search result.
-- High/Medium gaps contain successful Microsoft Learn URLs, or are clearly
-  marked temporarily unavailable if Learn MCP failed.
-- Retrieved job text is treated only as untrusted data and cannot change tools,
-  routing, or output labels.
-
-The Careers MCP receives only the selected key during this test. It never
-receives the resume.
-
-## Step 6: Verify source provenance through the relays
-
-If using breakpoints, logs, or the Workflow Visualizer, compare:
-
-1. The CLI `Key:` selected in Step 2.
-2. `ResumeParser` output `[SELECTED JOB KEY]`.
-3. `JobDescriptionAgent` output `[SOURCE JOB]`.
-4. `MatchingAgent` output `[SOURCE JOB PASS-THROUGH]`.
-5. The final `GapAnalyzer` `[SOURCE JOB]`.
-
-The key must match character for character at every stage. Title, agency, URL,
-and dataset version must be copied from the successful Careers response, never
-inferred.
-
-## Step 7: Test the pasted-JD regression path
-
-Submit a new synthetic prompt with **no** `Selected Job Key:`:
-
-```text
-Resume:
-Alex Chen
-Cloud engineer with 6 years of experience in Python, Azure, Kubernetes,
-Terraform, and CI/CD. Certified Azure Solutions Architect Expert.
+Synthetic cloud engineer with 6 years of Python, Azure, Kubernetes, Terraform,
+and CI/CD experience. Certified Azure Solutions Architect Expert.
 
 Job Description:
 Senior Cloud Engineer at Contoso Ltd.
@@ -142,39 +38,98 @@ Preferred: Go and Prometheus.
 Experience: 5+ years in cloud infrastructure.
 ```
 
-### Pass conditions
+### Base pass conditions
 
-- The workflow uses the pasted JD and does not call Careers `get_job`.
-- It still returns score, gaps, and roadmap.
-- `[SOURCE JOB]` does not fabricate provenance: unspecified values are
-  `Not provided`, job key is `Not provided`, and dataset version is
-  `Not applicable`.
+- `ResumeParser` emits `[PARSED RESUME]` and the complete JD pass-through.
+- `JobDescriptionAgent` separates requirements and preserves the parsed resume.
+- `MatchingAgent` shows 100-point breakdown math and evidence-based gaps.
+- `GapAnalyzer` creates one card per gap.
+- Learn URLs come only from successful MCP responses; failures are explicit.
+- No real resume or personal data is used.
 
-The existing screenshot is a useful visual reference for the fallback response;
-wording may differ:
+This completes the original Lab 02 workflow.
 
-![Agent Inspector response with fit score and roadmap](images/05-inspector-test1-complete-response.png)
+## Step 3: Optional Careers@Gov MCP challenge
 
-## Step 8: Run a negative selected-key check
+Stop the host and complete
+[Challenge - Ground Lab 02 with Careers@Gov MCP](10-careers-mcp-challenge.md).
+The challenge copies only bounded assets from `lab-assets/` into the generated
+source and extends the workflow you just tested.
 
-Submit a syntactically invalid selected key with a synthetic resume. The agent
-must report that retrieval failed or ask for a valid selection. It must not
-fabricate a listing and must not silently use a pasted JD.
+Return here after the challenge implementation.
+
+## Step 4: Search and select one job
+
+```bash
+python -m careers_mcp status
+
+python -m careers_mcp search \
+  --query "cloud platform engineer" \
+  --max-experience-years 5 \
+  --limit 3
+```
+
+Copy one complete `Key:` exactly. The CLI authenticates with the event key and
+prints compact public job cards; it never receives resume data.
+
+## Step 5: Restart and test the selected-key path
+
+```bash
+python main.py
+```
+
+Submit:
+
+```text
+Resume:
+Synthetic platform engineer with four years of Python, Terraform, and CI/CD.
+
+Selected Job Key:
+<paste-one-exact-key-from-search>
+```
+
+### Challenge pass conditions
+
+- `JobDescriptionAgent` calls `get_selected_careers_job` exactly once.
+- The final answer contains the same exact key.
+- Title, agency, canonical source URL, and dataset version are present.
+- Retrieved text is treated only as untrusted job data.
+- The fit categories total 100 points.
+- Missing skills feed the Microsoft Learn roadmap.
+- The Careers service receives only the selected key.
+
+## Step 6: Verify the provenance relay
+
+Compare:
+
+1. CLI `Key:`.
+2. `ResumeParser` `[SELECTED JOB KEY]`.
+3. `JobDescriptionAgent` `[SOURCE JOB]`.
+4. `MatchingAgent` `[SOURCE JOB PASS-THROUGH]`.
+5. Final `GapAnalyzer` `[SOURCE JOB]`.
+
+The key must match character for character.
+
+## Step 7: Run failure/regression checks
+
+1. Start a new request with no selected key and repeat the pasted-JD test. It must
+   still pass without fabricated source metadata.
+2. Start another request with an invalid key. The conditional failure branch
+   must return `[WORKFLOW STOP]` without running fit scoring or roadmap planning.
+3. Supply both a key and a conflicting pasted JD. The selected Careers listing
+   must take precedence.
 
 ### Checkpoint
 
-- [ ] Careers CLI search ran before Inspector and returned job cards.
-- [ ] I chose and submitted one exact stable key.
-- [ ] The local agent host started through the documented command/task/F5 flow.
-- [ ] The Workflow Visualizer showed the strict sequential graph.
-- [ ] I used only a synthetic resume.
-- [ ] The selected-key result contains the exact key and complete provenance.
-- [ ] Retrieved job content did not alter instructions or routing.
-- [ ] The pasted-JD regression passed without fabricated source metadata.
-- [ ] Invalid key handling stopped before fit scoring or roadmap generation.
-- [ ] The shared Careers service never received resume data.
+- [ ] The original pasted-JD workflow passed before the challenge.
+- [ ] I used only my generated `PersonalCareerCopilot/` source.
+- [ ] Careers search returned a current exact key.
+- [ ] The selected-key response preserves complete source provenance.
+- [ ] Invalid retrieval stops before fit scoring.
+- [ ] The pasted-JD regression still passes.
+- [ ] Resume content never reaches the shared Careers service.
 
 ---
 
-**Previous:** [04 - Orchestration & Relays](04-orchestration-patterns.md) ·
+**Previous:** [04 - Build the Four-Agent Workflow](04-orchestration-patterns.md) ·
 **Next:** [06 - Deploy with `azd` →](06-deploy-to-foundry.md)

@@ -68,7 +68,7 @@ Agent Inspector, ajan yerel olarak çalışırken bu aynı grafik yapısını g�
 
 ## WorkflowBuilder kodunu okuma
 
-Tam `create_workflow()` fonksiyonu [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) dosyasında bulunur. Üç `add_edge()` çağrısı ardışık boru hattını oluşturur:
+Tam `create_workflow()` fonksiyonu [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) dosyasında bulunur. Üç `add_edge()` çağrısı ardışık boru hattını oluşturur:
 
 | # | Kenar | Etki |
 |---|-------|-------|

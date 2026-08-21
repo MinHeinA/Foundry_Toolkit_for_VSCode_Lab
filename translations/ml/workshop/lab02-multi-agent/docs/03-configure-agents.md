@@ -4,7 +4,7 @@
 
 ഈ മോഡ്യൂളിൽ, സ്‌കാഫോൾഡഡ് സ്റ്റബ് **നിങ്ങളുടെ** മൾട്ടി-ഏജന്റ് വർക്‌ഫ്ലോ ആയി പരിവർത്തനം ചെയ്യുക - പരിതസ്ഥിതി ചാരങ്ങൾ സജ്ജീകരിച്ച്, ഏജന്റ് നിർദ്ദേശങ്ങൾ എഴുതിയും, MCP ടൂൾ ചേർത്ത്, വർക്‌ഫ്ലോ ഗ്രാഫ് വയർ ചെയ്ത്, ആശ്രിതത്വങ്ങൾ ഇൻസ്റ്റാൾ ചെയ്യുക.
 
-> **റഫറൻസ്:** സമ്പൂർണ്ണ പ്രവർത്തന കോഡ് [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ൽ ഉണ്ട്. നിങ്ങളുടെ സ്വന്തം വർക്‌ഫ്ലോ ഗ്രാഫും പ്രോംപ്റ്റ് ബ്ലോക്കുകളും നിർമ്മിക്കുമ്പോൾ ഇത് റഫറൻസായി ഉപയോഗിക്കുക.
+> **റഫറൻസ്:** സമ്പൂർണ്ണ പ്രവർത്തന കോഡ് [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ൽ ഉണ്ട്. നിങ്ങളുടെ സ്വന്തം വർക്‌ഫ്ലോ ഗ്രാഫും പ്രോംപ്റ്റ് ബ്ലോക്കുകളും നിർമ്മിക്കുമ്പോൾ ഇത് റഫറൻസായി ഉപയോഗിക്കുക.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## ഘട്ടം 2: ഏജന്റ് നിർദ്ദേശങ്ങൾ എഴുതുക
 
-ഓരോ ഏജന്റിന്റെ വേഷം, ഔട്ട്‌പുട്ട് ഫോർമാറ്റ്, നിയമങ്ങൾ നിർവചിക്കുന്ന നിർദ്ദേശങ്ങൾ. `main.py` തുറന്ന് നാലു നിർദ്ദേശ സ്ഥിരാംശങ്ങളും നിർവചിക്കുകയോ (അല്ലെങ്കിൽ മാറ്റുകയോ) ചെയ്യുക - സമ്പൂർണ്ണ രചനകൾ [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ൽ ഉണ്ട്.
+ഓരോ ഏജന്റിന്റെ വേഷം, ഔട്ട്‌പുട്ട് ഫോർമാറ്റ്, നിയമങ്ങൾ നിർവചിക്കുന്ന നിർദ്ദേശങ്ങൾ. `main.py` തുറന്ന് നാലു നിർദ്ദേശ സ്ഥിരാംശങ്ങളും നിർവചിക്കുകയോ (അല്ലെങ്കിൽ മാറ്റുകയോ) ചെയ്യുക - സമ്പൂർണ്ണ രചനകൾ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ൽ ഉണ്ട്.
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 റിസൂം സ്ട്രക്ച്ചർ ചെയ്ത കാൻഡിഡേറ്റ് പ്രൊഫൈലായി പാർസ് ചെയ്യുകയും ജോബ് വിവരണം യഥാസ്ഥിതിയിൽ `[JOB DESCRIPTION PASS-THROUGH]` ല്‍ പ്രതിപാദിക്കുകയും ചെയ്യുന്നു. ഇരുപക്ഷത്തരം ടാഗ് ചെയ്ത സെക്ഷനുകളും ഔട്ട്‌പുട്ടിൽ കാണണം.
@@ -88,7 +88,7 @@ ResumeParser ഔട്ട്‌പുട്ടിൽ നിന്ന് `[PARSED
 
 ## ഘട്ടം 3: MCP ടൂൾ ചേർക്കുക
 
-GapAnalyzer [Microsoft Learn MCP സെർവർ](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol)ക്ക് skill gap ന് യഥാർത്ഥ പഠന വിഭവങ്ങൾ തേടാൻ വിളിക്കുന്നു. പൂർണ്ണ `search_microsoft_learn_for_plan` ഫംഗ്ഷൻ [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ൽ കാണാം.
+GapAnalyzer [Microsoft Learn MCP സെർവർ](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol)ക്ക് skill gap ന് യഥാർത്ഥ പഠന വിഭവങ്ങൾ തേടാൻ വിളിക്കുന്നു. പൂർണ്ണ `search_microsoft_learn_for_plan` ഫംഗ്ഷൻ [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ൽ കാണാം.
 
 ഏജന്റ് സൃഷ്ടിക്കുമ്പോൾ GapAnalyzer-യിൽ ടൂൾ രജിസ്റ്റർ ചെയ്യുക:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> `WorkflowBuilder` ഗ്രാഫും `FoundryChatClient`, `AgentExecutor`, എല്ലാ `add_edge()` വിളികളും വേണ്ടി സമ്പൂർണ്ണം [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)യിൽ കാണുക.
+> `WorkflowBuilder` ഗ്രാഫും `FoundryChatClient`, `AgentExecutor`, എല്ലാ `add_edge()` വിളികളും വേണ്ടി സമ്പൂർണ്ണം [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)യിൽ കാണുക.
 
 ---
 

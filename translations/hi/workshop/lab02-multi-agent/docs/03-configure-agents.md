@@ -4,7 +4,7 @@
 
 इस मॉड्यूल में, आप स्कैफोल्डेड स्टब को **अपने** मल्टी-एजेंट वर्कफ़्लो में बदलते हैं - पर्यावरण चर सेट करके, एजेंट निर्देश लिखकर, MCP टूल जोड़कर, वर्कफ़्लो ग्राफ़ कनेक्ट करके, और निर्भरताओं को इंस्टॉल करके।
 
-> **संदर्भ:** पूर्ण कार्यशील कोड [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) में है। अपना वर्कफ़्लो ग्राफ़ और प्रॉम्प्ट ब्लॉक बनाते समय इसे संदर्भ के रूप में उपयोग करें।
+> **संदर्भ:** पूर्ण कार्यशील कोड [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) में है। अपना वर्कफ़्लो ग्राफ़ और प्रॉम्प्ट ब्लॉक बनाते समय इसे संदर्भ के रूप में उपयोग करें।
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## चरण 2: एजेंट निर्देश लिखें
 
-निर्देश प्रत्येक एजेंट की भूमिका, आउटपुट प्रारूप और नियमों को परिभाषित करते हैं। `main.py` खोलें और चार निर्देश स्थिरांक परिभाषित करें (या बदलें) - पूर्ण स्ट्रिंग्स [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) में हैं।
+निर्देश प्रत्येक एजेंट की भूमिका, आउटपुट प्रारूप और नियमों को परिभाषित करते हैं। `main.py` खोलें और चार निर्देश स्थिरांक परिभाषित करें (या बदलें) - पूर्ण स्ट्रिंग्स [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) में हैं।
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 रिज़्यूमे को संरचित उम्मीदवार प्रोफ़ाइल में पार्स करता है **और** नौकरी विवरण को ठीक वैसे ही `[JOB DESCRIPTION PASS-THROUGH]` में कॉपी करता है। दोनों लेबल वाले खंड आउटपुट में दिखने चाहिए।
@@ -88,7 +88,7 @@ ResumeParser आउटपुट से `[PARSED RESUME]` और `[JOB DESCRIPTIO
 
 ## चरण 3: MCP टूल जोड़ें
 
-GapAnalyzer [Microsoft Learn MCP सर्वर](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) को कॉल करता है ताकि प्रत्येक कौशल गैप के लिए वास्तविक सीखने के संसाधन प्राप्त किए जा सकें। पूर्ण `search_microsoft_learn_for_plan` फ़ंक्शन [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) में है।
+GapAnalyzer [Microsoft Learn MCP सर्वर](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) को कॉल करता है ताकि प्रत्येक कौशल गैप के लिए वास्तविक सीखने के संसाधन प्राप्त किए जा सकें। पूर्ण `search_microsoft_learn_for_plan` फ़ंक्शन [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) में है।
 
 एजेंट बनाते समय GapAnalyzer पर टूल पंजीकृत करें:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> पूर्ण `WorkflowBuilder` ग्राफ़ के लिए देखें [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) जिसमें `FoundryChatClient`, `AgentExecutor` और सभी `add_edge()` कॉल शामिल हैं।
+> पूर्ण `WorkflowBuilder` ग्राफ़ के लिए देखें [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) जिसमें `FoundryChatClient`, `AgentExecutor` और सभी `add_edge()` कॉल शामिल हैं।
 
 ---
 

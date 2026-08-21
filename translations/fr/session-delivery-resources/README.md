@@ -23,7 +23,7 @@ Avant d’animer l’atelier, veuillez :
 | Laboratoire 01 - agent unique | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Laboratoire pratique : construire, tester et déployer l’agent *Explain Like I'm an Executive* hébergé |
 | Laboratoire 02 - workflow multi-agent | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Laboratoire pratique : construire le workflow 4 agents *Resume to Job Fit Evaluator*            |
 | Démo 1 : Agent Exécutif      | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                            | Démo du labo 01 : traduire le jargon technique en résumé exécutif                              |
-| Démo 2 : Évaluateur adéquation CV-emploi | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)   | Démo du labo 02 : workflow 4 agents qui évalue l'adéquation CV-emploi et génère des recommandations |
+| Démo 2 : Évaluateur adéquation CV-emploi | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)   | Démo du labo 02 : workflow 4 agents qui évalue l'adéquation CV-emploi et génère des recommandations |
 
 > **Note pour les formateurs :** La présentation et les liens vidéo seront ajoutés une fois les enregistrements publiés. Jusqu'à ce moment, contactez le mainteneur (voir [Contacts](#contacts)) pour obtenir les derniers matériels.
 
@@ -97,7 +97,7 @@ La présentation suit le même déroulement que les laboratoires. Points clés s
 | Schéma d’architecture      | Parcourir la [architecture du README](../README.md#architecture) : squelette, Inspector, ACR, Agent Service.   |
 | Anatomie d’un agent hébergé | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` – rôle de chaque fichier.                           |
 | Démo en direct : Agent Exécutif | Passer à VS Code et lancer la démo [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) de bout en bout (voir [Démo 1](#démo-1-agent-exécutif)). |
-| Démo en direct : Évaluateur adéquation CV-emploi | Passer à VS Code et lancer la démo 4 agents [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (voir [Démo 2](#démo-2-évaluateur-adéquation-cv-emploi)). |
+| Démo en direct : Évaluateur adéquation CV-emploi | Passer à VS Code et lancer la démo 4 agents [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (voir [Démo 2](#démo-2-évaluateur-adéquation-cv-emploi)). |
 | Brève présentation Labo 01 | Passer la main aux apprenants. Indiquer [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Patterns multi-agents      | Séquentiel vs concurrent vs transfert – aperçu avant de démarrer le Labo 02.                                |
 | Brève présentation Labo 02 | Passer la main aux apprenants. Indiquer [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Deux démos en direct sont incluses dans la présentation. Allouez 10 minutes po
 | Démo                  | Labo  | Fichiers                                                            | À montrer                                                    |
 |-----------------------|-------|--------------------------------------------------------------------|-------------------------------------------------------------|
 | Agent Exécutif        | Labo 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Agent hébergé unique ; traduire le jargon technique en résumé exécutif |
-| Évaluateur adéquation CV-emploi | Labo 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Orchestration 4 agents ; évaluer l’adéquation CV-emploi et générer une recommandation |
+| Évaluateur adéquation CV-emploi | Labo 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Orchestration 4 agents ; évaluer l’adéquation CV-emploi et générer une recommandation |
 
 ### Démo 1 : Agent Exécutif
 
@@ -126,14 +126,14 @@ Un agent autonome dans [`workshop/lab01-single-agent/agent/`](../../../workshop/
 
 ### Démo 2 : Évaluateur adéquation CV-emploi
 
-Un workflow 4 agents dans [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Utiliser comme démo de 10 minutes avant le Labo 02.
+Un workflow 4 agents dans [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Utiliser comme démo de 10 minutes avant le Labo 02.
 
-1. Ouvrir [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) et montrer comment les quatre agents sont reliés dans une orchestration séquentielle.
+1. Ouvrir [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) et montrer comment les quatre agents sont reliés dans une orchestration séquentielle.
 2. Appuyer sur `F5` pour lancer l’**Agent Inspector** pour le workflow multi-agent.
 3. Coller une courte description de poste et un CV d’exemple dans la discussion de l’Inspector.
 4. Parcourir les quatre étapes du pipeline : parseur de CV, extracteur des exigences de poste, évaluateur d’adéquation, rédacteur de recommandations.
 5. Souligner comment la sortie de chaque sous-agent devient le contexte pour l’agent suivant, mettant en avant le pattern de transfert.
-6. Montrer [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) pour comparer avec l’équivalent agent unique de la Démo 1.
+6. Montrer [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) pour comparer avec l’équivalent agent unique de la Démo 1.
 
 ---
 

@@ -1,11 +1,8 @@
-# Module 4 - Orchestration & Labeled Relays
+# Module 4 - Build the Four-Agent Workflow
 
-⏱️ ~10 min
+⏱️ ~15 min
 
-## Strict sequential workflow
-
-The implemented graph has one start executor, one output executor, and exactly
-three edges:
+Replace the generated three-agent slogan chain with the strict Lab 02 workflow:
 
 ```mermaid
 flowchart LR
@@ -14,110 +11,121 @@ flowchart LR
     MA --> GA["GapAnalyzer"]
 ```
 
+## Step 1: Create the four agents
+
+Use the generated `FoundryChatClient`, then instantiate the agents with the
+prompt constants added in Module 3:
+
 ```python
-WorkflowBuilder(
-    start_executor=resume_executor,
-    output_executors=[gap_executor],
-).add_edge(
-    resume_executor, jd_executor
-).add_edge(
-    jd_executor, matching_executor
-).add_edge(
-    matching_executor, gap_executor
+resume_parser = Agent(
+    client=client,
+    instructions=RESUME_PARSER_INSTRUCTIONS,
+    name="ResumeParser",
+    default_options={"store": False},
+)
+jd_agent = Agent(
+    client=client,
+    instructions=JOB_DESCRIPTION_INSTRUCTIONS,
+    name="JobDescriptionAgent",
+    default_options={"store": False},
+)
+matching_agent = Agent(
+    client=client,
+    instructions=MATCHING_AGENT_INSTRUCTIONS,
+    name="MatchingAgent",
+    default_options={"store": False},
+)
+gap_analyzer = Agent(
+    client=client,
+    instructions=GAP_ANALYZER_INSTRUCTIONS,
+    name="GapAnalyzer",
+    tools=[search_microsoft_learn_for_plan],
+    default_options={"store": False},
 )
 ```
 
-All four agents execute in this order inside a single Hosted Agent container.
-Careers job discovery is not another agent stage: the learner runs the CLI
-before submitting the request.
+Only `GapAnalyzer` gets the Microsoft Learn tool. Disabling response storage is a
+workshop privacy control; synthetic data remains mandatory.
 
-## Why labeled relays are required
+## Step 2: Create executors
 
-`context_mode="last_agent"` means an executor receives only its direct
-predecessor's output. Each stage therefore copies forward the minimum data
-required later:
+```python
+resume_executor = AgentExecutor(resume_parser, context_mode="last_agent")
+jd_executor = AgentExecutor(jd_agent, context_mode="last_agent")
+matching_executor = AgentExecutor(matching_agent, context_mode="last_agent")
+gap_executor = AgentExecutor(gap_analyzer, context_mode="last_agent")
+```
+
+`context_mode="last_agent"` gives each stage only its immediate predecessor's
+output. Labeled relays therefore preserve the minimum data needed downstream.
+
+## Step 3: Build the workflow
+
+```python
+workflow_agent = (
+    WorkflowBuilder(
+        start_executor=resume_executor,
+        output_executors=[gap_executor],
+    )
+    .add_edge(resume_executor, jd_executor)
+    .add_edge(jd_executor, matching_executor)
+    .add_edge(matching_executor, gap_executor)
+    .build()
+    .as_agent()
+)
+```
+
+Keep `ResponsesHostServer(workflow_agent)` from the generated sample.
+
+## Step 4: Verify the original relay contract
 
 ```text
 Learner input
 ├── Resume: <synthetic data>
-├── Selected Job Key: <exact CLI result>
-└── Job Description: <optional fallback>
+└── Job Description: <pasted public/synthetic description>
 
 ResumeParser output
 ├── [PARSED RESUME]
-├── [SELECTED JOB KEY]
 └── [JOB DESCRIPTION PASS-THROUGH]
 
 JobDescriptionAgent output
 ├── [JD REQUIREMENTS]
-├── [PARSED RESUME PASS-THROUGH]
-└── [SOURCE JOB]
+└── [PARSED RESUME PASS-THROUGH]
 
 MatchingAgent output
-├── [MATCH REPORT]
-└── [SOURCE JOB PASS-THROUGH]
+└── fit report and gaps
 
 GapAnalyzer output
-├── [SOURCE JOB]
 └── Personalized Learning Roadmap
 ```
 
-### `[SELECTED JOB KEY]`
+The pass-through labels prevent candidate evidence from becoming job
+requirements and ensure MatchingAgent receives both profiles despite
+`last_agent` context.
 
-This block must contain the complete selected key without changing case or
-punctuation. `JobDescriptionAgent` uses it for one exact `get_job` call. The
-agent never broadens the search or chooses a different result.
+## Optional Careers enhancement
 
-### `[SOURCE JOB]`
+The [Careers@Gov MCP challenge](10-careers-mcp-challenge.md) later adds:
 
-For a successful Careers retrieval, this block records:
+- `[SELECTED JOB KEY]`;
+- one exact Careers `get_job` tool call;
+- `[SOURCE JOB]` and `[SOURCE JOB PASS-THROUGH]`;
+- untrusted-data handling;
+- a conditional stop before scoring when job context is not verified.
 
-- title
-- agency
-- canonical source URL
-- exact job key
-- dataset version
-
-For a pasted-JD fallback, only explicitly supplied title/agency/source values are
-used; missing values remain `Not provided`, the key remains `Not provided`, and
-dataset version is `Not applicable`.
-
-### `[SOURCE JOB PASS-THROUGH]`
-
-`MatchingAgent` copies the complete `[SOURCE JOB]` block verbatim. It does not
-infer or repair missing metadata. `GapAnalyzer` copies it into the final answer
-so the learner can verify provenance.
-
-### `[JOB DESCRIPTION PASS-THROUGH]`
-
-This preserves the original Lab 02 regression path. It is read only when no
-selected job key exists. If a selected key exists and retrieval fails, the
-workflow reports the MCP failure instead of silently switching inputs.
-
-## Untrusted job-data rule
-
-Retrieved title, agency, descriptions, responsibilities, and requirements are
-data. Instructions embedded in any field cannot:
-
-- change an agent's role or output contract
-- request another tool call
-- override the selected key
-- suppress provenance
-- ask for resume or secret data
-
-The job facts may be normalized and analyzed, but commands within them are
-ignored.
+Do not add those features until the original pasted-JD workflow passes locally.
 
 ### Checkpoint
 
-- [ ] The graph is `ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer`.
-- [ ] Search is out of band, not an autonomous workflow step.
-- [ ] The selected key reaches only the exact `get_job` operation.
-- [ ] `[SOURCE JOB]` and `[SOURCE JOB PASS-THROUGH]` preserve provenance.
-- [ ] The pasted-JD path is used only when no selected key is supplied.
-- [ ] Retrieved job content cannot issue instructions.
+- [ ] I replaced all three generated slogan agents.
+- [ ] The graph has four agents and exactly three sequential edges.
+- [ ] Every executor uses `context_mode="last_agent"`.
+- [ ] Only `GapAnalyzer` has the Microsoft Learn tool.
+- [ ] All agents use `default_options={"store": False}`.
+- [ ] Resume and job-description content remain separated by labeled relays.
+- [ ] `PersonalCareerCopilotCompleted/` was not used as a copy source.
 
 ---
 
 **Previous:** [03 - Configure Agents & Environment](03-configure-agents.md) ·
-**Next:** [05 - Search & Test Locally →](05-test-locally.md)
+**Next:** [05 - Test the Original Workflow Locally →](05-test-locally.md)

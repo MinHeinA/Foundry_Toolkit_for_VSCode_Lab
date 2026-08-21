@@ -6,7 +6,7 @@
 
 > **मुख्य अवधारणा:** स्क्याफोल्ड एउटा कार्यरत स्टब हो जसमा एउटा एजेन्ट हुन्छ। तपाईं प्लेसहोल्डर लॉजिकलाई मोड्युल 3 मा `WorkflowBuilder` ग्राफले प्रतिस्थापन गर्नुहुन्छ। तपाईंले ब्वाइलरप्लेट शून्यबाट लेख्नु पर्दैन।
 
-> **सन्दर्भ कार्यान्वयन:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) एउटा पूर्ण कार्यरत उदाहरण हो। तपाईंको कामसँग तुलना गर्न यो प्रयोग गर्नुहोस्।
+> **सन्दर्भ कार्यान्वयन:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) एउटा पूर्ण कार्यरत उदाहरण हो। तपाईंको कामसँग तुलना गर्न यो प्रयोग गर्नुहोस्।
 
 ### स्क्याफोल्ड विजार्ड प्रवाह
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, `requirements.txt` स्थापना गर्छ, पोर्ट ८०८८ खोल्छ, `python main.py` चलाउँछ |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **सन्दर्भ:** सम्पूर्ण उत्पन्न सामग्रीको लागि [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) र [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) हेर्नुहोस्।
+> **सन्दर्भ:** सम्पूर्ण उत्पन्न सामग्रीको लागि [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) र [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) हेर्नुहोस्।
 
 ---
 

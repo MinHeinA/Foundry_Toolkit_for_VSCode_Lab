@@ -68,7 +68,7 @@ Agent Inspector kuvab sama graafiku struktuuri, kui agent töötab lokaalselt. V
 
 ## WorkflowBuilderi koodi lugemine
 
-Täielik `create_workflow()` funktsioon on faili [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) sees. Kolm `add_edge()` kutsungit ehitavad järjestikuse torujuhtme:
+Täielik `create_workflow()` funktsioon on faili [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) sees. Kolm `add_edge()` kutsungit ehitavad järjestikuse torujuhtme:
 
 | # | Serv | Mõju |
 |---|------|--------|

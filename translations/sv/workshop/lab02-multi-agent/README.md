@@ -49,14 +49,14 @@ Se hela lärandevägen i:
 
 - [Lab 2 Docs - Förutsättningar](docs/00-prerequisites.md)
 - [Lab 2 Docs - Fullständig lärandeväg](docs/README.md)
-- [PersonalCareerCopilot körguide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted körguide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Del 2: Bygg och testa workflowen
 
 1. Använd Foundry Toolkit-wizarden för att skapa workflow-baserat projekt.
-2. Kopiera prompt-blocken och workflow-grafen från `PersonalCareerCopilot/main.py` till din arbetsyta.
+2. Kopiera prompt-blocken och workflow-grafen från `PersonalCareerCopilotCompleted/main.py` till din arbetsyta.
 3. Kör lokalt med Agent Inspector och verifiera alla fyra agenter plus MCP-verktyget.
 4. Distribuera den hostade agenten till Foundry när lokal testning lyckas.
 

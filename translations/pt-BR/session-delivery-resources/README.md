@@ -23,7 +23,7 @@ Antes de ministrar o workshop, por favor:
 | Laboratório 01 - agente único | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Laboratório prático: construir, testar e implantar o agente hospedado *Explain Like I'm an Executive* |
 | Laboratório 02 - fluxo multi-agentes | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Laboratório prático: construir o fluxo de trabalho *Resume to Job Fit Evaluator* com 4 agentes             |
 | Demo 1: Agente Executivo     | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                            | Demo do Lab 01: traduzir jargão técnico em um resumo executivo                            |
-| Demo 2: Avaliador de Ajuste Currículo-Emprego | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)    | Demo do Lab 02: fluxo com 4 agentes que avalia ajuste currículo-emprego e gera recomendações  |
+| Demo 2: Avaliador de Ajuste Currículo-Emprego | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)    | Demo do Lab 02: fluxo com 4 agentes que avalia ajuste currículo-emprego e gera recomendações  |
 
 > **Nota para treinadores:** A apresentação e os links dos vídeos serão adicionados assim que as gravações forem publicadas. Até lá, contate o mantenedor (veja [Contatos](#contatos)) para obter os recursos mais recentes.
 
@@ -97,7 +97,7 @@ O deck segue o mesmo fluxo dos laboratórios. Pontos sugeridos para falar em cad
 | Diagrama de arquitetura    | Explique a [arquitetura do README](../README.md#architecture): scaffold, Inspector, ACR, Agent Service.      |
 | Anatomia de um agente hospedado | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - o que cada arquivo faz.                          |
 | Demonstração ao vivo: Agente Executivo | Troque para o VS Code e execute a demo [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) completa (veja [Demo 1](#demo-1-agente-executivo)). |
-| Demonstração ao vivo: Avaliador de Ajuste Currículo-Emprego | Troque para o VS Code e execute a demo de 4 agentes [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (veja [Demo 2](#demo-2-avaliador-de-ajuste-currículo-emprego)). |
+| Demonstração ao vivo: Avaliador de Ajuste Currículo-Emprego | Troque para o VS Code e execute a demo de 4 agentes [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (veja [Demo 2](#demo-2-avaliador-de-ajuste-currículo-emprego)). |
 | Resumo do Lab 01          | Passe a palavra aos participantes. Aponte para [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Padrões multi-agentes     | Sequencial vs concorrente vs handoff - apresente antes do início do Lab 02.                                |
 | Resumo do Lab 02          | Passe a palavra aos participantes. Aponte para [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Duas demonstrações ao vivo são incluídas na entrega. Reserve 10 minutos para
 | Demo                 | Lab  | Arquivos                                                                   | O que mostrar                                                |
 |----------------------|------|---------------------------------------------------------------------------|-------------------------------------------------------------|
 | Agente Executivo      | Lab 01| [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Agente hospedado único; traduza jargão técnico em um resumo executivo |
-| Avaliador Ajuste Currículo-Emprego | Lab 02| [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Orquestração com 4 agentes; avalia ajuste currículo-emprego e gera recomendação |
+| Avaliador Ajuste Currículo-Emprego | Lab 02| [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Orquestração com 4 agentes; avalia ajuste currículo-emprego e gera recomendação |
 
 ### Demo 1: Agente Executivo
 
@@ -126,14 +126,14 @@ Um agente autônomo em [`workshop/lab01-single-agent/agent/`](../../../workshop/
 
 ### Demo 2: Avaliador de Ajuste Currículo-Emprego
 
-Um fluxo de trabalho com 4 agentes em [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Use esta demo de 10 minutos antes do Lab 02.
+Um fluxo de trabalho com 4 agentes em [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Use esta demo de 10 minutos antes do Lab 02.
 
-1. Abra [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) e mostre como os quatro agentes estão conectados em uma orquestração sequencial.
+1. Abra [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) e mostre como os quatro agentes estão conectados em uma orquestração sequencial.
 2. Pressione `F5` para iniciar o **Agent Inspector** para o fluxo multi-agentes.
 3. Cole uma descrição curta de vaga e um currículo de exemplo no chat do Inspector.
 4. Explique a pipeline de quatro agentes: analisador de currículo, extrator de requisitos do trabalho, avaliador de ajuste e gerador de recomendação.
 5. Aponte como a saída de cada sub-agente se torna o contexto do próximo agente, destacando o padrão de handoff.
-6. Mostre [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) para comparar com o equivalente de agente único da Demo 1.
+6. Mostre [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) para comparar com o equivalente de agente único da Demo 1.
 
 ---
 

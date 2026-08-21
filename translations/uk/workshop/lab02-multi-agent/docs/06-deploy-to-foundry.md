@@ -36,7 +36,7 @@ flowchart LR
    - Перевірте іконку Облікових записів у лівому нижньому куті VS Code. Ваше ім’я облікового запису має бути видимим.
 
 4. **`agent.yaml` містить правильні значення:**
-   - Відкрийте `PersonalCareerCopilot/agent.yaml` і перевірте:
+   - Відкрийте `PersonalCareerCopilot/main.py` і перевірте:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

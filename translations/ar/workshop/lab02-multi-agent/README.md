@@ -49,14 +49,14 @@ flowchart TD
 
 - [ملاحظات المختبر 2 - المتطلبات الأساسية](docs/00-prerequisites.md)
 - [ملاحظات المختبر 2 - مسار التعلم الكامل](docs/README.md)
-- [دليل تشغيل PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [دليل تشغيل PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## الجزء 2: بناء واختبار سير العمل
 
 1. استخدم معالج Foundry Toolkit لإنشاء مشروع مرتكز على سير العمل.
-2. انسخ كتل الطلبات ومخطط سير العمل من `PersonalCareerCopilot/main.py` إلى مساحة عملك.
+2. انسخ كتل الطلبات ومخطط سير العمل من `PersonalCareerCopilotCompleted/main.py` إلى مساحة عملك.
 3. شغّل محليًا مع Agent Inspector وتحقق من جميع الوكلاء الأربعة بالإضافة إلى أداة MCP.
 4. انشر الوكيل المستضاف إلى Foundry عند نجاح الاختبار المحلي.
 

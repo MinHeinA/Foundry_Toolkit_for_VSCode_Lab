@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### ఎంపిక 2: హోస్టెడ్ ఏజెంట్‌ను మాత్రమే తొలగించండి
 
 1. [ai.azure.com](https://ai.azure.com) → మీ ప్రాజెక్ట్ → **Build** → **Agents** ను తెరవండి.
-2. **PersonalCareerCopilot** ని కనుగొని **Delete** పై క్లిక్ చేయండి.
+2. **PersonalCareerCopilotCompleted** ని కనుగొని **Delete** పై క్లిక్ చేయండి.
 
 ### ఎంపిక 3: మోడల్ అమరికను తొలగించండి
 

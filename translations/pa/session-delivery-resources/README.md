@@ -23,7 +23,7 @@
 | ਲੈੱਬ 01 - ਸਿੰਗਲ ਏਜੰਟ           | [Lab 01](../workshop/lab01-single-agent/README.md)                               | ਹੈਂਡਸ-ਆਨ ਲੈੱਬ: *Explain Like I'm an Executive* ਹੋਸਟਡ ਏਜੰਟ ਬਣਾਉਣਾ, ਟੈਸਟ ਅਤੇ ਡਿਪਲੋਇ                                                       |
 | ਲੈੱਬ 02 - ਮਲਟੀ-ਏਜੰਟ ਵਰਕਫਲੋ  | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | ਹੈਂਡਸ-ਆਨ ਲੈੱਬ: 4-ਏਜੰਟ *Resume to Job Fit Evaluator* ਵਰਕਫਲੋ ਬਣਾਉਣਾ                            |
 | ਡੈਮੋ 1: ਐਗਜ਼ੈਕਿਊਟਿਵ ਏਜੰਟ        | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                             | ਲੈੱਬ 01 ਡੈਮੋ: ਤਕਨੀਕੀ ਜਾਰਗਨ ਨੂੰ ਐਗਜ਼ੈਕਿਊਟਿਵ ਸਮਰੀ ਵਿੱਚ ਤਰਜਮਾ ਕਰਨਾ                           |
-| ਡੈਮੋ 2: ਰੇਜ਼ਿਊਮ ਤੋਂ ਜੌਬ ਫਿਟ ਐਵਾਲੂਏਟਰ  | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)    | ਲੈੱਬ 02 ਡੈਮੋ: 4-ਏਜੰਟ ਵਰਕਫਲੋ ਜੋ ਰੇਜ਼ਿਊਮ-ਜੌਬ ਮਿਲਾਪ ਦਾ ਸਕੋਰ ਕਰਦਾ ਹੈ ਅਤੇ ਸਿਫਾਰਸ਼ਾਂ ਬਣਾਉਂਦਾ ਹੈ     |
+| ਡੈਮੋ 2: ਰੇਜ਼ਿਊਮ ਤੋਂ ਜੌਬ ਫਿਟ ਐਵਾਲੂਏਟਰ  | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)    | ਲੈੱਬ 02 ਡੈਮੋ: 4-ਏਜੰਟ ਵਰਕਫਲੋ ਜੋ ਰੇਜ਼ਿਊਮ-ਜੌਬ ਮਿਲਾਪ ਦਾ ਸਕੋਰ ਕਰਦਾ ਹੈ ਅਤੇ ਸਿਫਾਰਸ਼ਾਂ ਬਣਾਉਂਦਾ ਹੈ     |
 
 > **ਟਰੇਨਰਜ਼ ਲਈ ਨੋਟ:** ਜਦੋਂ ਰਿਕਾਰਡਿੰਗਾਂ ਪ੍ਰਕਾਸ਼ਿਤ ਹੋ ਜਾਣਗੀਆਂ ਤਾਂ ਸਲਾਈਡ ਡੈਕ ਅਤੇ ਵੀਡੀਓ ਲਿੰਕ ਜੁੜੇ ਜਾਣਗੇ। ਤਬ ਤੱਕ ਤਾਜ਼ਾ ਸਮੱਗਰੀ ਲਈ ਮੈਨਟੇਨਰ ਨਾਲ ਸੰਪਰਕ ਕਰੋ (ਦੇਖੋ [Contacts](#ਸੰਪਰਕ)) ।
 
@@ -97,7 +97,7 @@
 | ਆਰਕੀਟੈਕਚਰ ਡਾਇਗ੍ਰਾਮ          | [README ਆਰਕੀਟੈਕਚਰ](../README.md#architecture) ਵਿਚ ਵਾਕਥਰੂ: ਸਕੈਫੋਲਡ, ਇੰਸਪੇਕਟਰ, ACR, ਏਜੰਟ ਸਰਵਿਸ।  |
 | ਹੋਸਟਡ ਏਜੰਟ ਦੀ ਬਣਤਰ        | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ਹਰ ਫਾਇਲ ਦਾ ਕੰਮ ਕੀ ਹੈ।                   |
 | ਲਾਈਵ ਡੈਮੋ: ਐਗਜ਼ੈਕਿਊਟਿਵ ਏਜੰਟ | VS Code 'ਤੇ ਸਵਿੱਚ ਕਰੋ ਅਤੇ [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) ਡੈਮੋ ਨੂੰ ਐਂਡ-ਟੂ-ਐਂਡ ਚਲਾਓ ([ਡੈਮੋ 1](#ਡੈਮੋ-1-ਐਗਜ਼ੈਕਿਊਟਿਵ-ਏਜੰਟ) ਵੇਖੋ)। |
-| ਲਾਈਵ ਡੈਮੋ: ਰੇਜ਼ਿਊਮ ਤੋਂ ਜੌਬ ਫਿਟ ਐਵਾਲੂਏਟਰ | VS Code 'ਤੇ ਸਵਿੱਚ ਕਰੋ ਅਤੇ [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-ਏਜੰਟ ਡੈਮੋ ਚਲਾਓ ([ਡੈਮੋ 2](#ਡੈਮੋ-2-ਰੇਜ਼ਿਊਮ-ਤੋਂ-ਜੌਬ-ਫਿਟ-ਐਵਾਲੂਏਟਰ) ਵੇਖੋ)। |
+| ਲਾਈਵ ਡੈਮੋ: ਰੇਜ਼ਿਊਮ ਤੋਂ ਜੌਬ ਫਿਟ ਐਵਾਲੂਏਟਰ | VS Code 'ਤੇ ਸਵਿੱਚ ਕਰੋ ਅਤੇ [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-ਏਜੰਟ ਡੈਮੋ ਚਲਾਓ ([ਡੈਮੋ 2](#ਡੈਮੋ-2-ਰੇਜ਼ਿਊਮ-ਤੋਂ-ਜੌਬ-ਫਿਟ-ਐਵਾਲੂਏਟਰ) ਵੇਖੋ)। |
 | ਲੈੱਬ 01 ਸੰਖੇਪ               | ਲਰਨਰਜ਼ ਨੂੰ ਸਮਰਪਿਤ ਕਰੋ। [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) ਨੂੰ ਦਰਸਾਓ।  |
 | ਮਲਟੀ-ਏਜੰਟ ਪੈਟਰਨਜ਼           | ਲੜੀਬੱਧ, ਇਕੱਠੇ, ਅਤੇ ਹੈਂਡਆਫ਼ - ਲੈੱਬ 02 ਤੋਂ ਪਹਿਲਾਂ ਪਹਿਲਾਂ ਜਾਣੂ ਕਰਵਾਉਣਾ।                              |
 | ਲੈੱਬ 02 ਸੰਖੇਪ               | ਲਰਨਰਜ਼ ਨੂੰ ਸਮਰਪਿਤ ਕਰੋ। [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) ਨੂੰ ਦਰਸਾਓ।  |
@@ -112,7 +112,7 @@
 | ਡੈਮੋ              | ਲੈੱਬ    | ਫਾਇਲ                  | ਕੀ ਦਿਖਾਉਣਾ ਹੈ                                   |
 |-------------------|---------|-----------------------|-----------------------------------------------|
 | ਐਗਜ਼ੈਕਿਊਟਿਵ ਏਜੰਟ  | ਲੈੱਬ 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | ਇੱਕ ਇਕਲੋਤਾ ਹੋਸਟਿਡ ਏਜੰਟ; ਤਕਨੀਕੀ ਜਾਰਗਨ ਨੂੰ ਐਗਜ਼ੈਕਿਊਟਿਵ ਸਮਰੀ ਵਿੱਚ ਤਰਜਮਾ ਕਰਨਾ |
-| ਰੇਜ਼ਿਊਮ ਤੋਂ ਜੌਬ ਫਿਟ ਐਵਾਲੂਏਟਰ | ਲੈੱਬ 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-ਏਜੰਟ ਆਰਕਿਸਟ੍ਰੇਸ਼ਨ; ਰੇਜ਼ਿਊਮ-ਜੌਬ ਮਿਲਾਪ ਦਾ ਸਕੋਰ ਅਤੇ ਸਿਫਾਰਸ਼ ਤਿਆਰ ਕਰਨਾ |
+| ਰੇਜ਼ਿਊਮ ਤੋਂ ਜੌਬ ਫਿਟ ਐਵਾਲੂਏਟਰ | ਲੈੱਬ 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-ਏਜੰਟ ਆਰਕਿਸਟ੍ਰੇਸ਼ਨ; ਰੇਜ਼ਿਊਮ-ਜੌਬ ਮਿਲਾਪ ਦਾ ਸਕੋਰ ਅਤੇ ਸਿਫਾਰਸ਼ ਤਿਆਰ ਕਰਨਾ |
 
 ### ਡੈਮੋ 1: ਐਗਜ਼ੈਕਿਊਟਿਵ ਏਜੰਟ
 
@@ -126,14 +126,14 @@
 
 ### ਡੈਮੋ 2: ਰੇਜ਼ਿਊਮ ਤੋਂ ਜੌਬ ਫਿਟ ਐਵਾਲੂਏਟਰ
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ਵਿੱਚ 4-ਏਜੰਟ ਵਰਕਫਲੋ। ਇਸਨੂੰ ਲੈੱਬ 02 ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ 10 ਮਿੰਟ ਦਾ ਡੈਮੋ ਵਜੋਂ ਵਰਤੋਂ।
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ਵਿੱਚ 4-ਏਜੰਟ ਵਰਕਫਲੋ। ਇਸਨੂੰ ਲੈੱਬ 02 ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ 10 ਮਿੰਟ ਦਾ ਡੈਮੋ ਵਜੋਂ ਵਰਤੋਂ।
 
-1. ਖੋਲ੍ਹੋ [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ਅਤੇ ਦਿਖਾਓ ਕਿ ਕਿਵੇਂ ਚਾਰ ਏਜੰਟ ਲੜੀਵਾਰ ਆਯੋਜਿਤ ਹਨ।
+1. ਖੋਲ੍ਹੋ [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ਅਤੇ ਦਿਖਾਓ ਕਿ ਕਿਵੇਂ ਚਾਰ ਏਜੰਟ ਲੜੀਵਾਰ ਆਯੋਜਿਤ ਹਨ।
 2. `F5` ਦਬਾ ਕੇ ਮਲਟੀ-ਏਜੰਟ ਵਰਕਫਲੋ ਲਈ **Agent Inspector** ਚਲਾਓ।
 3. ਇੰਸਪੇਕਟਰ ਚੈਟ ਵਿੱਚ ਛੋਟਾ ਜੌਬ ਵੇਰਵਾ ਅਤੇ ਸੈਂਪਲ ਰੇਜ਼ਿਊਮ ਚਿਪਕਾਓ।
 4. ਚਾਰ-ਏਜੰਟ ਪਾਈਪਲਾਈਨ: ਰੇਜ਼ਿਊਮ ਪਾਰਸਰ, ਜੌਬ ਲੋੜ ਕੱਡਣ ਵਾਲਾ, ਮਿਲਾਪ ਸਕੋਰ ਕਰਨ ਵਾਲਾ, ਅਤੇ ਸਿਫਾਰਸ਼ ਲਿਖਨ ਵਾਲਾ ਨੂੰ ਵੇਖਾਓ।
 5. ਵੇਖਾਓ ਕਿ ਕਿਵੇਂ ਹਰ ਸਬ-ਏਜੰਟ ਦਾ ਆਉੱਟਪੁੱਟ ਅਗਲੇ ਏਜੰਟ ਦਾ ਸੰਦਰਭ ਬਣ ਜਾਂਦਾ ਹੈ, ਹੈਂਡਆਫ਼ ਪੈਟਰਨ ਨੂੰ ਉਜਾਗਰ ਕਰਦੇ ਹੋਏ।
-6. ਦਿਖਾਓ [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) ਅਤੇ ਡੈਮੋ 1 ਤੋਂ ਸਿੰਗਲ-ਏਜੰਟ ਵਰਜਨ ਨਾਲ ਤੁਲਨਾ ਕਰੋ।
+6. ਦਿਖਾਓ [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ਅਤੇ ਡੈਮੋ 1 ਤੋਂ ਸਿੰਗਲ-ਏਜੰਟ ਵਰਜਨ ਨਾਲ ਤੁਲਨਾ ਕਰੋ।
 
 ---
 

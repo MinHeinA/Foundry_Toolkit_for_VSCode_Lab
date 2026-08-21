@@ -23,7 +23,7 @@
 | கைபாடு 01 - ஒற்றை முகவர்     | [Lab 01](../workshop/lab01-single-agent/README.md)                               | கைபாடு: *Explain Like I'm an Executive* மூலம் நடத்தப்படும் முகவரை உருவாக்கவும், சோதனை செய்யவும், வழங்கவும்  |
 | கைபாடு 02 - பல முகவர் பணிப்பயிற்சி | [Lab 02](../workshop/lab02-multi-agent/README.md)                              | கைபாடு: 4-முகவர்களுடன் *Resume to Job Fit Evaluator* பணிப்பயிற்சி உருவாக்கல்                |
 | டெமோ 1: நிர்வாக முகவர்           | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                            | கைபாடு 01 டெமோ: தொழில்நுட்ப சொற்களை நிர்வாக சுருக்கமாக மொழிபெயர்த்தல்                    |
-| டெமோ 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | கைபாடு 02 டெமோ: 4-முகவர் பணிப்பயிற்சி, வேலையிடம் பொருத்துவதை மதிப்பீடு செய்து பரிந்துரைகள் உருவாக்கல் |
+| டெமோ 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | கைபாடு 02 டெமோ: 4-முகவர் பணிப்பயிற்சி, வேலையிடம் பொருத்துவதை மதிப்பீடு செய்து பரிந்துரைகள் உருவாக்கல் |
 
 > **பயிற்சி வழங்குவோருக்கு குறிப்பு:** ஸ்லைடு தொகுப்பு மற்றும் காணொளி இணைப்புகள் பதிவேற்றம் செய்யப்படும் பொழுது சேர்க்கப்படும். குறித்த பொழுது வரை, மேலாளரை (பாருங்கள் [Contacts](#தொடர்புகள்)) அணுகி சமீபத்திய வளங்களைப் பெறவும்.
 
@@ -97,7 +97,7 @@
 | கட்டமைப்பு வரைபடம்       | [README architecture](../README.md#architecture)யை பார்வையிடவும்: கட்டமைப்பு, பார்வையாளர், ACR, முகவர் சேவை.        |
 | Hosted Agentவின் அமைப்பு    | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ஒவ்வொரு கோப்பின் பணிகள்.                              |
 | நேரடி டெமோ: நிர்வாக முகவர்  | VS Codeக்கு மாற்றி [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) டெமோவை முழுமையாக இயக்கவும் ([Demo 1](#டெமோ-1-நிர்வாக-முகவர்) பார்க்க). |
-| நேரடி டெமோ: Resume to Job Fit Evaluator | VS Codeக்கு மாற்றி [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-முகவர் டெமோவை இயக்கவும் ([Demo 2](#டெமோ-2-resume-to-job-fit-evaluator) பார்க்க). |
+| நேரடி டெமோ: Resume to Job Fit Evaluator | VS Codeக்கு மாற்றி [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-முகவர் டெமோவை இயக்கவும் ([Demo 2](#டெமோ-2-resume-to-job-fit-evaluator) பார்க்க). |
 | கைபாடு 01 சுருக்கம்        | கற்றல் நபர்களுக்கு சமர்ப்பிக்கவும். [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) ஐ குறிக்கவும். |
 | பல முகவர் அமைப்புகள்       | தொடர், ஒரே நேரம், மற்றும் ஒப்படைக்கும் முறைகள் - கைபாடு 02 தொடங்குவதற்கு முன் எடுத்து பார்வையிடுங்கள்.             |
 | கைபாடு 02 சுருக்கம்        | கற்றல் நபர்களுக்கு சமர்ப்பிக்கவும். [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) ஐ குறிக்கவும். |
@@ -112,7 +112,7 @@
 | டெமோ | கைபாடு | கோப்புகள் | காண்பிக்க வேண்டியது |
 |-------|---------|----------|--------------------|
 | நிர்வாக முகவர் | கைபாடு 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | ஒரே ஹோஸ்ட் முகவர்; தொழில்நுட்ப சொற்களை நிர்வாக சுருக்கமாக மாற்றுதல் |
-| Resume to Job Fit Evaluator | கைபாடு 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-முகவர் ஒருங்கிணைப்பு; வேலைக்கு பொருத்துப்படுத்தல் மதிப்பீடு மற்றும் பரிந்துரை தயாரித்தல் |
+| Resume to Job Fit Evaluator | கைபாடு 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-முகவர் ஒருங்கிணைப்பு; வேலைக்கு பொருத்துப்படுத்தல் மதிப்பீடு மற்றும் பரிந்துரை தயாரித்தல் |
 
 ### டெமோ 1: நிர்வாக முகவர்
 
@@ -126,14 +126,14 @@
 
 ### டெமோ 2: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)இல் 4-முகவர் பணிமுறை. கைபாடு 02க்கு முன் 10 நிமிட டெமோவாக பயன்படுத்தவும்.
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)இல் 4-முகவர் பணிமுறை. கைபாடு 02க்கு முன் 10 நிமிட டெமோவாக பயன்படுத்தவும்.
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) திறந்து நான்கு முகவர்கள் தொடர் ஒருங்கிணைப்பில் எப்படி இணைக்கப்படுகிறார்கள் என்பதைக் காண்பியுங்கள்.
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) திறந்து நான்கு முகவர்கள் தொடர் ஒருங்கிணைப்பில் எப்படி இணைக்கப்படுகிறார்கள் என்பதைக் காண்பியுங்கள்.
 2. பல-முகவர் பணிமுறைக்காக **Agent Inspector**ஐ இயக்க `F5` அழுத்தவும்.
 3. Inspector உரையாடலில் ஒரு சிறிய வேலை விவரிப்பு மற்றும் மாதிரி வாழ்க்கை வரலாறு ஒட்டவும்.
 4. நான்கு-முகவர் குழாய்வழி: வாழ்க்கை வரலாறு பகுப்பாய்வாளர், வேலை தேவைகள் எடுப்பவர், பொருத்த மதிப்பீட்டாளர், பரிந்துரை எழுத்துவர் ஆகியவற்றை விளக்கி நடைபரவுங்கள்.
 5. ஒவ்வொரு துணை-முகவரின் வெளியீடு அடுத்த முகவரின் சூழ்நிலையாக எவ்வாறு மாறுகிறது என்று, ஒப்படைக்கும் முறையை வலியுறுத்தி குறிப்பிட்டு விழிப்பூட்டுங்கள்.
-6. ஒற்றை முகவர் டெமோ 1-னை ஒப்பிடும் வகையில் [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) காண்பியுங்கள்.
+6. ஒற்றை முகவர் டெமோ 1-னை ஒப்பிடும் வகையில் [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) காண்பியுங்கள்.
 
 ---
 

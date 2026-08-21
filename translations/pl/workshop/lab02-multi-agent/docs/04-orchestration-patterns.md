@@ -68,7 +68,7 @@ Agent Inspector pokazuje tę samą strukturę grafu podczas działania agenta lo
 
 ## Czytanie kodu WorkflowBuilder
 
-Pełna funkcja `create_workflow()` znajduje się w [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Trzy wywołania `add_edge()` budują linię sekwencyjną:
+Pełna funkcja `create_workflow()` znajduje się w [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Trzy wywołania `add_edge()` budują linię sekwencyjną:
 
 | # | Krawędź | Efekt |
 |---|---------|-------|

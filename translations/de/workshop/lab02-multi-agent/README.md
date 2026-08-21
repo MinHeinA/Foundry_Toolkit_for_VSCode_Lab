@@ -49,14 +49,14 @@ Sehen Sie sich den vollständigen Lernpfad an unter:
 
 - [Labor 2 Docs - Voraussetzungen](docs/00-prerequisites.md)
 - [Labor 2 Docs - Vollständiger Lernpfad](docs/README.md)
-- [PersonalCareerCopilot Anleitung](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted Anleitung](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Teil 2: Workflow erstellen und testen
 
 1. Verwenden Sie den Foundry Toolkit Assistenten, um das workflow-basierte Projekt zu erstellen.
-2. Kopieren Sie die Prompt-Blöcke und den Workflow-Graph aus `PersonalCareerCopilot/main.py` in Ihren Arbeitsbereich.
+2. Kopieren Sie die Prompt-Blöcke und den Workflow-Graph aus `PersonalCareerCopilotCompleted/main.py` in Ihren Arbeitsbereich.
 3. Führen Sie lokal mit dem Agent Inspector aus und verifizieren Sie alle vier Agenten sowie das MCP-Tool.
 4. Stellen Sie den gehosteten Agenten in Foundry bereit, wenn der lokale Test erfolgreich war.
 

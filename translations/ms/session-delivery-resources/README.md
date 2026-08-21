@@ -23,7 +23,7 @@ Sebelum menyampaikan bengkel, sila:
 | Makmal 01 - ejen tunggal      | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Makmal latihan: bina, uji, dan sebarkan ejen *Explain Like I'm an Executive*                  |
 | Makmal 02 - aliran kerja berbilang ejen | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Makmal latihan: bina aliran kerja 4 ejen *Resume to Job Fit Evaluator*                       |
 | Demo 1: Ejen Eksekutif             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | Demo Makmal 01: terjemahkan jargon teknikal ke dalam ringkasan eksekutif                     |
-| Demo 2: Penilai Kesesuaian Kerja Resume | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | Demo Makmal 02: aliran kerja 4 ejen yang menilai kesesuaian resume-kerja dan menjana cadangan |
+| Demo 2: Penilai Kesesuaian Kerja Resume | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | Demo Makmal 02: aliran kerja 4 ejen yang menilai kesesuaian resume-kerja dan menjana cadangan |
 
 > **Nota untuk jurulatih:** Dek slaid dan pautan video akan ditambah setelah rakaman diterbitkan. Sehingga itu, hubungi penyelenggara (lihat [Contacts](#kontak)) untuk aset terkini.
 
@@ -97,7 +97,7 @@ Dek ini mengikuti aliran yang sama seperti makmal. Titik perbincangan yang disar
 | Rajah seni bina             | Lalui [seni bina README](../README.md#architecture): kerangka, Inspector, ACR, Perkhidmatan Ejen.           |
 | Anatomi ejen dihoskan       | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - fungsi setiap fail.                             |
 | Demo langsung: Ejen Eksekutif | Tukar ke VS Code dan jalankan demo [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) dari awal hingga akhir (lihat [Demo 1](#demo-1-ejen-eksekutif)). |
-| Demo langsung: Penilai Kesesuaian Kerja Resume | Tukar ke VS Code dan jalankan demo 4-ejen [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (lihat [Demo 2](#demo-2-penilai-kesesuaian-kerja-resume)). |
+| Demo langsung: Penilai Kesesuaian Kerja Resume | Tukar ke VS Code dan jalankan demo 4-ejen [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (lihat [Demo 2](#demo-2-penilai-kesesuaian-kerja-resume)). |
 | Ringkasan Makmal 01         | Serahkan kepada pelajar. Arahkan ke [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Corak berbilang ejen        | Sejajar vs serentak vs penyerahan - pratonton sebelum Makmal 02 bermula.                                   |
 | Ringkasan Makmal 02         | Serahkan kepada pelajar. Arahkan ke [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Dua demo langsung disertakan dalam penyampaian. Sediakan masa 10 minit untuk set
 | Demo | Makmal | Fail | Apa yang hendak ditunjukkan |
 |------|-----|-------|--------------|
 | Ejen Eksekutif | Makmal 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Ejen dihoskan tunggal; terjemah jargon teknikal ke dalam ringkasan eksekutif |
-| Penilai Kesesuaian Kerja Resume | Makmal 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Orkestrasi 4-ejen; nilai kesesuaian resume-kerja dan hasilkan cadangan |
+| Penilai Kesesuaian Kerja Resume | Makmal 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Orkestrasi 4-ejen; nilai kesesuaian resume-kerja dan hasilkan cadangan |
 
 ### Demo 1: Ejen Eksekutif
 
@@ -126,14 +126,14 @@ Ejen berdiri sendiri dalam [`workshop/lab01-single-agent/agent/`](../../../works
 
 ### Demo 2: Penilai Kesesuaian Kerja Resume
 
-Aliran kerja 4-ejen dalam [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Gunakan ini sebagai demo 10 minit sebelum Makmal 02.
+Aliran kerja 4-ejen dalam [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Gunakan ini sebagai demo 10 minit sebelum Makmal 02.
 
-1. Buka [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) dan tunjukkan bagaimana keempat-empat ejen sambung secara berurutan.
+1. Buka [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) dan tunjukkan bagaimana keempat-empat ejen sambung secara berurutan.
 2. Tekan `F5` untuk melancarkan **Agent Inspector** bagi aliran kerja berbilang ejen.
 3. Tampal ringkasan kerja dan resume contoh dalam sembang Inspector.
 4. Lalui saluran empat ejen: pengekstrak resume, pengekstrak keperluan kerja, penilai kesesuaian, dan penulis cadangan.
 5. Terangkan bagaimana keluaran setiap sub-ejen menjadi konteks ejen seterusnya, menonjolkan corak penyerahan.
-6. Tunjukkan [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) untuk bandingkan dengan yang setara ejen tunggal dari Demo 1.
+6. Tunjukkan [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) untuk bandingkan dengan yang setara ejen tunggal dari Demo 1.
 
 ---
 

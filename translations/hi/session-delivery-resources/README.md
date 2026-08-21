@@ -23,7 +23,7 @@
 | प्रयोगशाला 01 - एकल एजेंट  | [Lab 01](../workshop/lab01-single-agent/README.md)                               | हैंड्स-ऑन प्रयोगशाला: *Explain Like I'm an Executive* होस्टेड एजेंट बनाएं, टेस्ट करें, और डिप्लॉय करें |
 | प्रयोगशाला 02 - बहु-एजेंट वर्कफ़्लो | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | हैंड्स-ऑन प्रयोगशाला: 4-एजेंट *Resume to Job Fit Evaluator* वर्कफ़्लो बनाएं            |
 | डेमो 1: एक्ज़ीक्यूटिव एजेंट          | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | प्रयोगशाला 01 डेमो: तकनीकी जार्गन को एक्ज़ीक्यूटिव सार में अनुवाद करें                    |
-| डेमो 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | प्रयोगशाला 02 डेमो: 4-एजेंट वर्कफ़्लो जो रिज़्यूमे-नौकरी फिट स्कोर करता है और सिफारिशें बनाता है |
+| डेमो 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | प्रयोगशाला 02 डेमो: 4-एजेंट वर्कफ़्लो जो रिज़्यूमे-नौकरी फिट स्कोर करता है और सिफारिशें बनाता है |
 
 > **प्रशिक्षकों के लिए नोट:** स्लाइड डेक और वीडियो लिंक रिकॉर्डिंग प्रकाशित होने पर जोड़े जाएंगे। तब तक, नवीनतम सामग्री के लिए मेनटेनर को पिंग करें (देखें [संपर्क](#संपर्क))।
 
@@ -97,7 +97,7 @@
 | आर्किटेक्चर आरेख         | [README आर्किटेक्चर](../README.md#architecture) से स्कैफोल्ड, इंस्पेक्टर, ACR, एजेंट सर्विस पर चलें।  |
 | होस्टेड एजेंट की संरचना  | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - प्रत्येक फ़ाइल क्या करती है।               |
 | लाइव डेमो: एक्ज़ीक्यूटिव एजेंट | VS Code पर स्विच करें और [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) डेमो को अंत तक चलाएं (देखें [डेमो 1](#डेमो-1-एक्ज़ीक्यूटिव-एजेंट))। |
-| लाइव डेमो: Resume to Job Fit Evaluator | VS Code पर स्विच करें और [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-एजेंट डेमो चलाएं (देखें [डेमो 2](#डेमो-2-resume-to-job-fit-evaluator))। |
+| लाइव डेमो: Resume to Job Fit Evaluator | VS Code पर स्विच करें और [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-एजेंट डेमो चलाएं (देखें [डेमो 2](#डेमो-2-resume-to-job-fit-evaluator))। |
 | प्रयोगशाला 01 संक्षेप       | शिक्षार्थियों को सौंपें। [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) की ओर संकेत करें। |
 | मल्टी-एजेंट पैटर्न        | क्रमिक बनाम सहवर्ती बनाम हैंडऑफ - प्रयोगशाला 02 शुरू होने से पहले पूर्वावलोकन।                    |
 | प्रयोगशाला 02 संक्षेप       | शिक्षार्थियों को सौंपें। [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) की ओर संकेत करें। |
@@ -112,7 +112,7 @@
 | डेमो                       | प्रयोगशाला | फाइलें                                                       | क्या दिखाएं                                    |
 |---------------------------|----------|-------------------------------------------------------------|-----------------------------------------------|
 | एक्ज़ीक्यूटिव एजेंट         | प्रयोगशाला 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | एकल होस्टेड एजेंट; तकनीकी जार्गन को एक्ज़ीक्यूटिव सार में अनुवाद करें             |
-| Resume to Job Fit Evaluator | प्रयोगशाला 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-एजेंट संयोजन; रिज़्यूमे-नौकरी फिट को स्कोर कर सिफारिश उत्पन्न करें          |
+| Resume to Job Fit Evaluator | प्रयोगशाला 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-एजेंट संयोजन; रिज़्यूमे-नौकरी फिट को स्कोर कर सिफारिश उत्पन्न करें          |
 
 ### डेमो 1: एक्ज़ीक्यूटिव एजेंट
 
@@ -126,14 +126,14 @@
 
 ### डेमो 2: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) में 4-एजेंट वर्कफ़्लो। प्रयोगशाला 02 से पहले इसे 10 मिनट के डेमो के रूप में उपयोग करें।
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) में 4-एजेंट वर्कफ़्लो। प्रयोगशाला 02 से पहले इसे 10 मिनट के डेमो के रूप में उपयोग करें।
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) खोलें और दिखाएं कि चार एजेंट क्रमवार संयोजन में कैसे जुड़े हैं।
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) खोलें और दिखाएं कि चार एजेंट क्रमवार संयोजन में कैसे जुड़े हैं।
 2. मल्टी-एजेंट वर्कफ़्लो के लिए **Agent Inspector** लॉन्च करने के लिए `F5` दबाएं।
 3. इंस्पेक्टर चैट में एक संक्षिप्त नौकरी विवरण और सैंपल रिज़्यूमे पेस्ट करें।
 4. चार-एजेंट पाइपलाइन: रिज़्यूमे पार्सर, नौकरी आवश्यकता निष्कर्षक, फिट स्कोरर, और सिफारिश लेखक के माध्यम से चलें।
 5. दिखाएं कि कैसे प्रत्येक उप-एजेंट का आउटपुट अगले एजेंट का संदर्भ बन जाता है, हैंडऑफ पैटर्न को उजागर करते हुए।
-6. [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) दिखाएं और डेमो 1 के एकल एजेंट समतुल्य के साथ तुलना करें।
+6. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) दिखाएं और डेमो 1 के एकल एजेंट समतुल्य के साथ तुलना करें।
 
 ---
 

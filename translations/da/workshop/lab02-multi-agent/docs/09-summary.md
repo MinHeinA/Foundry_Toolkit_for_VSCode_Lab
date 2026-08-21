@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Mulighed 2: Slet kun den hosted agent
 
 1. Åbn [ai.azure.com](https://ai.azure.com) → dit projekt → **Build** → **Agents**.
-2. Find **PersonalCareerCopilot** → klik **Delete**.
+2. Find **PersonalCareerCopilotCompleted** → klik **Delete**.
 
 ### Mulighed 3: Slet model deployment
 

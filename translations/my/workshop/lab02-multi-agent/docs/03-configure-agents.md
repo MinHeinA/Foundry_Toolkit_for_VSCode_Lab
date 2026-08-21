@@ -4,7 +4,7 @@
 
 ဒီမော်ဂျူးထဲမှာ မင်းအတွက် ဖွဲ့စည်းထားတဲ့ stub ကို ပြောင်းလဲပြီး သင့်ရဲ့ multi-agent workflow ကို ဖန်တီးမှာဖြစ်တယ် - စနစ်ပတ်ဝန်းကျင် အပြောင်းအလဲ ဆက်တင်ခြင်း၊ အေးဂျင့်ညွှန်ကြားချက်များရေးသားခြင်း၊ MCP ကိရိယာထည့်ခြင်း၊ workflow graph ကို ချိတ်ဆက်ခြင်း နှင့် လိုအပ်သောဆော့ဝဲအညွှန်းများကို တပ်ဆင်ခြင်းတို့ဖြစ်ပါတယ်။
 
-> **ရည်ညွှန်းချက်:** ကျိုးကြောင်းဆက်မှုရှိသော အလုပ်လုပ်တဲ့ကုဒ်ကို [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) မှာ တွေ့နိုင်ပါတယ်။ သင့် workflow graph နှင့် prompt blocks ကို တည်ဆောက်စဉ် အညွှန်းအနေဖြင့် အသုံးပြုပါ။
+> **ရည်ညွှန်းချက်:** ကျိုးကြောင်းဆက်မှုရှိသော အလုပ်လုပ်တဲ့ကုဒ်ကို [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) မှာ တွေ့နိုင်ပါတယ်။ သင့် workflow graph နှင့် prompt blocks ကို တည်ဆောက်စဉ် အညွှန်းအနေဖြင့် အသုံးပြုပါ။
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## အဆင့် ၂: အေးဂျင့်ညွှန်ကြားချက်ရေးသားခြင်း
 
-ညွှန်ကြားချက်တွေက အဲဂျင့်တစ်ခုချင်းစီရဲ့ တာဝန်၊ ထုတ်ပေးမယ့်ပုံစံနဲ့ စည်းမျဉ်းစည်းကမ်းတွေကို သတ်မှတ်ပါတယ်။ `main.py` ဖိုင်ကို ဖွင့်၍ အညွှန်ကြားချက် constants လေးခုကို သတ်မှတ် (သို့မဟုတ် ပြောင်းလဲ) ပြုလုပ်ပါ - လုံးဝဂျာနယ်တည်းရာ strings ကို [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) တွင် တွေ့ရပါမယ်။
+ညွှန်ကြားချက်တွေက အဲဂျင့်တစ်ခုချင်းစီရဲ့ တာဝန်၊ ထုတ်ပေးမယ့်ပုံစံနဲ့ စည်းမျဉ်းစည်းကမ်းတွေကို သတ်မှတ်ပါတယ်။ `main.py` ဖိုင်ကို ဖွင့်၍ အညွှန်ကြားချက် constants လေးခုကို သတ်မှတ် (သို့မဟုတ် ပြောင်းလဲ) ပြုလုပ်ပါ - လုံးဝဂျာနယ်တည်းရာ strings ကို [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) တွင် တွေ့ရပါမယ်။
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 ရာဇဝင်ကို ဖော်ပြပြီး candidate profile အရည်အချင်းမြှင့်ပြီး ကြော်ငြာလုပ်ငန်းဖော်ပြချက်ကို verbatim အတိုင်း `[JOB DESCRIPTION PASS-THROUGH]`ထဲကူးယူထားပါတယ်။ ၂ ခုစလုံး output ထဲမှာ တွေ့ရဖို့ လိုအပ်သည်။
@@ -88,7 +88,7 @@ ResumeParser output ထဲမှ `[PARSED RESUME]` နှင့် `[JOB DESCRIP
 
 ## အဆင့် ၃: MCP ကိရိယာ ထည့်သွင်းခြင်း
 
-GapAnalyzer က [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) ကို ခေါ်ယူကာ ကျန်သေးသည့် skill gap များအတွက် နက်ရှိုင်းသော သင်ယူရေးရင်းမြစ်များ ရယူပါသည်။ `search_microsoft_learn_for_plan` လုပ်ဆောင်ချက်လုံးဝကို [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) မှာ တွေ့နိုင်ပါတယ်။
+GapAnalyzer က [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) ကို ခေါ်ယူကာ ကျန်သေးသည့် skill gap များအတွက် နက်ရှိုင်းသော သင်ယူရေးရင်းမြစ်များ ရယူပါသည်။ `search_microsoft_learn_for_plan` လုပ်ဆောင်ချက်လုံးဝကို [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) မှာ တွေ့နိုင်ပါတယ်။
 
 အေးဂျင့် ဖန်တီးစဉ် GapAnalyzer ပေါ်မှာ ကိရိယာကို မှတ်ပုံတင်ပါ။
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> `FoundryChatClient`, `AgentExecutor` နှင့် `add_edge()` ခေါ်ဆိုမှုများ လုံးဝပါဝင်သည့် `WorkflowBuilder` graph ကို [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) မှာ ကြည့်ရှုနိုင်သည်။
+> `FoundryChatClient`, `AgentExecutor` နှင့် `add_edge()` ခေါ်ဆိုမှုများ လုံးဝပါဝင်သည့် `WorkflowBuilder` graph ကို [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) မှာ ကြည့်ရှုနိုင်သည်။
 
 ---
 

@@ -49,14 +49,14 @@ flowchart TD
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## ਭਾਗ 2: ਵਰਕਫਲੋ ਬਣਾਓ ਅਤੇ ਟੈਸਟ ਕਰੋ
 
 1. ਵਰਕਫਲੋ-ਅਧਾਰਿਤ ਪ੍ਰੋਜੈਕਟ ਬਣਾਉਣ ਲਈ Foundry Toolkit ਵਿਜ਼ਾਰਡ ਦੀ ਵਰਤੋਂ ਕਰੋ।
-2. `PersonalCareerCopilot/main.py` ਤੋਂ ਪ੍ਰੰਪਟ ਬਲਾਕ ਅਤੇ ਵਰਕਫਲੋ ਗ੍ਰਾਫ ਨੂੰ ਆਪਣੇ ਵਰਕਸਪੇਸ ਵਿੱਚ ਕਾਪੀ ਕਰੋ।
+2. `PersonalCareerCopilotCompleted/main.py` ਤੋਂ ਪ੍ਰੰਪਟ ਬਲਾਕ ਅਤੇ ਵਰਕਫਲੋ ਗ੍ਰਾਫ ਨੂੰ ਆਪਣੇ ਵਰਕਸਪੇਸ ਵਿੱਚ ਕਾਪੀ ਕਰੋ।
 3. Agent Inspector ਨਾਲ ਸਥਾਨੀ ਤੌਰ 'ਤੇ ਚਲਾਓ ਅਤੇ ਸਾਰੇ ਚਾਰ ਏਜੰਟਾਂ ਅਤੇ MCP ਟੂਲ ਦੀ ਜਾਂਚ ਕਰੋ।
 4. ਸਥਾਨੀ ਟੈਸਟਿੰਗ ਪਾਸ ਹੋਣ 'ਤੇ ਹੋਸਟ ਕੀਤੇ ਏਜੰਟ ਨੂੰ Foundry 'ਤੇ ਡਿਪਲੋਇ ਕਰੋ।
 

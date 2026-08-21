@@ -6,7 +6,7 @@
 
 > **Concept cheie:** Scheletul este un stub funcțional cu un singur agent. Înlocuiești logica de rezervă cu graficul `WorkflowBuilder` din Modulul 3. Nu scrii codul standard de la zero.
 
-> **Implementare de referință:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) este un exemplu complet funcțional. Folosește-l pentru a compara munca ta pe parcurs.
+> **Implementare de referință:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) este un exemplu complet funcțional. Folosește-l pentru a compara munca ta pe parcurs.
 
 ### Fluxul asistentului de configurare
 
@@ -92,7 +92,7 @@ După finalizarea configurării, verifică dacă vezi aceste fișiere în Explor
 | `Dockerfile` | `python:3.12-slim`, instalează `requirements.txt`, expune portul 8088, rulează `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Referință:** Vezi [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) și [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) pentru conținutul complet generat.
+> **Referință:** Vezi [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) și [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) pentru conținutul complet generat.
 
 ---
 

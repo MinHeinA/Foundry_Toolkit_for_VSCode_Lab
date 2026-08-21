@@ -168,7 +168,7 @@ Você fornece uma atualização técnica. Ele devolve um resumo executivo - trê
         │   ├── 06-deploy-to-foundry.md
         │   ├── 07-verify-in-playground.md
         │   └── 08-troubleshooting.md
-        └── 📂 PersonalCareerCopilot/ ← Reference solution (multi-agent workflow)
+        └── 📂 PersonalCareerCopilotCompleted/ ← Reference solution (multi-agent workflow)
             ├── agent.yaml
             ├── Dockerfile
             ├── main.py

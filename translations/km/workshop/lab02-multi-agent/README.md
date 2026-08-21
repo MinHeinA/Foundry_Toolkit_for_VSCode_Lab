@@ -49,14 +49,14 @@ flowchart TD
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## ផ្នែក 2: កសាង និងតេស្តកម្មវីធី
 
 1. ប្រើកម្មវិធីស្វ័យប្រវត្តិ Foundry Toolkit ដើម្បីបង្កើតគំរោងផ្អែកលើកម្មវិធី។
-2. ចម្លងប្លុកបញ្ចូល និងសៀវភៅកម្មវិធីពី `PersonalCareerCopilot/main.py` ទៅកន្លែងធ្វើការ​របស់អ្នក។
+2. ចម្លងប្លុកបញ្ចូល និងសៀវភៅកម្មវិធីពី `PersonalCareerCopilotCompleted/main.py` ទៅកន្លែងធ្វើការ​របស់អ្នក។
 3. រត់ឥតគិតថ្លៃជាមួយ Agent Inspector ហើយផ្ទៀងផ្ទាត់ភាគីទាំងបួន និងឧបករណ៍ MCP។
 4. ផ្ទុកភាគីបញ្ចាប់ទៅ Foundry ពេលតេស្តក្នុងផ្ទះបានជោគជ័យ។
 

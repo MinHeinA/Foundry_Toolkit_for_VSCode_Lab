@@ -49,14 +49,14 @@ flowchart TD
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## భాగం 2: వర్క్‌ఫ్లోని నిర్మించి పరీక్షించండి
 
 1. ఫౌండ్రీ టూల్కిట్ విజార్డ్ను ఉపయోగించి వర్క్‌ఫ్లో ఆధారిత ప్రాజెక్టును స్కాఫోల్డ్ చేయండి.
-2. `PersonalCareerCopilot/main.py` నుండి ప్రాంప్ట్ బ్లాక్స్ మరియు వర్క్‌ఫ్లో గ్రాఫ్‌ను మీ వర్క్‌స్పేస్‌లో కాపీ చేయండి.
+2. `PersonalCareerCopilotCompleted/main.py` నుండి ప్రాంప్ట్ బ్లాక్స్ మరియు వర్క్‌ఫ్లో గ్రాఫ్‌ను మీ వర్క్‌స్పేస్‌లో కాపీ చేయండి.
 3. ఏజెంట్ ఇన్‌స్పెక్టర్‌తో స్థానికంగా రన్ చేసి నాలుగు ఏజెంట్లు మరియు MCP టూల్‌ను ధృవీకరించండి.
 4. స్థానిక పరీక్షల విజయవంతమైనప్పుడు హోస్టెడ్ ఏజెంటును ఫౌండ్రీకు పంపండి.
 

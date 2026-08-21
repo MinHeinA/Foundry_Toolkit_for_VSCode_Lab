@@ -68,7 +68,7 @@ Di Agent Inspector dey show dis same graph structure wen di agent dey run locall
 
 ## Reading the WorkflowBuilder code
 
-Di full `create_workflow()` function dey for [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Di three `add_edge()` calls na im dey build di sequential pipeline:
+Di full `create_workflow()` function dey for [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Di three `add_edge()` calls na im dey build di sequential pipeline:
 
 | # | Edge | Effect |
 |---|------|--------|

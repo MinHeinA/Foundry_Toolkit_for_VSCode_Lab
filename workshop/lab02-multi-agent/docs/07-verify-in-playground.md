@@ -2,12 +2,13 @@
 
 ⏱️ ~15 min
 
-Hosted verification proves that direct-code deployment preserved configuration,
-exact-key retrieval, provenance relays, and the pasted-JD fallback.
+Hosted verification proves that direct-code deployment preserved the generated
+four-agent workflow. Careers provenance checks apply when the optional challenge
+was completed.
 
 ## Step 1: Confirm deployment status
 
-From `workshop/lab02-multi-agent`:
+From `workshop/lab02-multi-agent/PersonalCareerCopilot`:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
@@ -25,7 +26,8 @@ configured; environment values can be included in that output.
 
 ## Step 2: Search again and select a current key
 
-From `PersonalCareerCopilotStarter`, run:
+Skip this step when you did not complete the Careers challenge. Otherwise run
+from `src/PersonalCareerCopilot`:
 
 ```bash
 python -m careers_mcp search \
@@ -38,7 +40,7 @@ Hosted Agent performs `get_job`, not `search_jobs`.
 
 ## Step 3: Invoke the hosted selected-key path
 
-Return to the Lab 02 directory and invoke:
+Return to generated project root `PersonalCareerCopilot/` and invoke:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
@@ -94,13 +96,14 @@ paste the event key or real personal data into it.
 | 8 | Pasted-JD regression | No selected key still produces an assessment without fabricated source metadata | |
 | 9 | Privacy | Only synthetic resume data was used; the Careers service received no resume | |
 
-A pass requires all nine criteria.
+The original Lab 02 path requires criteria 1, 2, 7, 8, and 9. The Careers
+challenge requires all nine.
 
 ### Checkpoint
 
 - [ ] Hosted status is ready in my own project.
-- [ ] Selected-key invocation retrieved the exact chosen listing.
-- [ ] Source URL and complete provenance survived both relay sections.
+- [ ] If attempted, selected-key invocation retrieved the exact chosen listing.
+- [ ] If attempted, source URL and provenance survived both relay sections.
 - [ ] Pasted-JD regression passed.
 - [ ] Microsoft Learn success/failure behavior was honest.
 - [ ] Only synthetic resume data was used.

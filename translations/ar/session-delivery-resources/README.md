@@ -23,7 +23,7 @@
 | المختبر 01 - وكيل واحد          | [المختبر 01](../workshop/lab01-single-agent/README.md)                              | مختبر عملي: بناء واختبار ونشر وكيل *اشرحها كما لو كنت مسؤولًا تنفيذيًا* مستضاف          |
 | المختبر 02 - سير عمل متعدد الوكلاء| [المختبر 02](../workshop/lab02-multi-agent/README.md)                               | مختبر عملي: بناء سير عمل 4 وكلاء *مقيم ملاءمة السيرة الذاتية للوظيفة*                |
 | العرض التوضيحي 1: الوكيل التنفيذي      | [وكيل المختبر 01](../../../workshop/lab01-single-agent/agent)                                            | العرض التوضيحي للمختبر 01: ترجمة المصطلحات التقنية إلى ملخص تنفيذي                       |
-| العرض التوضيحي 2: مقيّم ملاءمة السيرة الذاتية للوظيفة | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                      | العرض التوضيحي للمختبر 02: سير عمل 4 وكلاء يُقَيّم ملاءمة السيرة الذاتية للوظيفة ويُنتج التوصيات |
+| العرض التوضيحي 2: مقيّم ملاءمة السيرة الذاتية للوظيفة | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                      | العرض التوضيحي للمختبر 02: سير عمل 4 وكلاء يُقَيّم ملاءمة السيرة الذاتية للوظيفة ويُنتج التوصيات |
 
 > **ملاحظة للمدربين:** سيتم إضافة روابط شرائح العرض والفيديو عند نشر التسجيلات. حتى ذلك الحين، يرجى التواصل مع المسؤول (انظر [جهات الاتصال](#جهات-الاتصال)) للحصول على أحدث المواد.
 
@@ -97,7 +97,7 @@
 | مخطط المعمارية               | المرور على [معمارية README](../README.md#architecture): الهيكل، الفاحص، ACR، خدمة الوكيل.                         |
 | تشريح الوكيل المستضاف        | `agent.yaml`، `Dockerfile`، `main.py`، `requirements.txt` - ماذا يفعل كل ملف.                                    |
 | العرض الحي: الوكيل التنفيذي | التبديل إلى VS Code وتشغيل العرض التوضيحي [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) من البداية للنهاية (انظر [العرض 1](#العرض-التوضيحي-1-الوكيل-التنفيذي)). |
-| العرض الحي: مقيّم ملاءمة السيرة الذاتية للوظيفة | التبديل إلى VS Code وتشغيل العرض التوضيحي [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) لأربعة وكلاء (انظر [العرض 2](#العرض-التوضيحي-2-مقيّم-ملاءمة-السيرة-الذاتية-للوظيفة)). |
+| العرض الحي: مقيّم ملاءمة السيرة الذاتية للوظيفة | التبديل إلى VS Code وتشغيل العرض التوضيحي [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) لأربعة وكلاء (انظر [العرض 2](#العرض-التوضيحي-2-مقيّم-ملاءمة-السيرة-الذاتية-للوظيفة)). |
 | ملخص المختبر 01               | تسليم للمشاركين. الإشارة إلى [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md).    |
 | أنماط تعدد الوكلاء          | متسلسل مقابل متزامن مقابل التسليم - مقدمة قبل بدء المختبر 02.                                                  |
 | ملخص المختبر 02               | تسليم للمشاركين. الإشارة إلى [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md).     |
@@ -112,7 +112,7 @@
 | العرض التوضيحي | المختبر | الملفات | ما الذي سيتم عرضه |
 |----------------|---------|---------|--------------------|
 | الوكيل التنفيذي | المختبر 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | وكيل مستضاف فردي؛ ترجمة المصطلحات التقنية إلى ملخص تنفيذي |
-| مقيّم ملاءمة السيرة الذاتية للوظيفة | المختبر 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | تنظيم 4 وكلاء؛ تقييم ملاءمة السيرة الذاتية للوظيفة وتوليد توصية |
+| مقيّم ملاءمة السيرة الذاتية للوظيفة | المختبر 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | تنظيم 4 وكلاء؛ تقييم ملاءمة السيرة الذاتية للوظيفة وتوليد توصية |
 
 ### العرض التوضيحي 1: الوكيل التنفيذي
 
@@ -126,14 +126,14 @@
 
 ### العرض التوضيحي 2: مقيّم ملاءمة السيرة الذاتية للوظيفة
 
-سير عمل مكون من 4 وكلاء في [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). استخدمه كعرض توضيحي مدته 10 دقائق قبل المختبر 02.
+سير عمل مكون من 4 وكلاء في [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). استخدمه كعرض توضيحي مدته 10 دقائق قبل المختبر 02.
 
-1. افتح [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) وبيّن كيف تتصل الوكلاء الأربعة بسير تنظيمي متسلسل.
+1. افتح [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) وبيّن كيف تتصل الوكلاء الأربعة بسير تنظيمي متسلسل.
 2. اضغط `F5` لتشغيل **فاحص الوكيل** لسير العمل متعدد الوكلاء.
 3. الصق وصف وظيفة قصير وسيرة ذاتية نموذجية في دردشة الفاحص.
 4. استعرض خط أنابيب الوكلاء الأربعة: محلل السيرة الذاتية، مستخرج متطلبات الوظيفة، مقيم الملاءمة، وكاتب التوصيات.
 5. بيّن كيف يصبح ناتج كل وكيل فرعي سياق الوكيل التالي، مع تسليط الضوء على نمط التسليم.
-6. اعرض [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) للمقارنة مع ما يعادل الوكيل الفردي في العرض 1.
+6. اعرض [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) للمقارنة مع ما يعادل الوكيل الفردي في العرض 1.
 
 ---
 

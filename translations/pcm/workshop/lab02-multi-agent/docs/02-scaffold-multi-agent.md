@@ -6,7 +6,7 @@ For dis module, you go use [Foundry Toolkit for VS Code](https://aka.ms/foundryt
 
 > **Key concept:** Di scaffold na working stub wey get one agent. You go change di placeholder logic wit di `WorkflowBuilder` graph for Module 3. You no go write di boilerplate from scratch.
 
-> **Reference implementation:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) na complete working example. Use am make you fit compare your work as you dey go.
+> **Reference implementation:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) na complete working example. Use am make you fit compare your work as you dey go.
 
 ### Scaffold wizard flow
 
@@ -92,7 +92,7 @@ After you finish scaffolding, make sure say you see these files for Explorer (`C
 | `Dockerfile` | `python:3.12-slim`, e dey install `requirements.txt`, e dey expose port 8088, e dey run `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Reference:** See [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) and [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) for di complete generated content.
+> **Reference:** See [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) and [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) for di complete generated content.
 
 ---
 

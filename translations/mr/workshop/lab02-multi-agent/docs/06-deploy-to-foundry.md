@@ -36,7 +36,7 @@ flowchart LR
    - VS Code च्या खालच्या डाव्या कोपर्यात असलेला Accounts आयकॉन तपासा. आपले खाते क्रमाने दिसले पाहिजे.
 
 4. **`agent.yaml` मध्ये योग्य मूल्ये आहेत:**
-   - `PersonalCareerCopilot/agent.yaml` उघडा आणि खात्री करा:
+   - `PersonalCareerCopilot/main.py` उघडा आणि खात्री करा:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

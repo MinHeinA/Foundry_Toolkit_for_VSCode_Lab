@@ -49,14 +49,14 @@ Tazama njia kamili ya kujifunza katika:
 
 - [Nyaraka za Maabara 2 - Masharti ya Awali](docs/00-prerequisites.md)
 - [Nyaraka za Maabara 2 - Njia Kamili ya Kujifunza](docs/README.md)
-- [Mwongozo wa kutumia PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Mwongozo wa kutumia PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Sehemu ya 2: Tengeneza na jaribu mtiririko wa kazi
 
 1. Tumia kishirikishi cha Foundry Toolkit kuunda mradi unaozingatia mtiririko wa kazi.
-2. Nakili sehemu za maelekezo na mchoro wa mtiririko wa kazi kutoka `PersonalCareerCopilot/main.py` kwenda eneo lako la kazi.
+2. Nakili sehemu za maelekezo na mchoro wa mtiririko wa kazi kutoka `PersonalCareerCopilotCompleted/main.py` kwenda eneo lako la kazi.
 3. Endesha kwa ndani na Inspekta wa Mwakala na hakiki mawakala wote wanne pamoja na chombo cha MCP.
 4. Tuma wakala mwenyeji kwenye Foundry wakati majaribio wa ndani yanapofaulu.
 

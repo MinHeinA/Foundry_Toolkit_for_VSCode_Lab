@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Lựa chọn 2: Xóa chỉ tác nhân được lưu trữ
 
 1. Mở [ai.azure.com](https://ai.azure.com) → dự án của bạn → **Xây dựng** → **Tác nhân**.
-2. Tìm **PersonalCareerCopilot** → nhấp **Xóa**.
+2. Tìm **PersonalCareerCopilotCompleted** → nhấp **Xóa**.
 
 ### Lựa chọn 3: Xóa triển khai mô hình
 

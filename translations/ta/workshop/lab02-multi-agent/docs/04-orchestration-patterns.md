@@ -68,7 +68,7 @@ flowchart LR
 
 ## WorkflowBuilder குறியீட்டை வாசித்தல்
 
-முழு `create_workflow()` செயல்பாடு [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) இல் உள்ளது. மூன்று `add_edge()` அழைப்புகள் தொடர் மிகையை உருவாக்குகின்றன:
+முழு `create_workflow()` செயல்பாடு [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) இல் உள்ளது. மூன்று `add_edge()` அழைப்புகள் தொடர் மிகையை உருவாக்குகின்றன:
 
 | # | நீட்சி | விளைவு |
 |---|------|--------|

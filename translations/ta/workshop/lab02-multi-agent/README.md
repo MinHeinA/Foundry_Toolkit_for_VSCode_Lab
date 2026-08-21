@@ -49,14 +49,14 @@ flowchart TD
 
 - [ஆய்வு 2 ஆவணங்கள் - முன்னோட்டங்கள்](docs/00-prerequisites.md)
 - [ஆய்வு 2 ஆவணங்கள் - முழு கற்றல் பாதை](docs/README.md)
-- [PersonalCareerCopilot இயக்க வழிகாட்டி](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted இயக்க வழிகாட்டி](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## பகுதி 2: பணியோட்டத்தை கட்டி சோதனை செய்யவும்
 
 1. Foundry Toolkit விஞ்ஞானியை பயன்படுத்தி பணியோட்ட அடிப்படையிலான திட்டத்தை உருவாக்கவும்.
-2. `PersonalCareerCopilot/main.py` இன் ப்ராம்ட் தொகுதிகளை மற்றும் பணியோட்ட வரைபடத்தை உங்கள் வேலைப் பகுதியில் நகலெடுக்கவும்.
+2. `PersonalCareerCopilotCompleted/main.py` இன் ப்ராம்ட் தொகுதிகளை மற்றும் பணியோட்ட வரைபடத்தை உங்கள் வேலைப் பகுதியில் நகலெடுக்கவும்.
 3. உள்ளூர் முறையில் Agent Inspector கொண்டு இயக்கு மற்றும் நான்கு முகவர்களும் MCP கருவி சரியாக வேலை செய்கிறதா என்பதை உறுதிப்படுத்தவும்.
 4. உள்ளூர்வமாக சோதித்தவுடன் Foundry இல் ஹோஸ்ட் செய்யப்பட்ட முகவரைப் பிரசாரம் செய்யவும்.
 

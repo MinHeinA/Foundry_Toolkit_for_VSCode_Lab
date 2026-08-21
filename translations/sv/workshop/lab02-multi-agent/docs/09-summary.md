@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Alternativ 2: Radera endast den hostade agenten
 
 1. Öppna [ai.azure.com](https://ai.azure.com) → ditt projekt → **Bygg** → **Agenter**.
-2. Hitta **PersonalCareerCopilot** → klicka på **Radera**.
+2. Hitta **PersonalCareerCopilotCompleted** → klicka på **Radera**.
 
 ### Alternativ 3: Radera modellens distribution
 

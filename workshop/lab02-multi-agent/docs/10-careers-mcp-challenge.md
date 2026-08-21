@@ -5,6 +5,10 @@
 Enhance the original **Resume → Job Fit Evaluator** so attendees can evaluate a
 synthetic resume against one explicitly selected Careers@Gov listing.
 
+Complete Modules 2–5 and prove the pasted-JD workflow before starting. All edits
+occur in the attendee-generated
+`PersonalCareerCopilot/src/PersonalCareerCopilot/` source directory.
+
 This is an additive challenge, not a replacement for the original Lab 02:
 
 | Lab 02 path | Job context | Result |
@@ -94,7 +98,8 @@ Complete the base Lab 02 workflow first, then confirm:
 - The trainer has supplied:
   - `CAREERS_MCP_ENDPOINT`;
   - `CAREERS_MCP_API_KEY`.
-- `PersonalCareerCopilotStarter/.env` is uncommitted and contains no placeholders.
+- `PersonalCareerCopilot/src/PersonalCareerCopilot/.env` is uncommitted and
+  contains no placeholders.
 - Only synthetic resume content will be used.
 
 ## Challenge tasks
@@ -102,10 +107,10 @@ Complete the base Lab 02 workflow first, then confirm:
 ### Task 0 - Prove the MCP connection
 
 Copy the provided helper, then run these commands from
-`PersonalCareerCopilotStarter` before editing `main.py`:
+`PersonalCareerCopilot/src/PersonalCareerCopilot` before editing `main.py`:
 
 ```bash
-cp ../PersonalCareerCopilot/careers_mcp.py .
+cp ../../../lab-assets/careers_mcp.py .
 ```
 
 ```bash
@@ -245,8 +250,11 @@ Before configuration, add a deterministic conditional branch after
 - do not run `MatchingAgent` or `GapAnalyzer` on that failure path.
 
 This prevents a failed lookup from becoming a fabricated score or roadmap.
+Use the complete pinned implementation and wiring in
+[`lab-assets/careers-failure-gate.md`](../lab-assets/careers-failure-gate.md).
 
-Local values belong in `PersonalCareerCopilotStarter/.env`:
+Local values belong in
+`PersonalCareerCopilot/src/PersonalCareerCopilot/.env`:
 
 ```env
 CAREERS_MCP_ENDPOINT=https://<trainer-provided-host>/mcp
@@ -254,15 +262,19 @@ CAREERS_MCP_API_KEY=<trainer-provided-event-key>
 CAREERS_MCP_TIMEOUT_SECONDS=10
 ```
 
-The parent `azure.yaml` maps the same names into the Hosted Agent runtime. Store
-the secret in the attendee's azd environment rather than source code:
+The generated project-root `PersonalCareerCopilot/azure.yaml` maps the same
+names into the Hosted Agent runtime. Store the secret in the attendee's azd
+environment rather than source code. Run this from the generated project root:
 
 ```bash
+cd ../..
 bash
 read -rsp "Careers MCP key: " CAREERS_KEY && echo
-azd env set CAREERS_MCP_API_KEY "$CAREERS_KEY"
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd env set CAREERS_MCP_API_KEY "$CAREERS_KEY"
 unset CAREERS_KEY
 exit
+cd src/PersonalCareerCopilot
 ```
 
 The workshop key is an opaque shared secret. It has no automatic bearer-token
@@ -375,6 +387,10 @@ Ask attendees:
 The key lesson is that MCP adds useful external context, while explicit
 selection, least-privilege tools, privacy boundaries, and provenance keep the
 workflow predictable and auditable.
+
+After completing and testing the challenge, compare your implementation with
+[`PersonalCareerCopilotCompleted`](../PersonalCareerCopilotCompleted). Do not use
+the completed source as a copy target before attempting the tasks.
 
 ---
 

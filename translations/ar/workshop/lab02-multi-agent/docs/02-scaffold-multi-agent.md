@@ -6,7 +6,7 @@
 
 > **المفهوم الرئيسي:** الهيكل هو نموذج عمل بوكيل واحد. تقوم باستبدال منطق العنصر النائب بـ `WorkflowBuilder` في الوحدة 3. لا تحتاج إلى كتابة أساسيات المشروع من الصفر.
 
-> **التطبيق المرجعي:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) هو مثال عملي كامل. استخدمه لمقارنة عملك أثناء التقدم.
+> **التطبيق المرجعي:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) هو مثال عملي كامل. استخدمه لمقارنة عملك أثناء التقدم.
 
 ### تدفق معالج إنشاء الهيكل
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`, يثبت `requirements.txt`, يفتح المنفذ 8088، يشغل `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **مرجع:** انظر إلى [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) و [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) للمحتوى الكامل المنشأ.
+> **مرجع:** انظر إلى [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) و [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) للمحتوى الكامل المنشأ.
 
 ---
 

@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Pilihan 2: Hapus hanya agen yang dihosting
 
 1. Buka [ai.azure.com](https://ai.azure.com) → proyek Anda → **Build** → **Agents**.
-2. Temukan **PersonalCareerCopilot** → klik **Delete**.
+2. Temukan **PersonalCareerCopilotCompleted** → klik **Delete**.
 
 ### Pilihan 3: Hapus penerapan model
 

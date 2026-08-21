@@ -4,7 +4,7 @@
 
 Trong module này, bạn sẽ biến phần khung mẫu đã tạo thành **quy trình đa tác nhân của bạn** - bằng cách đặt các biến môi trường, viết hướng dẫn cho các tác nhân, thêm công cụ MCP, kết nối biểu đồ quy trình công việc, và cài đặt các phụ thuộc.
 
-> **Tham khảo:** Mã làm việc đầy đủ có trong [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Sử dụng nó như tài liệu tham khảo khi xây dựng biểu đồ quy trình công việc và các khối gợi ý của bạn.
+> **Tham khảo:** Mã làm việc đầy đủ có trong [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Sử dụng nó như tài liệu tham khảo khi xây dựng biểu đồ quy trình công việc và các khối gợi ý của bạn.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Bước 2: Viết hướng dẫn cho tác nhân
 
-Hướng dẫn định nghĩa vai trò của mỗi tác nhân, định dạng đầu ra, và quy tắc. Mở `main.py` và định nghĩa (hoặc thay thế) bốn hằng hướng dẫn - các chuỗi đầy đủ có trong [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Hướng dẫn định nghĩa vai trò của mỗi tác nhân, định dạng đầu ra, và quy tắc. Mở `main.py` và định nghĩa (hoặc thay thế) bốn hằng hướng dẫn - các chuỗi đầy đủ có trong [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Phân tích sơ yếu lý lịch thành hồ sơ ứng viên có cấu trúc **và** sao chép mô tả công việc y nguyên vào `[JOB DESCRIPTION PASS-THROUGH]`. Cả hai phần được dán nhãn phải xuất hiện trong đầu ra.
@@ -88,7 +88,7 @@ Phân tích sơ yếu lý lịch thành hồ sơ ứng viên có cấu trúc **v
 
 ## Bước 3: Thêm công cụ MCP
 
-GapAnalyzer gọi [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) để lấy tài nguyên học tập thực tế cho từng khoảng cách kỹ năng. Hàm đầy đủ `search_microsoft_learn_for_plan` có trong [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer gọi [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) để lấy tài nguyên học tập thực tế cho từng khoảng cách kỹ năng. Hàm đầy đủ `search_microsoft_learn_for_plan` có trong [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Đăng ký công cụ trên GapAnalyzer khi tạo tác nhân:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Xem [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) để xem biểu đồ `WorkflowBuilder` đầy đủ với `FoundryChatClient`, `AgentExecutor`, và tất cả các lệnh `add_edge()`.
+> Xem [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) để xem biểu đồ `WorkflowBuilder` đầy đủ với `FoundryChatClient`, `AgentExecutor`, và tất cả các lệnh `add_edge()`.
 
 ---
 

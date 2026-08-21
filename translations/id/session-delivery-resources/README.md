@@ -23,7 +23,7 @@ Sebelum menyampaikan workshop, harap:
 | Lab 01 - agen tunggal       | [Lab 01](../workshop/lab01-single-agent/README.md)                             | Lab praktikum: membangun, menguji, dan menyebarkan agen *Explain Like I'm an Executive* yang dihosting |
 | Lab 02 - alur kerja multi-agen | [Lab 02](../workshop/lab02-multi-agent/README.md)                              | Lab praktikum: membangun alur kerja 4 agen *Resume to Job Fit Evaluator*                      |
 | Demo 1: Agen Eksekutif       | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                           | Demo Lab 01: menerjemahkan jargon teknis ke dalam ringkasan eksekutif                        |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Demo Lab 02: alur kerja 4 agen yang menilai kecocokan resume-pekerjaan dan menghasilkan rekomendasi |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Demo Lab 02: alur kerja 4 agen yang menilai kecocokan resume-pekerjaan dan menghasilkan rekomendasi |
 
 > **Catatan untuk pelatih:** Dek slide dan tautan video akan ditambahkan setelah rekaman diterbitkan. Sampai saat itu, hubungi pemelihara (lihat [Kontak](#kontak)) untuk aset terbaru.
 
@@ -97,7 +97,7 @@ Dek mengikuti alur yang sama dengan lab. Titik bicara yang disarankan untuk seti
 | Diagram arsitektur          | Jelaskan [arsitektur di README](../README.md#architecture): kerangka, Inspector, ACR, Agent Service.          |
 | Anatomi hosted agent        | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - fungsi masing-masing file.                        |
 | Demo langsung: Executive Agent  | Beralih ke VS Code dan jalankan demo [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) dari awal hingga akhir (lihat [Demo 1](#demo-1-executive-agent)). |
-| Demo langsung: Resume to Job Fit Evaluator | Beralih ke VS Code dan jalankan demo 4-agen [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (lihat [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
+| Demo langsung: Resume to Job Fit Evaluator | Beralih ke VS Code dan jalankan demo 4-agen [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (lihat [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
 | Ringkasan Lab 01            | Berikan kepada peserta. Arahkan ke [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Pola multi-agen             | Berurutan vs konkuren vs handoff - preview sebelum Lab 02 dimulai.                                           |
 | Ringkasan Lab 02            | Berikan kepada peserta. Arahkan ke [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Dua demo langsung disertakan dalam penyampaian. Alokasikan 10 menit untuk masing
 | Demo                   | Lab   | File                                                       | Apa yang ditampilkan                              |
 |------------------------|-------|------------------------------------------------------------|--------------------------------------------------|
 | Executive Agent         | Lab 01| [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Agen tunggal yang dihosting; terjemahkan jargon teknis ke ringkasan eksekutif |
-| Resume to Job Fit Evaluator | Lab 02| [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Orkestrasi 4 agen; nilai kecocokan resume-pekerjaan dan buat rekomendasi   |
+| Resume to Job Fit Evaluator | Lab 02| [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Orkestrasi 4 agen; nilai kecocokan resume-pekerjaan dan buat rekomendasi   |
 
 ### Demo 1: Executive Agent
 
@@ -126,14 +126,14 @@ Agen mandiri di [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-s
 
 ### Demo 2: Resume to Job Fit Evaluator
 
-Alur kerja 4 agen di [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Gunakan ini sebagai demo 10 menit sebelum Lab 02.
+Alur kerja 4 agen di [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Gunakan ini sebagai demo 10 menit sebelum Lab 02.
 
-1. Buka [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) dan tunjukkan bagaimana keempat agen dirangkai dalam orkestrasi berurutan.
+1. Buka [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) dan tunjukkan bagaimana keempat agen dirangkai dalam orkestrasi berurutan.
 2. Tekan `F5` untuk meluncurkan **Agent Inspector** untuk alur kerja multi-agen.
 3. Tempelkan deskripsi pekerjaan singkat dan contoh resume di chat Inspector.
 4. Jelaskan pipeline empat agen: parser resume, ekstraktor persyaratan pekerjaan, penilai kecocokan, dan penulis rekomendasi.
 5. Tunjukkan bagaimana output setiap sub-agen menjadi konteks agen berikutnya, menyoroti pola handoff.
-6. Tunjukkan [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) untuk dibandingkan dengan agen tunggal di Demo 1.
+6. Tunjukkan [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) untuk dibandingkan dengan agen tunggal di Demo 1.
 
 ---
 

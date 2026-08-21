@@ -49,14 +49,14 @@ Pełna ścieżka nauki znajduje się w:
 
 - [Dokumentacja Laboratorium 2 - Wymagania wstępne](docs/00-prerequisites.md)
 - [Dokumentacja Laboratorium 2 - Pełna ścieżka nauki](docs/README.md)
-- [Przewodnik uruchomienia PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Przewodnik uruchomienia PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Część 2: Zbuduj i przetestuj workflow
 
 1. Użyj kreatora Foundry Toolkit, aby zainicjować projekt oparty na workflow.
-2. Skopiuj bloki promptów i diagram workflow z `PersonalCareerCopilot/main.py` do swojego workspace.
+2. Skopiuj bloki promptów i diagram workflow z `PersonalCareerCopilotCompleted/main.py` do swojego workspace.
 3. Uruchom lokalnie z Agent Inspector i zweryfikuj czterech agentów oraz narzędzie MCP.
 4. Wdróż hostowanego agenta w Foundry po pomyślnym teście lokalnym.
 

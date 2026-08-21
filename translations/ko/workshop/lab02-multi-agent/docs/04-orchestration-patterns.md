@@ -68,7 +68,7 @@ Agent Inspector는 에이전트가 로컬에서 실행 중일 때 이와 동일�
 
 ## WorkflowBuilder 코드 읽기
 
-전체 `create_workflow()` 함수는 [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)에 있습니다. 세 개의 `add_edge()` 호출이 순차 파이프라인을 구성합니다:
+전체 `create_workflow()` 함수는 [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)에 있습니다. 세 개의 `add_edge()` 호출이 순차 파이프라인을 구성합니다:
 
 | # | 엣지 | 효과 |
 |---|------|--------|

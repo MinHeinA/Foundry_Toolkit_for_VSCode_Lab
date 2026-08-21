@@ -6,7 +6,7 @@ V tomto module použijete [Foundry Toolkit pre VS Code](https://aka.ms/foundrytk
 
 > **Kľúčový koncept:** Základná štruktúra je funkčný náčrt s jedným agentom. Nahradíte vzorovú logiku grafom `WorkflowBuilder` v Module 3. Nie je potrebné písať boilerplate od začiatku.
 
-> **Referenčná implementácia:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) je kompletný funkčný príklad. Použite ho na porovnanie svojej práce počas postupu.
+> **Referenčná implementácia:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) je kompletný funkčný príklad. Použite ho na porovnanie svojej práce počas postupu.
 
 ### Priebeh sprievodcu tvorbou základnej štruktúry
 
@@ -92,7 +92,7 @@ Po dokončení tvorby základnej štruktúry skontrolujte, či vidíte tieto sú
 | `Dockerfile` | `python:3.12-slim`, inštaluje `requirements.txt`, sprístupňuje port 8088, spúšťa `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Referencie:** Pozrite si [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) a [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) pre kompletný obsah vygenerovaných súborov.
+> **Referencie:** Pozrite si [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) a [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) pre kompletný obsah vygenerovaných súborov.
 
 ---
 

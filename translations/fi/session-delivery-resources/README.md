@@ -23,7 +23,7 @@ Ennen työpajan toteutusta, tee seuraavat:
 | Lab 01 - yksittäinen agentti | [Lab 01](../workshop/lab01-single-agent/README.md)                               | Käytännön laboratorio: *Explain Like I'm an Executive* -isäntäagentin rakentaminen, testaus ja käyttöönotto |
 | Lab 02 - monagenttityönkulku | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | Käytännön laboratorio: neljän agentin *Resume to Job Fit Evaluator* -työnkulun rakentaminen   |
 | Demo 1: Executive Agent       | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                             | Lab 01 demonstraatio: teknisen jargon kääntäminen johtoryhmälle suunnatuksi tiivistelmäsisällöksi |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Lab 02 demonstraatio: neljän agentin työnkulku, joka arvioi ansioluettelon ja työpaikan yhteensopivuutta sekä tuottaa suosituksia |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Lab 02 demonstraatio: neljän agentin työnkulku, joka arvioi ansioluettelon ja työpaikan yhteensopivuutta sekä tuottaa suosituksia |
 
 > **Huomio kouluttajille:** Dioitus ja videot lisätään, kun nauhoitukset julkaistaan. Sitä ennen ota yhteyttä ylläpitäjään (katso [Yhteystiedot](#yhteystiedot)) saadaksesi uusimmat materiaalit.
 
@@ -97,7 +97,7 @@ Esitysdioitus noudattaa samaa rakennetta kuin laboratoriot. Ehdotetut puheenaihe
 | Arkkitehtuurikaavio         | Käy läpi [README arkkitehtuuri](../README.md#architecture): scaffolding, Inspector, ACR, Agent Service.      |
 | Isäntäagentin rakenne       | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - mitä kukin tiedosto tekee.                         |
 | Live-demo: Executive Agent  | Vaihda VS Codeen ja suorita [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) demo alusta loppuun (katso [Demo 1](#demo-1-executive-agent)). |
-| Live-demo: Resume to Job Fit Evaluator | Vaihda VS Codeen ja suorita [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) neljän agentin demo (katso [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
+| Live-demo: Resume to Job Fit Evaluator | Vaihda VS Codeen ja suorita [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) neljän agentin demo (katso [Demo 2](#demo-2-resume-to-job-fit-evaluator)). |
 | Lab 01 lyhyt esittely      | Anna osallistujille. Viittaa [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Monagenttimallit            | Peräkkäinen vs rinnakkainen vs luovutus - esikatsele ennen Lab 02:n aloitusta.                               |
 | Lab 02 lyhyt esittely      | Anna osallistujille. Viittaa [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ Toteutuksessa on mukana kaksi live-demoa. Varaukset kullekin 10 minuuttia.
 | Demo               | Lab  | Tiedostot                                                 | Näytettävä sisältö                                     |
 |--------------------|------|-----------------------------------------------------------|--------------------------------------------------------|
 | Executive Agent     | Lab 01| [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Yksittäinen isäntäagentti; käännä tekninen jargon johtoryhmätiivistelmäksi |
-| Resume to Job Fit Evaluator | Lab 02| [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Neljän agentin orkestrointi; pisteytä ansioluettelon ja työn yhteensopivuus ja luo suositus |
+| Resume to Job Fit Evaluator | Lab 02| [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Neljän agentin orkestrointi; pisteytä ansioluettelon ja työn yhteensopivuus ja luo suositus |
 
 ### Demo 1: Executive Agent
 
@@ -126,14 +126,14 @@ Itsenäinen agentti sijainnissa [`workshop/lab01-single-agent/agent/`](../../../
 
 ### Demo 2: Resume to Job Fit Evaluator
 
-Neljän agentin työnkulku sijainnissa [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Käytä tätä 10 minuutin demon esittelyyn ennen Lab 02:a.
+Neljän agentin työnkulku sijainnissa [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Käytä tätä 10 minuutin demon esittelyyn ennen Lab 02:a.
 
-1. Avaa [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ja näytä, kuinka neljä agenttia on kytketty peräkkäiseen orkestrointiin.
+1. Avaa [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ja näytä, kuinka neljä agenttia on kytketty peräkkäiseen orkestrointiin.
 2. Paina `F5` käynnistääksesi **Agent Inspectorin** monagenttityönkululle.
 3. Liitä lyhyt työkuvaus ja esimerkkian sioluettelo Inspector-chatissa.
 4. Käy läpi neljän agentin putki: ansioluettelon jäsentäjä, työvaatimusten poimija, yhteensopivuuden pisteyttäjä ja suositusten kirjoittaja.
 5. Korosta, kuinka jokaisen alatason agentin tuotos toimii seuraavan agentin kontekstina, korosta luovutusmallia.
-6. Näytä [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) vertaillaksesi Demo 1:n yksittäisen agentin vastaavan kanssa.
+6. Näytä [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) vertaillaksesi Demo 1:n yksittäisen agentin vastaavan kanssa.
 
 ---
 

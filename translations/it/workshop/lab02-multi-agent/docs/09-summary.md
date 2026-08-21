@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Opzione 2: Elimina solo l’agente ospitato
 
 1. Apri [ai.azure.com](https://ai.azure.com) → il tuo progetto → **Build** → **Agents**.
-2. Trova **PersonalCareerCopilot** → clicca **Elimina**.
+2. Trova **PersonalCareerCopilotCompleted** → clicca **Elimina**.
 
 ### Opzione 3: Elimina la distribuzione modello
 

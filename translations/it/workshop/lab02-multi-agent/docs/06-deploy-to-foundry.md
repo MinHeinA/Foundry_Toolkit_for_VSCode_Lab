@@ -36,7 +36,7 @@ Prima di distribuire, verifica ogni elemento qui sotto:
    - Controlla l'icona Account in basso a sinistra di VS Code. Il tuo nome account dovrebbe essere visibile.
 
 4. **`agent.yaml` ha valori corretti:**
-   - Apri `PersonalCareerCopilot/agent.yaml` e verifica:
+   - Apri `PersonalCareerCopilot/main.py` e verifica:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

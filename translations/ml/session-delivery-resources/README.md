@@ -23,7 +23,7 @@
 | ലാബ് 01 - സിംഗിൾ ഏജന്റ്         | [Lab 01](../workshop/lab01-single-agent/README.md)                               | ഹാൻഡ്‌സ്-ഓൺ ലാബ്: *Explain Like I'm an Executive* ഹോസ്റ്റുചെയ്യുന്ന ഏജന്റ് നിർമ്മിച്ച്, പരീക്ഷിച്ച്, ഡിപ്ലോയ്മെന്റ് ചെയ്യുക     |
 | ലാബ് 02 - മൾട്ടി-ഏജന്റ് വർക്‌ഫ്ലോ | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | ഹാൻഡ്‌സ്-ഓൺ ലാബ്: 4-ഏജന്റ് *Resume to Job Fit Evaluator* വർക്‌ഫ്ലോ നിർമ്മിക്കുക                     |
 | ഡെമോ 1: എക്‌സിക്യൂട്ടീവ് ഏജന്റ്             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | ലാബ് 01 ഡെമോ: സാങ്കേതിക പദങ്ങൾ എക്‌സിക്യൂട്ടീവ് സംഗ്രഹമായി വിവർത്തനം ചെയ്യുക                          |
-| ഡെമോ 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | ലാബ് 02 ഡെമോ: 4-ഏജന്റ് വർക്‌ഫ്ലോ, റീസ്യൂം-ജോബ് ഫിറ്റ് സ്‌കോർ ചെയ്ത് ശുപാർശകൾ സൃഷ്ടിക്കൽ     |
+| ഡെമോ 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | ലാബ് 02 ഡെമോ: 4-ഏജന്റ് വർക്‌ഫ്ലോ, റീസ്യൂം-ജോബ് ഫിറ്റ് സ്‌കോർ ചെയ്ത് ശുപാർശകൾ സൃഷ്ടിക്കൽ     |
 
 > **പരിശീലകർക്ക് ശ്രദ്ധിക്കുക:** സ്ലൈഡ് ഡെക്കും വീഡിയോ ലിങ്കുകളും റെക്കോർഡിങ്ങ് പ്രസിദ്ധീകരിക്കുമ്പോൾ ചേർക്കുന്നതാണ്. ആ വരെ, ഏറ്റവും പുതിയ ആസറ്റുകൾക്കായി പരിപാലകനെ (കാണുക [Contacts](#ബന്ധപ്പെടേണ്ടവർ)) ബന്ധപ്പെടുക.
 
@@ -97,7 +97,7 @@
 | ആർക്കിടെക്ചർ ചിത്രരേഖ        | [README ആർക്കിടെക്ചർ](../README.md#architecture) വഴി നടന്ന് കാണിക്കുക: സ്കഫോൾഡ്, ഇൻസ്പെക്ടർ, ACR, ഏജന്റ് സർവീസ്.   |
 | ഹോസ്റ്റുചെയ്യുന്ന ഏജന്റ് ഘടന   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ഓരോ ഫയലും എന്ത് ചെയ്യും എന്ന്.                              |
 | ലൈവ് ഡെമോ: എക്‌സിക്യൂട്ടീവ് ഏജന്റ്  | VS Code-ലേക്ക് മാറി [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) ഡെമോ തുടുപ്പു മുതൽ അവസാനികമേ വരെ ഓടിക്കുക (കണ്ടു ശീർഷകം [Demo 1](#ഡെമോ-1-എക്‌സിക്യൂട്ടീവ്-ഏജന്റ്)). |
-| ലൈവ് ഡെമോ: Resume to Job Fit Evaluator | VS Code-ലേക്ക് മാറി [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4-ഏജന്റ് ഡെമോ ഓടിക്കുക (കണ്ടു ശീർഷകം [Demo 2](#ഡെമോ-2-resume-to-job-fit-evaluator)). |
+| ലൈവ് ഡെമോ: Resume to Job Fit Evaluator | VS Code-ലേക്ക് മാറി [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4-ഏജന്റ് ഡെമോ ഓടിക്കുക (കണ്ടു ശീർഷകം [Demo 2](#ഡെമോ-2-resume-to-job-fit-evaluator)). |
 | ലാബ് 01 ചുരുക്കം                | പഠിക്കുന്നവർക്കു കൈമാറുക. [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) കാണിക്കുക. |
 | മൾട്ടി-ഏജന്റ് മാതൃകകൾ        | പരമ്പരാഗത, സമകാലീന, കൈമാറ്റം - ലാബ് 02 തുടങ്ങുന്നതിനു മുമ്പ് അവലോകനം ചെയ്യുക.                                           |
 | ലാബ് 02 ചുരുക്കം                | പഠിക്കുന്നവർക്കു കൈമാറുക. [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) കാണിക്കുക. |
@@ -112,7 +112,7 @@
 | ഡെമോ | ലാബ് | ഫയലുകൾ | കാണിക്കേണ്ടത് |
 |------|-----|-------|--------------|
 | എക്‌സിക്യൂട്ടീവ് ഏജന്റ് | ലാബ് 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | സിംഗിൾ ഹോസ്റ്റുചെയ്ത ഏജന്റ്; സാങ്കേതിക പദങ്ങൾ എക്‌സിക്യൂട്ടീവ് സംഗ്രഹമായി വിവർത്തനം ചെയ്യുക |
-| Resume to Job Fit Evaluator | ലാബ് 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4-ഏജന്റ് ഓർക്കസ്ട്രേഷൻ; റീസ്യൂം-ജോബ് ഫിറ്റ് സ്‌കോർ ചെയ്യുകയും ശുപാർശ നൽകുകയും ചെയ്യുക |
+| Resume to Job Fit Evaluator | ലാബ് 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4-ഏജന്റ് ഓർക്കസ്ട്രേഷൻ; റീസ്യൂം-ജോബ് ഫിറ്റ് സ്‌കോർ ചെയ്യുകയും ശുപാർശ നൽകുകയും ചെയ്യുക |
 
 ### ഡെമോ 1: എക്‌സിക്യൂട്ടീവ് ഏജന്റ്
 
@@ -126,14 +126,14 @@
 
 ### ഡെമോ 2: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ലെ 4-ഏജന്റ് വർക്‌ഫ്ലോ. ലാബ് 02 മുൻപായി 10 മിനിറ്റ് ഡെമോ ആയി ഉപയോഗിക്കുക.
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ലെ 4-ഏജന്റ് വർക്‌ഫ്ലോ. ലാബ് 02 മുൻപായി 10 മിനിറ്റ് ഡെമോ ആയി ഉപയോഗിക്കുക.
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) തുറന്ന് നാലു ഏജന്റുകളും പരമ്പരാഗത ഓർക്കസ്ട്രേഷൻ ആയി എങ്ങനെ ബന്ധിച്ചിരിക്കുന്നു എന്ന് കാണിക്കുക.
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) തുറന്ന് നാലു ഏജന്റുകളും പരമ്പരാഗത ഓർക്കസ്ട്രേഷൻ ആയി എങ്ങനെ ബന്ധിച്ചിരിക്കുന്നു എന്ന് കാണിക്കുക.
 2. മൾട്ടി-ഏജന്റ് വർക്‌ഫ്ലോയ്ക്കുള്ള **Agent Inspector** തുടങ്ങാൻ `F5` അമർത്തുക.
 3. ഇൻസ്പെക്ടർ ചാറ്റിൽ ചെറിയ ജോബ് വിവരണം കൂടി ഒരു സാമ്പിൾ റീസ്യൂം പേസ്റ്റ് ചെയ്യുക.
 4. നാല് ഏജന്റുകളും: റീസ്യൂം പാർസർ, ജോബ് ആവശ്യം എക്സ്ട്രാക്ടർ, ഫിറ്റ് സ്‌കോറർ, ശുപാർശ എഴുത്തുകാരൻ എങ്ങനെ പ്രവർത്തിക്കുന്നു എന്ന് വിശദീകരിക്കുക.
 5. ഓരോ ഉപ-ഏജന്റിന്റെ output അടുത്ത ഏജന്റിന്റെ context ആകുന്നത്, കൈമാറ്റ മാതൃക പരാമർശിക്കുക.
-6. [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) കാണിച്ച് ഡെമോ 1 ലെ സിംഗിൾ ഏജന്റ് സമാനമാണ് എന്ന് താരതമ്യം ചെയ്യുക.
+6. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) കാണിച്ച് ഡെമോ 1 ലെ സിംഗിൾ ഏജന്റ് സമാനമാണ് എന്ന് താരതമ്യം ചെയ്യുക.
 
 ---
 

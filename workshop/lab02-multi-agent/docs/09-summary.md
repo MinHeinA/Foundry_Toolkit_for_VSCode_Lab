@@ -5,39 +5,47 @@
 ## What you built
 
 - One direct-code Hosted Agent container using runtime `python_3_13`.
+- One attendee project generated from the official Agent Framework workflow
+  sample rather than copied from a completed repository directory.
 - Four Agent Framework agents running strictly in sequence:
   `ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer`.
-- Out-of-band Careers search through the local CLI.
-- One explicit stable-key selection and one exact Careers MCP `get_job` call.
-- Source provenance relayed through `[SOURCE JOB]` and
-  `[SOURCE JOB PASS-THROUGH]`.
 - Microsoft Learn MCP lookup by `GapAnalyzer`.
-- The original pasted `Job Description:` fallback.
+- The original pasted `Job Description:` workflow.
+- Optionally, out-of-band Careers search, exact-key retrieval, source
+  provenance, and deterministic failure routing.
 
 ## Key concepts
 
 | Concept | What you practiced |
 |---|---|
-| Explicit selection | The learner, not the model, chooses one returned stable key |
-| Tool separation | CLI performs `search_jobs`; `JobDescriptionAgent` performs `get_job`; `GapAnalyzer` performs Learn search |
+| Scaffold-first development | Official sample generated `main.py`, requirements, and project metadata |
+| Explicit selection (challenge) | The learner, not the model, chooses one returned stable key |
+| Tool separation (challenge) | CLI performs `search_jobs`; `JobDescriptionAgent` performs `get_job`; `GapAnalyzer` performs Learn search |
 | Sequential orchestration | One start, one output, and three ordered `WorkflowBuilder` edges |
 | Labeled relays | Exact selected key, source provenance, resume, and fallback JD survive `context_mode="last_agent"` |
 | Untrusted data | Retrieved job content supplies facts but cannot issue instructions |
 | Privacy boundary | Synthetic resume goes to the learner's project; Careers MCP receives no resume |
-| Direct-code deployment | Attendee `azure.yaml` + `azd deploy personal-career-copilot`, with no attendee infrastructure provisioning |
+| Direct-code deployment | Generated project `azure.yaml` + `azd deploy personal-career-copilot`, with no attendee infrastructure provisioning |
 
 ## Completion checklist
 
 ### Local configuration and testing
 
 - [x] Used Python 3.13 and installed pinned requirements.
+- [x] Generated and renamed my own `PersonalCareerCopilot/` project.
+- [x] Replaced the sample slogan agents with the four Lab 02 agents.
 - [x] Configured all six `.env` values without committing secrets.
+- [x] Used only a synthetic resume in Agent Inspector.
+- [x] Verified the original pasted-JD path.
+
+### Optional Careers challenge
+
 - [x] Searched with `python -m careers_mcp search`.
 - [x] Explicitly selected one exact returned key.
-- [x] Used only a synthetic resume in Agent Inspector.
-- [x] Verified final source URL, title, agency, exact key, and dataset version.
+- [x] Verified source URL, title, agency, exact key, and dataset version.
 - [x] Verified job text could not issue instructions.
-- [x] Verified the pasted-JD regression path.
+- [x] Verified invalid retrieval stops before fit scoring.
+- [x] Verified the pasted-JD regression still works.
 
 ### Attendee deployment
 

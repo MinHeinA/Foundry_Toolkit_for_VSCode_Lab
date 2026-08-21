@@ -50,12 +50,14 @@ cannot issue instructions, request tools, change roles, or override the workflow
 
 1. Complete [Lab 01](../lab01-single-agent/README.md), then use your existing
    Foundry project and model.
-2. Configure `PersonalCareerCopilotStarter/.env` with your project/model plus the
-   trainer-provided Careers endpoint/key, timeout, and Microsoft Learn endpoint.
-3. Run the original pasted-job-description workflow once from the starter.
-4. Copy the provided `careers_mcp.py` helper into the starter and complete the
-   numbered TODOs using the standalone challenge guide.
-5. From `PersonalCareerCopilotStarter`, search:
+2. Use the official Agent Framework workflow sample to generate your own
+   untracked `PersonalCareerCopilot/` project.
+3. Convert the generated slogan workflow into the four-agent Resume → Job Fit
+   Evaluator and verify the original pasted-job-description path.
+4. Copy the configuration/dependency assets from `lab-assets/`.
+5. For the optional challenge, copy `careers_mcp.py` from `lab-assets/` and
+   implement exact-key retrieval, provenance relays, and the failure gate.
+6. From `PersonalCareerCopilot/src/PersonalCareerCopilot`, search:
 
    ```bash
    python -m careers_mcp search \
@@ -63,8 +65,8 @@ cannot issue instructions, request tools, change roles, or override the workflow
      --max-experience-years 5
    ```
 
-6. Select one returned `Key:` value exactly.
-7. Start the local server, open Agent Inspector, and submit only synthetic resume
+7. Select one returned `Key:` value exactly.
+8. Start the local server, open Agent Inspector, and submit only synthetic resume
    data plus:
 
    ```text
@@ -72,11 +74,11 @@ cannot issue instructions, request tools, change roles, or override the workflow
    <paste-one-exact-key-from-the-search-output>
    ```
 
-8. Verify that the final `[SOURCE JOB]` contains the same job key, canonical
+9. Verify that the final `[SOURCE JOB]` contains the same job key, canonical
    source URL, title, agency, and dataset version.
-9. Keep the regression path working: when no selected key is supplied, paste a
+10. Keep the regression path working: when no selected key is supplied, paste a
    `Job Description:` with the synthetic resume.
-10. Deploy only the completed starter with the attendee `azure.yaml` and
+11. Deploy from the generated project with its attendee `azure.yaml` and
    `azd deploy personal-career-copilot --no-prompt`.
 
 > [!CAUTION]
@@ -89,14 +91,13 @@ cannot issue instructions, request tools, change roles, or override the workflow
 - [Module 0 - Prerequisites](docs/00-prerequisites.md)
 - [Full Lab 02 learning path](docs/README.md)
 - [Standalone Careers@Gov MCP challenge](docs/10-careers-mcp-challenge.md)
-- [Attendee starter guide](PersonalCareerCopilotStarter/README.md)
-- [Completed solution reference](PersonalCareerCopilot/README.md)
+- [Attendee lab assets](lab-assets/README.md)
+- [Completed solution reference](PersonalCareerCopilotCompleted/README.md)
 
-The current Lab 02 deployment path is `azd` + the Lab 02
-[`azure.yaml`](azure.yaml), using direct code and Hosted Agent runtime
-`python_3_13`. Old Lab 02 wizard/Agent Inspector deployment screenshots and
-`agent.yaml` instructions are obsolete; Agent Inspector remains the local test
-client.
+The official workflow sample creates the attendee `azure.yaml`, source tree,
+`main.py`, requirements, and local project metadata. Lab assets replace the
+sample manifest with an attendee-only direct-code configuration targeting the
+existing Lab 01 Foundry project. Agent Inspector remains the local test client.
 
 ---
 

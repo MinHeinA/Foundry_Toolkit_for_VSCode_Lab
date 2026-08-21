@@ -23,7 +23,7 @@ Pred izvedbo delavnice, prosimo:
 | Delavnica 01 - en sam agent     | [Delavnica 01](../workshop/lab01-single-agent/README.md)                         | Praktična delavnica: zgradi, preizkusi in namesti gostujočega agenta *Explain Like I'm an Executive* |
 | Delavnica 02 - več agentov      | [Delavnica 02](../workshop/lab02-multi-agent/README.md)                          | Praktična delavnica: zgradi 4-agentni potek *Resume to Job Fit Evaluator*                 |
 | Demo 1: Izvršni agent           | [Agent Delavnica01](../../../workshop/lab01-single-agent/agent)                       | Demo Delavnica 01: prevedi tehnični jezik v izvršni povzetek                             |
-| Demo 2: Evalvator skladnosti CV s delom | [OsebniKarierniPomočnik](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Demo Delavnica 02: 4-agentni potek, ki oceni skladnost CV z delom in ustvari priporočila  |
+| Demo 2: Evalvator skladnosti CV s delom | [OsebniKarierniPomočnik](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Demo Delavnica 02: 4-agentni potek, ki oceni skladnost CV z delom in ustvari priporočila  |
 
 > **Opomba za trenerje:** Diapozitivi in video povezave bodo dodane, ko bodo posnetki objavljeni. Do takrat kontaktirajte skrbnika (glej [Kontakte](#kontakti)) za najnovejše materiale.
 
@@ -97,7 +97,7 @@ Predstavitev sledi istemu zaporedju kot delavnice. Priporočene točke za pogovo
 | Diagram arhitekture         | Preglej [README arhitekturo](../README.md#architecture): ogrodje, pregledovalnik, ACR, Agent Service.|
 | Zgradba gostujočega agenta | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - funkcije vsake datoteke.                  |
 | Živa demonstracija: Izvršni agent | Preklopi v VS Code in zaženi demo [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) od začetka do konca (glej [Demo 1](#demo-1-izvršni-agent)). |
-| Živa demonstracija: Evalvator skladnosti CV z delom | Preklopi v VS Code in zaženi 4-agentni demo [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (glej [Demo 2](#demo-2-evalvator-skladnosti-cv-z-delom)). |
+| Živa demonstracija: Evalvator skladnosti CV z delom | Preklopi v VS Code in zaženi 4-agentni demo [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (glej [Demo 2](#demo-2-evalvator-skladnosti-cv-z-delom)). |
 | Kratek povzetek Delavnice 01 | Predaj naprej udeležencem. Pokaži [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md). |
 | Vzorce več agentov         | Zaporedno vs sočasno vs predaja - predogled pred začetkom Delavnice 02.                              |
 | Kratek povzetek Delavnice 02 | Predaj naprej udeležencem. Pokaži [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md). |
@@ -112,7 +112,7 @@ V izvedbi sta vključeni dve živi demonstraciji. Za vsako načrtuj 10 minut.
 | Demo | Delavnica | Datoteke | Kaj prikazati |
 |------|-----------|----------|--------------|
 | Izvršni agent | Delavnica 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | En sam gostujoči agent; prevod tehničnega jezika v izvršni povzetek |
-| Evalvator skladnosti CV z delom | Delavnica 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | Orkestracija štirih agentov; ocena skladnosti CV z delom in predlog priporočila |
+| Evalvator skladnosti CV z delom | Delavnica 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | Orkestracija štirih agentov; ocena skladnosti CV z delom in predlog priporočila |
 
 ### Demo 1: Izvršni agent
 
@@ -126,14 +126,14 @@ Samostojen agent v [`workshop/lab01-single-agent/agent/`](../../../workshop/lab0
 
 ### Demo 2: Evalvator skladnosti CV z delom
 
-Štir- agentski potek v [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot). Uporabi kot 10-minutni demo pred Delavnico 02.
+Štir- agentski potek v [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted). Uporabi kot 10-minutni demo pred Delavnico 02.
 
-1. Odpri [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) in prikaži, kako so štirje agenti povezani v zaporedno orkestracijo.
+1. Odpri [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) in prikaži, kako so štirje agenti povezani v zaporedno orkestracijo.
 2. Pritisni `F5` za zagon **Agent Inspector** za večagentni potek.
 3. V Inspector klepet prilepi kratek opis delovnega mesta in vzorčni življenjepis.
 4. Preberi potek štirih agentov: parser življenjepisa, izvleček zahtev delovnega mesta, ocenjevalec skladnosti, pisec priporočil.
 5. Izpostavi, kako izhod vsakega podagenta postane kontekst naslednjega agenta, poudarjajoč vzorec predaje.
-6. Prikaži [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) za primerjavo s samostojnim agentom iz Demo 1.
+6. Prikaži [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) za primerjavo s samostojnim agentom iz Demo 1.
 
 ---
 

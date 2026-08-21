@@ -36,7 +36,7 @@ flowchart LR
    - 查看 VS Code 左下角帳戶圖示，應顯示您的帳戶名稱。
 
 4. **`agent.yaml` 填入正確值：**
-   - 開啟 `PersonalCareerCopilot/agent.yaml` 並確認：
+   - 開啟 `PersonalCareerCopilot/main.py` 並確認：
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

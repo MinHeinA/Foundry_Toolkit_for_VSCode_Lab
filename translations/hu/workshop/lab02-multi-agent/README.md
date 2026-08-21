@@ -49,14 +49,14 @@ Lásd a teljes tanulási utat:
 
 - [Labor 2 dokumentáció - Előfeltételek](docs/00-prerequisites.md)
 - [Labor 2 dokumentáció - Teljes tanulási út](docs/README.md)
-- [PersonalCareerCopilot használati útmutató](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted használati útmutató](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## 2. rész: Építsd fel és teszteld a munkafolyamatot
 
 1. Használd a Foundry Toolkit varázslót a munkafolyamat-alapú projekt létrehozásához.
-2. Másold át a prompt blokkokat és a munkafolyamat gráfot a `PersonalCareerCopilot/main.py` fájlból a munkaterületedre.
+2. Másold át a prompt blokkokat és a munkafolyamat gráfot a `PersonalCareerCopilotCompleted/main.py` fájlból a munkaterületedre.
 3. Futtasd helyben az Agent Inspectorral, és ellenőrizd mind a négy ügynököt, valamint az MCP eszközt.
 4. Telepítsd a hosztolt ügynököt a Foundry-be, ha a helyi teszt sikeres.
 

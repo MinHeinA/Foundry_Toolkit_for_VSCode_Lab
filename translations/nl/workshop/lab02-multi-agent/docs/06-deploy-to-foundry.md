@@ -36,7 +36,7 @@ Controleer vóór implementatie elk van de onderstaande punten:
    - Controleer het Accounts-icoon linksonder in VS Code. Je accountnaam zou zichtbaar moeten zijn.
 
 4. **`agent.yaml` bevat juiste waarden:**
-   - Open `PersonalCareerCopilot/agent.yaml` en controleer:
+   - Open `PersonalCareerCopilot/main.py` en controleer:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

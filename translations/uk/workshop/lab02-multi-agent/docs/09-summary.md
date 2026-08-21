@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### Варіант 2: Видалити лише розміщеного агента
 
 1. Відкрийте [ai.azure.com](https://ai.azure.com) → ваш проєкт → **Build** → **Agents**.
-2. Знайдіть **PersonalCareerCopilot** → натисніть **Delete**.
+2. Знайдіть **PersonalCareerCopilotCompleted** → натисніть **Delete**.
 
 ### Варіант 3: Видалити розгортання моделі
 

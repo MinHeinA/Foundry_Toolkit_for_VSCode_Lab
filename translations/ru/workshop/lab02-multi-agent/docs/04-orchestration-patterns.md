@@ -68,7 +68,7 @@ flowchart LR
 
 ## Чтение кода WorkflowBuilder
 
-Полная функция `create_workflow()` находится в [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Три вызова `add_edge()` строят последовательную цепочку:
+Полная функция `create_workflow()` находится в [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Три вызова `add_edge()` строят последовательную цепочку:
 
 | # | Ребро | Эффект |
 |---|-------|---------|

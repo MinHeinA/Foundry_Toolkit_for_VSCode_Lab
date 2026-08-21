@@ -36,7 +36,7 @@ Before you deploy, make sure you check every item below:
    - Check Accounts icon for bottom-left for VS Code. Your account name must dey show.
 
 4. **`agent.yaml` get correct values:**
-   - Open `PersonalCareerCopilot/agent.yaml` make you verify:
+   - Open `PersonalCareerCopilot/main.py` make you verify:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

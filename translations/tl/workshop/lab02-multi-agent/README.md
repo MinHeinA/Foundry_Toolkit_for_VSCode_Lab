@@ -49,14 +49,14 @@ Tingnan ang buong learning path sa:
 
 - [Lab 2 Docs - Mga Kinakailangan](docs/00-prerequisites.md)
 - [Lab 2 Docs - Buong Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Bahagi 2: Gawin at subukan ang workflow
 
 1. Gamitin ang Foundry Toolkit wizard upang simulan ang workflow-based na proyekto.
-2. Kopyahin ang prompt blocks at workflow graph mula sa `PersonalCareerCopilot/main.py` papunta sa iyong workspace.
+2. Kopyahin ang prompt blocks at workflow graph mula sa `PersonalCareerCopilotCompleted/main.py` papunta sa iyong workspace.
 3. Patakbuhin ito nang lokal gamit ang Agent Inspector at siguruhing gumagana ang apat na agents kasama ang MCP tool.
 4. I-deploy ang hosted agent sa Foundry kapag pumasa ang lokal na pagsusuri.
 

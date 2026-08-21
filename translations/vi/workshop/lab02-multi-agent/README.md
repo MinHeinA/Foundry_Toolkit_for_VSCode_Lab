@@ -49,14 +49,14 @@ Xem toàn bộ lộ trình học tại:
 
 - [Tài liệu Lab 2 - Yêu cầu tiên quyết](docs/00-prerequisites.md)
 - [Tài liệu Lab 2 - Toàn bộ lộ trình học](docs/README.md)
-- [Hướng dẫn chạy PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [Hướng dẫn chạy PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Phần 2: Xây dựng và kiểm thử quy trình công việc
 
 1. Sử dụng trình hướng dẫn Foundry Toolkit để tạo cấu trúc dự án dựa trên quy trình công việc.
-2. Sao chép các khối lệnh và đồ thị quy trình công việc từ `PersonalCareerCopilot/main.py` vào môi trường làm việc của bạn.
+2. Sao chép các khối lệnh và đồ thị quy trình công việc từ `PersonalCareerCopilotCompleted/main.py` vào môi trường làm việc của bạn.
 3. Chạy cục bộ với Agent Inspector và xác nhận tất cả bốn đại lý cùng công cụ MCP hoạt động.
 4. Triển khai đại lý được lưu trữ lên Foundry khi kiểm thử cục bộ thành công.
 

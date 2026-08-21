@@ -49,14 +49,14 @@ Pogledajte cijeli put učenja u:
 
 - [Laboratorij 2 Dokumentacija - Preduvjeti](docs/00-prerequisites.md)
 - [Laboratorij 2 Dokumentacija - Cijeli put učenja](docs/README.md)
-- [PersonalCareerCopilot vodič za pokretanje](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted vodič za pokretanje](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Dio 2: Izgradite i testirajte tijek rada
 
 1. Koristite Foundry Toolkit čarobnjak za postavljanje projekta temeljenog na tijeku rada.
-2. Kopirajte blokove upita i graf tijeka rada iz `PersonalCareerCopilot/main.py` u svoj radni prostor.
+2. Kopirajte blokove upita i graf tijeka rada iz `PersonalCareerCopilotCompleted/main.py` u svoj radni prostor.
 3. Pokrenite lokalno s Agent Inspectorom i provjerite svih četvero agenata plus MCP alat.
 4. Implementirajte hostiranog agenta u Foundry nakon što lokalno testiranje prođe.
 

@@ -49,14 +49,14 @@ Kompletní vzdělávací cestu najdete v:
 
 - [Lab 2 Docs - Prerequisites](docs/00-prerequisites.md)
 - [Lab 2 Docs - Full Learning Path](docs/README.md)
-- [PersonalCareerCopilot run guide](PersonalCareerCopilot/README.md)
+- [PersonalCareerCopilotCompleted run guide](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## Část 2: Vytvořte a otestujte pracovní postup
 
 1. Použijte průvodce Foundry Toolkit k vytvoření projektu založeného na pracovním postupu.
-2. Zkopírujte bloky promptů a graf pracovního postupu z `PersonalCareerCopilot/main.py` do svého pracovního prostoru.
+2. Zkopírujte bloky promptů a graf pracovního postupu z `PersonalCareerCopilotCompleted/main.py` do svého pracovního prostoru.
 3. Spusťte lokálně s Agent Inspector a ověřte všechny čtyři agenty plus nástroj MCP.
 4. Nasadíte hostovaného agenta do Foundry, když lokální testování projde.
 

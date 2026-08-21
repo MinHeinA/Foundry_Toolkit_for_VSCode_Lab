@@ -36,7 +36,7 @@ Przed wdrożeniem zweryfikuj poniższe elementy:
    - Sprawdź ikonę Konta w lewym dolnym rogu VS Code. Powinno być widoczne twoje konto.
 
 4. **`agent.yaml` ma prawidłowe wartości:**
-   - Otwórz `PersonalCareerCopilot/agent.yaml` i zweryfikuj:
+   - Otwórz `PersonalCareerCopilot/main.py` i zweryfikuj:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

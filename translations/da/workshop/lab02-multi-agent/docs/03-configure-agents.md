@@ -4,7 +4,7 @@
 
 I dette modul omdanner du den scaffoldede stub til **din** multi-agent workflow - ved at sætte miljøvariabler, skrive agentinstruktioner, tilføje MCP-værktøjet, forbinde workflow-grafen og installere afhængigheder.
 
-> **Reference:** Den komplette fungerende kode er i [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Brug den som reference, mens du bygger din egen workflow-graf og promptblokke.
+> **Reference:** Den komplette fungerende kode er i [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Brug den som reference, mens du bygger din egen workflow-graf og promptblokke.
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## Trin 2: Skriv agentinstruktioner
 
-Instruktioner definerer hver agents rolle, outputformat og regler. Åbn `main.py` og definer (eller erstat) de fire instruktionskonstanter - de komplette strenge er i [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+Instruktioner definerer hver agents rolle, outputformat og regler. Åbn `main.py` og definer (eller erstat) de fire instruktionskonstanter - de komplette strenge er i [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 Parser CV'et til en struktureret kandidatprofil **og** kopierer jobbeskrivelsen ordret ind i `[JOB DESCRIPTION PASS-THROUGH]`. Begge mærkede sektioner skal vises i outputtet.
@@ -88,7 +88,7 @@ Læser fit-rapporten. For **hver** manglende færdighed kalder den `search_micro
 
 ## Trin 3: Tilføj MCP-værktøjet
 
-GapAnalyzer kalder [Microsoft Learn MCP-serveren](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) for at hente reelle læringsressourcer for hvert færdighedsgab. Den fulde `search_microsoft_learn_for_plan` funktion er i [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py).
+GapAnalyzer kalder [Microsoft Learn MCP-serveren](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) for at hente reelle læringsressourcer for hvert færdighedsgab. Den fulde `search_microsoft_learn_for_plan` funktion er i [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py).
 
 Registrer værktøjet på GapAnalyzer, når agenten oprettes:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> Se [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) for den komplette `WorkflowBuilder` graf med `FoundryChatClient`, `AgentExecutor` og alle `add_edge()` kald.
+> Se [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) for den komplette `WorkflowBuilder` graf med `FoundryChatClient`, `AgentExecutor` og alle `add_edge()` kald.
 
 ---
 

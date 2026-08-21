@@ -23,7 +23,7 @@
 | 랩 01 - 단일 에이전트          | [Lab 01](../workshop/lab01-single-agent/README.md)                                       | 핸즈온 랩: *Explain Like I'm an Executive* 호스팅 에이전트 빌드, 테스트, 배포            |
 | 랩 02 - 다중 에이전트 워크플로우 | [Lab 02](../workshop/lab02-multi-agent/README.md)                                        | 핸즈온 랩: 4 에이전트 *Resume to Job Fit Evaluator* 워크플로우 빌드                       |
 | 데모 1: Executive Agent         | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                     | 랩 01 데모: 기술 용어를 임원 요약으로 번역                                              |
-| 데모 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)           | 랩 02 데모: 이력서-직무 적합도 점수를 매기고 추천을 생성하는 4 에이전트 워크플로우        |
+| 데모 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)           | 랩 02 데모: 이력서-직무 적합도 점수를 매기고 추천을 생성하는 4 에이전트 워크플로우        |
 
 > **강사용 노트:** 슬라이드 데크와 비디오 링크는 녹화가 공개된 후 추가됩니다. 그전까지는 최신 자료를 위해 유지 관리자에게 연락하세요 ([연락처](#연락처) 참조).
 
@@ -97,7 +97,7 @@
 | 아키텍처 다이어그램        | [README 아키텍처](../README.md#architecture) 설명: 스캐폴드, 인스펙터, ACR, 에이전트 서비스               |
 | 호스팅 에이전트 구성요소    | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` 각 파일 역할                                   |
 | 라이브 데모: Executive Agent | VS Code로 전환하여 [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) 데모 전체 진행 (데모 1 참조) |
-| 라이브 데모: Resume to Job Fit Evaluator | VS Code로 전환하여 [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4 에이전트 데모 실행 (데모 2 참조) |
+| 라이브 데모: Resume to Job Fit Evaluator | VS Code로 전환하여 [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4 에이전트 데모 실행 (데모 2 참조) |
 | 랩 01 개요                 | 학습자에게 인계. [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) 안내 |
 | 다중 에이전트 패턴          | 순차 실행 vs 병행 실행 vs 핸드오프 - 랩 02 시작 전에 미리 소개                                          |
 | 랩 02 개요                 | 학습자에게 인계. [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) 안내 |
@@ -112,7 +112,7 @@
 | 데모                  | 랩   | 파일                                                                                 | 보여줄 내용                                            |
 |----------------------|-------|--------------------------------------------------------------------------------------|-------------------------------------------------------|
 | Executive Agent       | 랩 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent)         | 단일 호스팅 에이전트; 기술 용어를 임원 요약으로 변환     |
-| Resume to Job Fit Evaluator | 랩 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4 에이전트 오케스트레이션; 이력서-직무 적합도 점수 및 추천 생성 |
+| Resume to Job Fit Evaluator | 랩 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4 에이전트 오케스트레이션; 이력서-직무 적합도 점수 및 추천 생성 |
 
 ### 데모 1: Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### 데모 2: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)에 있는 4 에이전트 워크플로우입니다. 랩 02 전에 10분 데모로 사용하세요.
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)에 있는 4 에이전트 워크플로우입니다. 랩 02 전에 10분 데모로 사용하세요.
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)를 열어 4 에이전트가 순차적으로 연결된 오케스트레이션을 보여주세요.
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)를 열어 4 에이전트가 순차적으로 연결된 오케스트레이션을 보여주세요.
 2. `F5`를 눌러 다중 에이전트 워크플로우용 <strong>Agent Inspector</strong>를 실행하세요.
 3. 검사기 채팅에 짧은 직무 기술서와 샘플 이력서를 붙여넣으세요.
 4. 4 에이전트 파이프라인(이력서 파서, 직무 요구사항 추출기, 적합도 평가기, 추천 작성기)를 진행하며 설명하세요.
 5. 각 하위 에이전트 출력이 다음 에이전트 컨텍스트가 되는 핸드오프 패턴을 강조하세요.
-6. [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml)를 보여 주고 데모 1의 단일 에이전트와 비교하세요.
+6. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)를 보여 주고 데모 1의 단일 에이전트와 비교하세요.
 
 ---
 

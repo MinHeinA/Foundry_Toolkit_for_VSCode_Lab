@@ -36,7 +36,7 @@ Trước khi triển khai, hãy kiểm tra từng mục bên dưới:
    - Kiểm tra biểu tượng Tài khoản ở góc dưới bên trái của VS Code. Tên tài khoản của bạn nên hiển thị.
 
 4. **`agent.yaml` có giá trị đúng:**
-   - Mở `PersonalCareerCopilot/agent.yaml` và kiểm tra:
+   - Mở `PersonalCareerCopilot/main.py` và kiểm tra:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

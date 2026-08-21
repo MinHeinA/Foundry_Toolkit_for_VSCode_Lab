@@ -36,7 +36,7 @@ flowchart LR
    - Ελέγξτε το εικονίδιο Λογαριασμοί στο κάτω-αριστερό μέρος του VS Code. Το όνομα του λογαριασμού σας θα πρέπει να είναι ορατό.
 
 4. **Το `agent.yaml` έχει σωστές τιμές:**
-   - Ανοίξτε το `PersonalCareerCopilot/agent.yaml` και επιβεβαιώστε:
+   - Ανοίξτε το `PersonalCareerCopilot/main.py` και επιβεβαιώστε:
      ```yaml
      environment_variables:
        - name: AZURE_AI_MODEL_DEPLOYMENT_NAME

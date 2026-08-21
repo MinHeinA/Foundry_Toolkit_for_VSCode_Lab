@@ -23,7 +23,7 @@ Atölyeyi sunmadan önce lütfen:
 | Laboratuvar 01 - tek ajan       | [Laboratuvar 01](../workshop/lab01-single-agent/README.md)                               | Uygulamalı laboratuvar: *Executive gibi Açıkla* barındırılan ajan oluşturma, test ve dağıtım |
 | Laboratuvar 02 - çok ajanlı iş akışı | [Laboratuvar 02](../workshop/lab02-multi-agent/README.md)                                | Uygulamalı laboratuvar: 4 ajanlı *Özgeçmişten İş Uyum Değerlendiricisi* iş akışı oluşturma  |
 | Demo 1: Executive Agent             | [Lab01 ajan](../../../workshop/lab01-single-agent/agent)                                              | Laboratuvar 01 demo: teknik jargonları yönetici özeti haline çevirme                        |
-| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | Laboratuvar 02 demo: özgeçmiş-iş uyumunu puanlayan ve öneriler üreten 4 ajanlı iş akışı     |
+| Demo 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | Laboratuvar 02 demo: özgeçmiş-iş uyumunu puanlayan ve öneriler üreten 4 ajanlı iş akışı     |
 
 > **Eğitmenler için not:** Slayt dosyası ve video bağlantıları kayıtlar yayınlandıktan sonra eklenecektir. O zamana kadar en güncel dosyalar için sorumluya ([İletişim](#i̇letişim)) bildirin.
 
@@ -97,7 +97,7 @@ Dosya laboratuvarlarla aynı akışı takip eder. Her bölüm için önerilen ko
 | Mimari diyagramı            | [README mimari](../README.md#architecture) üzerinden geçin: iskelet, Inspector, ACR, Agent Service.            |
 | Barındırılan ajanın anatomisi | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - her dosyanın işlevi.                            |
 | Canlı demo: Executive Agent | VS Code’a geçin ve [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) demoyu baştan sona çalıştırın ([Demo 1](#demo-1-executive-agent) bakınız). |
-| Canlı demo: Resume to Job Fit Evaluator | VS Code’a geçin ve [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) 4 ajan demoyu çalıştırın ([Demo 2](#demo-2-resume-to-job-fit-evaluator) bakınız). |
+| Canlı demo: Resume to Job Fit Evaluator | VS Code’a geçin ve [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) 4 ajan demoyu çalıştırın ([Demo 2](#demo-2-resume-to-job-fit-evaluator) bakınız). |
 | Laboratuvar 01 özeti         | Katılımcılara bırakın. [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md)ye yönlendirin. |
 | Çok ajanlı desenler          | Ardışık, eşzamanlı ve devir - Laboratuvar 02 başlamadan önce ön gösterim.                                     |
 | Laboratuvar 02 özeti         | Katılımcılara bırakın. [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md)ye yönlendirin. |
@@ -112,7 +112,7 @@ Teslimatta 2 canlı demo vardır. Her biri için 10 dakika ayırın.
 | Demo | Laboratuvar | Dosyalar | Ne gösterilecek |
 |------|-----|-------|--------------|
 | Executive Agent | Laboratuvar 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | Tek barındırılan ajan; teknik jargonları yönetici özetine çevirir |
-| Resume to Job Fit Evaluator | Laboratuvar 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | 4 ajanlı orkestrasyon; özgeçmiş-iş uyumunu puanlar ve öneri üretir |
+| Resume to Job Fit Evaluator | Laboratuvar 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | 4 ajanlı orkestrasyon; özgeçmiş-iş uyumunu puanlar ve öneri üretir |
 
 ### Demo 1: Executive Agent
 
@@ -126,14 +126,14 @@ Teslimatta 2 canlı demo vardır. Her biri için 10 dakika ayırın.
 
 ### Demo 2: Resume to Job Fit Evaluator
 
-[`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) içindeki 4 ajanlı iş akışı. Laboratuvar 02 öncesinde 10 dakikalık demo olarak kullanın.
+[`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) içindeki 4 ajanlı iş akışı. Laboratuvar 02 öncesinde 10 dakikalık demo olarak kullanın.
 
-1. [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) dosyasını açın ve dört ajanın nasıl ardışık bir orkestrasyonda bağlandığını gösterin.
+1. [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) dosyasını açın ve dört ajanın nasıl ardışık bir orkestrasyonda bağlandığını gösterin.
 2. Çok ajanlı iş akışı için **Agent Inspector**’ı başlatmak üzere `F5` tuşuna basın.
 3. Inspector sohbetine kısa bir iş tanımı ve örnek bir özgeçmiş yapıştırın.
 4. Dört ajan hattını inceleyin: özgeçmiş ayrıştırıcı, iş gereksinimi çıkarıcı, uygunluk puanlayıcı ve öneri yazarı.
 5. Her alt ajanın çıktısının bir sonraki ajanın bağlamı olması ve devir desenini nasıl vurguladığını gösterin.
-6. Tek ajan versiyonu ile karşılaştırmak için [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) dosyasını gösterin (Demo 1’den).
+6. Tek ajan versiyonu ile karşılaştırmak için [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) dosyasını gösterin (Demo 1’den).
 
 ---
 

@@ -6,7 +6,7 @@ Selles moodulis kasutate [Foundry Toolkit for VS Code](https://aka.ms/foundrytk)
 
 > **Põhimõte:** Alusraamistik on töötav mall ühe agendiga. Te asendate kohatäite loogika `WorkflowBuilder` graafikuga moodulis 3. Te ei kirjuta boilerplate’i algusest peale.
 
-> **Võrdlusnäide:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) on täielik töötav näide. Kasutage seda oma töö võrdlemiseks.
+> **Võrdlusnäide:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) on täielik töötav näide. Kasutage seda oma töö võrdlemiseks.
 
 ### Alusraamistiku asistendi töövoog
 
@@ -92,7 +92,7 @@ Pärast alusraamistiku valmimist kontrollige, et näeksite Exploreri aknas (`Ctr
 | `Dockerfile` | `python:3.12-slim`, paigaldab `requirements.txt`, avab pordi 8088, käivitab `python main.py` |
 | `requirements.txt` | `agent-framework-foundry`, `agent-framework-foundry-hosting`, `mcp<2,>=1.24.0`, `debugpy` |
 
-> **Viide:** Vaadake täielikku genereeritud sisu [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) ja [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt).
+> **Viide:** Vaadake täielikku genereeritud sisu [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ja [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt).
 
 ---
 

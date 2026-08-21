@@ -49,14 +49,14 @@ flowchart TD
 
 - [מסמכי מעבדה 2 - דרישות מוקדמות](docs/00-prerequisites.md)
 - [מסמכי מעבדה 2 - מסלול למידה מלא](docs/README.md)
-- [מדריך הפעלה ל-PersonalCareerCopilot](PersonalCareerCopilot/README.md)
+- [מדריך הפעלה ל-PersonalCareerCopilotCompleted](PersonalCareerCopilotCompleted/README.md)
 
 ---
 
 ## חלק 2: בנה ובדוק את זרימת העבודה
 
 1. השתמש באשף Foundry Toolkit כדי ליצור קונסטרוקציה לפרויקט מבוסס זרימת עבודה.
-2. העתק את קטעי השאילתות וגרף זרימת העבודה מהקובץ `PersonalCareerCopilot/main.py` אל סביבת העבודה שלך.
+2. העתק את קטעי השאילתות וגרף זרימת העבודה מהקובץ `PersonalCareerCopilotCompleted/main.py` אל סביבת העבודה שלך.
 3. הרץ באופן מקומי עם Agent Inspector ואמת את כל ארבעת הסוכנים בתוספת כלי MCP.
 4. פרסם את הסוכן המאוחסן ל-Foundry לאחר שהבדיקות המקומיות עוברות בהצלחה.
 

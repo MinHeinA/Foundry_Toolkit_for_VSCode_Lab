@@ -4,7 +4,7 @@
 
 このモジュールでは、スキャフォールドされたスタブを<strong>あなたの</strong>マルチエージェントワークフローに変換します。環境変数の設定、エージェント命令の作成、MCPツールの追加、ワークフローグラフの配線、および依存関係のインストールを行います。
 
-> **参考:** 完全な動作コードは[`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)にあります。自分のワークフローグラフとプロンプトブロックを構築する際の参考にしてください。
+> **参考:** 完全な動作コードは[`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)にあります。自分のワークフローグラフとプロンプトブロックを構築する際の参考にしてください。
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## ステップ 2: エージェント命令を書き込む
 
-命令は各エージェントの役割、出力形式、およびルールを定義します。`main.py`を開き、4つの命令定数を定義（または置き換え）します。完全な文字列は[`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)にあります。
+命令は各エージェントの役割、出力形式、およびルールを定義します。`main.py`を開き、4つの命令定数を定義（または置き換え）します。完全な文字列は[`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)にあります。
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 履歴書を構造化された候補者プロフィールに解析し、ジョブ記述を逐語的に`[JOB DESCRIPTION PASS-THROUGH]`にコピーします。これらのラベル付きセクションが両方とも出力に現れる必要があります。
@@ -88,7 +88,7 @@ ResumeParserの出力から`[PARSED RESUME]`と`[JOB DESCRIPTION PASS-THROUGH]`�
 
 ## ステップ 3: MCPツールを追加する
 
-GapAnalyzerは[Microsoft Learn MCPサーバー](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol)を呼び出して、各スキルギャップのための実際の学習リソースを取得します。完全な`search_microsoft_learn_for_plan`関数は[`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)にあります。
+GapAnalyzerは[Microsoft Learn MCPサーバー](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol)を呼び出して、各スキルギャップのための実際の学習リソースを取得します。完全な`search_microsoft_learn_for_plan`関数は[`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)にあります。
 
 エージェント作成時にGapAnalyzerにツールを登録します：
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> 完全な`WorkflowBuilder`グラフ（`FoundryChatClient`、`AgentExecutor`、すべての`add_edge()`呼び出しを含む）は[`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)を参照してください。
+> 完全な`WorkflowBuilder`グラフ（`FoundryChatClient`、`AgentExecutor`、すべての`add_edge()`呼び出しを含む）は[`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)を参照してください。
 
 ---
 

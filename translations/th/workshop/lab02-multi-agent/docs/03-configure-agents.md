@@ -4,7 +4,7 @@
 
 ในโมดูลนี้ คุณจะแปลงโครงร่างต้นแบบเป็น **เวิร์กโฟลว์มัลติเอเย่นต์ของคุณเอง** - โดยการตั้งค่าตัวแปรสภาพแวดล้อม, เขียนคำสั่งสำหรับเอเย่นต์, เพิ่มเครื่องมือ MCP, เชื่อมต่อกราฟเวิร์กโฟลว์ และติดตั้ง dependencies
 
-> **เอกสารอ้างอิง:** โค้ดทำงานครบถ้วนอยู่ใน [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) ใช้เป็นเอกสารอ้างอิงขณะสร้างกราฟเวิร์กโฟลว์และบล็อกคำสั่งของคุณเอง
+> **เอกสารอ้างอิง:** โค้ดทำงานครบถ้วนอยู่ใน [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) ใช้เป็นเอกสารอ้างอิงขณะสร้างกราฟเวิร์กโฟลว์และบล็อกคำสั่งของคุณเอง
 
 ---
 
@@ -68,7 +68,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## ขั้นตอนที่ 2: เขียนคำสั่งเอเย่นต์
 
-คำสั่งกำหนดบทบาทของแต่ละเอเย่นต์ รูปแบบผลลัพธ์ และกฎต่างๆ เปิด `main.py` และกำหนด (หรือแทนที่) ค่าคงที่คำสั่งทั้งสี่ - ข้อความครบถ้วนอยู่ใน [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)
+คำสั่งกำหนดบทบาทของแต่ละเอเย่นต์ รูปแบบผลลัพธ์ และกฎต่างๆ เปิด `main.py` และกำหนด (หรือแทนที่) ค่าคงที่คำสั่งทั้งสี่ - ข้อความครบถ้วนอยู่ใน [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)
 
 ### 2.1 `RESUME_PARSER_INSTRUCTIONS`
 วิเคราะห์เรซูเม่เป็นโปรไฟล์ผู้สมัครแบบมีโครงสร้าง **และ** คัดลอกคำอธิบายงานตามต้นฉบับลงใน `[JOB DESCRIPTION PASS-THROUGH]` ทั้งสองส่วนที่ติดป้ายชื่อซึ่งปรากฏในผลลัพธ์
@@ -88,7 +88,7 @@ AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
 
 ## ขั้นตอนที่ 3: เพิ่มเครื่องมือ MCP
 
-GapAnalyzer เรียกใช้ [เซิร์ฟเวอร์ Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) เพื่อดึงทรัพยากรการเรียนรู้จริงสำหรับช่องว่างทักษะแต่ละช่อง ฟังก์ชันเต็ม `search_microsoft_learn_for_plan` อยู่ใน [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py)
+GapAnalyzer เรียกใช้ [เซิร์ฟเวอร์ Microsoft Learn MCP](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) เพื่อดึงทรัพยากรการเรียนรู้จริงสำหรับช่องว่างทักษะแต่ละช่อง ฟังก์ชันเต็ม `search_microsoft_learn_for_plan` อยู่ใน [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py)
 
 ลงทะเบียนเครื่องมือนี้บน GapAnalyzer เมื่อสร้างเอเย่นต์:
 
@@ -101,7 +101,7 @@ gap_analyzer = Agent(
 )
 ```
 
-> ดู [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) สำหรับกราฟ `WorkflowBuilder` ที่ครบถ้วนพร้อม `FoundryChatClient`, `AgentExecutor` และคำสั่งเรียก `add_edge()` ทั้งหมด
+> ดู [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) สำหรับกราฟ `WorkflowBuilder` ที่ครบถ้วนพร้อม `FoundryChatClient`, `AgentExecutor` และคำสั่งเรียก `add_edge()` ทั้งหมด
 
 ---
 

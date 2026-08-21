@@ -23,7 +23,7 @@
 | ห้องปฏิบัติการ 01 - ตัวแทนเดียว         | [Lab 01](../workshop/lab01-single-agent/README.md)                               | ห้องปฏิบัติการแบบลงมือทำ: สร้าง ทดสอบ และปรับใช้เอเย่นต์ *Explain Like I'm an Executive*    |
 | ห้องปฏิบัติการ 02 - กระบวนงานหลายตัวแทน | [Lab 02](../workshop/lab02-multi-agent/README.md)                                | ห้องปฏิบัติการแบบลงมือทำ: สร้างกระบวนการทำงาน *Resume to Job Fit Evaluator* แบบ 4 ตัวแทน     |
 | สาธิต 1: Executive Agent             | [Lab01 agent](../../../workshop/lab01-single-agent/agent)                                              | สาธิตห้อง 01: แปลศัพท์เทคนิคเป็นสรุปสำหรับผู้บริหาร                                        |
-| สาธิต 2: Resume to Job Fit Evaluator | [PersonalCareerCopilot](../../../workshop/lab02-multi-agent/PersonalCareerCopilot)                     | สาธิตห้อง 02: กระบวนงาน 4 ตัวแทนที่ประเมินความเหมาะสมของเรซูเม่กับงานและสร้างคำแนะนำ     |
+| สาธิต 2: Resume to Job Fit Evaluator | [PersonalCareerCopilotCompleted](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted)                     | สาธิตห้อง 02: กระบวนงาน 4 ตัวแทนที่ประเมินความเหมาะสมของเรซูเม่กับงานและสร้างคำแนะนำ     |
 
 > **หมายเหตุสำหรับผู้ฝึกสอน:** จะมีการเพิ่มลิงก์สไลด์และวิดีโอเมื่อบันทึกเสร็จสมบูรณ์ จนกว่าจะถึงเวลานั้น ให้ติดต่อผู้ดูแล (ดูที่ [ติดต่อ](#ช่องทางติดต่อ)) เพื่อขอไฟล์ล่าสุด
 
@@ -97,7 +97,7 @@
 | แผนผังสถาปัตยกรรม        | เดินผ่าน [README สถาปัตยกรรม](../README.md#architecture): โครงสร้าง, Inspector, ACR, Agent Service           |
 | โครงสร้างตัวแทนที่โฮสต์   | `agent.yaml`, `Dockerfile`, `main.py`, `requirements.txt` - ไฟล์แต่ละไฟล์ทำอะไร                             |
 | สาธิตสด: Executive Agent  | สลับไป VS Code และรันเดโม [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) ตั้งแต่ต้นจนจบ (ดู [สาธิต 1](#สาธิต-1-executive-agent)) |
-| สาธิตสด: Resume to Job Fit Evaluator | สลับไป VS Code และรันเดโม 4 ตัวแทน [`PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) (ดู [สาธิต 2](#สาธิต-2-resume-to-job-fit-evaluator)) |
+| สาธิตสด: Resume to Job Fit Evaluator | สลับไป VS Code และรันเดโม 4 ตัวแทน [`PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) (ดู [สาธิต 2](#สาธิต-2-resume-to-job-fit-evaluator)) |
 | สรุปห้องปฏิบัติการ 01                | ส่งต่อให้ผู้เรียน ดูที่ [`workshop/lab01-single-agent/README.md`](../workshop/lab01-single-agent/README.md) |
 | รูปแบบตัวแทนหลายตัว              | ต่อเนื่อง เทียบกับพร้อมกัน เทียบกับส่งต่อ - ดูตัวอย่างก่อนห้องปฏิบัติการ 02 เริ่ม                        |
 | สรุปห้องปฏิบัติการ 02                | ส่งต่อให้ผู้เรียน ดูที่ [`workshop/lab02-multi-agent/README.md`](../workshop/lab02-multi-agent/README.md) |
@@ -112,7 +112,7 @@
 | สาธิต | ห้องปฏิบัติการ | ไฟล์ | สิ่งที่จะแสดง |
 |------|-----|-------|--------------|
 | Executive Agent | ห้อง 01 | [`workshop/lab01-single-agent/agent/`](../../../workshop/lab01-single-agent/agent) | ตัวแทนที่โฮสต์เดียว; แปลศัพท์เทคนิคเป็นสรุปสำหรับผู้บริหาร |
-| Resume to Job Fit Evaluator | ห้อง 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) | การประสานงาน 4 ตัวแทน; ประเมินความเหมาะสมเรซูเม่กับงานและสร้างคำแนะนำ |
+| Resume to Job Fit Evaluator | ห้อง 02 | [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) | การประสานงาน 4 ตัวแทน; ประเมินความเหมาะสมเรซูเม่กับงานและสร้างคำแนะนำ |
 
 ### สาธิต 1: Executive Agent
 
@@ -126,14 +126,14 @@
 
 ### สาธิต 2: Resume to Job Fit Evaluator
 
-กระบวนงาน 4 ตัวแทนใน [`workshop/lab02-multi-agent/PersonalCareerCopilot/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot) ใช้การนี้สาธิต 10 นาทีก่อนห้องปฏิบัติการ 02
+กระบวนงาน 4 ตัวแทนใน [`workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) ใช้การนี้สาธิต 10 นาทีก่อนห้องปฏิบัติการ 02
 
-1. เปิด [`PersonalCareerCopilot/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py) และแสดงการเชื่อมต่อของตัวแทนทั้งสี่ในการจัดลำดับดำเนินงาน
+1. เปิด [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) และแสดงการเชื่อมต่อของตัวแทนทั้งสี่ในการจัดลำดับดำเนินงาน
 2. กด `F5` เพื่อเปิด **Agent Inspector** สำหรับกระบวนงานหลายตัวแทน
 3. วางคำอธิบายงานสั้นและเรซูเม่ตัวอย่างในแชทของ Inspector
 4. เดินผ่านขั้นตอนทั้งสี่: ตัวแยกเรซูเม่, ตัวดึงข้อมูลความต้องการงาน, ตัวประเมินความเหมาะสม, และตัวเขียนคำแนะนำ
 5. ชี้ให้เห็นว่าผลลัพธ์ของแต่ละตัวแทนย่อยกลายเป็นบริบทสำหรับตัวแทนถัดไป โดยเน้นรูปแบบการส่งต่อ
-6. แสดง [`PersonalCareerCopilot/agent.yaml`](../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) เพื่อเปรียบเทียบกับตัวแทนนักเดียวจากสาธิต 1
+6. แสดง [`PersonalCareerCopilotCompleted/main.py`](../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) เพื่อเปรียบเทียบกับตัวแทนนักเดียวจากสาธิต 1
 
 ---
 

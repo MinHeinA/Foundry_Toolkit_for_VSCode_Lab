@@ -68,7 +68,7 @@ Agentų inspektorius rodo tą pačią grafinę struktūrą, kai agentas veikia v
 
 ## Skaitymas WorkflowBuilder kode
 
-Visa `create_workflow()` funkcija yra [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Trys `add_edge()` kvietimai sukuria sekvencinę liniją:
+Visa `create_workflow()` funkcija yra [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Trys `add_edge()` kvietimai sukuria sekvencinę liniją:
 
 | # | Kraštinė | Poveikis |
 |---|----------|----------|

@@ -68,7 +68,7 @@ Pemeriksa Ejen menunjukkan struktur graf yang sama ini apabila ejen dijalankan s
 
 ## Membaca kod WorkflowBuilder
 
-Fungsi penuh `create_workflow()` ada dalam [`PersonalCareerCopilot/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/main.py). Tiga panggilan `add_edge()` membina saluran berturutan:
+Fungsi penuh `create_workflow()` ada dalam [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py). Tiga panggilan `add_edge()` membina saluran berturutan:
 
 | # | Tepi | Kesan |
 |---|------|--------|

@@ -106,7 +106,7 @@ az group delete --name rg-hosted-agents-workshop --yes --no-wait
 ### ជម្រើស ២៖ លុបទាំងភ្នាក់ងារបង្ហោះទេ
 
 1. បើក [ai.azure.com](https://ai.azure.com) → គម្រោងរបស់អ្នក → **Build** → **Agents**។
-2. ស្វែងរក **PersonalCareerCopilot** → ចុច **Delete**។
+2. ស្វែងរក **PersonalCareerCopilotCompleted** → ចុច **Delete**។
 
 ### ជម្រើស ៣៖ លុបការបញ្ចូនម៉ូឌែល
 

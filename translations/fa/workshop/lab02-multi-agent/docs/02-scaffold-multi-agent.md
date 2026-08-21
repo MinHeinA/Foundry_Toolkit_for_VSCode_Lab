@@ -6,7 +6,7 @@
 
 > **مفهوم کلیدی:** پایه‌ریزی یک نمونه کاری با یک عامل است. شما منطق جایگزین را با گراف `WorkflowBuilder` در ماژول ۳ جایگزین می‌کنید. شما کد پایه را از ابتدا نمی‌نویسید.
 
-> **پیاده‌سازی مرجع:** [`PersonalCareerCopilot/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot) یک نمونه کاری کامل است. از آن برای مقایسه کار خود در حین پیشرفت استفاده کنید.
+> **پیاده‌سازی مرجع:** [`PersonalCareerCopilotCompleted/`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted) یک نمونه کاری کامل است. از آن برای مقایسه کار خود در حین پیشرفت استفاده کنید.
 
 ### جریان جادوگر پایه‌ریزی
 
@@ -92,7 +92,7 @@ flowchart LR
 | `Dockerfile` | `python:3.12-slim`، نصب `requirements.txt`، باز کردن پورت ۸۰۸۸، اجرای `python main.py` |
 | `requirements.txt` | بسته‌های `agent-framework-foundry`، `agent-framework-foundry-hosting`، `mcp<2,>=1.24.0`، `debugpy` |
 
-> **مرجع:** محتوای کامل تولید شده را در [`PersonalCareerCopilot/agent.yaml`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/agent.yaml) و [`PersonalCareerCopilot/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt) ببینید.
+> **مرجع:** محتوای کامل تولید شده را در [`PersonalCareerCopilotCompleted/main.py`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/main.py) و [`PersonalCareerCopilotCompleted/requirements.txt`](../../../../../workshop/lab02-multi-agent/PersonalCareerCopilotCompleted/requirements.txt) ببینید.
 
 ---
 
