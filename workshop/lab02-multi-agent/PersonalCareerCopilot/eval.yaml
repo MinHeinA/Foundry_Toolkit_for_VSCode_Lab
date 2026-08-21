@@ -1,0 +1,14 @@
+name: careers-job-fit-core-smoke
+agent:
+  name: personal-career-copilot-reference
+  kind: hosted
+  model: gpt-5.4-1
+  config: .agent_configs/baseline/metadata.yaml
+dataset:
+  local_uri: .foundry/datasets/careers-job-fit-smoke.jsonl
+evaluators:
+  - builtin.relevance
+  - builtin.task_adherence
+  - builtin.intent_resolution
+options:
+  eval_model: gpt-5.4-1

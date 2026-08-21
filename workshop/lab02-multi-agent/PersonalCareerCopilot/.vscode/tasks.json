@@ -10,7 +10,7 @@
                     5679,
                     8088
                 ],
-                "pyPackageInstalled": ["debugpy", "agent-dev-cli", "agent-framework-foundry", "agent-framework-foundry-hosting"]
+                "pyPackageInstalled": ["debugpy", "agent-framework-foundry", "agent-framework-foundry-hosting"]
             }
         },
         {
@@ -20,7 +20,7 @@
                 "value": "${command:python.interpreterPath}",
                 "quoting": "strong"
             },
-            "args": ["-m", "debugpy", "--listen", "127.0.0.1:5679", "-m", "agentdev", "run", "main.py", "--verbose", "--port", "8088"],
+            "args": ["-m", "debugpy", "--listen", "127.0.0.1:5679", "main.py", "--port", "8088"],
             "isBackground": true,
             "options": {
                 "cwd": "${workspaceFolder}"

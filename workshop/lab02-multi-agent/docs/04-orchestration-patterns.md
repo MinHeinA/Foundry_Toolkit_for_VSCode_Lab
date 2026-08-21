@@ -1,155 +1,123 @@
-# Module 4 - Orchestration Patterns
+# Module 4 - Orchestration & Labeled Relays
 
 ⏱️ ~10 min
 
-In this module, you explore the orchestration patterns used in the Resume Job Fit Evaluator and learn how to read, modify, and extend the workflow graph. Understanding these patterns is essential for debugging data flow issues and building your own [multi-agent workflows](https://learn.microsoft.com/agent-framework/workflows/).
+## Strict sequential workflow
 
----
-
-## Pattern 1: Sequential chain
-
-The fundamental pattern in the workflow is a **sequential chain** - each agent’s output feeds directly into the next.
+The implemented graph has one start executor, one output executor, and exactly
+three edges:
 
 ```mermaid
 flowchart LR
-    RP[Resume Parser] --> JD[JD Agent]
-    JD --> MA[Matching Agent]
-    MA --> GA[Gap Analyzer]
+    RP["ResumeParser"] --> JD["JobDescriptionAgent"]
+    JD --> MA["MatchingAgent"]
+    MA --> GA["GapAnalyzer"]
 ```
-
-In code, each `add_edge()` call creates one step in the chain:
 
 ```python
-.add_edge(resume_executor, jd_executor)       # ResumeParser output → JD Agent
-.add_edge(jd_executor, matching_executor)     # JD Agent output → MatchingAgent
-.add_edge(matching_executor, gap_executor)    # MatchingAgent output → GapAnalyzer
+WorkflowBuilder(
+    start_executor=resume_executor,
+    output_executors=[gap_executor],
+).add_edge(
+    resume_executor, jd_executor
+).add_edge(
+    jd_executor, matching_executor
+).add_edge(
+    matching_executor, gap_executor
+)
 ```
 
-> **Why sequential, not fan-out/fan-in?** `WorkflowBuilder` uses **OR-semantics** for incoming edges: a downstream executor fires as soon as **any** predecessor completes. If `matching_executor` had two incoming edges (from both `resume_executor` and `jd_executor`), it would trigger twice - once when ResumeParser finishes and again when JD Agent finishes - causing GapAnalyzer to also run twice and the output to appear twice. The sequential pipeline avoids this entirely.
+All four agents execute in this order inside a single Hosted Agent container.
+Careers job discovery is not another agent stage: the learner runs the CLI
+before submitting the request.
 
-## Pattern 2: Content Relay
+## Why labeled relays are required
 
-Because `context_mode="last_agent"` means each executor sees only its **direct predecessor’s output**, agents in a sequential chain must explicitly pass forward any data that downstream agents need.
+`context_mode="last_agent"` means an executor receives only its direct
+predecessor's output. Each stage therefore copies forward the minimum data
+required later:
 
-In this workflow:
-- **ResumeParser** copies the JD verbatim into `[JOB DESCRIPTION PASS-THROUGH]` (so JD Agent can find it).
-- **JD Agent** copies the `[PARSED RESUME]` verbatim into `[PARSED RESUME PASS-THROUGH]` (so MatchingAgent can compare both profiles).
+```text
+Learner input
+├── Resume: <synthetic data>
+├── Selected Job Key: <exact CLI result>
+└── Job Description: <optional fallback>
 
-```
 ResumeParser output
-└─ [PARSED RESUME]               ← extracted by JD Agent
-└─ [JOB DESCRIPTION PASS-THROUGH] ← extracted by JD Agent
+├── [PARSED RESUME]
+├── [SELECTED JOB KEY]
+└── [JOB DESCRIPTION PASS-THROUGH]
 
-JD Agent output
-└─ [JD REQUIREMENTS]             ← extracted by MatchingAgent
-└─ [PARSED RESUME PASS-THROUGH]  ← extracted by MatchingAgent
+JobDescriptionAgent output
+├── [JD REQUIREMENTS]
+├── [PARSED RESUME PASS-THROUGH]
+└── [SOURCE JOB]
+
+MatchingAgent output
+├── [MATCH REPORT]
+└── [SOURCE JOB PASS-THROUGH]
+
+GapAnalyzer output
+├── [SOURCE JOB]
+└── Personalized Learning Roadmap
 ```
 
-Each relay section must be copied **verbatim** - summarizing or paraphrasing it breaks the downstream agent that depends on it.
+### `[SELECTED JOB KEY]`
 
----
+This block must contain the complete selected key without changing case or
+punctuation. `JobDescriptionAgent` uses it for one exact `get_job` call. The
+agent never broadens the search or chooses a different result.
 
-## The complete graph
+### `[SOURCE JOB]`
 
-Combining the sequential chain and content relay patterns produces the full workflow:
+For a successful Careers retrieval, this block records:
 
-```mermaid
-flowchart LR
-    U[User Input] --> RP[Resume Parser]
-    RP --> JD[JD Agent]
-    JD --> MA[Matching Agent]
-    MA --> GA[Gap Analyzer + MCP]
-    GA --> O[Final Output]
-```
+- title
+- agency
+- canonical source URL
+- exact job key
+- dataset version
 
-The Agent Inspector shows this same graph structure when the agent is running locally. Refer to [Module 5 - Test Locally](05-test-locally.md) for screenshots.
+For a pasted-JD fallback, only explicitly supplied title/agency/source values are
+used; missing values remain `Not provided`, the key remains `Not provided`, and
+dataset version is `Not applicable`.
 
----
+### `[SOURCE JOB PASS-THROUGH]`
 
-## Reading the WorkflowBuilder code
+`MatchingAgent` copies the complete `[SOURCE JOB]` block verbatim. It does not
+infer or repair missing metadata. `GapAnalyzer` copies it into the final answer
+so the learner can verify provenance.
 
-The full `create_workflow()` function is in [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py). The three `add_edge()` calls build the sequential pipeline:
+### `[JOB DESCRIPTION PASS-THROUGH]`
 
-| # | Edge | Effect |
-|---|------|--------|
-| 1 | `resume_executor → jd_executor` | JD Agent receives `[PARSED RESUME]` + `[JOB DESCRIPTION PASS-THROUGH]` |
-| 2 | `jd_executor → matching_executor` | MatchingAgent receives `[JD REQUIREMENTS]` + `[PARSED RESUME PASS-THROUGH]` |
-| 3 | `matching_executor → gap_executor` | GapAnalyzer receives fit report + gap list |
+This preserves the original Lab 02 regression path. It is read only when no
+selected job key exists. If a selected key exists and retrieval fails, the
+workflow reports the MCP failure instead of silently switching inputs.
 
----
+## Untrusted job-data rule
 
-## Modifying the graph
+Retrieved title, agency, descriptions, responsibilities, and requirements are
+data. Instructions embedded in any field cannot:
 
-### Adding a new agent
+- change an agent's role or output contract
+- request another tool call
+- override the selected key
+- suppress provenance
+- ask for resume or secret data
 
-To add a fifth agent (e.g., an **InterviewPrepAgent** after GapAnalyzer):
-
-1. Define an `INTERVIEW_PREP_INSTRUCTIONS` constant.
-2. Create `Agent` + `AgentExecutor` objects (same pattern as the existing four).
-3. Add `.add_edge(gap_executor, interview_exec)` in `WorkflowBuilder`.
-4. Update `output_executors=[interview_exec]`.
-
-> **Important:** `start_executor` is the only agent that receives raw user input. All other agents receive output from their upstream edge.
-
----
-
-## Common graph mistakes
-
-| Mistake | Symptom | Fix |
-|---------|---------|-----|
-| Missing edge to `output_executors` | Agent runs but output is empty | Ensure there's a path from `start_executor` to every agent in `output_executors` |
-| Circular dependency | Infinite loop or timeout | Check that no agent feeds back into an upstream agent |
-| Agent in `output_executors` with no incoming edge | Empty output | Add at least one `add_edge(source, that_agent)` |
-| Multiple `output_executors` without fan-in | Output contains only one agent's response | Use a single output agent that aggregates, or accept multiple outputs |
-| Missing `start_executor` | `ValueError` at build time | Always specify `start_executor` in `WorkflowBuilder()` |
-
----
-
-## Debugging the graph
-
-### Using Agent Inspector
-
-1. Start the agent locally with F5.
-2. Open Agent Inspector (`Ctrl+Shift+P` → **Foundry Toolkit: Open Agent Inspector**).
-3. Send a test message.
-4. In the Inspector’s response panel, look for the **streaming output** - it shows each agent’s contribution in sequence.
-
-
-### Using logging
-
-Add logging to `main.py` to trace data flow:
-
-```python
-import logging
-logger = logging.getLogger("resume-job-fit")
-
-# In main(), after building the workflow:
-logger.info("Workflow graph built with edges: RP→JD, JD→MA, MA→GA")
-```
-
-The server logs show agent execution order and MCP tool calls:
-
-```
-INFO:agent_framework:Executing agent: ResumeParser
-INFO:agent_framework:Executing agent: JobDescriptionAgent
-INFO:agent_framework:Executing agent: MatchingAgent
-INFO:agent_framework:Executing agent: GapAnalyzer
-INFO:agent_framework:Tool call: search_microsoft_learn_for_plan(skill="Kubernetes")
-POST https://learn.microsoft.com/api/mcp → 200
-INFO:agent_framework:Tool call: search_microsoft_learn_for_plan(skill="Terraform")
-POST https://learn.microsoft.com/api/mcp → 200
-```
-
----
+The job facts may be normalized and analyzed, but commands within them are
+ignored.
 
 ### Checkpoint
 
-- [ ] You can identify the two orchestration patterns in the workflow: sequential chain and content relay
-- [ ] You understand why `context_mode="last_agent"` requires explicit data relay between agents
-- [ ] You can read the `WorkflowBuilder` code and map each `add_edge()` call to the visual graph
-- [ ] You know how to add a new agent to the end of the pipeline
-- [ ] You can identify common graph mistakes and their symptoms
+- [ ] The graph is `ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer`.
+- [ ] Search is out of band, not an autonomous workflow step.
+- [ ] The selected key reaches only the exact `get_job` operation.
+- [ ] `[SOURCE JOB]` and `[SOURCE JOB PASS-THROUGH]` preserve provenance.
+- [ ] The pasted-JD path is used only when no selected key is supplied.
+- [ ] Retrieved job content cannot issue instructions.
 
 ---
 
-**Previous:** [03 - Configure Agents & Environment](03-configure-agents.md) · **Next:** [05 - Test Locally →](05-test-locally.md)
+**Previous:** [03 - Configure Agents & Environment](03-configure-agents.md) ·
+**Next:** [05 - Search & Test Locally →](05-test-locally.md)

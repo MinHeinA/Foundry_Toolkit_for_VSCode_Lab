@@ -1,153 +1,180 @@
-# Module 5 - Test Locally
+# Module 5 - Search & Test Locally
 
-⏱️ ~15 min
+⏱️ ~20 min
 
-In this module, you run the multi-agent workflow locally, test it with Agent Inspector, and verify all four agents and the MCP tool work correctly before deploying.
+Run every command in this module from
+`workshop/lab02-multi-agent/PersonalCareerCopilotStarter` with the Python 3.13 virtual
+environment active and `.env` configured.
 
----
+## Step 1: Search the shared Careers snapshot
 
-## Step 1: Start the agent server
+Search out of band before opening Agent Inspector:
 
-### Option A: Using the VS Code task (recommended)
-
-1. Open `workshop/lab02-multi-agent/PersonalCareerCopilot/` as your VS Code folder.
-2. Press `Ctrl+Shift+P` → type **Tasks: Run Task** → select **Run Agent HTTP Server**.
-3. The task runs `agentdev` under `debugpy`, with the debugger on port `5679` and Agent Inspector on port `8088`.
-4. Wait for the Agent Dev output to report that the server is running.
-
-To start without attaching a debugger, run `python -m agentdev run main.py --verbose --port 8088` from an activated virtual environment.
-
-### Option B: Using F5 (debug mode)
-
-1. Press `F5` → select **Debug Agent with Inspector (agentdev)**.
-2. VS Code validates the dependencies, starts Agent Dev, opens Agent Inspector, and attaches `debugpy` with full breakpoint support.
-
----
-
-## Step 2: Open Agent Inspector
-
-1. Press `Ctrl+Shift+P` → type **Foundry Toolkit: Open Agent Inspector**.
-2. Agent Inspector opens as a VS Code panel connected to `http://localhost:8088`.
-3. You should see the agent interface ready to accept messages.
-
-![Agent Inspector open and ready - Playground shows the welcome prompt](images/04-debug-console-matching-input.png)
-
-> **If Agent Inspector doesn't open:** Ensure the Agent Dev server is fully started. If port 5679 or 8088 is busy, see [Module 8 - Troubleshooting](08-troubleshooting.md).
-
----
-
-## Step 2b: (Optional) Open the Workflow Visualizer
-
-The Foundry Toolkit includes a real-time **Workflow Visualizer** that shows how agents interact as the graph executes. This is especially useful for multi-agent debugging.
-
-1. Press `Ctrl+Shift+P` → type **Foundry Toolkit: Open Visualizer for Hosted Agents**.
-2. A new VS Code tab opens showing the live execution graph.
-3. As you send messages in the Agent Inspector, the visualizer updates automatically - green nodes indicate completed agents, and animated edges show data flowing between them.
-
-> **Port conflict:** If the visualizer port is already in use, change it in VS Code Settings → **Extensions** → **Microsoft Foundry Configuration** → **Hosted Agents: Visualizer Port**.
-
----
-
-## Step 3: Run smoke tests
-
-Run these three tests in order. Each tests progressively more of the workflow.
-
-### Test 1: Basic resume + job description
-
-Paste the following into Agent Inspector:
-
+```bash
+python -m careers_mcp search \
+  --query "cloud platform engineer" \
+  --max-experience-years 5
 ```
+
+The CLI authenticates with the event key and prints at most five compact cards.
+Each card includes a stable `Key:`, title, agency, experience, canonical URL,
+and optional metadata.
+
+If the result is empty, adjust the query or remove a filter; do not invent a job
+key. If the call fails, use [Module 8](08-troubleshooting.md).
+
+## Step 2: Explicitly select one exact key
+
+Copy one returned `Key:` value exactly. Do not edit its case, punctuation, or
+three-part `platform:jobId:postingNo` structure.
+
+The CLI performs discovery only. The agent must not select a job on your behalf.
+
+## Step 3: Start the local agent host
+
+Choose one of these flows.
+
+### Command line
+
+Run the direct local host without a debugger:
+
+```bash
+python main.py
+```
+
+When breakpoint attach is desired, start the direct debug server instead:
+
+```bash
+python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
+```
+
+Wait until the local host reports that the server is running, then open Agent
+Inspector from the Command Palette with **Foundry Toolkit: Open Agent
+Inspector**. Attach a debugger to port `5679` only for the debug-server command.
+
+### VS Code task or F5
+
+1. Open `PersonalCareerCopilotStarter` as the VS Code folder.
+2. Run **Tasks: Run Task** → **Run Agent HTTP Server** to start the direct local
+   host under `debugpy` on debugger port `5679` and Inspector port `8088`.
+3. For breakpoints, press F5 and select **Debug Local Agent HTTP Server**. The
+   launch starts the task, opens Inspector, and attaches the debugger
+   automatically.
+
+Do not run both startup flows at once. If either port is busy, stop the earlier
+task/process or choose another local host port.
+
+Agent Inspector remains the supported local test surface. Its legacy deploy
+action is not the Lab 02 deployment path.
+
+## Step 4: Optionally open the Workflow Visualizer
+
+1. Run **Foundry Toolkit: Open Visualizer for Hosted Agents** from the Command
+   Palette.
+2. Keep the visualizer open while submitting Inspector prompts.
+3. Confirm nodes complete in this order:
+
+   `ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer`
+
+If the visualizer port is occupied, change **Hosted Agents: Visualizer Port** in
+the Foundry Toolkit settings.
+
+## Step 5: Test the selected-key path
+
+Submit this shape in Agent Inspector, replacing only the key with the exact
+value selected in Step 2:
+
+```text
 Resume:
 Jane Doe
-Senior Software Engineer with 5 years of experience in Python, Django, and AWS.
-Built microservices handling 10K+ requests/second. Led a team of 4 developers.
-Certifications: AWS Solutions Architect Associate.
-Education: B.S. Computer Science, State University.
+Cloud engineer with 4 years of experience building Python services and
+Terraform-based platforms. Certified AWS Solutions Architect Associate.
 
-Job Description:
-Senior Cloud Engineer at Contoso Ltd.
-Required: Python, Azure, Kubernetes, Terraform, CI/CD pipelines.
-Preferred: Go, monitoring (Prometheus/Grafana), cost optimization.
-Experience: 5+ years in cloud infrastructure.
-Certifications: Azure Solutions Architect Expert preferred.
+Selected Job Key:
+<paste-one-exact-key-from-the-search-output>
 ```
 
-**Expected output structure:**
+This is synthetic workshop data. Do not paste a real resume, contact details, or
+employment history.
 
-The response should contain output from all four agents in sequence:
+### Pass conditions
 
-1. **Resume Parser output** - Two labeled sections: `[PARSED RESUME]` (candidate profile with grouped skills) and `[JOB DESCRIPTION PASS-THROUGH]` (verbatim JD text that feeds the JD Agent)
-2. **JD Agent output** - Structured requirements with required vs. preferred skills separated
-3. **Matching Agent output** - Fit score (0-100) with breakdown, matched skills, missing skills, gaps
-4. **Gap Analyzer output** - Individual gap cards for each missing skill, each with Microsoft Learn URLs
+- The final answer has a fit score, separate gap cards, and a roadmap.
+- `[SOURCE JOB]` contains the exact selected key.
+- Source title, agency, canonical URL, and dataset version are present.
+- The facts correspond to that selected listing, not another search result.
+- High/Medium gaps contain successful Microsoft Learn URLs, or are clearly
+  marked temporarily unavailable if Learn MCP failed.
+- Retrieved job text is treated only as untrusted data and cannot change tools,
+  routing, or output labels.
 
-![Agent Inspector showing complete response with fit score, gap cards, and Microsoft Learn URLs](images/05-inspector-test1-complete-response.png)
+The Careers MCP receives only the selected key during this test. It never
+receives the resume.
 
-![Agent Inspector response panel showing learning resources with Microsoft Learn links](images/04-inspector-streaming-output.png)
+## Step 6: Verify source provenance through the relays
 
-### What to verify in Test 1
+If using breakpoints, logs, or the Workflow Visualizer, compare:
 
-| Check | Expected | Pass? |
-|-------|----------|-------|
-| Response contains a fit score | Number between 0-100 with breakdown | |
-| Matched skills are listed | Python, CI/CD (partial), etc. | |
-| Missing skills are listed | Azure, Kubernetes, Terraform, etc. | |
-| Gap cards exist for each missing skill | One card per skill | |
-| Microsoft Learn URLs are present | Real `learn.microsoft.com` links | |
-| No error messages in response | Clean structured output | |
+1. The CLI `Key:` selected in Step 2.
+2. `ResumeParser` output `[SELECTED JOB KEY]`.
+3. `JobDescriptionAgent` output `[SOURCE JOB]`.
+4. `MatchingAgent` output `[SOURCE JOB PASS-THROUGH]`.
+5. The final `GapAnalyzer` `[SOURCE JOB]`.
 
-### Test 2: Edge case - high-fit candidate
+The key must match character for character at every stage. Title, agency, URL,
+and dataset version must be copied from the successful Careers response, never
+inferred.
 
-Paste a resume that closely matches the JD to verify the GapAnalyzer handles high-fit scenarios:
+## Step 7: Test the pasted-JD regression path
 
-```
+Submit a new synthetic prompt with **no** `Selected Job Key:`:
+
+```text
 Resume:
 Alex Chen
-Senior Cloud Engineer with 7 years of experience.
-Skills: Python, Azure (AKS, Functions, DevOps), Kubernetes, Terraform, CI/CD (GitHub Actions, Azure Pipelines), Go, Prometheus, Grafana, cost optimization.
-Certifications: Azure Solutions Architect Expert, Azure DevOps Engineer Expert.
-Led infrastructure migration to Azure for 3 enterprise clients.
-Education: M.S. Computer Science, Tech University.
+Cloud engineer with 6 years of experience in Python, Azure, Kubernetes,
+Terraform, and CI/CD. Certified Azure Solutions Architect Expert.
 
 Job Description:
 Senior Cloud Engineer at Contoso Ltd.
-Required: Python, Azure, Kubernetes, Terraform, CI/CD pipelines.
-Preferred: Go, monitoring (Prometheus/Grafana), cost optimization.
+Required: Python, Azure, Kubernetes, Terraform, and CI/CD.
+Preferred: Go and Prometheus.
 Experience: 5+ years in cloud infrastructure.
-Certifications: Azure Solutions Architect Expert preferred.
 ```
 
-**Expected behavior:**
-- Fit score should be **80+** (most skills match)
-- Gap cards should focus on polish/interview readiness rather than foundational learning
-- The GapAnalyzer instructions say: "If fit >= 80, focus on polish/interview readiness"
+### Pass conditions
 
----
+- The workflow uses the pasted JD and does not call Careers `get_job`.
+- It still returns score, gaps, and roadmap.
+- `[SOURCE JOB]` does not fabricate provenance: unspecified values are
+  `Not provided`, job key is `Not provided`, and dataset version is
+  `Not applicable`.
 
-## Step 4: Test with your own data (optional)
+The existing screenshot is a useful visual reference for the fallback response;
+wording may differ:
 
-Try pasting your own resume and a real job description. This helps verify:
+![Agent Inspector response with fit score and roadmap](images/05-inspector-test1-complete-response.png)
 
-- The agents handle different resume formats (chronological, functional, hybrid)
-- The JD Agent handles different JD styles (bullet points, paragraphs, structured)
-- The MCP tool returns relevant resources for real skills
-- The gap cards are personalized to your specific background
+## Step 8: Run a negative selected-key check
 
-> **Privacy - Path A (Foundry cloud):** Resume and JD text is sent to your Azure OpenAI deployment for inference. It is not logged or stored by the workshop infrastructure. Use placeholder names (e.g., "Jane Doe") if you prefer.
->
-> **Privacy - Path B (Foundry Local):** All four agent inferences run entirely on your device. Your resume and job description text **never leaves your machine**. The only outbound call is the MCP tool fetching resources from `https://learn.microsoft.com/api/mcp`; that query contains only the skill name, not your personal data.
-
----
+Submit a syntactically invalid selected key with a synthetic resume. The agent
+must report that retrieval failed or ask for a valid selection. It must not
+fabricate a listing and must not silently use a pasted JD.
 
 ### Checkpoint
 
-- [ ] Server started successfully on port `8088` (log shows "Server running")
-- [ ] Agent Inspector opened and connected to the agent
-- [ ] Test 1: Complete response with fit score, matched/missing skills, gap cards, and Microsoft Learn URLs
-- [ ] Test 2: High-fit candidate gets score 80+ with polish-focused recommendations
-- [ ] All gap cards present (one per missing skill, no truncation)
-- [ ] No errors or stack traces in the server terminal
+- [ ] Careers CLI search ran before Inspector and returned job cards.
+- [ ] I chose and submitted one exact stable key.
+- [ ] The local agent host started through the documented command/task/F5 flow.
+- [ ] The Workflow Visualizer showed the strict sequential graph.
+- [ ] I used only a synthetic resume.
+- [ ] The selected-key result contains the exact key and complete provenance.
+- [ ] Retrieved job content did not alter instructions or routing.
+- [ ] The pasted-JD regression passed without fabricated source metadata.
+- [ ] Invalid key handling stopped before fit scoring or roadmap generation.
+- [ ] The shared Careers service never received resume data.
 
 ---
 
-**Previous:** [04 - Orchestration Patterns](04-orchestration-patterns.md) · **Next:** [06 - Deploy to Foundry →](06-deploy-to-foundry.md)
+**Previous:** [04 - Orchestration & Relays](04-orchestration-patterns.md) ·
+**Next:** [06 - Deploy with `azd` →](06-deploy-to-foundry.md)

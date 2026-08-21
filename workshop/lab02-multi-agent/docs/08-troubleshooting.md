@@ -1,291 +1,329 @@
 # Module 8 - Troubleshooting
 
-This module covers common errors, fixes, and debugging strategies specific to the multi-agent workflow.
+Use this guide for the local agent host, Careers MCP integration, and
+direct-code `azd` deployment. Never post the event key, `.env`, tokens, or real
+resume data in an issue.
 
-## Agent output issues
+## Local agent host startup and configuration
 
-### GapAnalyzer says “I still don’t have the matching report”
+### `RuntimeError` reports a missing or placeholder environment value
 
-**Symptom:** GapAnalyzer’s response asks you to paste a matching report with “Missing Skills” and “Certification Gaps.” This happens even when you sent both a resume and a job description.
+`main.py` calls `get_required_environment_variable()` before creating the
+Foundry client. It rejects missing values and scaffold placeholders.
 
-**Cause:** The JD text was not passed downstream to JD Agent. With `context_mode="last_agent"`, `resume_executor` is the only executor that ever sees the user’s original message. If `RESUME_PARSER_INSTRUCTIONS` does not include the JD text in its output, JD Agent has no JD to parse, MatchingAgent cannot compute a fit score, and GapAnalyzer receives a meaningless input.
+1. Confirm `.env` is in `PersonalCareerCopilotStarter/`, beside `main.py`.
+2. Copy `.env.example` to `.env`.
+3. Replace every placeholder, especially:
 
-**Diagnosis:**
+   ```env
+   FOUNDRY_PROJECT_ENDPOINT=https://<your-foundry-resource>.services.ai.azure.com/api/projects/<your-project>
+   AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+   ```
 
-In the server logs, look for the MatchingAgent span. If it contains:
-```
-Cannot compute a numeric fit score because no job description (JD) was provided
-```
-the pass-through is missing or broken.
+4. Use the endpoint and model from your own attendee project.
+5. Restart the local agent host after editing `.env`.
 
-**Fix:** Confirm that `RESUME_PARSER_INSTRUCTIONS` in `main.py` contains a `[JOB DESCRIPTION PASS-THROUGH]` section and the rule:
-```
-The [JOB DESCRIPTION PASS-THROUGH] section MUST contain the FULL, UNMODIFIED JD text.
-```
-Also confirm that `JOB_DESCRIPTION_INSTRUCTIONS` contains a `[PARSED RESUME PASS-THROUGH]` relay rule:
-```
-Copy [PARSED RESUME] verbatim - the Matching Agent depends on it downstream.
-```
-If either instruction block is a stub from the scaffold wizard, replace it with the complete version from [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py).
+Because `load_dotenv(override=True)` is used, local `.env` values override values
+with the same names in the launching shell. The deployed source does not include
+`.env`; Hosted Agent runtime settings are used there.
 
-### MatchingAgent outputs “Cannot compute fit score - no JD provided”
+### Local agent host does not start
 
-This is the same root cause as above. MatchingAgent received JD Agent’s output but the `[PARSED RESUME PASS-THROUGH]` section was missing or empty, so it couldn’t compare the two profiles. Confirm:
-1. `JOB_DESCRIPTION_INSTRUCTIONS` includes the relay rule: `Copy [PARSED RESUME] verbatim - the Matching Agent depends on it downstream.`
-2. `MATCHING_AGENT_INSTRUCTIONS` tells the agent to look for `[JD REQUIREMENTS]` and `[PARSED RESUME PASS-THROUGH]` sections.
+Use Python 3.13 and an activated environment:
 
-Replace both instruction blocks with the complete versions from [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py).
-
-### The response appears twice
-
-**Symptom:** GapAnalyzer output (or the entire pipeline output) appears twice in the Agent Inspector response.
-
-**Cause:** `WorkflowBuilder` uses OR-semantics for incoming edges - a downstream executor fires as soon as **any** predecessor completes. If `matching_executor` has two incoming edges (one from `resume_executor` and one from `jd_executor`), it fires twice: once when ResumeParser finishes and again when JD Agent finishes. GapAnalyzer then also runs twice.
-
-**Fix:** Ensure the `WorkflowBuilder` graph is a strictly sequential pipeline with no fan-in:
-
-```python
-workflow_agent = (
-    WorkflowBuilder(start_executor=resume_executor, output_executors=[gap_executor])
-    .add_edge(resume_executor, jd_executor)
-    .add_edge(jd_executor, matching_executor)    # NOT from resume_executor
-    .add_edge(matching_executor, gap_executor)
-    .build().as_agent()
-)
+```bash
+python --version
+python main.py
 ```
 
-If you have a stray `.add_edge(resume_executor, matching_executor)` line, remove it. The `[PARSED RESUME PASS-THROUGH]` relay in JD Agent’s output already gives MatchingAgent access to the resume.
+For breakpoint attach from the command line, run:
 
----
-
-## Environment and configuration issues
-
-### Missing or wrong `.env` values
-
-The `.env` file must be in the `PersonalCareerCopilot/` directory (same level as `main.py`):
-
-```
-PersonalCareerCopilot/
-├── .env                  ← Must be here
-├── main.py
-├── agent.yaml
-├── Dockerfile
-└── requirements.txt
+```bash
+python -m debugpy --listen 127.0.0.1:5679 main.py --port 8088
 ```
 
-Expected `.env` content:
+Or run the VS Code task **Run Agent HTTP Server**. For breakpoints, select
+**Debug Local Agent HTTP Server**; the task hosts the direct local server on port
+8088 and attaches `debugpy` on port 5679.
 
-**Path A - Foundry cloud:**
+If startup hangs or a port is occupied:
 
-```env
-FOUNDRY_PROJECT_ENDPOINT=https://<your-project-name>.services.ai.azure.com/api/projects/<your-project-id>
-AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1-mini
+- Stop any earlier Lab 02 task/process before starting another.
+- Confirm both 8088 and 5679 are available.
+- Run **Validate prerequisites** from `.vscode/tasks.json`.
+- Reopen `PersonalCareerCopilotStarter` as the VS Code workspace so `${workspaceFolder}`
+  and `.venv` resolve correctly.
+
+### Agent Inspector or Workflow Visualizer does not connect
+
+- Wait for the local host to report that the application started.
+- Open Inspector only after the host is ready.
+- Confirm Inspector targets port 8088.
+- If only the visualizer port is occupied, change **Hosted Agents: Visualizer
+  Port** in Foundry Toolkit settings.
+- Restart the local HTTP server task after any port or environment change.
+
+### Local traces are missing
+
+`configure_tracing()` is a privacy-safe optional OTLP helper:
+message-content capture remains off by default. If `AGENTDEV_ENABLED=1` is
+explicitly set, the helper supplies `http://localhost:4317` and the `grpc`
+protocol only when no OTLP endpoint was already configured. That compatibility
+branch remains in `main.py`, but Agent Dev is not installed and the documented
+direct local-host flow does not require or instruct you to set this variable.
+
+Check:
+
+```bash
+python -m pip show opentelemetry-exporter-otlp-proto-grpc
 ```
 
-**Path B - Foundry Local:**
+Do not enable message-content capture with real personal data.
 
-```env
-FOUNDRY_PROJECT_ENDPOINT=http://localhost:5273/v1
-AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
+## Runtime and package issues
+
+Use Python 3.13 locally; direct-code hosting uses `python_3_13`. Install
+`requirements.txt` as-is rather than upgrading individual packages:
+
+| Package | Exact version |
+|---|---|
+| `agent-framework-foundry` | `1.10.4` |
+| `agent-framework-foundry-hosting` | `1.0.0b260730` |
+| `azure-identity` | `1.25.3` |
+| `debugpy` | `1.8.21` |
+| `httpx` | `0.28.1` |
+| `mcp` | `1.29.0` |
+| `opentelemetry-exporter-otlp-proto-grpc` | `1.43.0` |
+| `python-dotenv` | `1.2.2` |
+
+Verify the packages used for hosting, debugging, MCP, and traces:
+
+```bash
+python -m pip show \
+  agent-framework-foundry \
+  agent-framework-foundry-hosting \
+  mcp \
+  opentelemetry-exporter-otlp-proto-grpc \
+  debugpy
 ```
 
-> Both paths use `FOUNDRY_PROJECT_ENDPOINT`. The value differs: cloud uses an `https://` Foundry endpoint; local uses `http://localhost:5273/v1`. Run `foundry model list` to confirm the exact model alias for Path B.
+For `ModuleNotFoundError`, `ImportError`, or a missing `WorkflowBuilder`, recreate
+the Python 3.13 virtual environment and reinstall the two checked-in requirement
+files. Do not replace exact pins with broad ranges.
 
-> **Finding your `FOUNDRY_PROJECT_ENDPOINT`:** 
-- Open the **Foundry Toolkit** sidebar in VS Code → right-click your project → **Copy Project Endpoint**. 
-- Or go to [Azure Portal](https://portal.azure.com) → your Foundry project → **Overview** → **Project endpoint**.
+## Careers MCP configuration and authentication
 
-> **Finding your `AZURE_AI_MODEL_DEPLOYMENT_NAME`:** In the Foundry Toolkit sidebar, expand your project → **Models** → find your deployed model name (e.g., `gpt-4.1-mini`).
+### `CAREERS_MCP_ENDPOINT is required` or `CAREERS_MCP_API_KEY is required`
 
-### Env var precedence
+- Confirm `.env` is beside `main.py`.
+- Copy from `.env.example` and replace every placeholder.
+- Confirm the key has no surrounding whitespace.
+- Restart the CLI/server after changing `.env`.
 
-`main.py` uses `load_dotenv(override=True)`, which means:
+### `CAREERS_MCP_API_KEY is invalid`
 
-| Priority | Source | Wins when both are set? |
-|----------|--------|------------------------|
-| 1 (highest) | `.env` file | Yes |
-| 2 | Shell / container environment variable | Used when the same key is not present in `.env` |
+The local client rejects empty, placeholder-like, oversized, or unsafe values.
+Copy the event key again from the trainer's out-of-band channel. Do not add
+quotes to the value inside `.env`.
 
-In local development, this makes `.env` the source of truth (editing `.env` immediately affects runs). In hosted deployment, Foundry injects environment variables at the container level; since `.env` is not part of the deployed image for this lab setup, the injected container values are used.
+### HTTP 401/403 from Careers MCP
 
----
+The event key is missing, wrong, rotated, or expired.
 
-## Version compatibility
+1. Confirm the endpoint and key belong to the same event deployment.
+2. Request the current event-scoped key from the trainer out of band.
+3. Update both local `.env` and the attendee `azd` environment.
+4. Rerun the search CLI, then redeploy the Hosted Agent if its key changed.
 
-### Package version matrix
+Do not ask for access to the trainer Foundry project; it is unrelated to MCP
+API-key authentication.
 
-The multi-agent workflow requires specific package versions. Mismatched versions cause runtime errors.
+### Endpoint unavailable or request timed out
 
-| Package | Required Version | Check Command |
-|---------|-----------------|---------------|
-| `agent-framework-foundry` | latest | `pip show agent-framework-foundry` |
-| `agent-framework-foundry-hosting` | latest | `pip show agent-framework-foundry-hosting` |
-| `mcp` | `<2,>=1.24.0` | `pip show mcp` |
-| `opentelemetry-exporter-otlp-proto-grpc` | latest | `pip show opentelemetry-exporter-otlp-proto-grpc` |
-| `debugpy` | latest | `pip show debugpy` |
-| `agent-dev-cli` | `>=0.0.1b260427` | `pip show agent-dev-cli` |
-| Python | 3.12+ | `python --version` |
+- Confirm `CAREERS_MCP_ENDPOINT` is the trainer-provided HTTPS `/mcp` URL with no
+  query string or fragment.
+- Confirm `CAREERS_MCP_TIMEOUT_SECONDS` is numeric, greater than 0, and at most 30.
+- Retry once. If multiple attendees fail, notify the trainer; do not deploy the
+  service yourself.
+- Use the pasted `Job Description:` path in a new request with no selected key.
 
-### Common version errors
+When a selected key is present and retrieval fails, the agent intentionally does
+not silently switch to pasted JD content.
 
-**`ImportError: cannot import name 'WorkflowBuilder' from 'agent_framework'`**
+## Search, key, and source issues
 
-```powershell
-# Fix: reinstall agent-framework-foundry
-pip install agent-framework-foundry agent-framework-foundry-hosting
+### `No matching jobs found`
+
+An empty search is valid. Broaden `--query`, remove optional filters, or increase
+`--max-experience-years` if appropriate. Never invent a key. The service returns
+at most five cards.
+
+### `job_key has an invalid format`
+
+Copy the complete `Key:` from CLI output. A stable key has exactly three
+colon-separated components. Do not change case, punctuation, or whitespace.
+
+### Selected key is no longer found
+
+The key may be absent from the trainer's frozen event snapshot, truncated, or
+from an older snapshot. Run the CLI against the current endpoint, select a
+returned key, and resubmit. Do not substitute a similar listing.
+
+### Agent retrieves the wrong listing
+
+Compare these values character for character:
+
+1. CLI `Key:` output.
+2. Agent Inspector `Selected Job Key:`.
+3. `ResumeParser` `[SELECTED JOB KEY]`.
+4. `JobDescriptionAgent` `[SOURCE JOB]`.
+5. `MatchingAgent` `[SOURCE JOB PASS-THROUGH]`.
+6. Final `[SOURCE JOB]`.
+
+Confirm `JobDescriptionAgent` called `get_job` exactly once and source
+URL/title/agency match the selected card.
+
+### Source URL or provenance is missing
+
+For a successful Careers retrieval, `[SOURCE JOB]` must contain title, agency,
+canonical source URL, exact key, and dataset version. Confirm:
+
+1. `JobDescriptionAgent` emitted `[SOURCE JOB]` from the successful tool response.
+2. `MatchingAgent` copied it verbatim to `[SOURCE JOB PASS-THROUGH]`.
+3. `GapAnalyzer` copied those values into final `[SOURCE JOB]`.
+
+Do not infer missing values. For the pasted-JD path, `Not provided` and `Not
+applicable` are expected when the prompt supplied no provenance.
+
+### Retrieved job tries to issue instructions
+
+Restore the untrusted-data rules in `JOB_DESCRIPTION_INSTRUCTIONS` and the
+`[UNTRUSTED CAREERS JOB DATA ...]` wrapper in the tool output. Job content is
+data only and cannot alter roles, tools, keys, or output format.
+
+## Workflow and Microsoft Learn issues
+
+### Missing JD, resume relay, or matching report
+
+Confirm the labeled sections remain exact:
+
+- `[SELECTED JOB KEY]`
+- `[JOB DESCRIPTION PASS-THROUGH]`
+- `[PARSED RESUME PASS-THROUGH]`
+- `[SOURCE JOB]`
+- `[SOURCE JOB PASS-THROUGH]`
+
+The graph must remain:
+
+```text
+ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer
 ```
 
-**`AttributeError: module 'mcp.client' has no attribute 'streamable_http'`**
+Each executor sees only its predecessor. A missing or renamed relay starves the
+next stage.
 
-```powershell
-# Fix: upgrade mcp package
-pip install mcp --upgrade
+### Duplicate final response
+
+The `WorkflowBuilder` must have one start executor, `gap_executor` as the single
+output executor, and exactly three sequential edges.
+
+### `[MICROSOFT LEARN MCP FAILURE]`
+
+- Confirm `MICROSOFT_LEARN_MCP_ENDPOINT` is
+  `https://learn.microsoft.com/api/mcp`.
+- Retry after checking network access.
+- The agent should still return gap cards but mark official resources
+  temporarily unavailable.
+- Do not present static or fallback URLs as live MCP results.
+
+Careers retrieval and Microsoft Learn retrieval are independent: Careers
+`get_job` belongs only to `JobDescriptionAgent`; Learn MCP belongs only to
+`GapAnalyzer`.
+
+## Direct-code `azd` deployment and access
+
+### Wrong project or role
+
+- Confirm Azure CLI is signed into your attendee tenant/subscription.
+- Confirm `AZURE_SUBSCRIPTION_ID`, `AZURE_LOCATION`,
+  `AZURE_AI_PROJECT_ENDPOINT`, `FOUNDRY_PROJECT_ENDPOINT`, and
+  `AZURE_AI_PROJECT_ID` all identify the same attendee-owned project and region.
+- Both endpoint variables use the same project URL.
+- `AZURE_AI_PROJECT_ID` must be the full ARM project resource ID.
+- Obtain **Foundry Project Manager** on your project.
+- Never use the trainer project or its model quota.
+
+After correction, deploy only:
+
+```bash
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd deploy personal-career-copilot --no-prompt
 ```
 
-### Verify all versions at once
+Do not run `azd provision` or `azd up`.
 
-```powershell
-pip list | Select-String "agent-framework|agent-dev|mcp|opentelemetry-exporter|debugpy"
+### Model not found, quota exceeded, or throttled
+
+- Confirm `AZURE_AI_MODEL_DEPLOYMENT_NAME` exactly matches a deployment in your
+  project.
+- Confirm that deployment has quota for four sequential model calls plus roadmap
+  tool use.
+- Use another deployment in your own project or ask your project owner for quota.
+
+### Hosted Agent starts but Careers retrieval fails
+
+Local `.env` and the `azd` environment are separate. Confirm the `azd`
+environment has:
+
+- `CAREERS_MCP_ENDPOINT`
+- `CAREERS_MCP_API_KEY`
+- `CAREERS_MCP_TIMEOUT_SECONDS`
+- `MICROSOFT_LEARN_MCP_ENDPOINT`
+- `AZURE_AI_MODEL_DEPLOYMENT_NAME`
+- `FOUNDRY_PROJECT_ENDPOINT`
+
+Update missing values and redeploy. If local search works but hosted retrieval
+does not, first compare endpoint/key values without printing the secret.
+
+### Deployment is missing or not ready
+
+Run from `workshop/lab02-multi-agent`:
+
+```bash
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd ai agent show personal-career-copilot --output table
 ```
 
-Expected output:
+Confirm the agent is in the intended project. Review the `azd deploy` output for
+the first actionable error, correct the environment or permission issue, and
+redeploy the same `personal-career-copilot` service.
 
-```
-agent-framework-foundry          x.x.x
-agent-framework-foundry-hosting  x.x.x
-agent-dev-cli                    x.x.x
-debugpy                          x.x.x
-mcp                              x.x.x
-opentelemetry-exporter-otlp-proto-grpc x.x.x
-```
-
----
-
-## Deployment issues
-
-### Container fails to start after deployment
-
-1. **Check container logs:**
-   - Open the **Foundry Toolkit** sidebar → expand **Hosted Agents (Preview)** → click your agent → expand the version → **Container Details** → **Logs**.
-   - Look for Python stack traces or missing module errors.
-
-2. **Common container startup failures:**
-
-   | Error in logs | Cause | Fix |
-   |--------------|-------|-----|
-   | `ModuleNotFoundError` | `requirements.txt` missing a package | Add the package, redeploy |
-   | `RuntimeError` reports a missing or placeholder environment value | `.env` still contains scaffold placeholders or is missing a required value | Set real `FOUNDRY_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` values for local runs |
-   | `azure.identity.CredentialUnavailableError` | Managed Identity not configured | Foundry sets this automatically - ensure you're deploying via the extension |
-   | `OSError: port 8088 already in use` | Dockerfile exposes wrong port or port conflict | Verify `EXPOSE 8088` in Dockerfile and `CMD ["python", "main.py"]` |
-   | Container exits with code 1 | Unhandled exception in `main()` | Test locally first ([Module 5](05-test-locally.md)) to catch errors before deploying |
-
-3. **Redeploy after fixing:**
-   - `Ctrl+Shift+P` → **Foundry Toolkit: Deploy Hosted Agent** → select the same agent → deploy a new version.
-
-### Deployment takes too long
-
-Multi-agent containers take longer to start because they create 4 agent instances on startup. Normal startup times:
-
-| Stage | Expected duration |
-|-------|------------------|
-| Container image build | 1-3 minutes |
-| Image push to ACR | 30-60 seconds |
-| Container start (single agent) | 15-30 seconds |
-| Container start (multi-agent) | 30-120 seconds |
-| Agent available in Playground | 1-2 minutes after "Started" |
-
-> If "Pending" status persists beyond 5 minutes, check container logs for errors.
-
----
-
-## RBAC and permission issues
-
-### `403 Forbidden` or `AuthorizationFailed`
-
-You need the **[Foundry User](https://aka.ms/foundry-ext-project-role)** role on your Foundry project (previously named **Azure AI User** - role ID unchanged):
-
-1. Go to [Azure Portal](https://portal.azure.com) → your Foundry **project** resource.
-2. Click **Access control (IAM)** → **Role assignments**.
-3. Search for your name → confirm **Foundry User** (or the legacy label **Azure AI User**) is listed.
-4. If missing: **Add** → **Add role assignment** → search for **Foundry User** → assign to your account.
-
-See the [RBAC for Microsoft Foundry](https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry) documentation for details.
-
-### Model deployment not accessible
-
-If the agent returns model-related errors:
-
-1. Verify the model is deployed: Foundry sidebar → expand project → **Models** → check for `gpt-4.1-mini` (or your model) with status **Succeeded**.
-2. Verify the deployment name matches: compare `AZURE_AI_MODEL_DEPLOYMENT_NAME` in `.env` (or `agent.yaml`) with the actual deployment name in the sidebar.
-3. If the deployment expired (free tier): redeploy from [Model Catalog](https://learn.microsoft.com/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure) (`Ctrl+Shift+P` → **Foundry Toolkit: Open Model Catalog**).
-
----
-
-## Foundry Local issues (Path B)
-
-### Foundry Local service not running
-
-```powershell
-# Check status
-foundry local status
-
-# Start the service if it is stopped
-foundry local start
-```
-
-| Symptom | Cause | Fix |
-|---------|-------|-----|
-| Health check returns `503` | Service not started | `foundry local start` or click **Start** in the Foundry Toolkit sidebar |
-| Health check times out | Model still loading | Wait 30–60 s after starting; larger models take longer |
-| `StatusCode: 404` on `/v1/health` | Wrong port | Default is `5273`. Check `foundry local status` for the actual port |
-| Insufficient resources | Foundry Local needs ~4 GB RAM free | Close other applications |
-| Model download fails | Low disk space | Models are 2–8 GB. Free up space, then `foundry model pull <name>` |
-
-### Model name mismatch
-
-```powershell
-# List downloaded models and their exact aliases
-foundry model list
-```
-
-Set `AZURE_AI_MODEL_DEPLOYMENT_NAME` in `.env` to the exact alias shown (e.g., `phi-4-mini`, not `Phi-4-mini`).
-
-### Missing or placeholder environment value on local run (Path B)
-
-The lab validates required settings before creating the client and raises an actionable `RuntimeError` if a value is absent or still contains a scaffold placeholder. Foundry Local requires `FOUNDRY_PROJECT_ENDPOINT` to point to the local service - **not** `AZURE_AI_PROJECT_ENDPOINT`. Ensure your `.env` contains real values:
-
-```env
-FOUNDRY_PROJECT_ENDPOINT=http://localhost:5273/v1
-AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
-```
-
-### MCP tool still makes an outbound call (Path B)
-
-This is expected. The `search_microsoft_learn_for_plan` tool fetches learning resources from `https://learn.microsoft.com/api/mcp`. **Only the skill-name query** travels over the network - resume and JD text are processed entirely on your device and never transmitted. If fully offline operation is required, add a `try/except` fallback in the tool that returns a static `learn.microsoft.com` URL when the endpoint is unreachable.
-
----
+Avoid full JSON/YAML agent-definition output while the shared key is configured
+because environment values can be displayed.
 
 ## Getting help
 
-If you're stuck after trying the fixes above:
+If the issue remains:
 
-1. **Check the server logs** - Most errors produce a Python stack trace in the terminal. Read the full traceback.
-2. **Search the error message** - Copy the error text and search in the [Microsoft Q&A for Azure AI](https://learn.microsoft.com/answers/tags/azure-ai-services).
-3. **Open an issue** - File an issue on the [workshop repository](https://github.com/ShivamGoyal03/ai-toolkit-hosted-agents-workshop/issues) with:
-   - The error message or screenshot
-   - Your package versions (`pip list | Select-String "agent-framework"`)
-   - Your Python version (`python --version`)
-   - Whether the issue is local or after deployment
-
----
+1. Read the complete local host or `azd` error, not only its final line.
+2. Record Python and package versions without including `.env` or secrets.
+3. State whether the failure occurs in Careers CLI search, local host, Inspector,
+   Learn MCP, or deployed invocation.
+4. Use only synthetic prompt data in screenshots or issue reports.
 
 ### Checkpoint
 
-- [ ] You know how to check and fix `.env` configuration issues
-- [ ] You can verify package versions match the required matrix
-- [ ] You know how to check container logs for deployment failures
-- [ ] You can verify RBAC roles in the Azure Portal
+- [ ] I can diagnose local host startup, placeholder validation, and OTLP tracing.
+- [ ] I can distinguish MCP API-key failures from Foundry RBAC failures.
+- [ ] I know how to recover from empty search and invalid/expired selected keys.
+- [ ] I can trace exact key and source provenance through all relay sections.
+- [ ] I know the pasted-JD fallback procedure for MCP unavailability.
+- [ ] I can diagnose wrong project/model quota and Learn MCP failures.
+- [ ] I will not expose secrets or real personal data while troubleshooting.
 
 ---
 
-**Previous:** [07 - Verify in Playground](07-verify-in-playground.md) · **Next:** [09 - Summary →](09-summary.md) · **Home:** [Lab 02 README](../README.md) · [Workshop Home](../../../README.md)
+**Previous:** [07 - Verify the Hosted Agent](07-verify-in-playground.md) ·
+**Next:** [09 - Summary →](09-summary.md) ·
+**Home:** [Lab 02 README](../README.md) ·
+[Workshop Home](../../../README.md)

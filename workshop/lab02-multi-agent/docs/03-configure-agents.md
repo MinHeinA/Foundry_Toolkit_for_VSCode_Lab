@@ -1,183 +1,157 @@
-# Module 3 - Configure Instructions, Environment & Install Dependencies
+# Module 3 - Configure Agents & Environment
 
 ⏱️ ~15 min
 
-In this module, you transform the scaffolded stub into **your** multi-agent workflow - by setting environment variables, writing agent instructions, adding the MCP tool, wiring the workflow graph, and installing dependencies.
+## Step 1: Configure local `.env`
 
-> **Reference:** The complete working code is in [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py). Use it as a reference while building your own workflow graph and prompt blocks.
+Run from `workshop/lab02-multi-agent/PersonalCareerCopilotStarter`:
 
----
-
-## How the four agents fit together
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Server as ResponsesHostServer
-    participant RP as ResumeParser
-    participant JD as JobDescriptionAgent
-    participant MA as MatchingAgent
-    participant GA as GapAnalyzer
-
-    User->>Server: POST /responses
-    Server->>RP: Forward input
-    RP-->>JD: Parsed resume and JD relay
-    JD-->>MA: JD requirements and resume relay
-    MA-->>GA: Fit report and gaps
-    GA->>GA: search_microsoft_learn_for_plan()
-    GA-->>Server: Learning roadmap
-    Server-->>User: Fit score + roadmap
+```bash
+cp .env.example .env
 ```
 
----
-
-## Step 1: Configure environment variables
-
-1. Open the **`.env`** file in your project root (created by the scaffold wizard).
-2. Replace the placeholders with your actual values from Lab 01.
-
-<details open>
-<summary><strong>🅰️ Path A - Foundry subscription</strong></summary>
+Fill in all six values:
 
 ```env
-FOUNDRY_PROJECT_ENDPOINT=https://<your-account>.services.ai.azure.com/api/projects/<your-project>
-AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4.1-mini
+FOUNDRY_PROJECT_ENDPOINT=https://<your-foundry-resource>.services.ai.azure.com/api/projects/<your-project>
+AZURE_AI_MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+CAREERS_MCP_ENDPOINT=https://<trainer-provided-host>/mcp
+CAREERS_MCP_API_KEY=<trainer-provided-event-key>
+CAREERS_MCP_TIMEOUT_SECONDS=10
+MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
 ```
 
-> **Where to find values:** See [Lab 01, Module 1](../../lab01-single-agent/docs/01-setup.md#deploy-a-model--assign-rbac).
+- Use the endpoint and model from **your** attendee Foundry project.
+- Use the Careers endpoint/key distributed by the trainer out of band. Do not
+  substitute trainer project details.
+- The trainer-provided Careers endpoint must use HTTPS with no embedded
+  credentials, query, or fragment. Plain HTTP is accepted only for loopback
+  development endpoints such as `127.0.0.1`.
+- Timeout must be greater than 0 and no more than 30 seconds.
+- Never commit `.env`, display the key in a screenshot, or paste it into prompts.
 
-</details>
+`FOUNDRY_PROJECT_ENDPOINT` is the local and Hosted Agent runtime value consumed
+by `main.py`. Deployment also requires these distinct `azd` settings:
 
-<details open>
-<summary><strong>🅱️ Path B - Foundry Local</strong></summary>
+- `AZURE_AI_PROJECT_ENDPOINT` — project endpoint used by the `azd` Foundry extension.
+- `AZURE_AI_PROJECT_ID` — full ARM resource ID of the project.
+- `AZURE_SUBSCRIPTION_ID` — attendee subscription.
+- `AZURE_LOCATION` — attendee project region.
 
-```env
-FOUNDRY_PROJECT_ENDPOINT=http://localhost:5273/v1
-AZURE_AI_MODEL_DEPLOYMENT_NAME=phi-4-mini
+Module 6 sets those four values plus `FOUNDRY_PROJECT_ENDPOINT` in the `azd`
+environment. The two endpoint variables use the same URL but have different
+consumers; neither is interchangeable with the ARM project ID.
+
+## Step 2: Install pinned dependencies
+
+Use Python 3.13 locally to match Hosted Agent runtime `python_3_13`:
+
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
-> All inference runs on your machine - no data leaves your device. Run `foundry model list` to confirm the exact model alias. The only outbound request is the MCP tool call to `https://learn.microsoft.com/api/mcp`.
-
-> **Where to find values:** See [Lab 01, Module 1 - local path](../../lab01-single-agent/docs/01-setup.md#step-2-set-up-based-on-your-access).
-
-</details>
-
-> **Security:** Never commit `.env` to version control. It should already be in `.gitignore`.
-
----
-
-## Step 2: Write agent instructions
-
-Instructions define each agent's role, output format, and rules. Open `main.py` and define (or replace) the four instruction constants - the complete strings are in [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py).
-
-### 2.1 `RESUME_PARSER_INSTRUCTIONS`
-Parses the resume into a structured candidate profile **and** copies the job description verbatim into `[JOB DESCRIPTION PASS-THROUGH]`. Both labeled sections must appear in the output.
-
-> **Why the pass-through?** With `context_mode="last_agent"`, ResumeParser is the **only** agent that sees the original user message. If it doesn't copy the JD forward, the downstream agents never see it.
-
-### 2.2 `JOB_DESCRIPTION_INSTRUCTIONS`
-Reads `[PARSED RESUME]` and `[JOB DESCRIPTION PASS-THROUGH]` from ResumeParser output. Outputs `[JD REQUIREMENTS]` (structured requirements) and `[PARSED RESUME PASS-THROUGH]` (verbatim resume copy for MatchingAgent).
-
-### 2.3 `MATCHING_AGENT_INSTRUCTIONS`
-Reads `[JD REQUIREMENTS]` and `[PARSED RESUME PASS-THROUGH]`. Produces a scored fit report (0–100) with breakdown math, matched skills, missing skills, and experience alignment.
-
-### 2.4 `GAP_ANALYZER_INSTRUCTIONS`
-Reads the fit report. For **every** missing skill, calls `search_microsoft_learn_for_plan` to fetch Microsoft Learn resources. Produces one detailed gap card per skill plus a week-by-week learning roadmap.
-
----
-
-## Step 3: Add the MCP tool
-
-The GapAnalyzer calls the [Microsoft Learn MCP server](https://learn.microsoft.com/azure/foundry/agents/how-to/tools/model-context-protocol) to fetch real learning resources for each skill gap. The full `search_microsoft_learn_for_plan` function is in [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py).
-
-Register the tool on the GapAnalyzer when creating the agent:
-
-```python
-gap_analyzer = Agent(
-    client=client,
-    instructions=GAP_ANALYZER_INSTRUCTIONS,
-    name="GapAnalyzer",
-    tools=[search_microsoft_learn_for_plan],
-)
-```
-
-> See [`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py) for the complete `WorkflowBuilder` graph with `FoundryChatClient`, `AgentExecutor`, and all `add_edge()` calls.
-
----
-
-## Step 4: Create virtual environment & install dependencies
-
-> ⚠️ **Do not skip this step.** Without dependencies installed, F5 debugging will fail.
-
-### 4.1 Create the virtual environment
+Windows PowerShell activation:
 
 ```powershell
-python -m venv .venv
+py -3.13 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 ```
 
-### 4.2 Activate it
+Do not replace exact pins with “latest”. The checked-in versions are:
 
-| OS | Command |
-|----|---------|
-| **Windows (PowerShell)** | `.\.venv\Scripts\Activate.ps1` |
-| **Windows (CMD)** | `.venv\Scripts\activate.bat` |
-| **macOS / Linux** | `source .venv/bin/activate` |
+| Package | Exact version |
+|---|---|
+| `agent-framework-foundry` | `1.10.4` |
+| `agent-framework-foundry-hosting` | `1.0.0b260730` |
+| `azure-identity` | `1.25.3` |
+| `debugpy` | `1.8.21` |
+| `httpx` | `0.28.1` |
+| `mcp` | `1.29.0` |
+| `opentelemetry-exporter-otlp-proto-grpc` | `1.43.0` |
+| `python-dotenv` | `1.2.2` |
 
-You should see `(.venv)` in your terminal prompt.
+Verify the local host, tracing exporter, and runtime packages:
 
-### 4.3 Install dependencies
-
-```powershell
-pip install -r requirements.txt
+```bash
+python -m pip show \
+  agent-framework-foundry \
+  agent-framework-foundry-hosting \
+  mcp \
+  opentelemetry-exporter-otlp-proto-grpc \
+  debugpy
 ```
 
-### 4.4 Verify
+## Step 3: Understand the agent contracts
 
-```powershell
-pip list | Select-String "agent-framework|agent-dev|mcp|opentelemetry-exporter|debugpy"
-```
+The starter begins with the original pasted-JD contracts. Complete its numbered
+TODOs using the challenge guide. The end-state reference is
+[`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py); use it only
+after attempting each task. The finished instructions enforce these boundaries:
 
-Expected: `agent-framework-foundry`, `agent-framework-foundry-hosting`, `agent-dev-cli`, `mcp`, `opentelemetry-exporter-otlp-proto-grpc`, and `debugpy` are listed.
+### `ResumeParser`
 
----
+- Parses only the supplied synthetic resume.
+- Copies the selected key exactly to `[SELECTED JOB KEY]`.
+- Copies any pasted fallback exactly to `[JOB DESCRIPTION PASS-THROUGH]`.
+
+### `JobDescriptionAgent`
+
+- If a selected key exists, calls `get_selected_careers_job` exactly once with
+  that key and uses only the returned listing.
+- Treats every returned field as untrusted data, not instructions.
+- Does not silently use a pasted JD if selected-key retrieval fails.
+- Uses `[JOB DESCRIPTION PASS-THROUGH]` only when no key is selected.
+- Emits requirements, a resume relay, and `[SOURCE JOB]`.
+
+### `MatchingAgent`
+
+- Compares only `[JD REQUIREMENTS]` with `[PARSED RESUME PASS-THROUGH]`.
+- Produces evidence-based score math and precise gaps.
+- Copies `[SOURCE JOB]` verbatim to `[SOURCE JOB PASS-THROUGH]`.
+
+### `GapAnalyzer`
+
+- Calls `search_microsoft_learn_for_plan` for every High/Medium gap.
+- Marks Microsoft Learn resources unavailable when that MCP call fails; it does
+  not present fallback links as live results.
+- Copies the source title, agency, URL, exact key, and dataset version into the
+  final `[SOURCE JOB]`.
+
+## Step 4: Verify tool placement
+
+| Tool | Caller | Purpose |
+|---|---|---|
+| Careers MCP `search_jobs` | Local `python -m careers_mcp search` CLI | Out-of-band discovery before agent input |
+| Careers MCP `get_job` | `JobDescriptionAgent` only | Retrieve exactly the explicitly selected listing |
+| Microsoft Learn `microsoft_docs_search` | `GapAnalyzer` only | Find official resources for roadmap gaps |
+
+The shared Careers service never receives the resume. It receives bounded search
+filters or one exact stable key.
 
 ## Step 5: Verify authentication
 
-<details open>
-<summary><strong>🅰️ Path A - Azure credential</strong></summary>
-
-```powershell
+```bash
 az account show --query "{name:name, id:id}" --output table
 ```
 
-If this fails, run [`az login`](https://learn.microsoft.com/cli/azure/authenticate-azure-cli-interactively).
+Confirm this is your attendee subscription. Local inference uses your Azure
+credential and your configured Foundry project.
 
-All four agents share one `FoundryChatClient` and one `DefaultAzureCredential`. If authentication works for one, it works for all.
+### Checkpoint
 
-</details>
-
-<details open>
-<summary><strong>🅱️ Path B - Foundry Local</strong></summary>
-
-No authentication required for local testing.
-
-</details>
-
----
-
-### ✅ Checkpoint
-
-> Do **not** proceed to Module 04 until: **(1)** `(.venv)` is visible in your prompt AND **(2)** `pip install -r requirements.txt` completed successfully.
-
-- [ ] `.env` has valid endpoint and model deployment name (not placeholders)
-- [ ] All 4 agent instruction constants defined in `main.py` (ResumeParser, JD Agent, MatchingAgent, GapAnalyzer)
-- [ ] `search_microsoft_learn_for_plan` MCP tool defined and registered on GapAnalyzer
-- [ ] `FoundryChatClient` + 4 `Agent` + 4 `AgentExecutor` objects created in `main()`
-- [ ] `WorkflowBuilder` builds the correct sequential graph with all 3 `add_edge()` calls
-- [ ] Virtual environment created and activated (`(.venv)` visible in prompt)
-- [ ] `pip install -r requirements.txt` completed without errors
-- [ ] **Path A:** `az account show` succeeds OR VS Code Accounts icon shows signed-in account
+- [ ] `.env` is beside `main.py` and contains all six non-placeholder values.
+- [ ] The endpoint/key came from the trainer out of band and are not committed.
+- [ ] The project endpoint/model belong to me, not the trainer.
+- [ ] I can distinguish the runtime endpoint, `azd` endpoint, ARM project ID,
+      subscription, and location settings.
+- [ ] Python 3.13 is active and every runtime, debugging, and OTLP pin is installed.
+- [ ] I can explain which component performs search, `get_job`, and Learn search.
+- [ ] I understand that Careers job text is untrusted data.
 
 ---
 
-**Previous:** [02 - Scaffold Multi-Agent Project](02-scaffold-multi-agent.md) · **Next:** [04 - Orchestration Patterns →](04-orchestration-patterns.md)
+**Previous:** [02 - Start from the Original Baseline](02-scaffold-multi-agent.md) ·
+**Next:** [04 - Orchestration & Relays →](04-orchestration-patterns.md)

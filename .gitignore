@@ -11,9 +11,13 @@
 *.userosscache
 *.sln.docstates
 *.env
+.azure/*
+!.azure/deployment-plan.md
+!.azure/validate-status.json
 
 # Local workshop datasets
 /workshop/lab02-multi-agent/careersgovsg-jobs-data/
+**/.foundry/results/*.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
