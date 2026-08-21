@@ -13,8 +13,8 @@ one stable job key, and keep the pasted-job-description regression path.
 |---|---|---|
 | 0 | [Prerequisites](00-prerequisites.md) | Verify Python 3.13, your project/model, trainer-issued Careers settings, and privacy rules |
 | 1 | [Understand the Architecture](01-understand-multi-agent.md) | Trace CLI search, exact selection, four sequential agents, both MCP services, and provenance relays |
-| 2 | [Inspect the Direct-Code Project](02-scaffold-multi-agent.md) | Review the checked-in project and attendee `azure.yaml`; retire the old Lab 02 wizard path |
-| 3 | [Configure Agents & Environment](03-configure-agents.md) | Configure `.env`, understand the agent contracts, and install pinned packages |
+| 2 | [Start from the Original Baseline](02-scaffold-multi-agent.md) | Run the attendee starter, preserve the completed solution, and review the agent-only `azure.yaml` |
+| 3 | [Configure Agents & Environment](03-configure-agents.md) | Configure the starter `.env`, understand the target contracts, and install pinned packages |
 | 4 | [Orchestration & Relays](04-orchestration-patterns.md) | Verify the strict chain and labeled relay sections |
 | 5 | [Search & Test Locally](05-test-locally.md) | Search Careers MCP, choose a key, use Agent Inspector with synthetic data, and test the pasted-JD fallback |
 | 6 | [Deploy with `azd`](06-deploy-to-foundry.md) | Target your existing Foundry project and deploy only the direct-code Hosted Agent |

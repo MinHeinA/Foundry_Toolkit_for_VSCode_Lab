@@ -122,6 +122,13 @@ def test_config_fails_closed_and_hides_key() -> None:
                 "CAREERS_MCP_API_KEY": "<careers-workshop-api-key>",
             }
         )
+    with pytest.raises(careers_mcp.CareersMcpConfigurationError, match="HTTPS"):
+        careers_mcp.CareersMcpConfig.from_env(
+            {
+                "CAREERS_MCP_ENDPOINT": "http://jobs.example/mcp",
+                "CAREERS_MCP_API_KEY": "secret",
+            }
+        )
 
     config = careers_mcp.CareersMcpConfig.from_env(
         {
@@ -132,6 +139,14 @@ def test_config_fails_closed_and_hides_key() -> None:
     )
     assert "not-for-repr" not in repr(config)
     assert config.timeout_seconds == 8
+
+    loopback = careers_mcp.CareersMcpConfig.from_env(
+        {
+            "CAREERS_MCP_ENDPOINT": "http://127.0.0.1:8080/mcp",
+            "CAREERS_MCP_API_KEY": "local-secret",
+        }
+    )
+    assert loopback.endpoint == "http://127.0.0.1:8080/mcp"
 
 
 def test_search_uses_exact_custom_header_and_parses_structured_content(

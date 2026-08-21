@@ -4,7 +4,7 @@
 
 ## Step 1: Configure local `.env`
 
-Run from `workshop/lab02-multi-agent/PersonalCareerCopilot`:
+Run from `workshop/lab02-multi-agent/PersonalCareerCopilotStarter`:
 
 ```bash
 cp .env.example .env
@@ -24,8 +24,9 @@ MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
 - Use the endpoint and model from **your** attendee Foundry project.
 - Use the Careers endpoint/key distributed by the trainer out of band. Do not
   substitute trainer project details.
-- The Careers endpoint must be an absolute HTTP(S) URL with no embedded
-  credentials, query, or fragment.
+- The trainer-provided Careers endpoint must use HTTPS with no embedded
+  credentials, query, or fragment. Plain HTTP is accepted only for loopback
+  development endpoints such as `127.0.0.1`.
 - Timeout must be greater than 0 and no more than 30 seconds.
 - Never commit `.env`, display the key in a screenshot, or paste it into prompts.
 
@@ -85,9 +86,10 @@ python -m pip show \
 
 ## Step 3: Understand the agent contracts
 
-The complete implementation is
-[`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py). Its four
-instructions enforce these boundaries:
+The starter begins with the original pasted-JD contracts. Complete its numbered
+TODOs using the challenge guide. The end-state reference is
+[`PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py); use it only
+after attempting each task. The finished instructions enforce these boundaries:
 
 ### `ResumeParser`
 
@@ -151,5 +153,5 @@ credential and your configured Foundry project.
 
 ---
 
-**Previous:** [02 - Inspect the Direct-Code Project](02-scaffold-multi-agent.md) ·
+**Previous:** [02 - Start from the Original Baseline](02-scaffold-multi-agent.md) ·
 **Next:** [04 - Orchestration & Relays →](04-orchestration-patterns.md)

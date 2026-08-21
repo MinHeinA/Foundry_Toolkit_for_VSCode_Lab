@@ -18,4 +18,3 @@ def test_entrypoint_imports() -> None:
 
     assert callable(main)
     assert app is not None
-

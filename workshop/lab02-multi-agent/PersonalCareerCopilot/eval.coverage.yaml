@@ -2,7 +2,6 @@ name: careers-job-fit-negative-coverage
 agent:
   name: personal-career-copilot-reference
   kind: hosted
-  version: "4"
   model: gpt-5.4-1
   config: .agent_configs/baseline/metadata.yaml
 dataset:

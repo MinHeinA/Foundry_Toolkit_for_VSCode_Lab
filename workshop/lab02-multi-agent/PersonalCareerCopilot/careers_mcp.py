@@ -101,6 +101,14 @@ class CareersMcpConfig:
                 "CAREERS_MCP_ENDPOINT must be an absolute HTTP(S) URL without "
                 "credentials, query parameters, or fragments."
             )
+        if parsed.scheme == "http" and parsed.hostname not in {
+            "localhost",
+            "127.0.0.1",
+            "::1",
+        }:
+            raise CareersMcpConfigurationError(
+                "CAREERS_MCP_ENDPOINT must use HTTPS unless it targets loopback."
+            )
         if not api_key or api_key != api_key.strip():
             raise CareersMcpConfigurationError("CAREERS_MCP_API_KEY is required.")
         if (

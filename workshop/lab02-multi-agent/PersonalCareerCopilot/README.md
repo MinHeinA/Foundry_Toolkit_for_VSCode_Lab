@@ -1,5 +1,11 @@
 # PersonalCareerCopilot
 
+> [!IMPORTANT]
+> This directory is the completed Careers MCP solution and trainer reference.
+> Attendees work in
+> [`../PersonalCareerCopilotStarter`](../PersonalCareerCopilotStarter) and use
+> this directory only for comparison after attempting each challenge task.
+
 A four-agent Microsoft Agent Framework workflow:
 
 `ResumeParser → JobDescriptionAgent → MatchingAgent → GapAnalyzer`
@@ -110,31 +116,15 @@ python -m pip install -r requirements-dev.txt
 python -m pytest --basetemp=.pytest-tmp
 ```
 
-## Deploy and evaluate
+## Trainer reference deployment and evaluation
 
-Deploy only the direct-code agent from the parent directory:
+The Lab 02 attendee manifest points to `PersonalCareerCopilotStarter`, not this
+solution directory. Trainer reference deployment/evaluation uses the
+repository-root service `personal-career-copilot-reference`.
 
-```bash
-cd ..
-AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd deploy personal-career-copilot --no-prompt
-```
-
-After configuring the deployed-agent metadata in the evaluation files, run the
-core suite:
-
-```bash
-AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd ai agent eval run --config eval.yaml --no-wait --no-prompt
-```
-
-Clear `LAST_EVAL_ID` before running the independent coverage suite:
-
-```bash
-AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd env set LAST_EVAL_ID ""
-AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd ai agent eval run --config eval.coverage.yaml --no-wait --no-prompt
-```
+Follow the
+[trainer deployment runbook](../trainer-deployment/README.md) from the
+repository root. Attendees do not deploy or evaluate this reference service.
 
 ## References
 

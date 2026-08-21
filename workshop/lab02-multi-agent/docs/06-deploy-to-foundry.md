@@ -9,7 +9,8 @@ cd workshop/lab02-multi-agent
 ```
 
 The checked-in [`azure.yaml`](../azure.yaml) contains one agent-only service and
-no infrastructure. It uploads `PersonalCareerCopilot` to runtime `python_3_13`.
+no infrastructure. It uploads the completed `PersonalCareerCopilotStarter` to
+runtime `python_3_13`.
 The shared Careers MCP service is trainer-owned and is never deployed by
 attendees.
 
@@ -35,7 +36,7 @@ flowchart LR
 ### Package checklist
 
 Do not loosen or replace the exact pins in
-`PersonalCareerCopilot/requirements.txt`. Confirm it contains:
+`PersonalCareerCopilotStarter/requirements.txt`. Confirm it contains:
 
 ```text
 agent-framework-foundry==1.10.4
@@ -110,10 +111,12 @@ Never use the trainer's Foundry project, subscription, or model settings.
 On macOS/Linux:
 
 ```bash
+bash
 read -rsp "Careers workshop API key: " CAREERS_KEY && echo
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd env set CAREERS_MCP_API_KEY "$CAREERS_KEY"
 unset CAREERS_KEY
+exit
 ```
 
 On PowerShell:
@@ -135,7 +138,7 @@ Confirm [`azure.yaml`](../azure.yaml) declares:
 
 - service `personal-career-copilot`
 - `host: azure.ai.agent`
-- source project `PersonalCareerCopilot`
+- source project `PersonalCareerCopilotStarter`
 - direct-code runtime `python_3_13`
 - entry point `main.py`
 - `kind: hosted` and Responses protocol `2.0.0`
@@ -156,12 +159,16 @@ up`, trainer Bicep, or any UI deployment action.
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd ai agent show --output json
+  azd ai agent show personal-career-copilot --output table
 ```
 
 Confirm the deployed agent appears in your intended project and reaches a ready
 state. If it is missing, failed, or targets the wrong project, do not invoke it;
 see [Module 8](08-troubleshooting.md).
+
+> [!CAUTION]
+> Do not display the full agent definition as JSON/YAML while the shared event
+> key is configured. Hosted environment values can appear in that output.
 
 ## Step 7: Invoke with the selected key
 
@@ -169,7 +176,7 @@ Reuse the exact key from Module 5:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd ai agent invoke personal-career-copilot \
+  azd ai agent invoke personal-career-copilot --new-session \
   "Resume: Synthetic cloud engineer with four years of Python and Terraform experience. Selected Job Key: <paste-one-exact-key-from-search>"
 ```
 
@@ -185,7 +192,7 @@ resume—to the shared Careers service.
 - [ ] Every `azd` command used `AZURE_DEV_USER_AGENT=microsoft_foundry_skill` inline.
 - [ ] I ran only `azd deploy personal-career-copilot --no-prompt`.
 - [ ] I did not deploy infrastructure or the trainer-owned Careers service.
-- [ ] `azd ai agent show --output json` reports my Hosted Agent.
+- [ ] `azd ai agent show personal-career-copilot --output table` reports my Hosted Agent.
 - [ ] Hosted invocation used a synthetic resume and an exact selected key.
 
 ---

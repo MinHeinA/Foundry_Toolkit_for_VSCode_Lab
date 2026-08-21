@@ -11,18 +11,21 @@ From `workshop/lab02-multi-agent`:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd ai agent show --output json
+  azd ai agent show personal-career-copilot --output table
 ```
 
 Confirm the agent is in your Foundry project and is ready. The existing Foundry
 sidebar screenshot remains useful for recognizing hosted agent/version status,
 although deployment itself now uses `azd`:
 
+Do not use full JSON/YAML agent-definition output while the shared event key is
+configured; environment values can be included in that output.
+
 ![Foundry sidebar showing a hosted agent version and status](images/06-foundry-sidebar-agent-status.png)
 
 ## Step 2: Search again and select a current key
 
-From `PersonalCareerCopilot`, run:
+From `PersonalCareerCopilotStarter`, run:
 
 ```bash
 python -m careers_mcp search \
@@ -39,7 +42,7 @@ Return to the Lab 02 directory and invoke:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd ai agent invoke personal-career-copilot \
+  azd ai agent invoke personal-career-copilot --new-session \
   "Resume: Synthetic platform engineer with four years of Python, Terraform, and CI/CD experience. Selected Job Key: <paste-one-exact-key-from-search>"
 ```
 
@@ -60,7 +63,7 @@ Do not include `Selected Job Key:`:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd ai agent invoke personal-career-copilot \
+  azd ai agent invoke personal-career-copilot --new-session \
   "Resume: Synthetic cloud engineer with six years of Azure, Kubernetes, and Terraform experience. Job Description: Senior cloud engineer requiring Azure, Kubernetes, Terraform, Python, and five years of experience."
 ```
 

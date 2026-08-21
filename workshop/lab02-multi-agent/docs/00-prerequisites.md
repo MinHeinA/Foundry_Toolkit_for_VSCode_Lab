@@ -11,11 +11,13 @@
 Lab 02 extends the sequential Resume → Job Fit Evaluator with an optional shared
 Careers@Gov MCP enhancement:
 
-1. Search the trainer-hosted read-only job snapshot from a local CLI.
-2. Explicitly choose one returned stable job key.
-3. Give Agent Inspector a synthetic resume and `Selected Job Key:`.
-4. Let `JobDescriptionAgent` retrieve exactly that listing.
-5. Receive a fit score, source provenance, gaps, and a Microsoft Learn roadmap.
+1. Run the original pasted-job-description workflow from the attendee starter.
+2. Complete the numbered Careers MCP TODOs without editing the solution.
+3. Search the trainer-hosted read-only job snapshot from a local CLI.
+4. Explicitly choose one returned stable job key.
+5. Give Agent Inspector a synthetic resume and `Selected Job Key:`.
+6. Let `JobDescriptionAgent` retrieve exactly that listing.
+7. Receive a fit score, source provenance, gaps, and a Microsoft Learn roadmap.
 
 The original pasted `Job Description:` input remains a required fallback.
 
@@ -47,7 +49,7 @@ deploy the shared MCP service.
   - `CAREERS_MCP_API_KEY`
 
 The packages in
-[`PersonalCareerCopilot/requirements.txt`](../PersonalCareerCopilot/requirements.txt)
+[`PersonalCareerCopilotStarter/requirements.txt`](../PersonalCareerCopilotStarter/requirements.txt)
 are pinned to tested versions. Do not replace them with unpinned “latest”
 packages during the workshop.
 
@@ -67,7 +69,7 @@ authentication is missing, authenticate interactively before the lab.
 Copy the environment template, but do not commit `.env`:
 
 ```bash
-cd workshop/lab02-multi-agent/PersonalCareerCopilot
+cd workshop/lab02-multi-agent/PersonalCareerCopilotStarter
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt

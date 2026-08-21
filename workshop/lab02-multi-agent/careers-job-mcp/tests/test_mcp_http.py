@@ -68,4 +68,3 @@ def test_all_tools_over_streamable_http(database_path: Path) -> None:
                         assert "job_not_found" in missing.content[0].text
 
     asyncio.run(exercise())
-

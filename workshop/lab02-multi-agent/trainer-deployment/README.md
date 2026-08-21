@@ -57,11 +57,39 @@ AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd env set \
 Set the real key separately so it is not copied into scripts or shell history:
 
 ```bash
+bash
 read -rsp "Workshop API key: " CAREERS_KEY && echo
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd env set CAREERS_MCP_API_KEY "$CAREERS_KEY"
 unset CAREERS_KEY
+exit
 ```
+
+Set `CAREERS_MCP_CONTAINER_IMAGE` before every preview/provision. For an existing
+Container App, preserve its live private image. Use the public bootstrap image
+only when the app does not exist yet:
+
+```bash
+bash
+if CAREERS_IMAGE="$(az containerapp show \
+  --subscription e49ea726-8fd5-4a46-b267-db602e7b8ef1 \
+  --resource-group rg-oceans-mcp-demo \
+  --name ca-careers-job-mcp-workshop \
+  --query 'properties.template.containers[0].image' \
+  --output tsv 2>/dev/null)"; then
+  AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+    azd env set CAREERS_MCP_CONTAINER_IMAGE "$CAREERS_IMAGE"
+else
+  AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+    azd env set CAREERS_MCP_CONTAINER_IMAGE \
+    mcr.microsoft.com/dotnet/samples:aspnetapp
+fi
+unset CAREERS_IMAGE
+exit
+```
+
+The Bicep parameter is required and has no bootstrap default. A missing value
+stops provisioning instead of silently replacing an existing private image.
 
 ## Build the frozen index
 
@@ -95,8 +123,7 @@ Replace the development commit with the final approved event snapshot.
    ```
 
 3. Wait for the AcrPull role assignment to propagate and confirm the new app
-   identity can pull from ACR.
-4. Attach the existing registry to the Container App using its system identity:
+   identity can pull from ACR. Attach the registry for the one-time bootstrap:
 
    ```bash
    az containerapp registry set \
@@ -107,10 +134,30 @@ Replace the development commit with the final approved event snapshot.
      --identity system
    ```
 
-5. Build, push, and activate the private MCP image:
+   Bicep intentionally omits this binding while the public bootstrap image is
+   selected, because the AcrPull assignment does not exist until after the app
+   is created. After the private image is persisted, Bicep owns the binding.
+4. Build, push, and activate the private MCP image:
 
    ```bash
    AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd deploy careers-job-mcp --no-prompt
+   ```
+
+5. Persist the deployed immutable image in the azd environment, then provision
+   once more. This prevents a later `azd provision` from restoring the public
+   bootstrap image:
+
+   ```bash
+   CAREERS_IMAGE="$(az containerapp show \
+     --subscription e49ea726-8fd5-4a46-b267-db602e7b8ef1 \
+     --resource-group rg-oceans-mcp-demo \
+     --name ca-careers-job-mcp-workshop \
+     --query 'properties.template.containers[0].image' \
+     --output tsv)"
+   AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+     azd env set CAREERS_MCP_CONTAINER_IMAGE "$CAREERS_IMAGE"
+   unset CAREERS_IMAGE
+   AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd provision --no-prompt
    ```
 
 6. Verify `/healthz`, authenticated `/readyz`, MCP `tools/list`, and all three
@@ -120,9 +167,51 @@ Replace the development commit with the final approved event snapshot.
    ```bash
    AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd deploy personal-career-copilot-reference --no-prompt
    AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd ai agent invoke \
-     personal-career-copilot-reference \
-     "Use a synthetic resume and an explicitly selected job key."
+     personal-career-copilot-reference --new-session \
+     "Resume: Synthetic cloud engineer with four years of Python, Terraform, and CI/CD. Selected Job Key: hrp:17338133:005056a3-d347-1fe1-8ab4-6630b9f9028d"
    ```
+
+## Rotate the workshop key
+
+After setting a new `CAREERS_MCP_API_KEY` in the azd environment:
+
+1. Confirm `CAREERS_MCP_CONTAINER_IMAGE` still references the live private ACR
+   image using the guard above.
+2. Apply the Container App secret:
+
+   ```bash
+   AZURE_DEV_USER_AGENT=microsoft_foundry_skill azd provision --no-prompt
+   ```
+
+3. Restart every active revision so running replicas load the new secret:
+
+   ```bash
+   bash
+   az containerapp revision list \
+     --subscription e49ea726-8fd5-4a46-b267-db602e7b8ef1 \
+     --resource-group rg-oceans-mcp-demo \
+     --name ca-careers-job-mcp-workshop \
+     --query '[?properties.active].name' \
+     --output tsv |
+   while IFS= read -r REVISION; do
+     az containerapp revision restart \
+       --subscription e49ea726-8fd5-4a46-b267-db602e7b8ef1 \
+       --resource-group rg-oceans-mcp-demo \
+       --name ca-careers-job-mcp-workshop \
+       --revision "$REVISION"
+   done
+   exit
+   ```
+
+4. Redeploy the reference agent so its new immutable version receives the key:
+
+   ```bash
+   AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+     azd deploy personal-career-copilot-reference --no-prompt
+   ```
+
+5. Verify the new key succeeds through REST, MCP, and the reference agent; then
+   verify the previous key returns unauthorized.
 
 ## Evaluation
 
@@ -149,6 +238,12 @@ The CLI resolves `eval.yaml` relative to the selected agent source folder. Use
 `azd ai agent eval list` and `azd ai agent eval show` to monitor the run.
 Clear `LAST_EVAL_ID` before switching to `eval.coverage.yaml`, otherwise the
 CLI reuses the prior evaluator definition.
+
+The seed rows retain `expected_behavior` for a later custom behavioral
+evaluator. The compatible built-in baseline evaluators do not consume that
+field directly; their purpose is relevance and task/intent coverage.
+Generated `.foundry/results/*.json` files remain local until a run targets the
+current agent version and has been reviewed.
 
 Container App revisions and immutable image tags provide rollback. Cleanup is
 destructive and is intentionally not included here.

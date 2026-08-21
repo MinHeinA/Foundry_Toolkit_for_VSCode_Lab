@@ -50,4 +50,3 @@ CREATE VIRTUAL TABLE jobs_fts USING fts5(
     content_rowid = 'rowid',
     tokenize = 'unicode61 remove_diacritics 2'
 );
-

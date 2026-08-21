@@ -515,13 +515,15 @@ environment usage check and policy exemption are completed.
 3. Confirm Bicep what-if contains only:
    - One new Container App.
    - Up to one AcrPull role assignment.
-4. Create the Container App with a public placeholder image and a
-   system-assigned identity.
+4. Create the Container App with a public bootstrap image and system-assigned
+   identity, intentionally omitting the ACR binding on the first provision.
 5. Create the AcrPull role assignment for that identity and wait for RBAC
    propagation.
 6. Build and push the MCP image to the existing ACR.
-7. Deploy the private MCP image as a new Container App revision with normal
-   min 1/max 5 replicas.
+7. Attach the registry after AcrPull propagation, deploy the private MCP image,
+   persist its immutable reference as
+   `CAREERS_MCP_CONTAINER_IMAGE`, and provision once more so future
+   `azd provision` runs preserve the production image and registry binding.
 8. Configure the event key as a secret and verify anonymous requests fail.
 9. Run MCP and REST smoke tests.
 10. Deploy the trainer reference Hosted Agent into `proj-bravo-1`.
@@ -613,6 +615,7 @@ After implementation:
 | `azure.yaml` | Trainer MCP and reference-agent deployment project |
 | `workshop/lab02-multi-agent/trainer-deployment/infra/` | Bicep for only the new Container App and AcrPull assignment |
 | `workshop/lab02-multi-agent/careers-job-mcp/` | MCP/API service, index builder, tests, Dockerfile |
+| `workshop/lab02-multi-agent/PersonalCareerCopilotStarter/` | Runnable original pasted-JD baseline and attendee working directory |
 | `workshop/lab02-multi-agent/PersonalCareerCopilot/main.py` | Selected-job relay and MCP-backed JD retrieval |
 | `workshop/lab02-multi-agent/PersonalCareerCopilot/careers_mcp.py` | Bounded MCP client/tool adapter |
 | `workshop/lab02-multi-agent/PersonalCareerCopilot/requirements.txt` | Pinned current dependencies |
@@ -735,17 +738,18 @@ No real API key, resume, tenant token, or endpoint credential is committed.
 | Full remote invocation | Exact selected key and source URL preserved; 40/100 fit and roadmap returned in 122 seconds | 2026-08-20 UTC |
 | Core smoke evaluation | 3 cases: 2 passed, 1 task-adherence failure, 0 errored; relevance and intent resolution 3/3 | 2026-08-20 UTC |
 | Version 4 canary | Exact selected key, source URL, numeric fit score, and roadmap returned | 2026-08-20 UTC |
-| Negative coverage gate | 3 cases errored in Foundry evaluator runtime; direct invocation confirmed these paths remain a quality gap and they are documented separately | 2026-08-20 UTC |
+| Negative coverage gate | Version 4 produced 3 evaluator-runtime errors; the branch now adds a tested conditional stop before scoring, pending redeployment and remote re-evaluation | 2026-08-20 UTC |
 
 ### Deployment Recovery Notes
 
 1. Initial placeholder provisioning expired because the private registry was
-   configured before AcrPull existed. Phase-one Bicep was corrected to omit the
-   registry block.
+   configured before AcrPull existed. The final Bicep omits the registry binding
+   for the public bootstrap image and declares it after the private image is
+   persisted.
 2. Initial private image activation returned ACR unauthorized because AZD did
-   not attach the system identity registry link. The documented
-   `az containerapp registry set --identity system` step was applied and added
-   to the trainer runbook.
+   not attach the system identity registry link. The final Bicep declares that
+   link and the runbook persists the deployed image before a final provision,
+   preventing later reprovisioning from restoring the bootstrap image.
 3. Server-side synthetic dataset generation is unavailable in Southeast Asia.
    A local synthetic JSONL/manual-evaluator fallback was created and executed.
 
@@ -768,7 +772,7 @@ No event API key is stored in this plan or committed source.
 
 ## 16. Next Step
 
-Review the one task-adherence failure and the blocked negative-path coverage
-gate, freeze the final event snapshot on 2026-08-26, temporarily raise the MCP
-minimum to two replicas before the 2026-08-27 event, and distribute the
-endpoint/key through a private channel.
+Redeploy the reference agent and re-run core plus negative-path coverage against
+the new conditional stop, freeze the final event snapshot on 2026-08-26,
+temporarily raise the MCP minimum to two replicas before the 2026-08-27 event,
+and distribute the endpoint/key through a private channel.

@@ -268,7 +268,7 @@ def load_and_normalize(source_bytes: bytes, generated_at: datetime) -> list[Norm
     if len(payload) > MAX_RECORDS:
         raise DatasetValidationError(f"dataset exceeds the {MAX_RECORDS} record limit")
 
-    generated_ms = int(generated_at.timestamp() * 1000)
+    generated_date = generated_at.astimezone(UTC).date()
     jobs: list[NormalizedJob] = []
     seen: set[str] = set()
     for index, record in enumerate(payload):
@@ -276,7 +276,12 @@ def load_and_normalize(source_bytes: bytes, generated_at: datetime) -> list[Norm
         if job.job_key in seen:
             raise DatasetValidationError(f"record {index}: duplicate composite job key")
         seen.add(job.job_key)
-        if job.closing_date_ms is None or job.closing_date_ms > generated_ms:
+        closing_date = (
+            None
+            if job.closing_date_ms is None
+            else datetime.fromtimestamp(job.closing_date_ms / 1000, UTC).date()
+        )
+        if closing_date is None or closing_date >= generated_date:
             jobs.append(job)
     return sorted(jobs, key=lambda item: item.job_key)
 

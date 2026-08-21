@@ -66,4 +66,3 @@ def create_mcp_server(service: CareersService) -> FastMCP:
             raise ToolError(f"{exc.code}: {exc.message}") from exc
 
     return mcp
-

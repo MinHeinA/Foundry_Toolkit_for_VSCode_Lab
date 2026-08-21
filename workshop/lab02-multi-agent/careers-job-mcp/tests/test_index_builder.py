@@ -49,6 +49,33 @@ def test_build_is_byte_deterministic_for_fixed_inputs(tmp_path: Path) -> None:
     ).digest()
 
 
+def test_build_keeps_listing_through_its_closing_date(tmp_path: Path) -> None:
+    records = _records()
+    records[0]["closingDate"] = 1767225600000
+    records[0]["closingDateText"] = "Closing on 01 Jan 2026"
+    source = tmp_path / "closing-date.json"
+    source.write_text(json.dumps(records), encoding="utf-8")
+
+    same_day = tmp_path / "same-day.sqlite3"
+    build_index(
+        source,
+        same_day,
+        generated_at="2026-01-01T23:59:59Z",
+    )
+    next_day = tmp_path / "next-day.sqlite3"
+    build_index(
+        source,
+        next_day,
+        generated_at="2026-01-02T00:00:00Z",
+    )
+
+    query = "SELECT count(*) FROM jobs WHERE job_key = 'hrp:100:post-a'"
+    with sqlite3.connect(same_day) as connection:
+        assert connection.execute(query).fetchone()[0] == 1
+    with sqlite3.connect(next_day) as connection:
+        assert connection.execute(query).fetchone()[0] == 0
+
+
 @pytest.mark.parametrize(
     "mutator, expected",
     [

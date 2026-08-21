@@ -18,8 +18,9 @@ current direct-code `azd` deployment path defined in `azure.yaml`.
 > **Hosted Agents are currently in preview.** Supported regions are limited - see [region availability](https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents#region-availability).
 
 > Lab 01's `agent/` folder is scaffolded by the Foundry extension. Lab 02 uses
-> the checked-in `PersonalCareerCopilot/` direct-code project and does not deploy
-> from `agent.yaml`.
+> `PersonalCareerCopilotStarter/` as the attendee workspace and keeps
+> `PersonalCareerCopilot/` as the completed solution/trainer reference. It does
+> not deploy from `agent.yaml`.
 
 ### 🌐 Multi-Language Support
 
@@ -274,7 +275,7 @@ Each lab is self-contained with its own modules. Start with **Lab 01** to learn 
 |---|--------|------|
 | 1 | Prerequisites (Lab 02) | [00-prerequisites.md](workshop/lab02-multi-agent/docs/00-prerequisites.md) |
 | 2 | Understand multi-agent architecture | [01-understand-multi-agent.md](workshop/lab02-multi-agent/docs/01-understand-multi-agent.md) |
-| 3 | Inspect the direct-code multi-agent project | [02-scaffold-multi-agent.md](workshop/lab02-multi-agent/docs/02-scaffold-multi-agent.md) |
+| 3 | Start from the original Lab 02 baseline | [02-scaffold-multi-agent.md](workshop/lab02-multi-agent/docs/02-scaffold-multi-agent.md) |
 | 4 | Configure agents & environment | [03-configure-agents.md](workshop/lab02-multi-agent/docs/03-configure-agents.md) |
 | 5 | Orchestration patterns | [04-orchestration-patterns.md](workshop/lab02-multi-agent/docs/04-orchestration-patterns.md) |
 | 6 | Test locally (multi-agent) | [05-test-locally.md](workshop/lab02-multi-agent/docs/05-test-locally.md) |

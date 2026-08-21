@@ -25,4 +25,3 @@ def operation_logger() -> logging.Logger:
     logger.setLevel(logging.INFO)
     logger.propagate = True
     return logger
-

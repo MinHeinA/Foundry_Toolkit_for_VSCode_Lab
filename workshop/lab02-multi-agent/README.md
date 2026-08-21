@@ -50,9 +50,12 @@ cannot issue instructions, request tools, change roles, or override the workflow
 
 1. Complete [Lab 01](../lab01-single-agent/README.md), then use your existing
    Foundry project and model.
-2. Configure `PersonalCareerCopilot/.env` with your project/model plus the
+2. Configure `PersonalCareerCopilotStarter/.env` with your project/model plus the
    trainer-provided Careers endpoint/key, timeout, and Microsoft Learn endpoint.
-3. From `PersonalCareerCopilot`, search:
+3. Run the original pasted-job-description workflow once from the starter.
+4. Copy the provided `careers_mcp.py` helper into the starter and complete the
+   numbered TODOs using the standalone challenge guide.
+5. From `PersonalCareerCopilotStarter`, search:
 
    ```bash
    python -m careers_mcp search \
@@ -60,8 +63,8 @@ cannot issue instructions, request tools, change roles, or override the workflow
      --max-experience-years 5
    ```
 
-4. Select one returned `Key:` value exactly.
-5. Start the local server, open Agent Inspector, and submit only synthetic resume
+6. Select one returned `Key:` value exactly.
+7. Start the local server, open Agent Inspector, and submit only synthetic resume
    data plus:
 
    ```text
@@ -69,11 +72,11 @@ cannot issue instructions, request tools, change roles, or override the workflow
    <paste-one-exact-key-from-the-search-output>
    ```
 
-6. Verify that the final `[SOURCE JOB]` contains the same job key, canonical
+8. Verify that the final `[SOURCE JOB]` contains the same job key, canonical
    source URL, title, agency, and dataset version.
-7. Keep the regression path working: when no selected key is supplied, paste a
+9. Keep the regression path working: when no selected key is supplied, paste a
    `Job Description:` with the synthetic resume.
-8. Deploy only the agent from this directory with the attendee `azure.yaml` and
+10. Deploy only the completed starter with the attendee `azure.yaml` and
    `azd deploy personal-career-copilot --no-prompt`.
 
 > [!CAUTION]
@@ -86,7 +89,8 @@ cannot issue instructions, request tools, change roles, or override the workflow
 - [Module 0 - Prerequisites](docs/00-prerequisites.md)
 - [Full Lab 02 learning path](docs/README.md)
 - [Standalone Careers@Gov MCP challenge](docs/10-careers-mcp-challenge.md)
-- [PersonalCareerCopilot local run guide](PersonalCareerCopilot/README.md)
+- [Attendee starter guide](PersonalCareerCopilotStarter/README.md)
+- [Completed solution reference](PersonalCareerCopilot/README.md)
 
 The current Lab 02 deployment path is `azd` + the Lab 02
 [`azure.yaml`](azure.yaml), using direct code and Hosted Agent runtime

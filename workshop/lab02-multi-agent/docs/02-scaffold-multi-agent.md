@@ -1,22 +1,23 @@
-# Module 2 - Inspect the Direct-Code Project
+# Module 2 - Start from the Original Lab 02 Baseline
 
 ⏱️ ~5 min
 
-Lab 02 uses the checked-in direct-code reference implementation:
+Lab 02 separates the attendee workspace from the completed solution:
 
 ```text
 lab02-multi-agent/
 ├── azure.yaml
-├── PersonalCareerCopilot/
+├── PersonalCareerCopilotStarter/  # attendee working directory
 │   ├── .agentignore
 │   ├── .env.example
 │   ├── .vscode/
-│   ├── careers_mcp.py
-│   ├── eval.yaml
-│   ├── eval.coverage.yaml
 │   ├── main.py
 │   ├── requirements.txt
-│   ├── requirements-dev.txt
+│   └── requirements-dev.txt
+├── PersonalCareerCopilot/         # completed solution and trainer reference
+│   ├── careers_mcp.py
+│   ├── eval.yaml
+│   ├── main.py
 │   └── tests/
 ├── careers-job-mcp/       # trainer-owned service source; attendees do not deploy it
 └── trainer-deployment/    # trainer-only azd/Bicep; attendees never run it
@@ -25,22 +26,21 @@ lab02-multi-agent/
 > [!NOTE]
 > Older workshop scaffolding wizards could generate an `agent.yaml` and
 > Dockerfile for container deployment. Those legacy artifacts are not part of
-> the checked-in `PersonalCareerCopilot` reference and are not used in this lab.
+> either checked-in Python directory and are not used in this lab.
 > Agent Inspector remains the local test client, not the deployment path.
 
 ## Key files
 
 | File | Purpose |
 |---|---|
-| [`../azure.yaml`](../azure.yaml) | Attendee agent-only `azd` manifest; direct-code Hosted Agent, runtime `python_3_13`, no infrastructure |
-| [`../PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py) | Responses host, four agents, strict `WorkflowBuilder` chain, Careers `get_job`, and Microsoft Learn MCP tool |
-| [`../PersonalCareerCopilot/careers_mcp.py`](../PersonalCareerCopilot/careers_mcp.py) | Bounded authenticated MCP client and learner search/get/status CLI |
-| [`../PersonalCareerCopilot/.env.example`](../PersonalCareerCopilot/.env.example) | Credential-free local configuration template |
-| [`../PersonalCareerCopilot/.vscode/tasks.json`](../PersonalCareerCopilot/.vscode/tasks.json) | Direct local HTTP host task used by Inspector and F5 debugging |
-| [`../PersonalCareerCopilot/.agentignore`](../PersonalCareerCopilot/.agentignore) | Excludes local-only files from direct-code upload |
-| [`../PersonalCareerCopilot/requirements.txt`](../PersonalCareerCopilot/requirements.txt) | Exact runtime, debugging, and OTLP package pins |
+| [`../azure.yaml`](../azure.yaml) | Attendee agent-only `azd` manifest; deploys the completed starter, runtime `python_3_13`, no infrastructure |
+| [`../PersonalCareerCopilotStarter/main.py`](../PersonalCareerCopilotStarter/main.py) | Runnable original pasted-JD workflow plus numbered Careers MCP TODOs |
+| [`../PersonalCareerCopilotStarter/.env.example`](../PersonalCareerCopilotStarter/.env.example) | Credential-free attendee configuration template |
+| [`../PersonalCareerCopilotStarter/.vscode/tasks.json`](../PersonalCareerCopilotStarter/.vscode/tasks.json) | Direct local HTTP host task used by Inspector and F5 debugging |
+| [`../PersonalCareerCopilot/careers_mcp.py`](../PersonalCareerCopilot/careers_mcp.py) | Provided bounded MCP helper to copy into the starter during the challenge |
+| [`../PersonalCareerCopilot/main.py`](../PersonalCareerCopilot/main.py) | Completed read-only solution for comparison and trainer deployment |
 
-The runtime requirements keep the tested Agent Framework, hosting, identity,
+Both directories use the same tested Agent Framework, hosting, identity,
 HTTP, MCP, and dotenv pins, with exact debugging and tracing pins:
 
 - `debugpy==1.8.21` for direct local breakpoint attach.
@@ -57,7 +57,7 @@ The attendee [`azure.yaml`](../azure.yaml) declares only
 shared MCP service. Confirm it has:
 
 - `host: azure.ai.agent`
-- `project: PersonalCareerCopilot`
+- `project: PersonalCareerCopilotStarter`
 - `codeConfiguration.runtime: python_3_13`
 - `codeConfiguration.entryPoint: main.py`
 - `kind: hosted`
@@ -66,9 +66,23 @@ shared MCP service. Confirm it has:
 - the model, Careers endpoint/key/timeout, and Microsoft Learn runtime values
 - no infrastructure provider or Bicep path
 
-## Inspect the agent boundary
+## Prove the original baseline
 
-In `main.py`, verify:
+Before adding Careers MCP, run the starter with a synthetic resume and pasted
+job description. Confirm it returns the original fit report and Microsoft Learn
+roadmap.
+
+Then copy the bounded helper:
+
+```bash
+cd workshop/lab02-multi-agent/PersonalCareerCopilotStarter
+cp ../PersonalCareerCopilot/careers_mcp.py .
+```
+
+## Inspect the target agent boundary
+
+Use the numbered TODOs in starter `main.py`; consult the solution only after
+attempting each task. The completed boundary should have:
 
 1. `get_selected_careers_job` calls the validated client by exact key.
 2. Careers output is labeled untrusted data.
@@ -81,10 +95,13 @@ In `main.py`, verify:
 
 ### Checkpoint
 
-- [ ] I am using the checked-in direct-code project, not recreating it with a wizard.
+- [ ] I am editing `PersonalCareerCopilotStarter`, not the solution.
+- [ ] The original pasted-JD baseline works before I add Careers MCP.
+- [ ] I copied the provided bounded helper into the starter.
 - [ ] I found attendee `azure.yaml` at the Lab 02 root.
 - [ ] I confirmed the Hosted Agent runtime is `python_3_13`.
 - [ ] I confirmed all runtime, debugging, and OTLP requirements are pinned.
+- [ ] I understand `PersonalCareerCopilot` is the end-state reference.
 - [ ] I understand `careers-job-mcp/` and `trainer-deployment/` are trainer-owned.
 - [ ] I will not run `azd provision` or `azd up` for Lab 02.
 

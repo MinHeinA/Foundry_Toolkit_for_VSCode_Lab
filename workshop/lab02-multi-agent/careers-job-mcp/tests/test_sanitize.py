@@ -28,4 +28,3 @@ def test_sanitizer_handles_encoded_and_malformed_xss() -> None:
 
 def test_sanitizer_normalizes_unicode_and_whitespace() -> None:
     assert sanitize_html("<p>ＡＢＣ   test</p><p>next\tline</p>") == "ABC test\nnext line"
-

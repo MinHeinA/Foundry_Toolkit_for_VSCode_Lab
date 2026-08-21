@@ -48,7 +48,8 @@
   command.
 - [x] Ran only `azd deploy personal-career-copilot --no-prompt`.
 - [x] Did not run `azd provision`, `azd up`, shared-MCP deployment, or trainer Bicep.
-- [x] Verified with `azd ai agent show --output json`.
+- [x] Verified with `azd ai agent show personal-career-copilot --output table`
+      without displaying the full environment-bearing agent definition.
 - [x] Invoked the hosted agent with an exact key and synthetic resume.
 
 ### Hosted validation

@@ -162,4 +162,3 @@ class CareersService:
         except RepositoryError as exc:
             self._log("get_dataset_status", "unavailable", started, 0, "unavailable")
             raise ServiceError("dataset_unavailable", str(exc), 503) from exc
-

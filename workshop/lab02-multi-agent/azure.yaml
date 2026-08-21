@@ -7,7 +7,7 @@ name: personal-career-copilot
 services:
   personal-career-copilot:
     host: azure.ai.agent
-    project: PersonalCareerCopilot
+    project: PersonalCareerCopilotStarter
     language: python
     codeConfiguration:
       runtime: python_3_13

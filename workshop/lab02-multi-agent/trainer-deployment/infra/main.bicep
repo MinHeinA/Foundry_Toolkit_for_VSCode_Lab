@@ -19,6 +19,9 @@ param containerRegistryName string = 'acrmcpodjhd42rocw6g'
 @maxLength(32)
 param containerAppName string = 'ca-careers-job-mcp-workshop'
 
+@description('Container image to apply. Keep the public bootstrap image only for the first provision.')
+param containerImage string
+
 @description('Shared event-scoped key required by the MCP and REST endpoints.')
 @secure()
 @minLength(32)
@@ -35,6 +38,8 @@ param minReplicas int = 1
 param maxReplicas int = 5
 
 var mcpSecretName = 'careers-workshop-key'
+var bootstrapImage = 'mcr.microsoft.com/dotnet/samples:aspnetapp'
+var usesPrivateImage = containerImage != bootstrapImage
 var acrPullRoleDefinitionId = subscriptionResourceId(
   'Microsoft.Authorization/roleDefinitions',
   '7f951dda-4ed3-4680-a7ca-43fe172d538d'
@@ -66,6 +71,14 @@ resource careersMcp 'Microsoft.App/containerApps@2025-01-01' = {
     environmentId: managedEnvironment.id
     configuration: {
       activeRevisionsMode: 'Multiple'
+      registries: usesPrivateImage
+        ? [
+            {
+              server: containerRegistry.properties.loginServer
+              identity: 'system'
+            }
+          ]
+        : []
       ingress: {
         external: true
         allowInsecure: false
@@ -83,9 +96,7 @@ resource careersMcp 'Microsoft.App/containerApps@2025-01-01' = {
       containers: [
         {
           name: 'careers-job-mcp'
-          // Provision with a public image so the system identity exists before
-          // AcrPull is assigned. `azd deploy careers-job-mcp` replaces it.
-          image: 'mcr.microsoft.com/dotnet/samples:aspnetapp'
+          image: containerImage
           resources: {
             cpu: json('0.25')
             memory: '0.5Gi'

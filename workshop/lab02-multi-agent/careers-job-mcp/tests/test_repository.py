@@ -60,4 +60,3 @@ def test_get_requires_exact_safe_key(database_path: Path) -> None:
     assert repository.get("hrp:does-not-exist:key") is None
     with pytest.raises(QueryValidationError):
         repository.get("hrp:100:post-a' OR 1=1 --:extra")
-

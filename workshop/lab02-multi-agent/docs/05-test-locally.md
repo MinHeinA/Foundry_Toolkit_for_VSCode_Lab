@@ -3,7 +3,7 @@
 ⏱️ ~20 min
 
 Run every command in this module from
-`workshop/lab02-multi-agent/PersonalCareerCopilot` with the Python 3.13 virtual
+`workshop/lab02-multi-agent/PersonalCareerCopilotStarter` with the Python 3.13 virtual
 environment active and `.env` configured.
 
 ## Step 1: Search the shared Careers snapshot
@@ -54,7 +54,7 @@ Inspector**. Attach a debugger to port `5679` only for the debug-server command.
 
 ### VS Code task or F5
 
-1. Open `PersonalCareerCopilot` as the VS Code folder.
+1. Open `PersonalCareerCopilotStarter` as the VS Code folder.
 2. Run **Tasks: Run Task** → **Run Agent HTTP Server** to start the direct local
    host under `debugpy` on debugger port `5679` and Inspector port `8088`.
 3. For breakpoints, press F5 and select **Debug Local Agent HTTP Server**. The
@@ -171,7 +171,7 @@ fabricate a listing and must not silently use a pasted JD.
 - [ ] The selected-key result contains the exact key and complete provenance.
 - [ ] Retrieved job content did not alter instructions or routing.
 - [ ] The pasted-JD regression passed without fabricated source metadata.
-- [ ] Invalid key handling did not fabricate or silently switch jobs.
+- [ ] Invalid key handling stopped before fit scoring or roadmap generation.
 - [ ] The shared Careers service never received resume data.
 
 ---

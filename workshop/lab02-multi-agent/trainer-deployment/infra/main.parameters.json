@@ -17,6 +17,9 @@
     "containerAppName": {
       "value": "${CAREERS_MCP_CONTAINER_APP_NAME=ca-careers-job-mcp-workshop}"
     },
+    "containerImage": {
+      "value": "${CAREERS_MCP_CONTAINER_IMAGE}"
+    },
     "careersMcpApiKey": {
       "value": "${CAREERS_MCP_API_KEY}"
     },

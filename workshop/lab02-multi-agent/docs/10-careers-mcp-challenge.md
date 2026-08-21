@@ -16,8 +16,10 @@ The original pasted-job-description path remains available when no selected key
 is supplied. This makes the enhancement easy to compare, demonstrate, and
 disable if the shared service is unavailable.
 
-**Suggested time:** 25 minutes  
-**Difficulty:** Intermediate  
+**Suggested time:** 25 minutes
+
+**Difficulty:** Intermediate
+
 **Primary learning goal:** Add a bounded external MCP data source without
 weakening privacy, provenance, or multi-agent orchestration.
 
@@ -92,14 +94,19 @@ Complete the base Lab 02 workflow first, then confirm:
 - The trainer has supplied:
   - `CAREERS_MCP_ENDPOINT`;
   - `CAREERS_MCP_API_KEY`.
-- `PersonalCareerCopilot/.env` is uncommitted and contains no placeholders.
+- `PersonalCareerCopilotStarter/.env` is uncommitted and contains no placeholders.
 - Only synthetic resume content will be used.
 
 ## Challenge tasks
 
 ### Task 0 - Prove the MCP connection
 
-Run these commands from `PersonalCareerCopilot` before editing `main.py`:
+Copy the provided helper, then run these commands from
+`PersonalCareerCopilotStarter` before editing `main.py`:
+
+```bash
+cp ../PersonalCareerCopilot/careers_mcp.py .
+```
 
 ```bash
 python -m careers_mcp status
@@ -124,7 +131,7 @@ configuration before changing agent code.
 
 ### Task 1 - Keep MCP transport out of `main.py`
 
-Use the existing helper:
+Use the copied helper:
 
 ```python
 from careers_mcp import CareersMcpError, get_job as get_careers_job
@@ -227,7 +234,19 @@ Copy provenance values; do not reconstruct or infer them.
 
 ### Task 7 - Configure local and hosted execution
 
-Local values belong in `PersonalCareerCopilot/.env`:
+Before configuration, add a deterministic conditional branch after
+`JobDescriptionAgent`:
+
+- continue to `MatchingAgent` only when the required JD/source markers exist;
+- when a selected key exists, require the successful Careers tool marker in the
+  agent conversation;
+- route retrieval/no-input/contract failures to a fixed `[WORKFLOW STOP]`
+  response;
+- do not run `MatchingAgent` or `GapAnalyzer` on that failure path.
+
+This prevents a failed lookup from becoming a fabricated score or roadmap.
+
+Local values belong in `PersonalCareerCopilotStarter/.env`:
 
 ```env
 CAREERS_MCP_ENDPOINT=https://<trainer-provided-host>/mcp
@@ -239,9 +258,11 @@ The parent `azure.yaml` maps the same names into the Hosted Agent runtime. Store
 the secret in the attendee's azd environment rather than source code:
 
 ```bash
+bash
 read -rsp "Careers MCP key: " CAREERS_KEY && echo
 azd env set CAREERS_MCP_API_KEY "$CAREERS_KEY"
 unset CAREERS_KEY
+exit
 ```
 
 The workshop key is an opaque shared secret. It has no automatic bearer-token
@@ -292,7 +313,7 @@ Lab 02 behavior without calling Careers MCP.
 - [ ] The same exact key appears in the final response.
 - [ ] The final response includes title, agency, source URL, and dataset version.
 - [ ] Selected-key data takes precedence when a pasted JD is also present.
-- [ ] Invalid-key retrieval produces an explicit failure and no fabricated job.
+- [ ] Invalid/no-input retrieval stops before fit scoring or roadmap generation.
 - [ ] The fit-score categories total 100 points.
 - [ ] Missing skills feed the Microsoft Learn roadmap.
 - [ ] Resume content is never sent to Careers MCP.

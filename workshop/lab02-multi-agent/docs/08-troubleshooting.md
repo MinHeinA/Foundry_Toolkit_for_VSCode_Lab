@@ -11,7 +11,7 @@ resume data in an issue.
 `main.py` calls `get_required_environment_variable()` before creating the
 Foundry client. It rejects missing values and scaffold placeholders.
 
-1. Confirm `.env` is in `PersonalCareerCopilot/`, beside `main.py`.
+1. Confirm `.env` is in `PersonalCareerCopilotStarter/`, beside `main.py`.
 2. Copy `.env.example` to `.env`.
 3. Replace every placeholder, especially:
 
@@ -51,7 +51,7 @@ If startup hangs or a port is occupied:
 - Stop any earlier Lab 02 task/process before starting another.
 - Confirm both 8088 and 5679 are available.
 - Run **Validate prerequisites** from `.vscode/tasks.json`.
-- Reopen `PersonalCareerCopilot` as the VS Code workspace so `${workspaceFolder}`
+- Reopen `PersonalCareerCopilotStarter` as the VS Code workspace so `${workspaceFolder}`
   and `.venv` resolve correctly.
 
 ### Agent Inspector or Workflow Visualizer does not connect
@@ -291,12 +291,15 @@ Run from `workshop/lab02-multi-agent`:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd ai agent show --output json
+  azd ai agent show personal-career-copilot --output table
 ```
 
 Confirm the agent is in the intended project. Review the `azd deploy` output for
 the first actionable error, correct the environment or permission issue, and
 redeploy the same `personal-career-copilot` service.
+
+Avoid full JSON/YAML agent-definition output while the shared key is configured
+because environment values can be displayed.
 
 ## Getting help
 

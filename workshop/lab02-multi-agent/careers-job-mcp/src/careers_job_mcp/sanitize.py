@@ -53,4 +53,3 @@ def sanitize_html(value: str) -> str:
     text = "".join(cleaned).replace("\r\n", "\n").replace("\r", "\n")
     lines = [_SPACE_RE.sub(" ", line).strip() for line in text.split("\n")]
     return _NEWLINES_RE.sub("\n\n", "\n".join(line for line in lines if line)).strip()
-

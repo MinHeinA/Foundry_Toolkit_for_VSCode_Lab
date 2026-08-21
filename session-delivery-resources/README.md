@@ -116,7 +116,10 @@ The event is **2026-08-27**.
   later than **2026-08-26**.
 - Record the dataset version and known-good selected keys for canaries.
 - Keep the previous known-good Container App revision available for rollback.
-- Rotate from rehearsal credentials to the event-scoped API key.
+- Rotate from rehearsal credentials to the event-scoped API key using the
+  trainer runbook: provision the secret, restart active Container App revisions,
+  redeploy the reference agent, verify the new key succeeds, and verify the old
+  key fails.
 - Rehearse from a clean learner machine using only published attendee steps.
 
 ### Event window on 2026-08-27
@@ -134,7 +137,9 @@ The event is **2026-08-27**.
 
 ### After the event
 
-1. Rotate or disable the event key immediately.
+1. Rotate or disable the event key immediately, restart active Container App
+   revisions, and redeploy/disable the reference agent so no running workload
+   retains the event credential.
 2. Return the minimum replica count to the approved post-event setting.
 3. Preserve redacted validation evidence and review operational metrics.
 4. Do not delete resources without separate destructive-action approval.
