@@ -58,6 +58,8 @@ From the repository:
 
 ```bash
 python --version
+# If you are starting directly from lab 2 first login to azure
+az login --use-device-code
 az account show --query "{name:name, id:id}" --output table
 azd version
 ```
