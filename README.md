@@ -159,6 +159,10 @@ It is a dead-simple, single-purpose agent - perfect for learning the hosted agen
 📂 Foundry_Toolkit_for_VSCode_Lab/
 ├── 📄 README.md                      ← You are here
 └── 📂 workshop/
+    ├── 📂 Infra/                        ← Terraform to create Foundry, Foundry project + model deployment
+    │   ├── main.tf
+    │   ├── variables.tf   
+    │   └── outputs.tf
     ├── 📂 lab01-single-agent/        ← Full lab: docs + agent code
     │   ├── README.md                 ← Hands-on lab instructions
     │   ├── 📂 docs/                  ← Step-by-step tutorial modules

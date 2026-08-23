@@ -21,7 +21,7 @@ CAREERS_MCP_TIMEOUT_SECONDS=10
 MICROSOFT_LEARN_MCP_ENDPOINT=https://learn.microsoft.com/api/mcp
 ```
 
-- Use the endpoint and model from **your** attendee Foundry project.
+- Use the endpoint and model from **your** attendee Foundry project. You can also get these details from the `terraform output` command if you created the project in Module 2.
 - Use the Careers endpoint/key distributed by the trainer out of band. Do not
   substitute trainer project details.
 - The trainer-provided Careers endpoint must use HTTPS with no embedded
@@ -64,14 +64,15 @@ Do not replace exact pins with “latest”. The checked-in versions are:
 
 | Package | Exact version |
 |---|---|
-| `agent-framework-foundry` | `1.10.4` |
-| `agent-framework-foundry-hosting` | `1.0.0b260730` |
+| `agent-framework-foundry` | `1.2.2` |
+| `agent-framework-foundry-hosting` | `1.0.0a260429` |
 | `azure-identity` | `1.25.3` |
 | `debugpy` | `1.8.21` |
 | `httpx` | `0.28.1` |
 | `mcp` | `1.29.0` |
 | `opentelemetry-exporter-otlp-proto-grpc` | `1.43.0` |
 | `python-dotenv` | `1.2.2` |
+|`agent-dev-cli` | `0.0.1b260427` |
 
 Verify the local host, tracing exporter, and runtime packages:
 

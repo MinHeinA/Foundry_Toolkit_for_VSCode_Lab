@@ -50,6 +50,16 @@ cannot issue instructions, request tools, change roles, or override the workflow
 
 1. Complete [Lab 01](../lab01-single-agent/README.md), then use your existing
    Foundry project and model.
+2. If you have skipped Lab 01, create the necessary infra using terraform in folder  ../Infra
+
+   ```bash
+   cd workshop/Infra
+   terraform init
+   terraform apply
+
+   # Get the output values for your Foundry project and model deployment
+   terraform output
+   ```
 2. Use the official Agent Framework workflow sample to generate your own
    untracked `PersonalCareerCopilot/` project.
 3. Convert the generated slogan workflow into the four-agent Resume → Job Fit
