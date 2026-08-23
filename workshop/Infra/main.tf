@@ -84,7 +84,7 @@ module "ai_foundry" {
 resource "azapi_resource" "app_insights_connection" {
   type      = "Microsoft.CognitiveServices/accounts/connections@2026-05-01"
   parent_id = module.ai_foundry.ai_foundry_id
-  name      = "${resource.azurerm_application_insights.this.name}-conn"
+  name      = "${azurerm_application_insights.this.name}-conn"
 
   body = {
     properties = {
@@ -101,4 +101,13 @@ resource "azapi_resource" "app_insights_connection" {
       }
     }
   }
+}
+
+# If we use Microsoft.CognitiveServices/locations/resourceGroups/deletedAccounts, we will get
+# invalid configuration: expect `type` to be Microsoft.Resources/resourceGroups/deletedAccounts
+resource "azapi_resource_action" "purge_ai_foundry" {
+  method      = "DELETE"
+  resource_id = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/providers/Microsoft.CognitiveServices/locations/${azurerm_resource_group.this.location}/resourceGroups/${azurerm_resource_group.this.name}/deletedAccounts/${module.naming.cognitive_account.name_unique}"
+  type        = "Microsoft.Resources/resourceGroups/deletedAccounts@2021-04-30"
+  when        = "destroy"
 }
