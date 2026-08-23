@@ -35,7 +35,7 @@ deploy the shared MCP service.
 
 ## Required tools and access
 
-- Lab 01 completed.
+- Lab 01 completed OR create the necessary infra using terraform in folder  `../Infra`
 - Your own Azure subscription and Foundry project in a Hosted Agent region.
 - A deployed model with sufficient quota.
 - **Foundry Project Manager** on **your** Foundry project for deployment.
