@@ -42,6 +42,17 @@ Module 6 sets those four values plus `FOUNDRY_PROJECT_ENDPOINT` in the `azd`
 environment. The two endpoint variables use the same URL but have different
 consumers; neither is interchangeable with the ARM project ID.
 
+> [!NOTE]
+> While saving your .env you might get a pop message with `An environment file is configured but terminal environment injection is disabled. Enable "python.terminal.useEnvFile" to use environment variables from .env files in terminals.`
+> ![1787536319070](images/1787536319070.png) 
+> To fix this
+> 1. Open the Command Palette by pressing Ctrl + Shift + P (Windows/Linux) or Cmd + Shift + P (macOS)
+> 2. Search `python.terminal.useEnvFile` 
+> 3. Ensure the checkbox is checked.
+> ![1787536390255](images/1787536390255.png)
+
+
+
 ## Step 2: Install pinned dependencies
 
 Use Python 3.13 locally to match Hosted Agent runtime `python_3_13`:
