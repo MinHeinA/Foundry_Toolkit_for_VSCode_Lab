@@ -13,7 +13,7 @@ Activate the Python 3.13 virtual environment created in Module 3.
 ## Step 1: Start the local host
 
 ```bash
-python main.py
+agentdev run main.py --verbose --port 8088
 ```
 
 Wait until the Responses host is ready, then run **Foundry Toolkit: Open Agent

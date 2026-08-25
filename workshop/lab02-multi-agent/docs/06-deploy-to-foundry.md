@@ -39,14 +39,15 @@ Do not loosen or replace the exact pins in
 `src/PersonalCareerCopilot/requirements.txt`. Confirm it contains:
 
 ```text
-agent-framework-foundry==1.10.4
-agent-framework-foundry-hosting==1.0.0b260730
+agent-framework-foundry==1.2.2
+agent-framework-foundry-hosting==1.0.0a260429
 azure-identity==1.25.3
 debugpy==1.8.21
 httpx==0.28.1
 mcp==1.29.0
 opentelemetry-exporter-otlp-proto-grpc==1.43.0
 python-dotenv==1.2.2
+agent-dev-cli>=0.0.1b260427
 ```
 
 The hosting package serves the local `/responses` endpoint, `debugpy` enables
@@ -71,7 +72,7 @@ secret environment values.
 
 ## Step 2: Set all non-secret deployment values
 
-Replace every placeholder with values from **your** Foundry project:
+Replace every placeholder with values from **your** Foundry project, you can get most of the values from the terraform outputs in /Infra:
 
 ```bash
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
