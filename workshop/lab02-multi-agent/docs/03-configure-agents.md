@@ -46,7 +46,7 @@ consumers; neither is interchangeable with the ARM project ID.
 > While saving your .env you might get a pop message with `An environment file is configured but terminal environment injection is disabled. Enable "python.terminal.useEnvFile" to use environment variables from .env files in terminals.`
 > ![1787536319070](images/1787536319070.png) 
 > To fix this
-> 1. Open the Command Palette by pressing Ctrl + Shift + P (Windows/Linux) or Cmd + Shift + P (macOS)
+> 1. Open the Settings by pressing Ctrl + , (Windows/Linux) or Cmd + , (macOS)
 > 2. Search `python.terminal.useEnvFile` 
 > 3. Ensure the checkbox is checked.
 > ![1787536390255](images/1787536390255.png)

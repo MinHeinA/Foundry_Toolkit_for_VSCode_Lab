@@ -65,7 +65,7 @@ module "ai_foundry" {
       }
       scale = {
         type     = "GlobalStandard"
-        capacity = 1
+        capacity = 500
       }
     }
   }

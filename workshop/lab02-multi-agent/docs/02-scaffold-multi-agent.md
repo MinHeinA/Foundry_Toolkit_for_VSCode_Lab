@@ -11,6 +11,8 @@ directory.
 From `workshop/lab02-multi-agent`:
 
 ```bash
+# From base directory cd to workshop/lab02-multi-agent
+cd workshop/lab02-multi-agent
 AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
   azd ai agent sample list --language python --output text
 ```
