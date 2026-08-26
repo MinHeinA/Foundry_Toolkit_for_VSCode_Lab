@@ -1,6 +1,6 @@
 locals {
   base_name = "globalai"
-  location  = "southeastasia"
+  location  = "australiaeast"
 }
 
 data "azurerm_client_config" "current" {}
@@ -103,9 +103,5 @@ resource "azapi_resource" "app_insights_connection" {
   }
 }
 
-resource "azapi_resource_action" "purge_ai_foundry" {
-  method      = "DELETE"
-  resource_id = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/providers/Microsoft.CognitiveServices/locations/${azurerm_resource_group.this.location}/resourceGroups/${azurerm_resource_group.this.name}/deletedAccounts/${module.naming.cognitive_account.name_unique}"
-  type        = "Microsoft.CognitiveServices/locations/resourceGroups/deletedAccounts@2026-05-01"
-  when        = "destroy"
-}
+# Once terraform destroy command ran successfuly, 
+# delete the soft deleted foundry from azure portal 
