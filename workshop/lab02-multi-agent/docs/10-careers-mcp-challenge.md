@@ -120,8 +120,8 @@ place so attendees can focus on the MCP integration points.
 
 Attendees make only these two code changes in `main.py`:
 
-1. Complete `TODO 1` by calling the provided exact-key helper.
-2. Complete `TODO 2` by assigning the wrapper tool to `JobDescriptionAgent`.
+1. Complete `TODO 1` by calling the provided job search helper function.
+2. Complete `TODO 2` by assigning the search tool to `CareerMcpListAgent`.
 
 ## Challenge steps
 
@@ -148,27 +148,6 @@ CAREERS_MCP_API_KEY=<trainer-provided-event-key>
 CAREERS_MCP_TIMEOUT_SECONDS=10
 ```
 
-```bash
-python -m careers_mcp status
-
-python -m careers_mcp search \
-  --query "cloud platform engineer" \
-  --max-experience-years 5 \
-  --limit 3
-
-python -m careers_mcp get \
-  --job-key "<one-exact-key-from-search>"
-```
-
-Expected results:
-
-1. Dataset status is `ready`.
-2. Search returns no more than the requested number of compact job cards.
-3. `get` returns the same exact key, canonical URL, and dataset version.
-4. Keep one returned `Key:` value for the agent test in Step 3.
-
-If this checkpoint fails, troubleshoot endpoint, key, timeout, or network
-configuration before changing agent code.
 
 ### Step 1 - Complete TODO 1: call the helper
 
@@ -181,11 +160,10 @@ raise NotImplementedError("Complete TODO 1")
 Replace it with:
 
 ```python
-payload = await get_careers_job(job_key)
+payload = await search_jobs(job_title, limit=5)
 ```
 
-This calls the existing helper with only the exact selected key. The surrounding
-provided code catches `CareersMcpError`, returns an explicit failure marker, and
+This calls the existing helper with the job title and a limit of 5 results. The surrounding provided code catches `CareersMcpError`, returns an explicit failure marker, and
 labels successful output as untrusted job data.
 
 Do not add raw MCP transport, authentication, job search, or resume data to this
@@ -201,19 +179,20 @@ tools=[],
 ```
 
 ```python
-tools=[get_selected_careers_job],
+tools=[search_careers_job],
 ```
 
-Only `JobDescriptionAgent` should receive the Careers tool:
+Only `CareerMcpListAgent` should receive the Careers tool:
 
 | Agent | Careers tool? | Reason |
 |---|---:|---|
 | `ResumeParser` | No | Parses and routes learner input |
-| `JobDescriptionAgent` | Yes | Retrieves the one selected listing |
+| `JobDescriptionAgent` | No | Retrieves the one selected listing |
 | `MatchingAgent` | No | Compares already-grounded profiles |
 | `GapAnalyzer` | No | Uses Microsoft Learn MCP for roadmap resources |
+| `CareerMcpListAgent` | Yes | Uses the search tool to retrieve relevant job listings |
 
-Keep `default_options={"store": False}` for all four agents.
+Keep `default_options={"store": False}` for all five agents.
 
 ### Step 3 - Test the selected and fallback paths
 
@@ -285,18 +264,8 @@ Never place the key in:
 
 ## Success criteria
 
-- [ ] MCP `status`, `search`, and `get` succeed before the agent test.
 - [ ] `TODO 1` calls `await get_careers_job(job_key)`.
-- [ ] `TODO 2` assigns the Careers tool only to `JobDescriptionAgent`.
-- [ ] The learner explicitly chooses one complete stable key.
-- [ ] Exactly one selected listing is retrieved.
-- [ ] The same exact key appears in the final response.
-- [ ] The final response includes title, agency, source URL, and dataset version.
-- [ ] Selected-key data takes precedence when a pasted JD is also present.
-- [ ] Invalid/no-input retrieval stops before fit scoring or roadmap generation.
-- [ ] Resume content is never sent to Careers MCP.
-- [ ] The original pasted-JD path still works.
-- [ ] `azure.yaml` contains environment references, not a literal API key.
+- [ ] `TODO 2` assigns the Careers tool only to `CareerMcpListAgent`.
 
 ## How to interpret the enriched output
 
