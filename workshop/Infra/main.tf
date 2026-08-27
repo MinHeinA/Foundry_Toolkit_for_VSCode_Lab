@@ -43,6 +43,7 @@ module "ai_foundry" {
   resource_group_resource_id = azurerm_resource_group.this.id
   ai_foundry = {
     create_ai_agent_service       = false
+    disable_local_auth            = true
     public_network_access_enabled = true
     name                          = module.naming.cognitive_account.name_unique
     managed_identities = {
@@ -56,16 +57,16 @@ module "ai_foundry" {
     }
   }
   ai_model_deployments = {
-    "gpt-5-mini" = {
-      name = "gpt-5-mini"
+    "gpt-5.4-mini" = {
+      name = "gpt-5.4-mini"
       model = {
         format  = "OpenAI"
-        name    = "gpt-5-mini"
-        version = "2025-08-07"
+        name    = "gpt-5.4-mini"
+        version = "2026-03-17"
       }
       scale = {
         type     = "GlobalStandard"
-        capacity = 500
+        capacity = 1000 # One capacity unit equals 1,000 TPM.
       }
     }
   }
@@ -79,6 +80,18 @@ module "ai_foundry" {
   }
   create_byor              = false
   create_private_endpoints = false
+}
+
+# The Foundry AVM does not currently expose the deployment-level service tier.
+resource "azapi_update_resource" "gpt_5_4_mini_priority_processing" {
+  type        = "Microsoft.CognitiveServices/accounts/deployments@2025-10-01-preview"
+  resource_id = module.ai_foundry.ai_model_deployment_ids["gpt-5.4-mini"]
+
+  body = {
+    properties = {
+      serviceTier = "Priority"
+    }
+  }
 }
 
 resource "azapi_resource" "app_insights_connection" {

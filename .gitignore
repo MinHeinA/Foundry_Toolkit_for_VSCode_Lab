@@ -13,6 +13,18 @@
 *.env
 .azure/*
 
+# Terraform local working data and potentially sensitive state
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
 # Local workshop datasets
 /workshop/lab02-multi-agent/careersgovsg-jobs-data/
 /workshop/lab02-multi-agent/PersonalCareerCopilot/

@@ -19,8 +19,13 @@ output "AZURE_AI_PROJECT_ID" {
 }
 
 output "AZURE_AI_PROJECT_ENDPOINT" {
-  value       = "https://${module.ai_foundry.ai_foundry_name}.services.ai.azure.com/projects/${module.ai_foundry.ai_foundry_project_name["project_1"]}"
+  value       = "https://${module.ai_foundry.ai_foundry_name}.services.ai.azure.com/api/projects/${module.ai_foundry.ai_foundry_project_name["project_1"]}"
   description = "The endpoint of the Azure AI Project."
+}
+
+output "FOUNDRY_PROJECT_ENDPOINT" {
+  value       = "https://${module.ai_foundry.ai_foundry_name}.services.ai.azure.com/api/projects/${module.ai_foundry.ai_foundry_project_name["project_1"]}"
+  description = "The Foundry project endpoint consumed by the Lab 02 agent runtime."
 }
 
 output "AZURE_APPLICATION_INSIGHTS_NAME" {
@@ -29,6 +34,11 @@ output "AZURE_APPLICATION_INSIGHTS_NAME" {
 }
 
 output "MODEL_DEPLOYMENT_NAME" {
-  value       = basename(module.ai_foundry.ai_model_deployment_ids["gpt-5-mini"])
+  value       = basename(module.ai_foundry.ai_model_deployment_ids["gpt-5.4-mini"])
   description = "The name of the deployed model."
+}
+
+output "AZURE_AI_MODEL_DEPLOYMENT_NAME" {
+  value       = basename(module.ai_foundry.ai_model_deployment_ids["gpt-5.4-mini"])
+  description = "The model deployment name consumed by the Lab 02 agent runtime."
 }
