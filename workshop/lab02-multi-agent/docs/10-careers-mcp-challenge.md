@@ -96,9 +96,6 @@ Complete the base Lab 02 workflow first, then confirm:
 
 - Python 3.13 and the Lab 02 dependencies are installed.
 - The attendee can access their own Foundry project and model deployment.
-- The trainer has supplied the challenge version of `main.py` containing
-  `TODO 1` and `TODO 2`. The untouched generated workflow does not contain the
-  provided Careers prompts and failure gate.
 - The trainer has supplied:
   - `CAREERS_MCP_ENDPOINT`;
   - `CAREERS_MCP_API_KEY`.
@@ -113,6 +110,7 @@ place so attendees can focus on the MCP integration points.
 
 | Provided component | What it does |
 |---|---|
+| `careers-main-starter.py` | Supplies the enhanced prompts, tools, provenance relays, and workflow with two focused TODOs |
 | `careers_mcp.py` | Owns authentication, MCP transport, input bounds, response validation, and safe errors |
 | Agent instructions | Relay the exact selected key, treat job fields as untrusted data, and preserve source provenance |
 | `get_selected_careers_job` wrapper | Handles explicit failures and labels successful results as untrusted data |
@@ -127,14 +125,20 @@ Attendees make only these two code changes in `main.py`:
 
 ## Challenge steps
 
-### Step 0 - Configure and prove the MCP connection
+### Step 0 - Install the starter and prove the MCP connection
 
-Copy the provided helper, then run these commands from
-`PersonalCareerCopilot/src/PersonalCareerCopilot` before editing `main.py`:
+Run these commands from `PersonalCareerCopilot/src/PersonalCareerCopilot`.
+First save the completed base-lab file outside the deployed source folder, then
+install the tracked challenge starter and its MCP helper:
 
 ```bash
+cp main.py ../../main.before-careers.py
+cp ../../../lab-assets/careers-main-starter.py main.py
 cp ../../../lab-assets/careers_mcp.py .
 ```
+
+The new `main.py` should contain exactly `TODO 1` and `TODO 2`. The backup keeps
+the learner's original pasted-JD implementation available for comparison.
 
 Add the trainer-provided values to the uncommitted `.env` beside `main.py`:
 
