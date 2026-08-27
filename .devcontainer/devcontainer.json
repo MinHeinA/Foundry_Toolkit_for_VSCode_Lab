@@ -2,5 +2,19 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postCreateCommand": "bash .devcontainer/install-vscode-extensions.sh"
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "hashicorp.terraform",
+        "ms-python.debugpy@2026.6.0",
+        "ms-python.python@2026.4.0",
+        "ms-python.vscode-pylance@2026.3.1",
+        "ms-python.vscode-python-envs@1.36.0",
+        "ms-azuretools.vscode-containers",
+        "ms-azuretools.vscode-azureterraform",
+        "ms-windows-ai-studio.windows-ai-studio"
+      ]
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/install-vscode-extensions.sh && bash .devcontainer/install-foundry-dependencies.sh"
 }

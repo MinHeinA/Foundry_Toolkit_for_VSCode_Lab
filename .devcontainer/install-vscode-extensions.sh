@@ -23,6 +23,17 @@ else
     exit 1
 fi
 
+if ! "$code_cli" --version >/dev/null 2>&1; then
+    if [[ -n "${CODESPACES:-}" ]]; then
+        echo "VS Code CLI is not ready during Codespaces post-create."
+        echo "Extensions will be installed from customizations.vscode.extensions."
+        exit 0
+    fi
+
+    echo "ERROR: VS Code CLI is not ready: $code_cli" >&2
+    exit 1
+fi
+
 install_extension() {
     local extension="$1"
     local attempt
