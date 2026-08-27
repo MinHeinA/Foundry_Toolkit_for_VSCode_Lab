@@ -134,16 +134,6 @@ exact-key retrieval, and the deterministic failure branch.
 
 Add these imports to generated `main.py`:
 
-```python
-import json
-
-import httpx
-from agent_framework import tool
-from mcp import ClientSession
-from mcp.client.streamable_http import StreamableHTTPError, streamable_http_client
-from mcp.shared.exceptions import McpError
-```
-
 Use
 [`lab-assets/microsoft-learn-tool.md`](../lab-assets/microsoft-learn-tool.md)
 to add `search_microsoft_learn_for_plan`. It must:

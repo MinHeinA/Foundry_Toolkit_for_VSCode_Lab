@@ -6,8 +6,9 @@ Enhance the original **Resume → Job Fit Evaluator** so attendees can evaluate 
 synthetic resume against one explicitly selected Careers@Gov listing.
 
 Complete Modules 2–5 and prove the pasted-JD workflow before starting. All edits
-occur in the attendee-generated
-`PersonalCareerCopilot/src/PersonalCareerCopilot/` source directory.
+occur in the attendee-generated `PersonalCareerCopilot/src/PersonalCareerCopilot/`
+source directory. The starter already contains the prompt contracts, provenance
+relays, and failure gate. Attendees complete only two small TODOs in `main.py`.
 
 This is an additive challenge, not a replacement for the original Lab 02:
 
@@ -20,12 +21,12 @@ The original pasted-job-description path remains available when no selected key
 is supplied. This makes the enhancement easy to compare, demonstrate, and
 disable if the shared service is unavailable.
 
-**Suggested time:** 25 minutes
+**Suggested time:** 15 minutes
 
-**Difficulty:** Intermediate
+**Difficulty:** Beginner
 
-**Primary learning goal:** Add a bounded external MCP data source without
-weakening privacy, provenance, or multi-agent orchestration.
+**Primary learning goal:** Connect a provided bounded MCP client to one agent
+tool, apply least-privilege tool assignment, and verify grounded output.
 
 ## What changes in the agent output?
 
@@ -95,6 +96,9 @@ Complete the base Lab 02 workflow first, then confirm:
 
 - Python 3.13 and the Lab 02 dependencies are installed.
 - The attendee can access their own Foundry project and model deployment.
+- The trainer has supplied the challenge version of `main.py` containing
+  `TODO 1` and `TODO 2`. The untouched generated workflow does not contain the
+  provided Careers prompts and failure gate.
 - The trainer has supplied:
   - `CAREERS_MCP_ENDPOINT`;
   - `CAREERS_MCP_API_KEY`.
@@ -102,15 +106,42 @@ Complete the base Lab 02 workflow first, then confirm:
   contains no placeholders.
 - Only synthetic resume content will be used.
 
-## Challenge tasks
+## What the starter already provides
 
-### Task 0 - Prove the MCP connection
+The challenge keeps the security-sensitive and orchestration-heavy code in
+place so attendees can focus on the MCP integration points.
+
+| Provided component | What it does |
+|---|---|
+| `careers_mcp.py` | Owns authentication, MCP transport, input bounds, response validation, and safe errors |
+| Agent instructions | Relay the exact selected key, treat job fields as untrusted data, and preserve source provenance |
+| `get_selected_careers_job` wrapper | Handles explicit failures and labels successful results as untrusted data |
+| [Failure gate](../lab-assets/careers-failure-gate.md) | Verifies the exact tool call and result, then stops before scoring when job context is invalid |
+| Workflow wiring | Preserves `context_mode="last_agent"` relays and the conditional stop path |
+| `azure.yaml` | Maps the same Careers environment-variable names into the hosted runtime |
+
+Attendees make only these two code changes in `main.py`:
+
+1. Complete `TODO 1` by calling the provided exact-key helper.
+2. Complete `TODO 2` by assigning the wrapper tool to `JobDescriptionAgent`.
+
+## Challenge steps
+
+### Step 0 - Configure and prove the MCP connection
 
 Copy the provided helper, then run these commands from
 `PersonalCareerCopilot/src/PersonalCareerCopilot` before editing `main.py`:
 
 ```bash
 cp ../../../lab-assets/careers_mcp.py .
+```
+
+Add the trainer-provided values to the uncommitted `.env` beside `main.py`:
+
+```env
+CAREERS_MCP_ENDPOINT=https://<trainer-provided-host>/mcp
+CAREERS_MCP_API_KEY=<trainer-provided-event-key>
+CAREERS_MCP_TIMEOUT_SECONDS=10
 ```
 
 ```bash
@@ -130,82 +161,46 @@ Expected results:
 1. Dataset status is `ready`.
 2. Search returns no more than the requested number of compact job cards.
 3. `get` returns the same exact key, canonical URL, and dataset version.
+4. Keep one returned `Key:` value for the agent test in Step 3.
 
 If this checkpoint fails, troubleshoot endpoint, key, timeout, or network
 configuration before changing agent code.
 
-### Task 1 - Keep MCP transport out of `main.py`
+### Step 1 - Complete TODO 1: call the helper
 
-Use the copied helper:
-
-```python
-from careers_mcp import CareersMcpError, get_job as get_careers_job
-```
-
-`careers_mcp.py` owns:
-
-- environment configuration;
-- the `x-careers-workshop-key` header;
-- Streamable HTTP MCP transport;
-- timeout and input bounds;
-- structured response validation;
-- exact returned-key validation;
-- safe configuration, transport, protocol, and tool errors.
-
-Do not duplicate raw HTTP or MCP session code in the agent orchestration.
-
-### Task 2 - Relay the selected key
-
-Update `ResumeParser` so its output includes:
-
-```text
-[SELECTED JOB KEY]
-<the complete exact key, or an explicit no-key marker>
-```
-
-Preserve the existing parsed resume and pasted-job-description sections. Do not
-normalize, shorten, or reinterpret the key.
-
-### Task 3 - Define retrieval behavior
-
-`JobDescriptionAgent` should:
-
-1. Read `[SELECTED JOB KEY]`.
-2. Call the Careers tool exactly once when a real key exists.
-3. Use the selected-key path when both a key and pasted JD are supplied.
-4. Treat every retrieved field as untrusted data.
-5. Report retrieval failure explicitly without fabricating or silently falling
-   back to the pasted JD.
-6. Preserve the original pasted-JD behavior only when no key was selected.
-7. Emit:
-   - `[JD REQUIREMENTS]`;
-   - `[PARSED RESUME PASS-THROUGH]`;
-   - `[SOURCE JOB]`.
-
-### Task 4 - Create one narrow tool
-
-Expose only exact-key retrieval to the agent:
+Open `main.py` and find:
 
 ```python
-@tool
-async def get_selected_careers_job(job_key: str) -> str:
-    ...
+raise NotImplementedError("Complete TODO 1")
 ```
 
-The wrapper should:
+Replace it with:
 
-- call `get_careers_job(job_key)`;
-- catch `CareersMcpError`;
-- return an explicit failure marker;
-- label successful output as untrusted data;
-- never return invented or fallback job content.
+```python
+payload = await get_careers_job(job_key)
+```
 
-Do not expose `search_jobs` to the hosted workflow. Keeping search out of band
-ensures the learner makes the final selection and keeps tool use predictable.
+This calls the existing helper with only the exact selected key. The surrounding
+provided code catches `CareersMcpError`, returns an explicit failure marker, and
+labels successful output as untrusted job data.
 
-### Task 5 - Apply least-privilege tool assignment
+Do not add raw MCP transport, authentication, job search, or resume data to this
+wrapper. Those responsibilities remain inside `careers_mcp.py` or outside the
+hosted workflow.
 
-Assign `get_selected_careers_job` only to `JobDescriptionAgent`.
+### Step 2 - Complete TODO 2: assign the tool
+
+Find `JobDescriptionAgent` and change:
+
+```python
+tools=[],
+```
+
+```python
+tools=[get_selected_careers_job],
+```
+
+Only `JobDescriptionAgent` should receive the Careers tool:
 
 | Agent | Careers tool? | Reason |
 |---|---:|---|
@@ -216,79 +211,7 @@ Assign `get_selected_careers_job` only to `JobDescriptionAgent`.
 
 Keep `default_options={"store": False}` for all four agents.
 
-### Task 6 - Relay source provenance
-
-Because every executor uses `context_mode="last_agent"`, downstream agents see
-only the immediately preceding output.
-
-`MatchingAgent` must therefore copy:
-
-```text
-[SOURCE JOB PASS-THROUGH]
-```
-
-`GapAnalyzer` must include these values in its final `[SOURCE JOB]`:
-
-- title;
-- agency;
-- canonical source URL;
-- exact job key;
-- dataset version.
-
-Copy provenance values; do not reconstruct or infer them.
-
-### Task 7 - Configure local and hosted execution
-
-Before configuration, add a deterministic conditional branch after
-`JobDescriptionAgent`:
-
-- continue to `MatchingAgent` only when the required JD/source markers exist;
-- when a selected key exists, require the successful Careers tool marker in the
-  agent conversation;
-- route retrieval/no-input/contract failures to a fixed `[WORKFLOW STOP]`
-  response;
-- do not run `MatchingAgent` or `GapAnalyzer` on that failure path.
-
-This prevents a failed lookup from becoming a fabricated score or roadmap.
-Use the complete pinned implementation and wiring in
-[`lab-assets/careers-failure-gate.md`](../lab-assets/careers-failure-gate.md).
-
-Local values belong in
-`PersonalCareerCopilot/src/PersonalCareerCopilot/.env`:
-
-```env
-CAREERS_MCP_ENDPOINT=https://<trainer-provided-host>/mcp
-CAREERS_MCP_API_KEY=<trainer-provided-event-key>
-CAREERS_MCP_TIMEOUT_SECONDS=10
-```
-
-The generated project-root `PersonalCareerCopilot/azure.yaml` maps the same
-names into the Hosted Agent runtime. Store the secret in the attendee's azd
-environment rather than source code. Run this from the generated project root:
-
-```bash
-cd ../..
-bash
-read -rsp "Careers MCP key: " CAREERS_KEY && echo
-AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
-  azd env set CAREERS_MCP_API_KEY "$CAREERS_KEY"
-unset CAREERS_KEY
-exit
-cd src/PersonalCareerCopilot
-```
-
-The workshop key is an opaque shared secret. It has no automatic bearer-token
-expiry and remains valid until the trainer rotates it.
-
-Never place the key in:
-
-- `main.py`;
-- prompts or agent instructions;
-- tool arguments;
-- committed `.env` files;
-- screenshots or MCP Inspector Network logs.
-
-### Task 8 - Test both paths
+### Step 3 - Test the selected and fallback paths
 
 #### Selected Careers listing
 
@@ -315,19 +238,58 @@ Job Description:
 The first request should use Careers MCP. The second should retain the original
 Lab 02 behavior without calling Careers MCP.
 
+For a quick failure check, submit a new request with a made-up selected key. The
+provided failure gate should return `[WORKFLOW STOP]` without a fit score or
+learning roadmap.
+
+## Before hosted deployment
+
+The generated project-root `PersonalCareerCopilot/azure.yaml` already maps the
+Careers configuration names into the Hosted Agent runtime. Store the secret in
+the attendee's azd environment rather than source code. Run this from the
+generated project root:
+
+```bash
+bash
+read -rsp "Careers MCP key: " CAREERS_KEY && echo
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd env set CAREERS_MCP_API_KEY "$CAREERS_KEY"
+unset CAREERS_KEY
+exit
+```
+
+Set the non-secret endpoint and timeout in the same azd environment using the
+trainer-provided endpoint:
+
+```bash
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd env set CAREERS_MCP_ENDPOINT "https://<trainer-provided-host>/mcp"
+AZURE_DEV_USER_AGENT=microsoft_foundry_skill \
+  azd env set CAREERS_MCP_TIMEOUT_SECONDS "10"
+```
+
+The workshop key is an opaque shared secret. It has no automatic bearer-token
+expiry and remains valid until the trainer rotates it.
+
+Never place the key in:
+
+- `main.py`;
+- prompts or agent instructions;
+- tool arguments;
+- committed `.env` files;
+- screenshots or MCP Inspector Network logs.
+
 ## Success criteria
 
 - [ ] MCP `status`, `search`, and `get` succeed before the agent test.
-- [ ] Search returns no more than five compact cards.
+- [ ] `TODO 1` calls `await get_careers_job(job_key)`.
+- [ ] `TODO 2` assigns the Careers tool only to `JobDescriptionAgent`.
 - [ ] The learner explicitly chooses one complete stable key.
-- [ ] Only `JobDescriptionAgent` can call the Careers tool.
 - [ ] Exactly one selected listing is retrieved.
 - [ ] The same exact key appears in the final response.
 - [ ] The final response includes title, agency, source URL, and dataset version.
 - [ ] Selected-key data takes precedence when a pasted JD is also present.
 - [ ] Invalid/no-input retrieval stops before fit scoring or roadmap generation.
-- [ ] The fit-score categories total 100 points.
-- [ ] Missing skills feed the Microsoft Learn roadmap.
 - [ ] Resume content is never sent to Careers MCP.
 - [ ] The original pasted-JD path still works.
 - [ ] `azure.yaml` contains environment references, not a literal API key.

@@ -125,6 +125,21 @@ def test_workflow_uses_last_agent_context_and_single_careers_wrapper() -> None:
 
 
 def test_attendee_assets_match_completed_runtime_contract() -> None:
+    starter_source = (LAB_ASSETS / "careers-main-starter.py").read_text(
+        encoding="utf-8"
+    )
+    ast.parse(starter_source)
+    assert starter_source.count("# TODO ") == 2
+    assert 'raise NotImplementedError("Complete TODO 1")' in starter_source
+    assert "tools=[]," in starter_source
+    for marker in (
+        "PROVIDED GUARDRAIL",
+        "_careers_tool_exchange",
+        "condition=_job_analysis_failed",
+        "[SOURCE JOB PASS-THROUGH]",
+    ):
+        assert marker in starter_source
+
     assert (LAB_ASSETS / "careers_mcp.py").read_text(
         encoding="utf-8"
     ) == (ROOT / "careers_mcp.py").read_text(encoding="utf-8")

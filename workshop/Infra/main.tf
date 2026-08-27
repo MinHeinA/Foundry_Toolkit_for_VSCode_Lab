@@ -65,7 +65,7 @@ module "ai_foundry" {
         version = "2026-03-17"
       }
       scale = {
-        type     = "GlobalStandard"
+        type     = "DataZoneStandard"
         capacity = 1000 # One capacity unit equals 1,000 TPM.
       }
     }
@@ -83,16 +83,16 @@ module "ai_foundry" {
 }
 
 # The Foundry AVM does not currently expose the deployment-level service tier.
-resource "azapi_update_resource" "gpt_5_4_mini_priority_processing" {
-  type        = "Microsoft.CognitiveServices/accounts/deployments@2025-10-01-preview"
-  resource_id = module.ai_foundry.ai_model_deployment_ids["gpt-5.4-mini"]
+# resource "azapi_update_resource" "gpt_5_4_mini_priority_processing" {
+#   type        = "Microsoft.CognitiveServices/accounts/deployments@2025-10-01-preview"
+#   resource_id = module.ai_foundry.ai_model_deployment_ids["gpt-5.4-mini"]
 
-  body = {
-    properties = {
-      serviceTier = "Priority"
-    }
-  }
-}
+#   body = {
+#     properties = {
+#       serviceTier = "Priority"
+#     }
+#   }
+# }
 
 resource "azapi_resource" "app_insights_connection" {
   type      = "Microsoft.CognitiveServices/accounts/connections@2026-05-01"

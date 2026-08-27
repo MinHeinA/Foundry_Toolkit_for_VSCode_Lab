@@ -77,32 +77,6 @@ workflow_agent = (
 
 Keep `ResponsesHostServer(workflow_agent)` from the generated sample.
 
-## Step 4: Verify the original relay contract
-
-```text
-Learner input
-├── Resume: <synthetic data>
-└── Job Description: <pasted public/synthetic description>
-
-ResumeParser output
-├── [PARSED RESUME]
-└── [JOB DESCRIPTION PASS-THROUGH]
-
-JobDescriptionAgent output
-├── [JD REQUIREMENTS]
-└── [PARSED RESUME PASS-THROUGH]
-
-MatchingAgent output
-└── fit report and gaps
-
-GapAnalyzer output
-└── Personalized Learning Roadmap
-```
-
-The pass-through labels prevent candidate evidence from becoming job
-requirements and ensure MatchingAgent receives both profiles despite
-`last_agent` context.
-
 ## Optional Careers enhancement
 
 The [Careers@Gov MCP challenge](10-careers-mcp-challenge.md) later adds:
